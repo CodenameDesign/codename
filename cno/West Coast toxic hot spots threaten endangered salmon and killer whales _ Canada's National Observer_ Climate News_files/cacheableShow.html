@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!-- saved from url=(0302)https://buy.tinypass.com/checkout/template/cacheableShow?aid=Z9bvuPACYA&templateId=OT9X4IMM1QSE&offerId=fakeOfferId&experienceId=EX8NZMGWGKII&iframeId=offer_016b323f9b2526ed6855-0&displayMode=inline&pianoIdUrl=https%3A%2F%2Fid.piano.io%2Fid%2F&widget=template&url=https%3A%2F%2Fwww.nationalobserver.com -->
+<html class="no-js" dir="ltr"><input type="hidden" id="__yoroi_connector_api_injected_type" value="prod"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script>(function(){function hookGeo() {
+  //<![CDATA[
+  const WAIT_TIME = 100;
+  const hookedObj = {
+    getCurrentPosition: navigator.geolocation.getCurrentPosition.bind(navigator.geolocation),
+    watchPosition: navigator.geolocation.watchPosition.bind(navigator.geolocation),
+    fakeGeo: true,
+    genLat: 38.883333,
+    genLon: -77.000
+  };
+
+  function waitGetCurrentPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        hookedObj.tmp_successCallback({
+          coords: {
+            latitude: hookedObj.genLat,
+            longitude: hookedObj.genLon,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        hookedObj.getCurrentPosition(hookedObj.tmp_successCallback, hookedObj.tmp_errorCallback, hookedObj.tmp_options);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof hookedObj.fakeGeo !== 'undefined')) {
+      if (hookedObj.fakeGeo === true) {
+        navigator.geolocation.getCurrentPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        hookedObj.watchPosition(hookedObj.tmp2_successCallback, hookedObj.tmp2_errorCallback, hookedObj.tmp2_options);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  Object.getPrototypeOf(navigator.geolocation).getCurrentPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp_successCallback = successCallback;
+    hookedObj.tmp_errorCallback = errorCallback;
+    hookedObj.tmp_options = options;
+    waitGetCurrentPosition();
+  };
+  Object.getPrototypeOf(navigator.geolocation).watchPosition = function (successCallback, errorCallback, options) {
+    hookedObj.tmp2_successCallback = successCallback;
+    hookedObj.tmp2_errorCallback = errorCallback;
+    hookedObj.tmp2_options = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${hookGeo}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  // https://developer.chrome.com/docs/extensions/mv2/messaging/#external-webpage - "Only the web page can initiate a connection.", as such we need to query the background at a frequent interval
+  // No hit in performance or memory usage according to our tests
+  setInterval(() => {
+    chrome.runtime.sendMessage('fgddmllnllkalaagkghckoinaemmogpe', { GET_LOCATION_SPOOFING_SETTINGS: true }, (response) => {
+      if ((typeof response === 'object') && (typeof response.coords === 'object')) {
+        hookedObj.genLat = response.coords.lat;
+        hookedObj.genLon = response.coords.lon;
+        hookedObj.fakeGeo = response.fakeIt;
+      }
+    });
+  }, 500);
+  //]]>
+}hookGeo();})()</script><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--[if lte IE 9]>
+    <script type="text/javascript" src="/js/angular/angular-ui-ieshiv.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min.js"></script>
+    <![endif]-->
+
+    
+    <title>Piano • Client Dashboard</title>
+    <meta property="og:title" content="Piano • Client Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <link href="./template.bundle.1.0.css" rel="stylesheet" type="text/css">
+<link href="./header-cta.css" rel="stylesheet" type="text/css">
+
+
+    <script>var TPTemplateType = "TEMPLATE";</script>
+
+    
+
+    <script type="text/javascript" src="./jquery.min.js"></script>
+<script type="text/javascript" src="./jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./angular.min.js"></script>
+<script type="text/javascript" src="./angular-animate.min.js"></script>
+<script type="text/javascript" src="./angular-cookies.min.js"></script>
+<script type="text/javascript" src="./angular-sanitize.min.js"></script>
+<script type="text/javascript" src="./tmhDynamicLocale.min.js"></script>
+<script type="text/javascript" src="./angular-ui-utils.min.js"></script>
+<script type="text/javascript" src="./angular-ui-ieshiv.js"></script>
+<script type="text/javascript" src="./angular-ui-router.min.js"></script>
+<script id="translation-dynamic" type="text/javascript" src="./loadTranslationMap"></script>
+<script id="translation-static" type="text/javascript" src="./platform-translation-map_en_US.js"></script>
+<script type="text/javascript" src="./H4sIAAAAAAAA_z3IwQ6AIAgA0B9KmJ76m4bJHI6oBa7f7-bt7eEnrXNgEw8Mvh6lYBy-DHVaU95QpTqS9an0pgwFSkHJu63T-yTlgy1Nh-E_BjVxNVoAAAA"></script>
+
+
+
+<script>!function(t){var e={};function n(r){if(e[r])return e[r].exports;var i=e[r]={i:r,l:!1,exports:{}};return t[r].call(i.exports,i,i.exports,n),i.l=!0,i.exports}n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var i in t)n.d(r,i,function(e){return t[e]}.bind(null,i));return r},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=2352)}({107:function(t,e,n){"use strict";n.d(e,"a",(function(){return r}));class r{static isFunction(t){return"function"==typeof t}static strippedHost(){let t=window.location.hostname;return 0===t.indexOf("www.")&&(t=t.replace("www.","")),t}static origin(){return window.location.origin}static injectPromise(t,...e){return new Promise((n,r)=>{t(...e,(t,e)=>{t?r(t):n(e)})})}}},13:function(t,e,n){"use strict";n.d(e,"a",(function(){return s}));var r=n(3),i=n(50);class s{constructor(t="",e=r.c.EOS,n="",s="",o=!1,c=!1,a=""){this.id=i.a.text(24),this.name=t,this.blockchain=e,this.chainId=n,this.nodeAddress=s,this.nodeAddress2=s,this.nodeAddress3=s,this.enable=o,this.custom=c,this.extra=a}static placeholder(){return new s}static fromJson(t){return Object.assign(this.placeholder(),t)}clone(){return s.fromJson(JSON.parse(JSON.stringify(this)))}unique(){return this.id}sameBlockchain(t){return t&&this.blockchain===t.blockchain&&this.chainId===t.chainId}blockchainName(){const t=Object.keys(r.c).find(t=>r.c[t]===this.blockchain);return r.a[t]}isValidBlockchain(){return!!r.d.map(t=>t.value).includes(this.blockchain)&&!(!this.chainId||!this.chainId.length)}isValid(){if(!this.isValidBlockchain())return!1;return/(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/.test(this.nodeAddress)}fullNode(){return this.nodeAddress}solidityNode(){return this.nodeAddress2}eventServer(){return this.nodeAddress3}}},18:function(t,e,n){"use strict";n.d(e,"b",(function(){return r})),n.d(e,"d",(function(){return i})),n.d(e,"g",(function(){return s})),n.d(e,"c",(function(){return o})),n.d(e,"h",(function(){return c})),n.d(e,"e",(function(){return a})),n.d(e,"j",(function(){return u})),n.d(e,"i",(function(){return d})),n.d(e,"f",(function(){return l})),n.d(e,"a",(function(){return h}));const r="error",i="pushMathwallet",s="requestIdentity",o="forgetIdentity",c="requestSelectedIdentity",a="requestAddNetwork",u="requestSwitchNetwork",d="requestSignature",l="requestArbitrarySignature",h="authenticate"},2352:function(t,e,n){"use strict";n.r(e);var r=n(86),i=n(39),s=n(18),o=n(87),c=n(50),a=n(3),u=n(13),d=n(107);class l{constructor(t,e,n){this.id=t,this.resolve=e,this.reject=n}}let h=new WeakMap,O=new WeakMap,A=null,N=null;const f=()=>!A,E=(t,e)=>new Promise((n,r)=>{let s=c.a.text(24);O.push(new l(s,n,r));let a=new o.a(t,e,s,d.a.strippedHost());h.send(a,i.b)});class I{constructor(t,e){if(h=t,this.version=e.version,e.identitys.length){let t=e.identitys.find(t=>t.network.blockchain===e.network.blockchain);this.useIdentity(t.account,t.network)}O=[],h.listenWith(t=>{if(!t||!t.hasOwnProperty("type"))return!1;for(let e=0;e<O.length;e++)O[e].id===t.resolver&&(t.type===s.b?O[e].reject(t.payload):O[e].resolve(t.payload),O=O.slice(e,1))})}useIdentity(t,e){A=t,N=e}getAccount(){const t=u.a.fromJson({blockchain:a.c.BTC,chainId:"MAINNET"});return E(s.g,{network:t}).then(t=>(this.useIdentity(t.account,t.network),{xpub:t.options.xpub,ypub:t.options.ypub,address:t.account.address}))}forgetIdentity(){return f()?new Promise((t,e)=>{t(!0)}):E(s.c,{}).then(()=>(this.useIdentity(null,null),!0))}requestSignature(t){if(f())return new Promise((t,e)=>{e(new Error("There is no account with an address set on your bitcoin instance."))});const e=u.a.fromJson({blockchain:a.c.BTC,chainId:"MAINNET"});return E(s.i,{network:e,transaction:t})}}new class{constructor(){const t=new r.a(i.a);t.listenWith(e=>{if(e&&e.hasOwnProperty("type"))switch(e.type){case s.d:this.dispenseInjectMessage(t,e.payload)}}),t.sync(i.b)}dispenseInjectMessage(t,e){console.log(`MathWallet-> ${e.network.blockchain} injected successfully`);const n=new I(t,e);window.bitcoin=n}}},3:function(t,e,n){"use strict";n.d(e,"c",(function(){return r})),n.d(e,"a",(function(){return i})),n.d(e,"b",(function(){return o})),n.d(e,"d",(function(){return c})),n.d(e,"e",(function(){return a}));const r={BTC:"bitcoin",EOS:"eos",TRX:"trx",ETH:"eth",ETH2:"eth2",IRIS:"iris",COSMOS:"cosmos",BINANCE:"binance",HASHGARD:"hashgard",CHAINX:"chainx",POLKADOT:"polkadot",CODEX:"codex",FIBOS:"fibos",HARMONY:"harmony",COINEX:"coinex",ENIGMA:"enigma",SECRET_NETWORK:"secretnetwork",KAVA:"kava",NERVOS:"nervos",NEAR:"near",BANDCHAIN:"bandchain",SOLANA:"solana",HBTC:"hbtc",HELIUM:"helium",CONFLUX:"conflux",PLATON:"platon",THORCHAIN:"thorchain"},i={BTC:"Bitcoin",EOS:"EOS",TRX:"TRON",ETH:"Ethereum",ETH2:"Ethereum 2.0",IRIS:"IRISnet",COSMOS:"Cosmos",BINANCE:"Binance",HASHGARD:"Hashgard",CHAINX:"ChainX 1.0",POLKADOT:"Polkadot",CODEX:"Codex",FIBOS:"Fibos",HARMONY:"Harmony",COINEX:"CoinEx",ENIGMA:"Enigma",SECRET_NETWORK:"Secret Network",KAVA:"Kava",NERVOS:"Nervos",NEAR:"NEAR",BANDCHAIN:"BandChain",SOLANA:"Solana",HBTC:"HBTC Chain",HELIUM:"Helium",CONFLUX:"Conflux",PLATON:"PlatON",THORCHAIN:"thorchain"},s=["BTC","ETH","POLKADOT","NEAR","SOLANA","ETH2","EOS","TRX","BINANCE","COSMOS","IRIS","CONFLUX","CHAINX","SECRET_NETWORK","NERVOS","FIBOS","HARMONY","COINEX","HBTC","KAVA","PLATON","THORCHAIN","BANDCHAIN","HASHGARD","CODEX","ENIGMA","HELIUM"],o={UNKNOW:"0",ETH:"1",HARMONY:"1001",ETC:"1002",TOMO:"1003",RSK:"1004",BSC:"1005",OPTIMISTIC:"1006",GALOIS_L2:"1007",HECO:"1008",MOONBASE:"1009",ARBITRUM:"1010",POLYGON:"1011",FANTOM:"1012",MATHCHAIN_L2:"1013",OKEXCHAIN:"1015",EVM:"1020",CSC:"1021",HSC:"1022",NEO:"2",EOS:"3",MEETONE:"3001",WORBLI:"3002",FIBOS:"3003",WAX:"3004",YAS:"3005",EOSFORCE:"4",ONT:"5",BTC:"6",ESN:"7",TRX:"8",NAS:"9",BOS:"10",ENU:"11",TELOS:"12",ZIL:"13",BINANCE:"14",IRIS:"15",COSMOS:"16",HASHGARD:"16001",CHAINX:"17",CODEX:"18",POLKADOT:"19",KUSAMA:"19001",SUBSTRATE:"19002",EDGEWARE:"19003",STRAIGHTEDGE:"19004",PLASM:"19005",STAFI:"19006",KULUPU:"19007",MATHCHAIN_L1:"19008",GALOIS_L1:"19009",DARWINIA_CRAB:"19010",DARWINIA:"19014",SUBSOCIAL:"19011",CENTRIFUGE:"19012",EQUILIBRIUM:"19013",CRUST:"19015",CLOVER:"19016",BIFROST:"19017",DBC:"19023",VECHAIN:"20",FT:"21",COINEX:"22",STELLAR:"23",ETH2:"24",FILECOIN:"25",ENIGMA:"26",KAVA:"27",NERVOS:"28",NEAR:"31",BANDCHAIN:"32",SECRET_NETWORK:"34",SOLANA:"35",HBTC:"36",HELIUM:"38",CHAINX2:"39",CONFLUX:"1014",PLATON:"41",THORCHAIN:"42"},c=Object.keys(r).map(t=>({key:t,value:r[t],name:i[t]})),a=(s.map(t=>({key:t,value:r[t],name:i[t]})),t=>i[Object.keys(r).find(e=>r[e]===t)]||"")},39:function(t,e,n){"use strict";n.d(e,"a",(function(){return r})),n.d(e,"b",(function(){return i}));const r="mathwallet_injected",i="mathwallet_internal"},50:function(t,e,n){"use strict";n.d(e,"a",(function(){return i}));const r=window.crypto||window.msCrypto;class i{static getCharset(t){const e="abcdefghijklmnopqrstuvwxyz",n=e.toUpperCase();if("alphanumeric"===t)return"0123456789"+e+n;if("numeric"===t)return"0123456789";if("alphabetic"===t)return e+n;if("hex"===t)return"0123456789abcdef";const r={},i=t.length;for(let e=0;e<i;++e)r[t[e]]=!0;return Object.keys(r).sort().join("")}static rand(t=32,e="alphanumeric"){const n=i.getCharset(e),s=n.length,o=256-256%s;let c=t,a="";for(;c>0;){const t=Math.min(Math.ceil(256*c/o),65535),e=new Uint8Array(t);r.getRandomValues(e);for(let t=0;t<e.length&&c>0;++t){const r=e[t];r<o&&(a+=n.charAt(r%s),--c)}}return a}static numeric(t){return i.rand(t,"numeric")}static text(t){return i.rand(t,"alphanumeric")}}},86:function(t,e,n){"use strict";n.d(e,"a",(function(){return r}));class r{constructor(t){this.eventName=t,this.synced=!1,this.syncFn=null,this.listenForSync()}listenWith(t){document.addEventListener(this.eventName,e=>{if(!this.synced)return!1;let n=JSON.parse(e.detail);t(n)})}send(t,e){if("object"!=typeof t)throw new Error("Payloads must be objects");(()=>{t.from=this.eventName})(),this.dispatch(JSON.stringify(t),e)}onSync(t){this.syncFn=t}sync(t){this.send({type:"sync"},t)}listenForSync(){document.addEventListener(this.eventName,t=>{let e=JSON.parse(t.detail);if(!e.hasOwnProperty("type"))return!1;"sync"===e.type&&this.ackSync(e),"synced"===e.type&&(this.synced=!0)})}ackSync(t){this.send({type:"synced"},t.from),this.synced=!0,this.syncFn()}dispatch(t,e){document.dispatchEvent(this.getEvent(t,e))}getEvent(t,e){return new CustomEvent(e,this.getEventInit(t))}getEventInit(t){return{detail:t}}}},87:function(t,e,n){"use strict";n.d(e,"a",(function(){return i}));var r=n(18);class i{constructor(t="",e={},n="",r="",i=""){this.type=t,this.payload=e,this.resolver=n,this.domain=r,this.origin=i}static placeholder(){return new i}static fromJson(t){return Object.assign(this.placeholder(),t)}static payload(t,e){let n=this.placeholder();return n.type=t,n.payload=e,n}static signal(t){let e=this.placeholder();return e.type=t,e}respond(t){return new i(this.type,t,this.resolver)}error(t){return new i(r.b,t,this.resolver)}}}});</script></head>
+
+<body id="ng-app" class="ng-scope">
+
+<script>
+    var TPConfig = {
+        PATH: "https://buy.tinypass.com"
+    };
+
+    
+var TPParam = {"app":{"name":"National Observer","image1":"/ml/cropped_Z9bvuPACYA_1_q6a98g.png","aid":"Z9bvuPACYA","useTinypassAccounts":false,"userProvider":"piano_id","businessUrl":"https://www.nationalobserver.com","canInitCheckoutWithAnon":true},"LOGIN":"/checkout/user/loginShow","TRANSLATION_CONFIG":{"isStatic":false,"isEnabled":true,"templateContext":"default","version":"16.59.0","loadTranslationUrl":"/showtemplate/general/loadTranslationMap?aid=Z9bvuPACYA&version=1646699523000","initialLocaleId":"en_US","systemDefaultLocale":"en_US","languages":[{"locale":"en_US","label":"English (United States)","localized":"English (United States)","isDefault":true,"isEnabled":true,"rtl":false}]},"params":{"experienceId":"EX8NZMGWGKII","widget":"template","pianoIdUrl":"https://id.piano.io/id/","iframeId":"offer_016b323f9b2526ed6855-0","offerId":"fakeOfferId","templateId":"OT9X4IMM1QSE","aid":"Z9bvuPACYA","displayMode":"inline","url":"https://www.nationalobserver.com"},"TRACK_SHOW":"/checkout/template/trackShow"};
+</script>
+
+<div id="template-container" style="position: relative;"><iframe width="100%" height="100%" style="position: absolute !important; z-index: -1 !important;" src="./saved_resource(1).html"></iframe>
+    <div template="" class="showTemplate">
+        <div class="show-template-error-screen ng-hide" ng-show="terminalError">
+            <div class="error-screen">
+                <div class="row">
+                    <div class="error-notification-icon"></div>
+                    <div class="content">
+                        <h1>An error has occurred</h1>
+
+                        <p class="ng-hide ng-binding" ng-show="terminalError">
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="!terminalError" class="">
+
+            <div class="site-header-cta site-header-cta--bigtext">
+  <div class="site-header-cta__inner">
+    <div desktop="" class="ng-isolate-scope"><!-- ngIf: check() --><div class="desktop-mode ng-scope" ng-if="check()" ng-transclude="">
+      <div class="site-header-cta__content ng-scope">
+        <div class="site-header-cta__text">Act fast! 65% off for Cyber Monday</div>
+      </div>
+    </div><!-- end ngIf: check() --></div>
+    <div class="site-header-cta__actions">
+      <a id="top-banner-btn" class="btn btn--sm btn--subscribe btn--rounded site-header-cta__button" href="https://www.nationalobserver.com/subscribe?tpcc=top_banner_logged_out&amp;_ptid=%7Bkpdx%7DAAAAsJr4z2fwoQoKWjlidnVQQUNZQRIQbHBpdTRhdnl2YzR1b2xnNBoMRVg4TlpNR1dHS0lJIiUxODA1YjZnMDkwLTAwMDAzMzBub3Q0ZzM1dm9maDZhdjQ0bjZjKhpzaG93VGVtcGxhdGVIRUQ3WUc1Q0RQOUw3MDABOgxPVDlYNElNTTFRU0VSEnYtbHBpdTAyaDJtb2J6a3oxMloMNDUuNDQuNzAuMTcyYgNkbWNo4dKeqwZwNXgE" target="_blank"><span>Subscribe
+</span></a>
+    </div>
+  </div>
+</div>
+
+<div custom-script="" class="ng-isolate-scope"></div>
+
+        </div>
+    </div>
+
+</div>
+
+<style type="text/css" tp-style="template-custom-style">
+    
+</style>
+
+
+
+
+
+
+
+
+
+
+<div id="popup" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;"><div id="popup-title" class="modal-header"></div><div id="popup-content" class="modal-body"></div><div id="popup-controls" class="modal-footer"></div></div><script type="text/javascript">try {
+
+  document.getElementById('top-banner-btn').addEventListener('click', function () {
+  console.log('click top banner');
+    try {
+      const msg = JSON.stringify({
+        "toDataLayer": {
+          "event": "custom.event.message",
+          "messageData.eventName": "button_click",
+          "messageData.eventTargetLabel": "Subscribe button",
+          "messageData.eventTargetLocation": "Piano top banner"
+        }
+      });
+      window.parent.postMessage(msg, 'https://www.nationalobserver.com');
+    } catch (e) {
+      window.console && window.console.log(e);
+    }
+  });
+  
+
+} catch (e) { console.error(e); }</script></body></html>
