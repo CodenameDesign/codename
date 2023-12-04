@@ -9,8 +9,8 @@
 
 <channel>
 	<title>Codename</title>
-	<atom:link href="/feed/" rel="self" type="application/rss+xml" />
-	<link>/</link>
+	<atom:link href="https://codenamedesign.github.io/codename/mediaengine/feed/" rel="self" type="application/rss+xml" />
+	<link>https://codenamedesign.github.io/codename/mediaengine/</link>
 	<description></description>
 	<lastBuildDate>Fri, 01 Dec 2023 23:05:19 +0000</lastBuildDate>
 	<language>en-US</language>
@@ -21,20 +21,20 @@
 	<generator>https://wordpress.org/?v=6.4.1</generator>
 	<item>
 		<title>Hello world!</title>
-		<link>/hello-world/</link>
-					<comments>/hello-world/#comments</comments>
+		<link>https://codenamedesign.github.io/codename/mediaengine/hello-world/</link>
+					<comments>https://codenamedesign.github.io/codename/mediaengine/hello-world/#comments</comments>
 		
 		<dc:creator><![CDATA[codename_access]]></dc:creator>
 		<pubDate>Fri, 01 Dec 2023 23:05:19 +0000</pubDate>
 				<category><![CDATA[Uncategorized]]></category>
-		<guid isPermaLink="false">/?p=1</guid>
+		<guid isPermaLink="false">https://codenamedesign.github.io/codename/mediaengine/?p=1</guid>
 
 					<description><![CDATA[Welcome to WordPress. This is your first post. Edit or delete it, then start writing!]]></description>
 										<content:encoded><![CDATA[
 <p>Welcome to WordPress. This is your first post. Edit or delete it, then start writing!</p>
 ]]></content:encoded>
 					
-					<wfw:commentRss>/hello-world/feed/</wfw:commentRss>
+					<wfw:commentRss>https://codenamedesign.github.io/codename/mediaengine/hello-world/feed/</wfw:commentRss>
 			<slash:comments>1</slash:comments>
 		
 		
