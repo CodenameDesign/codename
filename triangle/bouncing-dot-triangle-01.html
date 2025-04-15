@@ -62,8 +62,8 @@
       x: 129,
       y: 120,
       velocity: {
-        dx: (Math.random() * 2 - 1) * 2.0, // Increased speed
-        dy: (Math.random() * 2 - 1) * 2.0  // Increased speed
+        dx: (Math.random() * 2 - 1) * 4.0, // Increased speed
+        dy: (Math.random() * 2 - 1) * 4.0  // Increased speed
       },
       color: spectrumColors[0]
     };
@@ -96,8 +96,9 @@
       const s = (a.y * c.x - a.x * c.y + (c.y - a.y) * point.x + (a.x - c.x) * point.y) / (2 * area);
       const t = (a.x * b.y - a.y * b.x + (a.y - b.y) * point.x + (b.x - a.x) * point.y) / (2 * area);
       
-      // Safety margin to stay clearly inside
-      return s > 0.01 && t > 0.01 && (1 - s - t) > 0.01;
+      // Safety margin to stay clearly inside - increased margin for bottom edge
+      const margin = 0.05; // Increased from 0.01
+      return s > margin && t > margin && (1 - s - t) > margin;
     }
     
     function closestPointOnEdge(p, v1, v2) {
@@ -175,7 +176,7 @@
         let low = 0, high = 1, mid = 0.5;
         let tempPosition = { x: 0, y: 0 };
         
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 30; i++) { // Increased iterations for more precision
           mid = (low + high) / 2;
           tempPosition = {
             x: originalPosition.x + mid * dot.velocity.dx,
@@ -188,13 +189,13 @@
             high = mid;
           }
           
-          if (high - low < 0.001) break;
+          if (high - low < 0.0001) break; // Increased precision
         }
         
-        // Calculate safe position
+        // Calculate safe position - more conservative
         const safePosition = {
-          x: originalPosition.x + (low * 0.9) * dot.velocity.dx,
-          y: originalPosition.y + (low * 0.9) * dot.velocity.dy
+          x: originalPosition.x + (low * 0.8) * dot.velocity.dx, // More conservative (was 0.9)
+          y: originalPosition.y + (low * 0.8) * dot.velocity.dy
         };
         
         // If we have a valid safe position, use it
@@ -228,6 +229,15 @@
             x: dot.x - closestPoint.x,
             y: dot.y - closestPoint.y
           };
+        }
+        
+        // Special handling for bottom edge
+        // Check if this is a collision with bottom edge (both v1 and v2 have y close to 225)
+        const isBottomEdge = Math.abs(closestPoint.y - 225) < 1;
+        
+        if (isBottomEdge) {
+          // Force a more aggressive bounce off the bottom
+          normalVec.y = Math.abs(normalVec.y); // Ensure upward normal
         }
         
         // Calculate reflection
