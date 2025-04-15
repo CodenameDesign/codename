@@ -17,35 +17,21 @@
       width: 500px;
       height: 435px;
     }
-    svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
   </style>
 </head>
 <body>
   <div id="container">
-    <!-- SVG for sharp triangle -->
-    <svg id="triangleSvg" width="500" height="435" xmlns="http://www.w3.org/2000/svg">
+    <svg id="svgCanvas" width="500" height="435" xmlns="http://www.w3.org/2000/svg">
+      <!-- Triangle -->
       <path d="M139.003,225c-5.502,0-14.504,0-20.006,0H6.175c-5.502,0-7.752-3.899-5.001-8.664l56.411-97.718c2.751-4.765,7.252-12.562,10.003-17.327L123.999,3.574c2.751-4.765,7.252-4.765,10.003,0l56.411,97.718,10.003,17.327,56.411,97.718c2.751,4.765.5,8.664-5.001,8.664h-112.822Z" fill="#000000"/>
+      <!-- Dot will be positioned by JavaScript -->
+      <circle id="dot" cx="129" cy="120" r="6" fill="#FF0000"/>
     </svg>
-    <!-- Canvas for animated dot only -->
-    <canvas id="dotCanvas" width="500" height="435"></canvas>
   </div>
 
   <script>
-    // Get canvas and context
-    const canvas = document.getElementById('dotCanvas');
-    const ctx = canvas.getContext('2d');
-    
-    // Make the canvas transparent
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Get DOM elements
+    const dotElement = document.getElementById('dot');
     
     // Triangle vertices (from original SVG)
     const triangleVertices = [
@@ -54,7 +40,7 @@
       { x: 251.825, y: 225 }    // Bottom right vertex
     ];
     
-    // Spectrum colors
+    // Spectrum colors for the dot
     const spectrumColors = [
       "#FF0000", // Red
       "#FF7F00", // Orange
@@ -65,19 +51,28 @@
       "#9400D3"  // Violet
     ];
     
-    // Color transition variables
+    // Color transition state
     let currentColorIndex = 0;
     let targetColorIndex = 1;
-    let colorTransition = 0; // 0 to 1
-    let transitionSpeed = 0.02; // How fast colors transition
+    let colorTransition = 0;
+    let transitionSpeed = 0.02; // Faster color transitions
     
-    // Function to interpolate between two colors
+    // Dot state
+    const dot = {
+      x: 129,
+      y: 120,
+      velocity: {
+        dx: (Math.random() * 2 - 1) * 2.0, // Increased speed
+        dy: (Math.random() * 2 - 1) * 2.0  // Increased speed
+      },
+      color: spectrumColors[0]
+    };
+    
+    // Helper functions
     function interpolateColor(color1, color2, factor) {
-      // Convert hex to RGB
       const hex1 = color1.substring(1);
       const hex2 = color2.substring(1);
       
-      // Parse hex values
       const r1 = parseInt(hex1.substring(0, 2), 16);
       const g1 = parseInt(hex1.substring(2, 4), 16);
       const b1 = parseInt(hex1.substring(4, 6), 16);
@@ -86,62 +81,32 @@
       const g2 = parseInt(hex2.substring(2, 4), 16);
       const b2 = parseInt(hex2.substring(4, 6), 16);
       
-      // Interpolate values
       const r = Math.round(r1 + factor * (r2 - r1));
       const g = Math.round(g1 + factor * (g2 - g1));
       const b = Math.round(b1 + factor * (b2 - b1));
       
-      // Convert back to hex
       return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
     }
     
-    // Dot properties
-    const dot = {
-      x: 129,
-      y: 120,
-      radius: 6,
-      color: spectrumColors[0],
-      velocity: {
-        dx: 2 - Math.random() * 4,
-        dy: 2 - Math.random() * 4
-      }
-    };
-    
-    // Set initial random velocity (avoid very slow motion)
-    const setRandomVelocity = () => {
-      let speed = 2 + Math.random() * 2;
-      let angle = Math.random() * Math.PI * 2;
-      
-      dot.velocity.dx = Math.cos(angle) * speed;
-      dot.velocity.dy = Math.sin(angle) * speed;
-    };
-    
-    // Ensure initial velocity isn't too slow
-    if (Math.abs(dot.velocity.dx) < 1 && Math.abs(dot.velocity.dy) < 1) {
-      setRandomVelocity();
-    }
-    
-    // Check if a point is inside the triangle using barycentric coordinates
-    function isInsideTriangle(p, vertices) {
+    function isInsideTriangle(point, vertices) {
       const [a, b, c] = vertices;
       
+      // Compute barycentric coordinates
       const area = 0.5 * (-b.y * c.x + a.y * (-b.x + c.x) + a.x * (b.y - c.y) + b.x * c.y);
-      const s = (a.y * c.x - a.x * c.y + (c.y - a.y) * p.x + (a.x - c.x) * p.y) / (2 * area);
-      const t = (a.x * b.y - a.y * b.x + (a.y - b.y) * p.x + (b.x - a.x) * p.y) / (2 * area);
+      const s = (a.y * c.x - a.x * c.y + (c.y - a.y) * point.x + (a.x - c.x) * point.y) / (2 * area);
+      const t = (a.x * b.y - a.y * b.x + (a.y - b.y) * point.x + (b.x - a.x) * point.y) / (2 * area);
       
-      return s >= 0 && t >= 0 && 1 - s - t >= 0;
+      // Safety margin to stay clearly inside
+      return s > 0.01 && t > 0.01 && (1 - s - t) > 0.01;
     }
     
-    // Find closest point on a line segment
     function closestPointOnEdge(p, v1, v2) {
       const edge = { x: v2.x - v1.x, y: v2.y - v1.y };
-      const edgeLengthSq = edge.x * edge.x + edge.y * edge.y;
-      const edgeLength = Math.sqrt(edgeLengthSq);
+      const edgeLength = Math.sqrt(edge.x * edge.x + edge.y * edge.y);
       
-      if (edgeLength === 0) return v1; // Edge is just a point
+      if (edgeLength === 0) return v1;
       
       const edgeNorm = { x: edge.x / edgeLength, y: edge.y / edgeLength };
-      
       const relativePoint = { x: p.x - v1.x, y: p.y - v1.y };
       const projection = relativePoint.x * edgeNorm.x + relativePoint.y * edgeNorm.y;
       
@@ -154,7 +119,6 @@
       };
     }
     
-    // Find closest point on triangle boundary
     function findClosestPointOnTriangle(p, vertices) {
       let minDist = Number.MAX_VALUE;
       let closestPoint = { x: 0, y: 0 };
@@ -177,7 +141,12 @@
       return closestPoint;
     }
     
-    // Calculate reflection vector when bouncing off an edge
+    function normalize(vector) {
+      const length = Math.sqrt(vector.x * vector.x + vector.y * vector.y);
+      if (length === 0) return { x: 0, y: 0 };
+      return { x: vector.x / length, y: vector.y / length };
+    }
+    
     function reflect(velocity, normal) {
       const dot = velocity.dx * normal.x + velocity.dy * normal.y;
       return {
@@ -186,19 +155,115 @@
       };
     }
     
-    // Normalize a vector
-    function normalize(vector) {
-      const length = Math.sqrt(vector.x * vector.x + vector.y * vector.y);
-      if (length === 0) return { x: 0, y: 0 };
-      return { x: vector.x / length, y: vector.y / length };
+    function updateDot() {
+      // Calculate next position
+      const nextPosition = {
+        x: dot.x + dot.velocity.dx,
+        y: dot.y + dot.velocity.dy
+      };
+      
+      // Check if next position is inside triangle
+      if (isInsideTriangle(nextPosition, triangleVertices)) {
+        // If still inside, just update position
+        dot.x = nextPosition.x;
+        dot.y = nextPosition.y;
+      } else {
+        // Handle collision
+        const originalPosition = { x: dot.x, y: dot.y };
+        
+        // Binary search to find collision point
+        let low = 0, high = 1, mid = 0.5;
+        let tempPosition = { x: 0, y: 0 };
+        
+        for (let i = 0; i < 20; i++) {
+          mid = (low + high) / 2;
+          tempPosition = {
+            x: originalPosition.x + mid * dot.velocity.dx,
+            y: originalPosition.y + mid * dot.velocity.dy
+          };
+          
+          if (isInsideTriangle(tempPosition, triangleVertices)) {
+            low = mid;
+          } else {
+            high = mid;
+          }
+          
+          if (high - low < 0.001) break;
+        }
+        
+        // Calculate safe position
+        const safePosition = {
+          x: originalPosition.x + (low * 0.9) * dot.velocity.dx,
+          y: originalPosition.y + (low * 0.9) * dot.velocity.dy
+        };
+        
+        // If we have a valid safe position, use it
+        if (isInsideTriangle(safePosition, triangleVertices)) {
+          dot.x = safePosition.x;
+          dot.y = safePosition.y;
+        } else {
+          // Fallback to the center
+          dot.x = (triangleVertices[0].x + triangleVertices[1].x + triangleVertices[2].x) / 3;
+          dot.y = (triangleVertices[0].y + triangleVertices[1].y + triangleVertices[2].y) / 3;
+        }
+        
+        // Find collision point and calculate bounce
+        const collisionPoint = {
+          x: originalPosition.x + low * dot.velocity.dx,
+          y: originalPosition.y + low * dot.velocity.dy
+        };
+        
+        const closestPoint = findClosestPointOnTriangle(collisionPoint, triangleVertices);
+        
+        // Calculate normal vector
+        let normalVec = {
+          x: collisionPoint.x - closestPoint.x,
+          y: collisionPoint.y - closestPoint.y
+        };
+        
+        // Ensure normal is not zero length
+        const normalLength = Math.sqrt(normalVec.x * normalVec.x + normalVec.y * normalVec.y);
+        if (normalLength < 0.001) {
+          normalVec = {
+            x: dot.x - closestPoint.x,
+            y: dot.y - closestPoint.y
+          };
+        }
+        
+        // Calculate reflection
+        const normal = normalize(normalVec);
+        const newVelocity = reflect(dot.velocity, normal);
+        
+        // Add some random variation
+        const speed = Math.sqrt(dot.velocity.dx * dot.velocity.dx + dot.velocity.dy * dot.velocity.dy);
+        const newSpeed = speed * (0.9 + Math.random() * 0.2);
+        
+        const newVelocityLength = Math.sqrt(newVelocity.dx * newVelocity.dx + newVelocity.dy * newVelocity.dy);
+        
+        if (newVelocityLength > 0.001) {
+          dot.velocity = {
+            dx: (newVelocity.dx / newVelocityLength) * newSpeed,
+            dy: (newVelocity.dy / newVelocityLength) * newSpeed
+          };
+        } else {
+          // Fallback if calculation failed
+          dot.velocity = {
+            dx: (Math.random() * 2 - 1) * speed,
+            dy: (Math.random() * 2 - 1) * speed
+          };
+        }
+        
+        // Speed up color transition after bounce
+        colorTransition += 0.1;
+      }
+      
+      // Update SVG element position
+      dotElement.setAttribute('cx', dot.x);
+      dotElement.setAttribute('cy', dot.y);
     }
     
-    // Draw the dot only (triangle is drawn by SVG)
-    function drawDot() {
-      // Clear only the canvas (not affecting the SVG underneath)
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Update color transition
+    function updateColor() {
+      // Update color transition progress
       colorTransition += transitionSpeed;
       
       // If transition complete, move to next color
@@ -213,83 +278,23 @@
       const targetColor = spectrumColors[targetColorIndex];
       dot.color = interpolateColor(currentColor, targetColor, colorTransition);
       
-      // Draw the dot with current color
-      ctx.beginPath();
-      ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
-      ctx.fillStyle = dot.color;
-      ctx.fill();
+      // Update SVG element color
+      dotElement.setAttribute('fill', dot.color);
     }
     
-    // Update dot position and handle bouncing
-    function updateDot() {
-      // Predict next position
-      const nextPosition = {
-        x: dot.x + dot.velocity.dx,
-        y: dot.y + dot.velocity.dy
-      };
-      
-      // Create a slightly expanded position to detect collisions before they happen
-      const expandedPosition = {
-        x: dot.x + dot.velocity.dx * 1.5,
-        y: dot.y + dot.velocity.dy * 1.5
-      };
-      
-      if (!isInsideTriangle(expandedPosition, triangleVertices)) {
-        // Find closest point on triangle boundary
-        const closestPoint = findClosestPointOnTriangle(expandedPosition, triangleVertices);
-        
-        // Calculate normal vector from closest point on edge
-        const normalVec = {
-          x: expandedPosition.x - closestPoint.x,
-          y: expandedPosition.y - closestPoint.y
-        };
-        
-        // Normalize the normal vector
-        const normal = normalize(normalVec);
-        
-        // Reflect velocity off the edge
-        const newVelocity = reflect(dot.velocity, normal);
-        
-        // Add some random variation to make it more interesting
-        const speed = Math.sqrt(dot.velocity.dx * dot.velocity.dx + dot.velocity.dy * dot.velocity.dy);
-        const newSpeed = speed * (0.9 + Math.random() * 0.2);
-        
-        // Calculate length of new velocity
-        const newVelocityLength = Math.sqrt(newVelocity.dx * newVelocity.dx + newVelocity.dy * newVelocity.dy);
-        
-        // Update velocity with new direction and slightly randomized speed
-        dot.velocity = {
-          dx: (newVelocity.dx / newVelocityLength) * newSpeed,
-          dy: (newVelocity.dy / newVelocityLength) * newSpeed
-        };
-        
-        // Update position with new velocity
-        dot.x += dot.velocity.dx;
-        dot.y += dot.velocity.dy;
-        
-        // Speed up color transition after bounce
-        colorTransition += 0.1;
-      } else {
-        // If still inside triangle, just update position
-        dot.x = nextPosition.x;
-        dot.y = nextPosition.y;
-      }
-    }
-    
-    // Animation loop
-    function animate() {
-      // Update dot position first
+    function animateFrame() {
+      // Update position every frame for faster movement
       updateDot();
       
-      // Draw only the dot (triangle is handled by SVG)
-      drawDot();
+      // Always update color
+      updateColor();
       
       // Request next frame
-      requestAnimationFrame(animate);
+      requestAnimationFrame(animateFrame);
     }
     
     // Start animation
-    animate();
+    animateFrame();
   </script>
 </body>
 </html>
