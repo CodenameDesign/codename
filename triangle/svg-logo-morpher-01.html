@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Logo Morphing</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flubber/0.4.2/flubber.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background: white;
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .svg-container {
+            margin: 10px 0 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        #morphingSvg {
+            width: 500px;
+            height: 150px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        #morphingSvg:hover {
+            transform: scale(1.02);
+        }
+
+        .controls {
+            margin-top: 130px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: #e9ecef;
+            color: #333;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            background: #dee2e6;
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            background: #f8f9fa;
+        }
+
+        .duration-control {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #495057;
+        }
+
+        input[type="range"] {
+            width: 200px;
+        }
+
+        .morphing {
+            /* No glow effect */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="svg-container">
+            <svg id="morphingSvg" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                <!-- Main shape -->
+                <path id="mainPath" fill="#0091ff"></path>
+                <!-- Floating circles -->
+                <ellipse id="largeCircle" fill="#0093ff"></ellipse>
+                <ellipse id="smallCircle" fill="#0093ff"></ellipse>
+                <!-- Face elements -->
+                <path id="leftEye" fill="#fff"></path>
+                <path id="rightEye" fill="#fff"></path>
+                <path id="mouth" fill="#fff"></path>
+                
+                <!-- Text elements (Imagi - will change color) -->
+                <path id="letter-i1" fill="#0093ff" d="M71.889,38.434h-2.808v-17.377h2.808v17.377Z"/>
+                <path id="letter-m" fill="#0093ff" d="M78.44,38.434h-2.76v-12.409h2.376l.096,1.272c1.129-.888,2.425-1.536,4.057-1.536,1.584,0,2.592.456,3.12,1.608,1.08-.936,2.473-1.608,4.152-1.608,2.545,0,3.601,1.416,3.601,4.2v8.473h-2.761v-8.064c0-1.464-.359-2.305-1.728-2.305-.984,0-2.208.648-2.809,1.2.024.192.024.433.024.648v8.521h-2.761v-8.064c0-1.464-.336-2.305-1.704-2.305-1.032,0-2.304.696-2.904,1.249v9.12Z"/>
+                <path id="letter-a" fill="#0093ff" d="M105.825,35.817c0,.672.12,.96.744,.96.216,0,.432-.048.744-.144l.096,1.632c-.479.24-1.271.408-1.944.408-1.296,0-1.872-.504-2.088-1.464-.84.912-2.208,1.512-3.937,1.512-3.12,0-3.672-2.112-3.672-3.336,0-3.217,2.736-4.272,6.072-4.272.576,0,.937.023,1.272.048v-.936c0-1.513-.336-2.377-2.16-2.377-1.513,0-2.017.624-2.28,1.921l-2.425-.433c.385-2.328,1.873-3.576,4.921-3.576,3.168,0,4.656,1.224,4.656,4.32v5.736ZM103.137,33.058c-.239-.024-.527-.048-1.151-.048-1.393,0-3.408.168-3.408,1.992,0,.863.384,1.655,1.848,1.655,1.128,0,2.16-.575,2.712-1.151v-2.448Z"/>
+                <path id="letter-g" fill="#0093ff" d="M117.825,26.745c.432-1.008,1.152-1.632,2.063-1.632.408,0,.625.024.984.144v1.848c-.768-.048-1.656.048-2.304.24.72.744,1.104,1.849,1.104,2.856,0,2.809-2.304,4.416-5.304,4.416-.816,0-1.513-.071-2.161-.264-.312.24-.6.624-.6.984,0,.432.216.744,1.272.815l3.648.217c2.592.168,4.128.96,4.128,3.24,0,3.24-3.12,4.248-6.433,4.248-4.608,0-5.761-1.536-5.761-3.097,0-1.296.912-2.112,2.064-2.496v-.072c-.912-.312-1.464-.912-1.464-1.872,0-1.128.84-1.848,1.752-2.544-1.104-.624-1.824-1.848-1.824-3.433,0-2.688,2.017-4.584,5.353-4.584,1.44,0,2.641.264,3.48.984ZM115.977,38.817l-3.912-.216c-.648.456-1.032,1.009-1.032,1.681,0,1.008.864,1.512,3.217,1.512,2.399,0,3.576-.504,3.576-1.632,0-.769-.336-1.272-1.849-1.345ZM114.417,27.896c-1.561,0-2.736.672-2.736,2.28,0,1.44.792,2.328,2.712,2.328,1.584,0,2.688-.863,2.688-2.279,0-1.561-1.008-2.329-2.664-2.329Z"/>
+                <path id="letter-i2" fill="#0093ff" d="M124.304,23.937c-1.128,0-1.8-.648-1.8-1.824,0-1.152.672-1.8,1.8-1.8,1.152,0,1.801.648,1.801,1.8,0,1.176-.648,1.824-1.801,1.824ZM125.672,38.434h-2.76v-12.409h2.76v12.409Z"/>
+                <path fill="#000" d="M139.809,38.434l-7.801-13.657v13.657h-2.592v-17.377h3.528l7.608,13.585v-13.585h2.568v17.377h-3.312Z"/>
+                <path fill="#000" d="M156.393,35.817c0,.672.12,.96.744,.96.216,0,.432-.048.744-.144l.096,1.632c-.479.24-1.271.408-1.944.408-1.296,0-1.872-.504-2.088-1.464-.84.912-2.208,1.512-3.937,1.512-3.12,0-3.672-2.112-3.672-3.336,0-3.217,2.736-4.272,6.072-4.272.576,0,.937.023,1.272.048v-.936c0-1.513-.336-2.377-2.16-2.377-1.513,0-2.017.624-2.28,1.921l-2.425-.433c.385-2.328,1.873-3.576,4.921-3.576,3.168,0,4.656,1.224,4.656,4.32v5.736ZM153.704,33.058c-.239-.024-.527-.048-1.151-.048-1.393,0-3.408.168-3.408,1.992,0,.863.384,1.655,1.848,1.655,1.128,0,2.16-.575,2.712-1.151v-2.448Z"/>
+                <path fill="#000" d="M167.24,37.857c-.624.408-1.968.864-3.288.864-2.448,0-3.696-1.104-3.696-3.744v-6.913h-1.896v-2.04h1.896v-3.624l2.76-.384v4.008h3.36v2.04h-3.36v6.529c0,1.224.312,1.872,1.656,1.872.744,0,1.608-.288,2.112-.576l.456,1.968Z"/>
+                <path fill="#000" d="M170.6,23.937c-1.128,0-1.8-.648-1.8-1.824,0-1.152.672-1.8,1.8-1.8,1.152,0,1.8.648,1.8,1.8,0,1.176-.647,1.824-1.8,1.824ZM171.968,38.434h-2.761v-12.409h2.761v12.409Z"/>
+                <path fill="#000" d="M174.655,32.289c0-3.984,2.064-6.528,6.169-6.528s5.736,2.568,5.736,6.24c0,4.081-1.776,6.721-6.049,6.721-4.368,0-5.856-2.736-5.856-6.433ZM183.68,32.146c0-3.097-1.008-4.153-2.952-4.153-1.968,0-3.192,1.176-3.192,4.201s.961,4.393,3.121,4.393c1.896,0,3.023-1.248,3.023-4.44Z"/>
+                <path fill="#000" d="M200,38.434h-2.76v-7.992c0-1.561-.576-2.377-2.04-2.377-1.249,0-2.545.769-3.145,1.32v9.049h-2.761v-12.409h2.448l.12,1.296c1.104-.888,2.593-1.56,4.297-1.56,2.688,0,3.84,1.416,3.84,4.225v8.448Z"/>
+            </svg>
+        </div>
+        
+        <div class="controls">
+            <button id="cloudBtn">think bubble</button>
+            <button id="speechBtn">bird</button>
+            <button id="autoBtn">auto morph</button>
+            <button id="resetBtn">reset</button>
+        </div>
+        
+        <div class="duration-control">
+            <label>speed:</label>
+            <input type="range" id="durationSlider" min="1000" max="4000" value="2000" step="250">
+            <span id="durationValue">2.0s</span>
+        </div>
+    </div>
+
+    <script>
+        let morpher = null;
+
+        class SVGMorpher {
+            constructor() {
+                this.svg = document.getElementById('morphingSvg');
+                this.mainPath = document.getElementById('mainPath');
+                this.largeCircle = document.getElementById('largeCircle');
+                this.smallCircle = document.getElementById('smallCircle');
+                this.leftEye = document.getElementById('leftEye');
+                this.rightEye = document.getElementById('rightEye');
+                this.mouth = document.getElementById('mouth');
+                this.durationSlider = document.getElementById('durationSlider');
+                this.durationValue = document.getElementById('durationValue');
+                
+                // Get references to "Imagi" letters
+                this.imagiLetters = [
+                    document.getElementById('letter-i1'),
+                    document.getElementById('letter-m'),
+                    document.getElementById('letter-a'),
+                    document.getElementById('letter-g'),
+                    document.getElementById('letter-i2')
+                ];
+                
+                this.isAutoMorphing = false;
+                this.currentShape = 'happy';
+                this.animationDuration = 2000;
+                this.isAnimating = false;
+                
+                this.shapes = {
+                    happy: {
+                        mainPath: "M18.584,42.569c2.258,3.639,6.242,6.056,10.78,6.108c4.45,0.051,8.704-2.293,11.079-6.108c8.963,2.399,18.017-4.321,18.559-13.572c0.517-8.831-7.115-16.358-15.792-15.791c-2.249-5.677-7.861-9.458-13.895-9.378c-6.117,0.082-11.342,3.935-13.497,9.378C7.142,12.619-0.489,20.172,0.025,28.992c0.539,9.253,9.595,15.975,18.559,13.576Z",
+                        largeCircle: { cx: 14.955, cy: 51.03, rx: 5.625, ry: 5.633 },
+                        smallCircle: { cx: 4.546, cy: 56.245, rx: 3.75, ry: 3.755 },
+                        leftEye: "M25.596,18.51c-1.813,0-3.285,1.472-3.285,3.285s1.472,3.285,3.285,3.285s3.285-1.472,3.285-3.285s-1.472-3.285-3.285-3.285ZM25.596,20.51c0.708,0,1.285,0.576,1.285,1.285s-0.576,1.285-1.285,1.285s-1.285-0.576-1.285-1.285s0.576-1.285,1.285-1.285Z",
+                        rightEye: "M33.627,18.51c-1.813,0-3.285,1.472-3.285,3.285s1.472,3.285,3.285,3.285s3.285-1.472,3.285-3.285s-1.472-3.285-3.285-3.285ZM33.627,20.51c0.708,0,1.285,0.576,1.285,1.285s-0.576,1.285-1.285,1.285s-1.285-0.576-1.285-1.285s0.576-1.285,1.285-1.285Z",
+                        mouth: "M29.612,34.084c-2.323,0-4.645-0.884-6.413-2.652c-0.391-0.391-0.391-1.023,0-1.414s1.023-0.391,1.414,0c2.758,2.757,7.243,2.756,9.998,0c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414c-1.768,1.769-4.091,2.652-6.413,2.652Z",
+                        color: "#0091ff",
+                        circleColor: "#0093ff"
+                    },
+                    sad: {
+                        mainPath: "M34.646,46.906c-0.939,0.115-1.88,0.262-2.825,0.315c-1.13,0.031-2.248,0.038-3.375-0.072c-1.953-0.191-3.847-0.628-5.754-1.21c-6.403-2.179-11.638-6.933-14.412-13.021c-1.221-2.678-1.965-5.614-2.123-8.702c-0.011-0.416-0.023-0.832-0.034-1.248v-0.394c-0.36-10.162,0.687-12.57,0.687-12.57c1.631-4.508,5.942-7.735,11.019-7.735c4.989,0,9.252,3.123,10.942,7.523c0.499,1.299,0.773,2.708,0.776,4.182v2.699c0,1.99,1.61,3.598,3.602,3.598h18.607c0.101,0.004,0.203,0.008,0.304,0.011c1.508,0.146,2.69,1.428,2.69,2.979c-0.011,0.412-0.023,0.825-0.034,1.237c-0.261,5.039-2.1,9.666-5.03,13.414c-3.641,4.656-8.965,7.954-15.04,8.995Z",
+                        largeCircle: { cx: 14.955, cy: 51.03, rx: 5.625, ry: 5.633 },
+                        smallCircle: { cx: 4.546, cy: 56.245, rx: 3.75, ry: 3.755 },
+                        leftEye: "M14.157,8.318c-1.813,0-3.285,1.472-3.285,3.285s1.472,3.285,3.285,3.285s3.285-1.472,3.285-3.285s-1.472-3.285-3.285-3.285ZM14.157,10.318c0.708,0,1.285,0.576,1.285,1.285s-0.576,1.285-1.285,1.285s-1.285-0.576-1.285-1.285s0.576-1.285,1.285-1.285Z",
+                        rightEye: "M22.189,8.318c-1.813,0-3.285,1.472-3.285,3.285s1.472,3.285,3.285,3.285s3.285-1.472,3.285-3.285s-1.472-3.285-3.285-3.285ZM22.189,10.318c0.708,0,1.285,0.576,1.285,1.285s-0.576,1.285-1.285,1.285s-1.285-0.576-1.285-1.285s0.576-1.285,1.285-1.285Z",
+                        mouth: "M18.173,22.588c-0.256,0-0.512-0.098-0.707-0.293l-3.516-3.516c-0.391-0.391-0.391-1.023,0-1.414s1.023-0.391,1.414,0l2.809,2.809l2.809-2.809c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414l-3.516,3.516c-0.195,0.195-0.451,0.293-0.707,0.293Z",
+                        color: "#da73ff",
+                        circleColor: "#da73ff"
+                    }
+                };
+                
+                this.setupEventListeners();
+                this.initializeFlubber();
+                this.reset();
+            }
+            
+            setupEventListeners() {
+                this.durationSlider.addEventListener('input', () => {
+                    this.animationDuration = parseInt(this.durationSlider.value);
+                    this.durationValue.textContent = (this.animationDuration / 1000).toFixed(1) + 's';
+                });
+                
+                this.svg.addEventListener('click', () => {
+                    if (!this.isAutoMorphing && !this.isAnimating) {
+                        const nextShape = this.currentShape === 'happy' ? 'sad' : 'happy';
+                        this.morphTo(nextShape);
+                    }
+                });
+                
+                document.getElementById('cloudBtn').addEventListener('click', () => {
+                    this.isAutoMorphing = false;
+                    document.getElementById('autoBtn').textContent = 'auto morph';
+                    this.morphTo('happy');
+                });
+                
+                document.getElementById('speechBtn').addEventListener('click', () => {
+                    this.isAutoMorphing = false;
+                    document.getElementById('autoBtn').textContent = 'auto morph';
+                    this.morphTo('sad');
+                });
+                
+                document.getElementById('autoBtn').addEventListener('click', () => {
+                    this.toggleAutoMorph();
+                });
+                
+                document.getElementById('resetBtn').addEventListener('click', () => {
+                    this.reset();
+                });
+            }
+            
+            async initializeFlubber() {
+                try {
+                    this.cloudToSpeech = flubber.interpolate(
+                        this.shapes.happy.mainPath, 
+                        this.shapes.sad.mainPath,
+                        { maxSegmentLength: 2, string: true }
+                    );
+                    this.speechToCloud = flubber.interpolate(
+                        this.shapes.sad.mainPath, 
+                        this.shapes.happy.mainPath,
+                        { maxSegmentLength: 2, string: true }
+                    );
+                } catch (error) {
+                    console.error("Flubber initialization failed:", error);
+                }
+            }
+            
+            lerp(start, end, progress) {
+                return start + (end - start) * progress;
+            }
+            
+            easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+            }
+            
+            hexToRgb(hex) {
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : null;
+            }
+            
+            rgbToHex(rgb) {
+                return "#" + ((1 << 24) + (rgb.r << 16) + (rgb.g << 8) + rgb.b).toString(16).slice(1);
+            }
+            
+            updateButtons(disabled = false) {
+                document.querySelectorAll('button').forEach(btn => {
+                    btn.disabled = disabled;
+                });
+            }
+            
+            morphTo(targetShape) {
+                if (this.isAnimating || !this.cloudToSpeech || !this.speechToCloud) return;
+                
+                this.isAnimating = true;
+                this.updateButtons(true);
+                this.svg.classList.add('morphing');
+                
+                const startShape = this.shapes[this.currentShape];
+                const endShape = this.shapes[targetShape];
+                const startTime = Date.now();
+                
+                const pathInterpolator = (this.currentShape === 'happy') ? this.cloudToSpeech : this.speechToCloud;
+                
+                const animate = () => {
+                    const elapsed = Date.now() - startTime;
+                    const rawProgress = Math.min(elapsed / this.animationDuration, 1);
+                    const progress = this.easeInOutCubic(rawProgress);
+                    
+                    // Morph main path smoothly
+                    const currentPath = pathInterpolator(progress);
+                    this.mainPath.setAttribute('d', currentPath);
+                    
+                    // Handle facial features with smooth crossfade (no morphing)
+                    if (progress < 0.2) {
+                        // First 20% - show start face, begin fade out
+                        this.leftEye.setAttribute('d', startShape.leftEye);
+                        this.rightEye.setAttribute('d', startShape.rightEye);
+                        this.mouth.setAttribute('d', startShape.mouth);
+                        
+                        const fadeOutProgress = progress / 0.2;
+                        const opacity = 1 - fadeOutProgress;
+                        this.leftEye.style.opacity = opacity;
+                        this.rightEye.style.opacity = opacity;
+                        this.mouth.style.opacity = opacity;
+                    } else if (progress < 0.8) {
+                        // Middle 60% - faces completely hidden during main shape morphing
+                        this.leftEye.style.opacity = 0;
+                        this.rightEye.style.opacity = 0;
+                        this.mouth.style.opacity = 0;
+                    } else {
+                        // Last 20% - show end face, fade in
+                        this.leftEye.setAttribute('d', endShape.leftEye);
+                        this.rightEye.setAttribute('d', endShape.rightEye);
+                        this.mouth.setAttribute('d', endShape.mouth);
+                        
+                        const fadeInProgress = (progress - 0.8) / 0.2;
+                        this.leftEye.style.opacity = fadeInProgress;
+                        this.rightEye.style.opacity = fadeInProgress;
+                        this.mouth.style.opacity = fadeInProgress;
+                    }
+                    
+                    // Color interpolation
+                    const startColor = this.hexToRgb(startShape.color);
+                    const endColor = this.hexToRgb(endShape.color);
+                    const currentColor = {
+                        r: Math.round(this.lerp(startColor.r, endColor.r, progress)),
+                        g: Math.round(this.lerp(startColor.g, endColor.g, progress)),
+                        b: Math.round(this.lerp(startColor.b, endColor.b, progress))
+                    };
+                    
+                    const startCircleColor = this.hexToRgb(startShape.circleColor);
+                    const endCircleColor = this.hexToRgb(endShape.circleColor);
+                    const currentCircleColor = {
+                        r: Math.round(this.lerp(startCircleColor.r, endCircleColor.r, progress)),
+                        g: Math.round(this.lerp(startCircleColor.g, endCircleColor.g, progress)),
+                        b: Math.round(this.lerp(startCircleColor.b, endCircleColor.b, progress))
+                    };
+                    
+                    this.mainPath.setAttribute('fill', this.rgbToHex(currentColor));
+                    this.largeCircle.setAttribute('fill', this.rgbToHex(currentCircleColor));
+                    this.smallCircle.setAttribute('fill', this.rgbToHex(currentCircleColor));
+                    
+                    // Animate "Imagi" text colors
+                    this.imagiLetters.forEach(letter => {
+                        if (letter) {
+                            letter.setAttribute('fill', this.rgbToHex(currentColor));
+                        }
+                    });
+                    
+                    // Animate circles
+                    this.largeCircle.setAttribute('cx', this.lerp(startShape.largeCircle.cx, endShape.largeCircle.cx, progress));
+                    this.largeCircle.setAttribute('cy', this.lerp(startShape.largeCircle.cy, endShape.largeCircle.cy, progress));
+                    this.largeCircle.setAttribute('rx', this.lerp(startShape.largeCircle.rx, endShape.largeCircle.rx, progress));
+                    this.largeCircle.setAttribute('ry', this.lerp(startShape.largeCircle.ry, endShape.largeCircle.ry, progress));
+                    
+                    this.smallCircle.setAttribute('cx', this.lerp(startShape.smallCircle.cx, endShape.smallCircle.cx, progress));
+                    this.smallCircle.setAttribute('cy', this.lerp(startShape.smallCircle.cy, endShape.smallCircle.cy, progress));
+                    this.smallCircle.setAttribute('rx', this.lerp(startShape.smallCircle.rx, endShape.smallCircle.rx, progress));
+                    this.smallCircle.setAttribute('ry', this.lerp(startShape.smallCircle.ry, endShape.smallCircle.ry, progress));
+                    
+                    if (rawProgress < 1) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        // Ensure final state is correct
+                        this.leftEye.setAttribute('d', endShape.leftEye);
+                        this.rightEye.setAttribute('d', endShape.rightEye);
+                        this.mouth.setAttribute('d', endShape.mouth);
+                        this.leftEye.style.opacity = 1;
+                        this.rightEye.style.opacity = 1;
+                        this.mouth.style.opacity = 1;
+                        
+                        this.currentShape = targetShape;
+                        this.isAnimating = false;
+                        this.updateButtons(false);
+                        this.svg.classList.remove('morphing');
+                    }
+                };
+                
+                animate();
+            }
+            
+            reset() {
+                this.isAutoMorphing = false;
+                this.isAnimating = false;
+                this.currentShape = 'happy';
+                this.svg.classList.remove('morphing');
+                this.updateButtons(false);
+                
+                const autoBtn = document.getElementById('autoBtn');
+                if (autoBtn) autoBtn.textContent = 'auto morph';
+                
+                const happyShape = this.shapes.happy;
+                this.mainPath.setAttribute('d', happyShape.mainPath);
+                this.mainPath.setAttribute('fill', happyShape.color);
+                
+                this.leftEye.setAttribute('d', happyShape.leftEye);
+                this.rightEye.setAttribute('d', happyShape.rightEye);
+                this.mouth.setAttribute('d', happyShape.mouth);
+                this.leftEye.style.opacity = 1;
+                this.rightEye.style.opacity = 1;
+                this.mouth.style.opacity = 1;
+                
+                this.largeCircle.setAttribute('cx', happyShape.largeCircle.cx);
+                this.largeCircle.setAttribute('cy', happyShape.largeCircle.cy);
+                this.largeCircle.setAttribute('rx', happyShape.largeCircle.rx);
+                this.largeCircle.setAttribute('ry', happyShape.largeCircle.ry);
+                this.largeCircle.setAttribute('fill', happyShape.circleColor);
+                
+                this.smallCircle.setAttribute('cx', happyShape.smallCircle.cx);
+                this.smallCircle.setAttribute('cy', happyShape.smallCircle.cy);
+                this.smallCircle.setAttribute('rx', happyShape.smallCircle.rx);
+                this.smallCircle.setAttribute('ry', happyShape.smallCircle.ry);
+                this.smallCircle.setAttribute('fill', happyShape.circleColor);
+                
+                // Reset "Imagi" text colors
+                this.imagiLetters.forEach(letter => {
+                    if (letter) {
+                        letter.setAttribute('fill', happyShape.circleColor);
+                    }
+                });
+            }
+            
+            toggleAutoMorph() {
+                this.isAutoMorphing = !this.isAutoMorphing;
+                const autoBtn = document.getElementById('autoBtn');
+                
+                if (this.isAutoMorphing) {
+                    autoBtn.textContent = "stop auto";
+                    this.autoMorphLoop();
+                } else {
+                    autoBtn.textContent = "auto morph";
+                }
+            }
+            
+            autoMorphLoop() {
+                if (!this.isAutoMorphing) return;
+                
+                const nextShape = this.currentShape === 'happy' ? 'sad' : 'happy';
+                this.morphTo(nextShape);
+                
+                setTimeout(() => {
+                    if (this.isAutoMorphing) {
+                        this.autoMorphLoop();
+                    }
+                }, this.animationDuration + 1000);
+            }
+        }
+        
+        function initializeMorpher() {
+            if (typeof flubber !== 'undefined') {
+                try {
+                    morpher = new SVGMorpher();
+                    console.log("Morpher initialized successfully");
+                } catch (error) {
+                    console.error("Failed to initialize morpher:", error);
+                }
+            } else {
+                console.log("Waiting for Flubber to load...");
+                setTimeout(initializeMorpher, 100);
+            }
+        }
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeMorpher);
+        } else {
+            initializeMorpher();
+        }
+    </script>
+</body>
+</html>
