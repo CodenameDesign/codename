@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow: visible; height: auto;"><head>
+<!--cmcp-fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!--/cmcp-fonts-->
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', 'Manrope', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', 'Manrope', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', 'Manrope', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', 'Manrope', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZEN AI — Design System</title>
+<style>
+:root {
+  --cd-color-brand-primary: #1e293b;
+  --cd-color-brand-accent: #3b7de3;
+  --cd-color-brand-name: #282133;
+  --cd-color-action-indigo: #3730a3;
+  --cd-color-chart-highlight: #ffda7f;
+  --cd-color-text-secondary: #334155;
+  --cd-color-text-tertiary: #475569;
+  --cd-color-text-muted: #64748b;
+  --cd-color-text-placeholder: #94a3b8;
+  --cd-color-text-inactive: #9fa1a3;
+  --cd-color-surface-white: #ffffff;
+  --cd-color-surface-subtle: #f8fafc;
+  --cd-color-surface-soft: #f1f5f9;
+  --cd-color-surface-indigo-tint: #e0e7ff;
+  --cd-color-chart-total: #c7cfe0;
+  --cd-color-chart-bar: #cbd5e1;
+  --cd-color-border-default: #e2e8f0;
+
+  /* ── COLORS: Status / Alert ── */
+  --cd-color-link: #137feb;
+  --cd-color-alert-red: #c1272d;
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-green: #648231;
+
+  /* ── COLORS: Accent / Tints ── */
+  --cd-color-accent-yellow: #ffda7f;
+  --cd-color-accent-lime: #9bff76;
+  --cd-color-surface-light-blue: #71b2f3;
+  --cd-color-surface-pink: #fccace;
+  --cd-color-surface-peach: #ffe0d7;
+  --cd-color-surface-lime: #deff9f;
+  --cd-color-surface-grey: #d9dde5;
+
+  --cd-font-family-base: 'Figtree', sans-serif;
+  --cd-font-size-xs: 10px;
+  --cd-font-size-sm: 11px;
+  --cd-font-size-base: 12px;
+  --cd-font-size-md: 13px;
+  --cd-font-size-lg: 14px;
+  --cd-font-size-xl: 15px;
+  --cd-font-size-2xl: 22px;
+  --cd-font-weight-regular: 400;
+  --cd-font-weight-medium: 500;
+  --cd-font-weight-semibold: 600;
+  --cd-font-weight-bold: 700;
+  --cd-font-weight-extrabold: 800;
+  --cd-spacing-1: 2px;
+  --cd-spacing-2: 4px;
+  --cd-spacing-3: 6px;
+  --cd-spacing-4: 8px;
+  --cd-spacing-5: 10px;
+  --cd-spacing-6: 12px;
+  --cd-spacing-7: 14px;
+  --cd-spacing-8: 16px;
+  --cd-spacing-9: 20px;
+  --cd-spacing-10: 24px;
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+  --cd-shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-elevated: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-overlay: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--cd-font-family-base);
+  background: var(--cd-color-surface-subtle);
+  color: var(--cd-color-brand-primary);
+  font-size: var(--cd-font-size-md);
+  width: 100%;
+  max-width: 1440px;
+}
+
+/* ── HEADER ── */
+.ds-header {
+  background: var(--cd-color-brand-primary);
+  padding: 36px 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.ds-header-left { display: flex; align-items: center; gap: var(--cd-spacing-6); }
+.ds-logo { width: 44px; height: 44px; background: var(--cd-color-surface-white); border-radius: var(--cd-radius-md); display: flex; align-items: center; justify-content: center; font-size: var(--cd-font-size-md); font-weight: var(--cd-font-weight-extrabold); color: var(--cd-color-brand-primary); letter-spacing: -0.5px; }
+.ds-header-title { font-size: var(--cd-font-size-2xl); font-weight: var(--cd-font-weight-extrabold); color: var(--cd-color-surface-white); letter-spacing: -0.5px; }
+.ds-header-sub { font-size: var(--cd-font-size-md); color: var(--cd-color-chart-bar); font-weight: var(--cd-font-weight-medium); }
+.ds-header-meta { font-size: var(--cd-font-size-sm); color: var(--cd-color-chart-bar); font-weight: var(--cd-font-weight-medium); text-align: right; line-height: 1.7; }
+
+/* ── LAYOUT ── */
+.ds-body { padding: 48px 64px; display: flex; flex-direction: column; gap: 48px; }
+.section-card { background: var(--cd-color-surface-white); border: 1px solid var(--cd-color-border-default); border-radius: var(--cd-radius-xl); padding: var(--cd-spacing-10) 28px; }
+.ds-section-title { font-size: var(--cd-font-size-xs); font-weight: var(--cd-font-weight-bold); text-transform: uppercase; letter-spacing: 0.1em; color: var(--cd-color-text-placeholder); margin-bottom: var(--cd-spacing-8); padding-bottom: var(--cd-spacing-4); border-bottom: 1px solid var(--cd-color-border-default); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+/* COLORS */
+.color-grid { display: flex; flex-wrap: wrap; gap: 40px; }
+.color-group { display: flex; flex-direction: column; gap: var(--cd-spacing-3); }
+.color-group-label { font-size: var(--cd-font-size-xs); font-weight: var(--cd-font-weight-bold); text-transform: uppercase; letter-spacing: 0.08em; color: var(--cd-color-text-placeholder); margin-bottom: var(--cd-spacing-2); }
+.color-swatch { display: flex; align-items: center; gap: var(--cd-spacing-4); }
+.swatch-box { width: 36px; height: 36px; border-radius: var(--cd-radius-md); border: 1px solid rgba(0,0,0,0.07); flex-shrink: 0; }
+.swatch-name { font-size: var(--cd-font-size-xs); font-weight: var(--cd-font-weight-semibold); color: var(--cd-color-text-secondary); white-space: nowrap; display: block; }
+.swatch-hex { font-size: var(--cd-font-size-xs); color: var(--cd-color-text-placeholder); font-family: 'Courier New', monospace; display: block; }
+
+/* TYPOGRAPHY */
+.type-row { display: flex; align-items: baseline; gap: var(--cd-spacing-10); padding: var(--cd-spacing-5) 0; border-bottom: 1px solid var(--cd-color-surface-soft); }
+.type-row:last-child { border-bottom: none; }
+.type-meta { width: 220px; flex-shrink: 0; }
+.type-token { font-size: var(--cd-font-size-xs); font-weight: var(--cd-font-weight-semibold); color: var(--cd-color-brand-accent); font-family: 'Courier New', monospace; display: block; }
+.type-values { font-size: var(--cd-font-size-xs); color: var(--cd-color-text-placeholder); margin-top: 2px; display: block; }
+.type-sample { color: var(--cd-color-brand-primary); font-family: var(--cd-font-family-base); }
+
+/* SPACING */
+.spacing-grid { display: flex; flex-direction: column; gap: var(--cd-spacing-4); }
+.spacing-row { display: flex; align-items: center; gap: var(--cd-spacing-8); }
+.spacing-label { width: 180px; flex-shrink: 0; }
+.spacing-token { font-size: var(--cd-font-size-xs); font-weight: var(--cd-font-weight-semibold); color: var(--cd-color-brand-accent); font-family: 'Courier New', monospace; display: block; }
+.spacing-val { font-size: var(--cd-font-size-xs); color: var(--cd-color-text-placeholder); display: block; }
+.spacing-bar-track { flex: 1; height: 20px; background: var(--cd-color-surface-soft); border-radius: var(--cd-radius-sm); overflow: hidden; }
+.spacing-bar-fill { height: 100%; background: var(--cd-color-brand-accent); border-radius: var(--cd-radius-sm); opacity: 0.5; }
+
+/* RADIUS */
+.radius-grid { display: flex; gap: var(--cd-spacing-10); flex-wrap: wrap; }
+.radius-item { display: flex; flex-direction: column; align-items: center; gap: var(--cd-spacing-5); }
+.radius-box { width: 72px; height: 72px; background: var(--cd-color-surface-indigo-tint); border: 2px solid var(--cd-color-action-indigo); }
+.radius-token { font-size: var(--cd-font-size-xs); font-weight: var(--cd-font-weight-semibold); color: var(--cd-color-brand-accent); font-family: 'Courier New', monospace; text-align: center; }
+.radius-val { font-size: var(--cd-font-size-xs); color: var(--cd-color-text-placeholder); text-align: center; }
+
+/* SHADOWS */
+.shadow-grid { display: flex; gap: var(--cd-spacing-10); flex-wrap: wrap; }
+.shadow-item { display: flex; flex-direction: column; gap: var(--cd-spacing-5); }
+.shadow-card { width: 200px; height: 100px; background: var(--cd-color-surface-white); border-radius: var(--cd-radius-xl); display: flex; align-items: center; justify-content: center; }
+.shadow-card-inner { font-size: var(--cd-font-size-sm); color: var(--cd-color-text-muted); font-weight: var(--cd-font-weight-medium); }
+.shadow-token { font-size: var(--cd-font-size-xs); font-weight: var(--cd-font-weight-semibold); color: var(--cd-color-brand-accent); font-family: 'Courier New', monospace; }
+.shadow-val { font-size: var(--cd-font-size-xs); color: var(--cd-color-text-placeholder); max-width: 200px; line-height: 1.5; }
+
+/* ── COMPONENT SECTION ── */
+.comp-grid { display: flex; flex-direction: column; gap: 40px; }
+.comp-row { display: flex; flex-direction: column; gap: var(--cd-spacing-4); }
+.comp-row-items { display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+.comp-label { font-size: var(--cd-font-size-xs); font-weight: var(--cd-font-weight-bold); text-transform: uppercase; letter-spacing: 0.08em; color: var(--cd-color-text-placeholder); }
+.comp-item { display: flex; flex-direction: column; gap: var(--cd-spacing-3); align-items: flex-start; }
+.comp-item-name { font-size: var(--cd-font-size-xs); color: var(--cd-color-text-placeholder); font-family: 'Courier New', monospace; }
+.comp-bg { background: var(--cd-color-surface-subtle); border-radius: var(--cd-radius-md); padding: 16px 20px; display: flex; align-items: center; }
+
+/* — Topbar — */
+.c-topbar { display: flex; align-items: center; gap: 24px; padding: 8px 24px; background: var(--cd-color-surface-white); border-bottom: 1px solid var(--cd-color-border-default); border-radius: var(--cd-radius-md); width: 100%; }
+.c-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
+.c-brand-logo { width: 36px; height: 36px; border-radius: var(--cd-radius-md); background: var(--cd-color-brand-primary); display: flex; align-items: center; justify-content: center; color: var(--cd-color-surface-white); font-weight: var(--cd-font-weight-extrabold); font-size: var(--cd-font-size-md); }
+.c-brand-name { font-size: var(--cd-font-size-2xl); font-weight: var(--cd-font-weight-extrabold); color: var(--cd-color-brand-name); letter-spacing: -0.5px; }
+.c-nav { display: flex; align-items: center; flex: 1; }
+.c-nav-link { font-size: var(--cd-font-size-xl); font-weight: var(--cd-font-weight-bold); color: var(--cd-color-text-inactive); text-decoration: none; padding: 14px 4px 12px; margin: 0 14px; border-bottom: 4px solid transparent; line-height: 1.15; text-align: center; white-space: nowrap; }
+.c-nav-link.active { color: var(--cd-color-brand-name); border-bottom-color: var(--cd-color-brand-name); }
+.c-user-btn { display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--cd-radius-md); color: var(--cd-color-text-secondary); font-size: var(--cd-font-size-lg); font-weight: var(--cd-font-weight-medium); border: none; background: none; white-space: nowrap; }
+
+/* — Nav Link states — */
+.c-nav-demo { display: flex; gap: 8px; align-items: flex-end; }
+.c-nav-link-demo { font-size: var(--cd-font-size-xl); font-weight: var(--cd-font-weight-bold); color: var(--cd-color-text-inactive); padding: 10px 4px 8px; border-bottom: 4px solid transparent; line-height: 1.15; text-align: center; white-space: nowrap; }
+.c-nav-link-demo.active { color: var(--cd-color-brand-name); border-bottom-color: var(--cd-color-brand-name); }
+
+/* — Session items — */
+.c-sess { display: flex; align-items: flex-start; justify-content: space-between; padding: 8px 10px; border-radius: var(--cd-radius-md); cursor: pointer; gap: 6px; width: 220px; background: var(--cd-color-surface-white); }
+.c-sess.active { background: var(--cd-color-surface-indigo-tint); }
+.c-sess-info { flex: 1; min-width: 0; }
+.c-sess-title { font-size: var(--cd-font-size-base); font-weight: var(--cd-font-weight-semibold); color: var(--cd-color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.c-sess.active .c-sess-title { color: var(--cd-color-action-indigo); }
+.c-sess-date { font-size: var(--cd-font-size-xs); color: var(--cd-color-text-placeholder); display: block; margin-top: 2px; }
+.c-sess-del { font-size: 11px; color: var(--cd-color-text-placeholder); background: none; border: none; flex-shrink: 0; }
+
+/* — Avatars — */
+.c-avatar { width: 32px; height: 32px; border-radius: var(--cd-radius-full); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: var(--cd-font-weight-bold); }
+.c-avatar.user { background: var(--cd-color-surface-indigo-tint); color: var(--cd-color-action-indigo); }
+.c-avatar.bot { background: #f0fdf4; color: #166534; }
+
+/* — Chat bubbles — */
+.c-user-bubble { display: inline-block; background: var(--cd-color-brand-primary); color: var(--cd-color-surface-white); padding: 10px 14px; border-radius: 12px 12px 4px 12px; font-size: var(--cd-font-size-lg); line-height: 1.5; }
+
+/* — Buttons — */
+.c-new-btn { font-size: var(--cd-font-size-sm); font-weight: var(--cd-font-weight-bold); padding: 4px 10px; border-radius: var(--cd-radius-sm); border: 1px solid var(--cd-color-brand-accent); color: var(--cd-color-brand-accent); background: var(--cd-color-surface-white); cursor: pointer; }
+.c-pill-btn { font-size: var(--cd-font-size-sm); font-weight: var(--cd-font-weight-semibold); padding: 4px 12px; border-radius: var(--cd-radius-pill); border: 1.5px solid var(--cd-color-border-default); background: var(--cd-color-surface-white); color: var(--cd-color-text-muted); cursor: pointer; white-space: nowrap; }
+.c-pill-btn.active { background: var(--cd-color-brand-primary); color: var(--cd-color-surface-white); border-color: var(--cd-color-brand-primary); }
+.c-send-btn { width: 36px; height: 36px; border-radius: var(--cd-radius-md); background: var(--cd-color-brand-primary); color: var(--cd-color-surface-white); border: none; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+.c-send-btn.disabled { opacity: 0.4; }
+.c-email-btn { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; font-size: var(--cd-font-size-sm); font-weight: var(--cd-font-weight-medium); color: var(--cd-color-text-tertiary); background: var(--cd-color-surface-soft); border: 1px solid var(--cd-color-border-default); border-radius: var(--cd-radius-sm); }
+
+/* — Input — */
+.c-input-area { display: flex; align-items: center; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--cd-color-border-default); background: var(--cd-color-surface-white); border-radius: 0 0 var(--cd-radius-xl) var(--cd-radius-xl); width: 500px; }
+.c-chat-input { flex: 1; padding: 10px 14px; border: 1px solid var(--cd-color-border-default); border-radius: var(--cd-radius-lg); font-size: var(--cd-font-size-md); color: var(--cd-color-brand-primary); font-family: var(--cd-font-family-base); outline: none; }
+
+/* — Dealer card — */
+.c-dealer-card { background: var(--cd-color-surface-white); border: 1px solid var(--cd-color-border-default); border-radius: var(--cd-radius-md); overflow: hidden; width: 300px; }
+.c-dealer-hdr { display: flex; align-items: center; justify-content: space-between; padding: 9px 14px; border-bottom: 1px solid var(--cd-color-border-default); background: var(--cd-color-surface-subtle); }
+.c-dealer-name { font-size: var(--cd-font-size-md); font-weight: var(--cd-font-weight-bold); color: var(--cd-color-brand-primary); }
+.c-dealer-variants { font-size: var(--cd-font-size-md); font-weight: var(--cd-font-weight-bold); color: var(--cd-color-brand-primary); }
+.c-dealer-row { display: flex; align-items: center; justify-content: space-between; padding: 7px 14px; border-bottom: 1px solid var(--cd-color-surface-soft); }
+.c-dealer-row:last-child { border-bottom: none; }
+.c-dealer-row-label { font-size: var(--cd-font-size-md); color: var(--cd-color-text-secondary); }
+.c-dealer-row-label.italic { font-style: italic; color: var(--cd-color-text-muted); }
+.c-dealer-row-val { font-size: var(--cd-font-size-md); color: var(--cd-color-text-secondary); }
+.c-dealer-row-val.bold { font-weight: var(--cd-font-weight-bold); color: var(--cd-color-brand-primary); }
+.c-subtotal-row { background: var(--cd-color-surface-subtle); }
+.c-grand-total { display: flex; align-items: center; justify-content: space-between; padding: 9px 14px; background: var(--cd-color-chart-total); border-radius: var(--cd-radius-md); width: 300px; }
+.c-grand-label { font-size: var(--cd-font-size-md); font-weight: var(--cd-font-weight-bold); color: var(--cd-color-brand-primary); }
+
+/* — Bar row — */
+.c-bar-section { width: 500px; }
+.c-bar-controls { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; font-size: var(--cd-font-size-xs); color: var(--cd-color-text-placeholder); font-weight: var(--cd-font-weight-bold); text-transform: uppercase; letter-spacing: .05em; }
+.c-bar-row { display: flex; align-items: center; height: 28px; }
+.c-bar-label { width: 160px; text-align: right; font-size: var(--cd-font-size-sm); color: var(--cd-color-text-tertiary); padding-right: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0; }
+.c-bar-track { flex: 1; height: 20px; position: relative; display: flex; align-items: center; }
+.c-bar-fill { height: 100%; border-radius: 3px; }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ═══════════════════════════════════════════════ */
+
+/* ── LAPTOP  ≤ 1439px ── */
+@media (max-width: 1439px) {
+  body { max-width: 100%; }
+  .ds-header { padding: 28px 40px; }
+  .ds-body { padding: 36px 40px; gap: 36px; }
+  /* Fixed-width component demos scale to container */
+  .c-topbar { width: 100%; max-width: 100%; }
+  .c-input-area { width: 100%; max-width: 100%; }
+  .c-bar-section { width: 100%; max-width: 100%; }
+}
+
+/* ── TABLET  ≤ 1023px ── */
+@media (max-width: 1023px) {
+  /* Scale font tokens ~15% */
+  :root {
+    --cd-font-size-2xl: 19px;
+    --cd-font-size-xl:  13px;
+    --cd-font-size-lg:  12px;
+    --cd-font-size-md:  11px;
+    --cd-font-size-base: 10px;
+    --cd-font-size-sm:   9px;
+    --cd-font-size-xs:   9px;
+  }
+  .ds-header { padding: 20px 28px; }
+  .ds-header-meta { display: none; }
+  .ds-body { padding: 24px 20px; gap: 24px; }
+  .section-card { padding: var(--cd-spacing-8) 16px; }
+  /* 2-col → 1-col */
+  .two-col { grid-template-columns: 1fr; gap: 20px; }
+  /* Colors: tighten grid gap */
+  .color-grid { gap: 24px; }
+  /* Typography: shrink meta column */
+  .type-meta { width: 160px; }
+  /* Spacing: shrink label column */
+  .spacing-label { width: 140px; }
+  /* Components: collapse nav in topbar demo */
+  .c-nav { display: none; }
+  .c-topbar-hamburger { display: flex; margin-left: auto; font-size: 18px; color: var(--cd-color-text-secondary); }
+  .c-topbar { width: 100%; }
+  .c-input-area { width: 100%; }
+  .c-bar-section { width: 100%; }
+  .c-dealer-card { width: 100%; }
+  .c-grand-total { width: 100%; }
+  .c-sess { width: 100%; max-width: 320px; }
+}
+
+/* ── MOBILE  ≤ 767px ── */
+@media (max-width: 767px) {
+  /* Scale font tokens ~25% */
+  :root {
+    --cd-font-size-2xl: 17px;
+    --cd-font-size-xl:  13px;
+    --cd-font-size-lg:  12px;
+    --cd-font-size-md:  11px;
+    --cd-font-size-base: 10px;
+    --cd-font-size-sm:   9px;
+    --cd-font-size-xs:   8px;
+    /* Tighten spacing */
+    --cd-spacing-10: 16px;
+    --cd-spacing-9:  14px;
+    --cd-spacing-8:  12px;
+  }
+  /* Header stacks on mobile */
+  .ds-header { padding: 16px; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .ds-header-meta { display: none; }
+  .ds-header-left { gap: var(--cd-spacing-4); }
+  .ds-logo { width: 36px; height: 36px; font-size: 12px; }
+  /* Body padding shrinks */
+  .ds-body { padding: 16px 12px; gap: 16px; }
+  .section-card { padding: 14px 12px; }
+  .two-col { grid-template-columns: 1fr; gap: 14px; }
+  /* Colors: 2 columns of groups */
+  .color-grid { gap: 16px; }
+  .color-group { min-width: calc(50% - 8px); }
+  /* Typography: meta above sample */
+  .type-row { flex-direction: column; align-items: flex-start; gap: var(--cd-spacing-3); }
+  .type-meta { width: 100%; }
+  /* Spacing label shrinks */
+  .spacing-label { width: 120px; }
+  /* Radius boxes smaller */
+  .radius-box { width: 52px; height: 52px; }
+  .radius-grid { gap: var(--cd-spacing-6); }
+  /* Shadows stack */
+  .shadow-grid { flex-direction: column; gap: 16px; }
+  .shadow-card { width: 100%; height: 80px; }
+  .shadow-val { max-width: 100%; }
+  /* Component demos stack */
+  .comp-row-items { flex-direction: column; }
+  .comp-bg { flex-wrap: wrap; }
+  /* Topbar: hide nav, show hamburger */
+  .c-nav { display: none; }
+  .c-topbar { width: 100%; padding: 8px 12px; gap: 10px; }
+  .c-topbar-hamburger { display: flex; margin-left: auto; font-size: 18px; color: var(--cd-color-text-secondary); }
+  .c-user-btn { display: none; }
+  /* Bar chart label shrinks */
+  .c-bar-label { width: 100px; font-size: 9px; }
+  .c-bar-controls { flex-wrap: wrap; gap: 6px; }
+  .c-bar-section { width: 100%; }
+  /* Cards full width */
+  .c-dealer-card { width: 100%; }
+  .c-grand-total { width: 100%; }
+  .c-input-area { width: 100%; }
+  .c-sess { width: 100%; max-width: 100%; }
+}
+</style>
+<style id="fusion-selection-styles">
+  .fusion-element-highlight {
+    outline: 2px solid rgb(26, 115, 235) !important;
+    outline-style: solid !important;
+  }
+
+  .fusion-element-selected {
+    outline: 4px solid rgb(26, 115, 235) !important;
+    outline-style: solid !important;
+    outline-offset: 0px !important;
+  }
+  
+  .fusion-selection-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+    z-index: 2147483647 !important;
+    cursor: crosshair !important;
+    pointer-events: none !important;
+  }
+  
+  .fusion-selection-tooltip {
+    position: fixed !important;
+    background: #1f2937 !important;
+    color: white !important;
+    padding: 8px 12px !important;
+    border-radius: 6px !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    z-index: 2147483648 !important;
+    pointer-events: none !important;
+    transform: translate(-50%, -100%) translateY(-10px) !important;
+    white-space: nowrap !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  .fusion-selection-tooltip::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    border: 5px solid transparent !important;
+    border-top-color: #1f2937 !important;
+  }
+  
+  
+  @keyframes fusion-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fusion-label-bounce {
+    0% { 
+      opacity: 0;
+      transform: translateY(-10px) scale(0.9);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0) scale(1.05);
+    }
+    100% { 
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+</style><style id="__cmcp_cursor__">* { cursor: default !important; }</style><script src="chrome-extension://cfldfgibklhmjhnkfighkbafbkbfcmij/src/bridge/fusion-bridge.js?extensionId=cfldfgibklhmjhnkfighkbafbkbfcmij"></script></head>
+<body style="overflow: visible; height: auto;">
+
+<!-- HEADER -->
+<div class="ds-header">
+  <div class="ds-header-left">
+    <div class="ds-logo">ZA</div>
+    <div>
+      <div class="ds-header-title">ZEN AI</div>
+      <div class="ds-header-sub">Design System Reference</div>
+    </div>
+  </div>
+  <div class="ds-header-meta">Version 1.0<br>June 2026<br>Figtree</div>
+</div>
+
+<div class="ds-body">
+
+  <!-- COLORS -->
+  <div class="section-card">
+    <div class="ds-section-title">Color Tokens</div>
+    <div class="color-grid">
+      <div class="color-group">
+        <div class="color-group-label">Brand</div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-brand-primary)"></div><div><span class="swatch-name">brand-primary</span><span class="swatch-hex">#1e293b — also text-primary</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-brand-accent)"></div><div><span class="swatch-name">brand-accent</span><span class="swatch-hex">#3b7de3</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-brand-name)"></div><div><span class="swatch-name">brand-name</span><span class="swatch-hex">#282133</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-action-indigo)"></div><div><span class="swatch-name">action-indigo</span><span class="swatch-hex">#3730a3</span></div></div>
+      </div>
+      <div class="color-group">
+        <div class="color-group-label">Text</div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-brand-primary)"></div><div><span class="swatch-name">text-primary</span><span class="swatch-hex">#1e293b</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-text-secondary)"></div><div><span class="swatch-name">text-secondary</span><span class="swatch-hex">#334155</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-text-tertiary)"></div><div><span class="swatch-name">text-tertiary</span><span class="swatch-hex">#475569</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-text-muted)"></div><div><span class="swatch-name">text-muted</span><span class="swatch-hex">#64748b</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-text-placeholder)"></div><div><span class="swatch-name">text-placeholder</span><span class="swatch-hex">#94a3b8</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-text-inactive)"></div><div><span class="swatch-name">text-inactive</span><span class="swatch-hex">#9fa1a3</span></div></div>
+      </div>
+      <div class="color-group">
+        <div class="color-group-label">Surfaces</div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-surface-white);border-color:#e2e8f0"></div><div><span class="swatch-name">surface-white</span><span class="swatch-hex">#ffffff</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-surface-subtle)"></div><div><span class="swatch-name">surface-subtle</span><span class="swatch-hex">#f8fafc</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-surface-soft)"></div><div><span class="swatch-name">surface-soft</span><span class="swatch-hex">#f1f5f9</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-surface-indigo-tint)"></div><div><span class="swatch-name">surface-indigo-tint</span><span class="swatch-hex">#e0e7ff</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-chart-total)"></div><div><span class="swatch-name">surface-grand-total</span><span class="swatch-hex">#c7cfe0</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-chart-bar)"></div><div><span class="swatch-name">surface-bar-default</span><span class="swatch-hex">#cbd5e1</span></div></div>
+      </div>
+      <div class="color-group">
+        <div class="color-group-label">Borders</div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-border-default)"></div><div><span class="swatch-name">border-default</span><span class="swatch-hex">#e2e8f0</span></div></div>
+        <div class="color-group-label" style="margin-top:12px;font-style:italic;opacity:0.6">Status (avatar-inline only)</div>
+        <div class="color-swatch"><div class="swatch-box" style="background:#f0fdf4;border-color:#e2e8f0"></div><div><span class="swatch-name" style="opacity:0.5">success-surface</span><span class="swatch-hex" style="opacity:0.5">#f0fdf4 — not a token</span></div></div>
+      </div>
+      <div class="color-group">
+        <div class="color-group-label">Alert / Status</div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-link)"></div><div><span class="swatch-name">link</span><span class="swatch-hex">#137feb</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-alert-red)"></div><div><span class="swatch-name">alert-red</span><span class="swatch-hex">#c1272d</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-alert-orange)"></div><div><span class="swatch-name">alert-orange</span><span class="swatch-hex">#f15a24</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-alert-green)"></div><div><span class="swatch-name">alert-green</span><span class="swatch-hex">#648231</span></div></div>
+      </div>
+      <div class="color-group">
+        <div class="color-group-label">Accent / Tints</div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-accent-yellow)"></div><div><span class="swatch-name">accent-yellow</span><span class="swatch-hex">#ffda7f</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-chart-highlight)"></div><div><span class="swatch-name">highlight-amber</span><span class="swatch-hex">#ffda7f</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-accent-lime)"></div><div><span class="swatch-name">accent-lime</span><span class="swatch-hex">#9bff76</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-surface-light-blue)"></div><div><span class="swatch-name">surface-light-blue</span><span class="swatch-hex">#71b2f3</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-surface-pink)"></div><div><span class="swatch-name">surface-pink</span><span class="swatch-hex">#fccace</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-surface-peach)"></div><div><span class="swatch-name">surface-peach</span><span class="swatch-hex">#ffe0d7</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-surface-lime)"></div><div><span class="swatch-name">surface-lime</span><span class="swatch-hex">#deff9f</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-surface-grey);border-color:#e2e8f0"></div><div><span class="swatch-name">surface-grey</span><span class="swatch-hex">#d9dde5</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="section-card">
+    <div class="ds-section-title">Typography</div>
+    <div class="type-row" style="margin-bottom:var(--cd-spacing-6)"><div class="type-meta"><span class="type-token">--cd-font-family-base</span><span class="type-values">Figtree</span></div><div class="type-sample" style="font-size:var(--cd-font-size-lg);font-weight:var(--cd-font-weight-medium);color:var(--cd-color-text-muted)">Figtree — The quick brown fox jumps over the lazy dog</div></div>
+    <div class="type-row"><div class="type-meta"><span class="type-token">--cd-font-size-2xl</span><span class="type-values">Figtree · 22px · 800</span></div><div class="type-sample" style="font-size:var(--cd-font-size-2xl);font-weight:var(--cd-font-weight-extrabold)">ZEN AI — Brand Name</div></div>
+    <div class="type-row"><div class="type-meta"><span class="type-token">--cd-font-size-xl</span><span class="type-values">Figtree · 15px · 700</span></div><div class="type-sample" style="font-size:var(--cd-font-size-xl);font-weight:var(--cd-font-weight-bold)">Navigation Link — Active State</div></div>
+    <div class="type-row"><div class="type-meta"><span class="type-token">--cd-font-size-lg</span><span class="type-values">Figtree · 14px · 500</span></div><div class="type-sample" style="font-size:var(--cd-font-size-lg);font-weight:var(--cd-font-weight-medium)">User button / chat bubble text</div></div>
+    <div class="type-row"><div class="type-meta"><span class="type-token">--cd-font-size-md</span><span class="type-values">Figtree · 13px · 400–700</span></div><div class="type-sample" style="font-size:var(--cd-font-size-md);font-weight:var(--cd-font-weight-regular)">Regular body text in cards and rows</div></div>
+    <div class="type-row"><div class="type-meta"><span class="type-token">--cd-font-size-base</span><span class="type-values">Figtree · 12px · 500–700</span></div><div class="type-sample" style="font-size:var(--cd-font-size-base);font-weight:var(--cd-font-weight-semibold)">Session titles, table caption, labels</div></div>
+    <div class="type-row"><div class="type-meta"><span class="type-token">--cd-font-size-sm</span><span class="type-values">Figtree · 11px · 600–700</span></div><div class="type-sample" style="font-size:var(--cd-font-size-sm);font-weight:var(--cd-font-weight-bold)">Pill buttons, new-btn, sort controls, bar labels</div></div>
+    <div class="type-row"><div class="type-meta"><span class="type-token">--cd-font-size-xs</span><span class="type-values">Figtree · 10px · 400</span></div><div class="type-sample" style="font-size:var(--cd-font-size-xs);font-weight:var(--cd-font-weight-regular)">Timestamps, axis labels, section headers, meta text</div></div>
+  </div>
+
+  <!-- SPACING + RADIUS/SHADOWS -->
+  <div class="two-col">
+    <div class="section-card">
+      <div class="ds-section-title">Spacing Scale</div>
+      <div class="spacing-grid">
+        <div class="spacing-row"><div class="spacing-label"><span class="spacing-token">--cd-spacing-1</span><span class="spacing-val">2px</span></div><div class="spacing-bar-track"><div class="spacing-bar-fill" style="width:8%"></div></div></div>
+        <div class="spacing-row"><div class="spacing-label"><span class="spacing-token">--cd-spacing-2</span><span class="spacing-val">4px</span></div><div class="spacing-bar-track"><div class="spacing-bar-fill" style="width:17%"></div></div></div>
+        <div class="spacing-row"><div class="spacing-label"><span class="spacing-token">--cd-spacing-3</span><span class="spacing-val">6px</span></div><div class="spacing-bar-track"><div class="spacing-bar-fill" style="width:25%"></div></div></div>
+        <div class="spacing-row"><div class="spacing-label"><span class="spacing-token">--cd-spacing-4</span><span class="spacing-val">8px</span></div><div class="spacing-bar-track"><div class="spacing-bar-fill" style="width:33%"></div></div></div>
+        <div class="spacing-row"><div class="spacing-label"><span class="spacing-token">--cd-spacing-5</span><span class="spacing-val">10px</span></div><div class="spacing-bar-track"><div class="spacing-bar-fill" style="width:42%"></div></div></div>
+        <div class="spacing-row"><div class="spacing-label"><span class="spacing-token">--cd-spacing-6</span><span class="spacing-val">12px</span></div><div class="spacing-bar-track"><div class="spacing-bar-fill" style="width:50%"></div></div></div>
+        <div class="spacing-row"><div class="spacing-label"><span class="spacing-token">--cd-spacing-7</span><span class="spacing-val">14px</span></div><div class="spacing-bar-track"><div class="spacing-bar-fill" style="width:58%"></div></div></div>
+        <div class="spacing-row"><div class="spacing-label"><span class="spacing-token">--cd-spacing-8</span><span class="spacing-val">16px</span></div><div class="spacing-bar-track"><div class="spacing-bar-fill" style="width:67%"></div></div></div>
+        <div class="spacing-row"><div class="spacing-label"><span class="spacing-token">--cd-spacing-9</span><span class="spacing-val">20px</span></div><div class="spacing-bar-track"><div class="spacing-bar-fill" style="width:83%"></div></div></div>
+        <div class="spacing-row"><div class="spacing-label"><span class="spacing-token">--cd-spacing-10</span><span class="spacing-val">24px</span></div><div class="spacing-bar-track"><div class="spacing-bar-fill" style="width:100%"></div></div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:32px">
+      <div class="section-card">
+        <div class="ds-section-title">Border Radius</div>
+        <div class="radius-grid">
+          <div class="radius-item"><div class="radius-box" style="border-radius:var(--cd-radius-sm)"></div><span class="radius-token">--cd-radius-sm</span><span class="radius-val">6px</span></div>
+          <div class="radius-item"><div class="radius-box" style="border-radius:var(--cd-radius-md)"></div><span class="radius-token">--cd-radius-md</span><span class="radius-val">8px</span></div>
+          <div class="radius-item"><div class="radius-box" style="border-radius:var(--cd-radius-lg)"></div><span class="radius-token">--cd-radius-lg</span><span class="radius-val">10px</span></div>
+          <div class="radius-item"><div class="radius-box" style="border-radius:var(--cd-radius-xl)"></div><span class="radius-token">--cd-radius-xl</span><span class="radius-val">12px</span></div>
+          <div class="radius-item"><div class="radius-box" style="border-radius:var(--cd-radius-pill)"></div><span class="radius-token">--cd-radius-pill</span><span class="radius-val">20px</span></div>
+          <div class="radius-item"><div class="radius-box" style="border-radius:var(--cd-radius-full)"></div><span class="radius-token">--cd-radius-full</span><span class="radius-val">50%</span></div>
+        </div>
+      </div>
+      <div class="section-card">
+        <div class="ds-section-title">Shadows</div>
+        <div class="shadow-grid">
+          <div class="shadow-item"><div class="shadow-card" style="box-shadow:var(--cd-shadow-card)"><span class="shadow-card-inner">Card</span></div><span class="shadow-token">--cd-shadow-card</span><span class="shadow-val">Subtle — table panels, cards</span></div>
+          <div class="shadow-item"><div class="shadow-card" style="box-shadow:var(--cd-shadow-elevated)"><span class="shadow-card-inner">Elevated</span></div><span class="shadow-token">--cd-shadow-elevated</span><span class="shadow-val">Dropdowns, popovers</span></div>
+          <div class="shadow-item"><div class="shadow-card" style="box-shadow:var(--cd-shadow-overlay)"><span class="shadow-card-inner">Overlay</span></div><span class="shadow-token">--cd-shadow-overlay</span><span class="shadow-val">Modals, drawers</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── COMPONENTS ── -->
+  <div class="section-card">
+    <div class="ds-section-title">Components</div>
+    <div class="comp-grid">
+
+      <!-- Topbar -->
+      <div class="comp-row">
+        <div class="comp-label">Topbar / Navigation</div>
+        <div class="c-topbar">
+          <a class="c-brand" href="#">
+            <div class="c-brand-logo">ZA</div>
+            <span class="c-brand-name">ZEN AI</span>
+          </a>
+          <nav class="c-nav">
+            <a class="c-nav-link" href="#">Appraisal</a>
+            <a class="c-nav-link" href="#">Saved Appraisals</a>
+            <a class="c-nav-link active" href="#">Ask Me Anything</a>
+            <a class="c-nav-link" href="#">Competitive Intelligence</a>
+            <a class="c-nav-link" href="#">Continuous Appraisal</a>
+            <a class="c-nav-link" href="#">Dealer Intel</a>
+          </nav>
+          <button class="c-user-btn">Marc Baumgartner <span style="font-size:10px">▼</span></button>
+          <span class="c-topbar-hamburger" style="display:none">☰</span>
+        </div>
+        <div class="comp-item-name">topbar — brand + nav + user-btn · collapses to hamburger on mobile</div>
+      </div>
+
+      <!-- Nav Link states -->
+      <div class="comp-row">
+        <div class="comp-label">Nav Link States</div>
+        <div class="comp-row-items">
+          <div class="comp-item">
+            <div class="comp-bg">
+              <div class="c-nav-demo">
+                <span class="c-nav-link-demo">Inactive</span>
+                <span class="c-nav-link-demo active">Active</span>
+              </div>
+            </div>
+            <span class="comp-item-name">.c-nav-link / .c-nav-link.active</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Session Items -->
+      <div class="comp-row">
+        <div class="comp-label">Sidebar — Session Items</div>
+        <div class="comp-row-items">
+          <div class="comp-item">
+            <div class="c-sess">
+              <div class="c-sess-info">
+                <span class="c-sess-title">Show me all Toyota Camry 2020–2024</span>
+                <span class="c-sess-date">10:34 AM</span>
+              </div>
+              <button class="c-sess-del">🗑️</button>
+            </div>
+            <span class="comp-item-name">Session — default</span>
+          </div>
+          <div class="comp-item">
+            <div class="c-sess active">
+              <div class="c-sess-info">
+                <span class="c-sess-title">Top 10 dealers by inventory count?</span>
+                <span class="c-sess-date">10:29 AM</span>
+              </div>
+              <button class="c-sess-del">🗑️</button>
+            </div>
+            <span class="comp-item-name">Session — active</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Avatars + Chat bubbles -->
+      <div class="comp-row">
+        <div class="comp-label">Avatars &amp; Chat Bubbles</div>
+        <div class="comp-row-items">
+          <div class="comp-item">
+            <div class="comp-bg" style="gap:12px">
+              <div class="c-avatar user">👤</div>
+              <div class="c-avatar bot">🤖</div>
+            </div>
+            <span class="comp-item-name">Avatar — user / bot</span>
+          </div>
+          <div class="comp-item">
+            <div class="comp-bg">
+              <div class="c-user-bubble">What are the top 10 dealers?</div>
+            </div>
+            <span class="comp-item-name">User message bubble</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="comp-row">
+        <div class="comp-label">Buttons</div>
+        <div class="comp-row-items">
+          <div class="comp-item">
+            <div class="comp-bg"><button class="c-new-btn" style="color: rgb(255, 255, 255); background-color: rgb(30, 41, 59); border-style: none; border-width: 0px; border-color: transparent; padding-top: 6px; padding-bottom: 6px; font-weight: 500; font-family: Figtree, sans-serif;">+ New Chat</button></div>
+            <span class="comp-item-name">New Chat btn — outlined accent</span>
+          </div>
+          <div class="comp-item">
+            <div class="comp-bg" style="gap:8px">
+              <button class="c-pill-btn active">Dealer Name + Vehicle Type</button>
+              <button class="c-pill-btn">Dealer Name Only</button>
+            </div>
+            <span class="comp-item-name">Pill btn — active / inactive</span>
+          </div>
+          <div class="comp-item">
+            <div class="comp-bg" style="gap:8px">
+              <div class="c-send-btn">➤</div>
+              <div class="c-send-btn disabled" style="opacity:0.4">➤</div>
+            </div>
+            <span class="comp-item-name">Send btn — active / disabled</span>
+          </div>
+          <div class="comp-item">
+            <div class="comp-bg"><button class="c-email-btn">✉ Send this via email</button></div>
+            <span class="comp-item-name">Action btn — ghost</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Input -->
+      <div class="comp-row">
+        <div class="comp-label">Chat Input Area</div>
+        <div class="comp-item">
+          <div class="c-input-area">
+            <input class="c-chat-input" type="text" placeholder="Ask me anything about your inventory, dealers, or market...">
+            <div class="c-send-btn disabled" style="opacity:0.4">➤</div>
+          </div>
+          <span class="comp-item-name">input-area — chat-input + send-btn</span>
+        </div>
+      </div>
+
+      <!-- Dealer Card -->
+      <div class="comp-row">
+        <div class="comp-label">Dealer Card (Table)</div>
+        <div class="comp-row-items">
+          <div class="comp-item">
+            <div class="c-dealer-card">
+              <div class="c-dealer-hdr">
+                <span class="c-dealer-name">Autocanada</span>
+                <span class="c-dealer-variants">2 Variants</span>
+              </div>
+              <div class="c-dealer-row"><span class="c-dealer-row-label">New</span><span class="c-dealer-row-val">11,408</span></div>
+              <div class="c-dealer-row"><span class="c-dealer-row-label">Used</span><span class="c-dealer-row-val">8,577</span></div>
+              <div class="c-dealer-row c-subtotal-row"><span class="c-dealer-row-label italic">Subtotal</span><span class="c-dealer-row-val bold">19,985</span></div>
+            </div>
+            <span class="comp-item-name">dealer-card — header + rows + subtotal</span>
+          </div>
+          <div class="comp-item">
+            <div class="c-grand-total">
+              <span class="c-grand-label">Grand Total</span>
+              <span class="c-grand-label">107,745</span>
+            </div>
+            <span class="comp-item-name">grand-total-row</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart Bar Row -->
+      <div class="comp-row">
+        <div class="comp-label">Chart — Pill Controls &amp; Bar Rows</div>
+        <div class="comp-item">
+          <div class="c-bar-section">
+            <div class="c-bar-controls">
+              <span>View:</span>
+              <button class="c-pill-btn active">Dealer Name + Vehicle Type</button>
+              <button class="c-pill-btn">Dealer Name Only</button>
+              <span style="margin-left:8px">Metric:</span>
+              <button class="c-pill-btn active">Inventory Count</button>
+            </div>
+            <div class="c-bar-row">
+              <div class="c-bar-label">Canadaone Auto — New</div>
+              <div class="c-bar-track"><div class="c-bar-fill" style="width:100%;background:var(--cd-color-chart-highlight)"></div></div>
+            </div>
+            <div class="c-bar-row">
+              <div class="c-bar-label">Autocanada — New</div>
+              <div class="c-bar-track"><div class="c-bar-fill" style="width:95%;background:var(--cd-color-chart-bar)"></div></div>
+            </div>
+            <div class="c-bar-row">
+              <div class="c-bar-label">Go Auto — New</div>
+              <div class="c-bar-track"><div class="c-bar-fill" style="width:85%;background:var(--cd-color-chart-bar)"></div></div>
+            </div>
+            <div class="c-bar-row">
+              <div class="c-bar-label">dilawri group of companies — New</div>
+              <div class="c-bar-track"><div class="c-bar-fill" style="width:83%;background:var(--cd-color-chart-bar)"></div></div>
+            </div>
+          </div>
+          <span class="comp-item-name">chart-card — pill-controls + bar-rows (highlight + default)</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</body></html>
