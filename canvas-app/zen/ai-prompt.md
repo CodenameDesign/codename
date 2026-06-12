@@ -1,0 +1,77 @@
+# Design System Tokens
+
+Use the following CSS custom properties when writing or refactoring UI code. Apply these tokens in place of hardcoded color, spacing, radius, and shadow values.
+
+## Tokens
+
+```
+--cd-brand-primary: `#1e293b`
+--cd-brand-accent: `#3b7de3`
+--cd-brand-name: `#282133`
+--cd-brand-indigo: `#3730a3`
+--cd-brand-amber: `#f59e0b`
+--cd-text-primary: `#1e293b`
+--cd-text-secondary: `#334155`
+--cd-text-tertiary: `#475569`
+--cd-text-muted: `#64748b`
+--cd-text-placeholder: `#94a3b8`
+--cd-text-inactive: `#9fa1a3`
+--cd-text-inverse: `#ffffff`
+--cd-surface-page: `#f8fafc`
+--cd-surface-card: `#ffffff`
+--cd-surface-subtle: `#f8fafc`
+--cd-surface-soft: `#f1f5f9`
+--cd-surface-table: `#f1f3f6`
+--cd-surface-indigo: `#e0e7ff`
+--cd-surface-total: `#c7cfe0`
+--cd-surface-bar: `#cbd5e1`
+--cd-surface-success: `#f0fdf4`
+--cd-border-default: `#e2e8f0`
+--cd-border-nav: `#ecece8`
+--cd-border-table: `#dde1e7`
+--cd-status-success-text: `#166534`
+--cd-status-success-bg: `#f0fdf4`
+--cd-font-family: `'Figtree', 'Manrope', sans-serif`
+--cd-text-xs: `10px`
+--cd-text-sm: `11px`
+--cd-text-base: `12px`
+--cd-text-md: `13px`
+--cd-text-lg: `14px`
+--cd-text-xl: `15px`
+--cd-text-2xl: `22px`
+--cd-font-regular: `400`
+--cd-font-medium: `500`
+--cd-font-semibold: `600`
+--cd-font-bold: `700`
+--cd-font-extrabold: `800`
+--cd-space-1: `2px`
+--cd-space-2: `4px`
+--cd-space-3: `6px`
+--cd-space-4: `8px`
+--cd-space-5: `10px`
+--cd-space-6: `12px`
+--cd-space-7: `14px`
+--cd-space-8: `16px`
+--cd-space-9: `20px`
+--cd-space-10: `24px`
+--cd-space-12: `36px`
+--cd-space-14: `48px`
+--cd-space-16: `64px`
+--cd-radius-sm: `6px`
+--cd-radius-md: `8px`
+--cd-radius-lg: `10px`
+--cd-radius-xl: `12px`
+--cd-radius-pill: `20px`
+--cd-radius-full: `50%`
+--cd-shadow-sm: `0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)`
+--cd-shadow-md: `0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04)`
+--cd-shadow-lg: `0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06)`
+```
+
+## Instructions
+
+- Replace hardcoded hex colors with the nearest matching token
+- Replace hardcoded spacing values (px/rem) with the nearest spacing token
+- Replace hardcoded border-radius values with the nearest radius token
+- Replace hardcoded box-shadow values with the nearest shadow token
+- Preserve any values that have no matching token
