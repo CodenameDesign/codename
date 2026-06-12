@@ -7,6 +7,94 @@
 <!--/cmcp-fonts-->
 
 
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', 'Manrope', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,7 +164,8 @@ body {
   background: var(--cd-color-surface-subtle);
   color: var(--cd-color-text-primary);
   font-size: var(--cd-font-size-md);
-  width: 1440px;
+  width: 100%;
+  max-width: 1440px;
 }
 
 /* ── HEADER ── */
@@ -213,6 +302,115 @@ body {
 .c-bar-label { width: 160px; text-align: right; font-size: var(--cd-font-size-sm); color: var(--cd-color-text-tertiary); padding-right: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 0; }
 .c-bar-track { flex: 1; height: 20px; position: relative; display: flex; align-items: center; }
 .c-bar-fill { height: 100%; border-radius: 3px; }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ═══════════════════════════════════════════════ */
+
+/* ── LAPTOP  ≤ 1439px ── */
+@media (max-width: 1439px) {
+  body { max-width: 100%; }
+  .ds-header { padding: 28px 40px; }
+  .ds-body { padding: 36px 40px; gap: 36px; }
+  /* Fixed-width component demos scale to container */
+  .c-topbar { width: 100%; max-width: 100%; }
+  .c-input-area { width: 100%; max-width: 100%; }
+  .c-bar-section { width: 100%; max-width: 100%; }
+}
+
+/* ── TABLET  ≤ 1023px ── */
+@media (max-width: 1023px) {
+  /* Scale font tokens ~15% */
+  :root {
+    --cd-font-size-2xl: 19px;
+    --cd-font-size-xl:  13px;
+    --cd-font-size-lg:  12px;
+    --cd-font-size-md:  11px;
+    --cd-font-size-base: 10px;
+    --cd-font-size-sm:   9px;
+    --cd-font-size-xs:   9px;
+  }
+  .ds-header { padding: 20px 28px; }
+  .ds-header-meta { display: none; }
+  .ds-body { padding: 24px 20px; gap: 24px; }
+  .section-card { padding: var(--cd-spacing-8) 16px; }
+  /* 2-col → 1-col */
+  .two-col { grid-template-columns: 1fr; gap: 20px; }
+  /* Colors: tighten grid gap */
+  .color-grid { gap: 24px; }
+  /* Typography: shrink meta column */
+  .type-meta { width: 160px; }
+  /* Spacing: shrink label column */
+  .spacing-label { width: 140px; }
+  /* Components: collapse nav in topbar demo */
+  .c-nav { display: none; }
+  .c-topbar-hamburger { display: flex; margin-left: auto; font-size: 18px; color: var(--cd-color-text-secondary); }
+  .c-topbar { width: 100%; }
+  .c-input-area { width: 100%; }
+  .c-bar-section { width: 100%; }
+  .c-dealer-card { width: 100%; }
+  .c-grand-total { width: 100%; }
+  .c-sess { width: 100%; max-width: 320px; }
+}
+
+/* ── MOBILE  ≤ 767px ── */
+@media (max-width: 767px) {
+  /* Scale font tokens ~25% */
+  :root {
+    --cd-font-size-2xl: 17px;
+    --cd-font-size-xl:  13px;
+    --cd-font-size-lg:  12px;
+    --cd-font-size-md:  11px;
+    --cd-font-size-base: 10px;
+    --cd-font-size-sm:   9px;
+    --cd-font-size-xs:   8px;
+    /* Tighten spacing */
+    --cd-spacing-10: 16px;
+    --cd-spacing-9:  14px;
+    --cd-spacing-8:  12px;
+  }
+  /* Header stacks on mobile */
+  .ds-header { padding: 16px; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .ds-header-meta { display: none; }
+  .ds-header-left { gap: var(--cd-spacing-4); }
+  .ds-logo { width: 36px; height: 36px; font-size: 12px; }
+  /* Body padding shrinks */
+  .ds-body { padding: 16px 12px; gap: 16px; }
+  .section-card { padding: 14px 12px; }
+  .two-col { grid-template-columns: 1fr; gap: 14px; }
+  /* Colors: 2 columns of groups */
+  .color-grid { gap: 16px; }
+  .color-group { min-width: calc(50% - 8px); }
+  /* Typography: meta above sample */
+  .type-row { flex-direction: column; align-items: flex-start; gap: var(--cd-spacing-3); }
+  .type-meta { width: 100%; }
+  /* Spacing label shrinks */
+  .spacing-label { width: 120px; }
+  /* Radius boxes smaller */
+  .radius-box { width: 52px; height: 52px; }
+  .radius-grid { gap: var(--cd-spacing-6); }
+  /* Shadows stack */
+  .shadow-grid { flex-direction: column; gap: 16px; }
+  .shadow-card { width: 100%; height: 80px; }
+  .shadow-val { max-width: 100%; }
+  /* Component demos stack */
+  .comp-row-items { flex-direction: column; }
+  .comp-bg { flex-wrap: wrap; }
+  /* Topbar: hide nav, show hamburger */
+  .c-nav { display: none; }
+  .c-topbar { width: 100%; padding: 8px 12px; gap: 10px; }
+  .c-topbar-hamburger { display: flex; margin-left: auto; font-size: 18px; color: var(--cd-color-text-secondary); }
+  .c-user-btn { display: none; }
+  /* Bar chart label shrinks */
+  .c-bar-label { width: 100px; font-size: 9px; }
+  .c-bar-controls { flex-wrap: wrap; gap: 6px; }
+  .c-bar-section { width: 100%; }
+  /* Cards full width */
+  .c-dealer-card { width: 100%; }
+  .c-grand-total { width: 100%; }
+  .c-input-area { width: 100%; }
+  .c-sess { width: 100%; max-width: 100%; }
+}
 </style>
 <style id="__cmcp_cursor__">* { cursor: default !important; }</style></head>
 <body style="overflow: visible; height: auto;">
@@ -347,8 +545,9 @@ body {
             <a class="c-nav-link" href="#">Dealer Intel</a>
           </nav>
           <button class="c-user-btn">Marc Baumgartner <span style="font-size:10px">▼</span></button>
+          <span class="c-topbar-hamburger" style="display:none">☰</span>
         </div>
-        <div class="comp-item-name">topbar — brand + nav + user-btn</div>
+        <div class="comp-item-name">topbar — brand + nav + user-btn · collapses to hamburger on mobile</div>
       </div>
 
       <!-- Nav Link states -->
