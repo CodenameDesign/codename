@@ -1,0 +1,3458 @@
+<!DOCTYPE html>
+<html style="overflow: visible; height: auto;"><head>
+<!--cmcp-fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!--/cmcp-fonts-->
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Orange (AI banner) ── */
+  --cd-orange-text: #ea580c;
+  --cd-orange-surface: #fff4ed;
+  --cd-orange-border: #fcd9be;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { font-family: 'Figtree', sans-serif; background: var(--cd-color-surface-alt, #f8fafc); color: var(--cd-color-text-primary, #1e293b); font-size: 13px; line-height: 1.4; }
+button, input, select, textarea { font-family: 'Figtree', sans-serif; }
+
+/* ── TOPBAR ── */
+.c-topbar { display: flex; align-items: center; gap: 24px; padding: 8px 24px; background: var(--cd-color-surface-white, #fff); border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); width: 100%; }
+.c-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; }
+.c-brand-logo { width: 36px; height: 36px; border-radius: var(--cd-radius-md, 8px); background: var(--cd-color-brand-primary, #1e293b); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 14px; }
+.c-brand-name { font-size: 18px; font-weight: 800; color: var(--cd-color-brand-name, #282133); letter-spacing: -0.5px; }
+.c-nav { display: flex; align-items: center; flex: 1; }
+.c-nav-link { font-size: 14px; font-weight: 700; color: var(--cd-color-text-inactive, #9fa1a3); text-decoration: none; padding: 14px 4px 12px; margin: 0 14px; border-bottom: 4px solid transparent; line-height: 1.15; white-space: nowrap; }
+.c-nav-link.active { color: var(--cd-color-brand-name, #282133); border-bottom-color: var(--cd-color-brand-name, #282133); }
+.c-user-btn { display: flex; align-items: center; gap: 6px; padding: 8px 28px 8px 14px; border-radius: var(--cd-radius-md, 8px); color: var(--cd-color-text-secondary, #334155); font-size: 14px; font-weight: 500; border: none; background: none; white-space: nowrap; font-family: 'Figtree', sans-serif; cursor: pointer; position: relative; }
+.c-user-btn::after { content: ''; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; }
+
+/* ── LAYOUT ── */
+.page-wrap { display: flex; }
+.col-left { flex: 0 0 820px; border-right: 1px solid var(--cd-color-border-default, #e2e8f0); background: #fff; overflow: hidden; }
+.col-right { flex: 1; background: #fff; }
+
+/* ── LEFT COLUMN ── */
+.left-inner { padding: 20px 28px; display: flex; flex-direction: column; gap: 16px; }
+
+.back-link { display: flex; align-items: center; gap: 6px; color: var(--cd-color-link, #137feb); font-size: 12px; font-weight: 500; cursor: pointer; width: fit-content; }
+.back-link svg { width: 14px; height: 14px; }
+
+/* VIN bar */
+.vin-bar { display: flex; align-items: flex-end; gap: 8px; padding: 12px 14px; background: var(--cd-color-surface-alt, #f8fafc); border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 10px; }
+.vin-field { display: flex; flex-direction: column; gap: 5px; flex: 2.5; }
+.vin-field-sm { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+.vin-field-xs { display: flex; flex-direction: column; gap: 5px; flex: 0.7; }
+.field-label { font-size: 11px; font-weight: 500; color: var(--cd-color-text-muted, #64748b); }
+.vin-input { background: #fff; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 6px; padding: 8px 10px; font-size: 13px; font-weight: 500; color: var(--cd-color-text-primary, #1e293b); font-family: 'Figtree', sans-serif; width: 100%; }
+.vin-select { background: #fff; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 6px; padding: 8px 10px; font-size: 13px; font-weight: 500; color: var(--cd-color-text-primary, #1e293b); font-family: 'Figtree', sans-serif; width: 100%; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px; }
+.decode-btn { display: flex; align-items: center; gap: 8px; background: var(--cd-color-brand-primary, #1e293b); color: #fff; border: none; border-radius: 8px; padding: 9px 18px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0; height: 38px; }
+.decode-btn svg { flex-shrink: 0; }
+
+/* AI banner */
+.ai-banner { background: var(--cd-color-alert-orange-surface, #feeee9); border: 1px solid var(--cd-color-alert-orange, #f15a24); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.ai-banner-left { display: flex; align-items: center; gap: 10px; }
+.ai-caret { font-size: 13px; font-weight: 700; color: var(--cd-color-text-primary, #1e293b); }
+.ai-banner-title { font-size: 13px; font-weight: 800; color: var(--cd-color-text-primary, #1e293b); text-transform: uppercase; letter-spacing: 0.3px; }
+.ai-banner-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.ai-btn-outline { border: 1.5px solid var(--cd-color-alert-orange, #f15a24); background: transparent; color: var(--cd-color-alert-orange, #f15a24); border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; font-family: 'Figtree', sans-serif; }
+.ai-btn-icon { font-size: 14px; }
+
+/* Vehicle title */
+.vehicle-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.vehicle-title-row h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; color: var(--cd-color-text-primary, #1e293b); }
+.verified-badge { display: inline-flex; align-items: center; gap: 4px; background: #ecfdf5; color: #15803d; border: 1px solid #86efac; border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 600; }
+
+/* Specs */
+.specs-bar { display: flex; align-items: flex-start; gap: 0; padding: 4px 0 16px; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); }
+.spec-item { flex: 1; padding: 0 20px 0 0; }
+.spec-label { font-size: 12px; font-weight: 400; color: var(--cd-color-text-muted, #64748b); margin-bottom: 4px; }
+.spec-value { font-size: 14px; font-weight: 700; color: var(--cd-color-text-primary, #1e293b); }
+.spec-link { font-size: 13px; color: var(--cd-color-link, #137feb); cursor: pointer; font-weight: 500; white-space: nowrap; margin-left: auto; padding-left: 20px; }
+
+/* Section cards */
+.section-block { display: flex; flex-direction: column; gap: 12px; }
+.section-hdr { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--cd-color-text-muted, #64748b); }
+.section-meta { font-size: 12px; font-weight: 600; color: var(--cd-color-text-primary, #1e293b); }
+.section-divider { border: none; border-top: 1px solid var(--cd-color-border-default, #e2e8f0); margin: 4px 0; }
+
+/* Options table */
+.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 14px 16px; }
+.opt-row { display: flex; align-items: center; gap: 10px; background: var(--cd-color-surface-alt, #f8fafc); border-radius: 7px; padding: 9px 12px; }
+.opt-check { width: 16px; height: 16px; border: 1.5px solid var(--cd-color-border-default, #e2e8f0); border-radius: 4px; flex-shrink: 0; background: #fff; }
+.opt-name { flex: 1; font-size: 12px; font-weight: 500; color: var(--cd-color-text-primary, #1e293b); }
+.opt-val { font-size: 13px; font-weight: 700; color: var(--cd-color-text-primary, #1e293b); white-space: nowrap; }
+
+/* Damage tags */
+.damage-body { display: flex; flex-wrap: wrap; gap: 8px; }
+.dmg-tag { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; background: #fff; border: 1px solid var(--cd-color-border-default, #e2e8f0); color: var(--cd-color-text-primary, #1e293b); }
+.dmg-check { width: 15px; height: 15px; border: 1.5px solid #cbd5e1; border-radius: 3px; flex-shrink: 0; background: #fff; }
+.dmg-dot { width: 8px; height: 8px; border-radius: 50%; }
+.dmg-dot-grey { background: #94a3b8; }
+
+/* Comparable listings */
+.comparable-body { display: flex; flex-direction: column; gap: 20px; }
+.distance-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.or-text { font-size: 13px; font-weight: 500; color: var(--cd-color-text-muted, #64748b); }
+.dist-pill { display: flex; align-items: center; gap: 8px; background: var(--cd-color-surface-alt, #f8fafc); border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 10px; padding: 10px 14px; }
+.dist-pill-wide { flex: 1; min-width: 180px; }
+.cd-select-sm { border: none; background: transparent; font-size: 13px; font-weight: 500; color: var(--cd-color-text-primary, #1e293b); font-family: 'Figtree', sans-serif; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 4px center; padding-right: 18px; }
+.radio-label { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--cd-color-text-primary, #1e293b); cursor: pointer; }
+.cd-input-sm { border: none; background: transparent; font-size: 13px; font-weight: 500; color: var(--cd-color-text-primary, #1e293b); font-family: 'Figtree', sans-serif; width: 120px; outline: none; }
+.dist-divider { width: 1px; height: 18px; background: var(--cd-color-border-default, #e2e8f0); }
+
+/* Bar chart */
+.chart-wrap { display: flex; flex-direction: column; gap: 8px; }
+.chart-header { display: flex; align-items: center; gap: 10px; }
+.chart-header-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--cd-color-text-primary, #1e293b); }
+.chart-sold-label { font-size: 12px; font-weight: 400; color: var(--cd-color-text-muted, #64748b); }
+.chart-area { display: flex; align-items: flex-end; gap: 6px; height: 100px; }
+.bar-group { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; }
+.bar-count { font-size: 12px; font-weight: 600; color: var(--cd-color-text-primary, #1e293b); margin-bottom: 2px; }
+.bar-count-sub { font-size: 10px; color: var(--cd-color-text-muted, #64748b); margin-bottom: 4px; }
+.bar { border-radius: 3px 3px 0 0; width: 100%; min-height: 4px; }
+.bar-grey { background: #d1d9e2; }
+.bar-blue-light { background: #93b8e8; }
+.bar-blue { background: var(--cd-color-brand-accent, #3b7de3); }
+.bar-blue-dark { background: #2563d4; }
+.bar-tick { font-size: 11px; color: var(--cd-color-text-muted, #64748b); margin-top: 6px; }
+.bar-tick-bold { font-size: 11px; font-weight: 700; color: var(--cd-color-text-primary, #1e293b); margin-top: 6px; }
+.collapsed-row { display: flex; align-items: center; gap: 8px; padding: 14px 0; border-top: 1px solid var(--cd-color-border-default, #e2e8f0); cursor: pointer; }
+.collapsed-row-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--cd-color-text-primary, #1e293b); }
+
+.chevron { font-size: 11px; color: var(--cd-color-text-muted, #64748b); }
+
+/* Filter pills */
+.filter-group-label { font-size: 13px; font-weight: 400; color: var(--cd-color-text-primary, #1e293b); }
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { display: inline-flex; align-items: center; gap: 7px; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; background: var(--cd-color-surface-alt, #f1f5f9); color: var(--cd-color-text-primary, #1e293b); border: none; }
+.pill.active { background: var(--cd-color-brand-accent, #3b7de3); color: #fff; }
+.pill-check { width: 15px; height: 15px; border: 1.5px solid #cbd5e1; border-radius: 3px; flex-shrink: 0; background: #fff; }
+.pill.active .pill-check { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.25); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M2 6l3 3 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; }
+.pill-count { font-size: 13px; font-weight: 600; }
+.pill.active .pill-count { color: rgba(255,255,255,0.9); }
+.pill-stats { font-size: 11px; color: var(--cd-color-text-muted, #94a3b8); margin-left: 2px; }
+
+/* Tabs */
+.tabs-bar { display: flex; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); padding: 0 16px; gap: 0; }
+.tab-btn { padding: 10px 14px; font-size: 12px; font-weight: 600; color: var(--cd-color-text-muted, #64748b); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; background: none; border-top: none; border-left: none; border-right: none; }
+.tab-btn.active { color: var(--cd-color-brand-primary, #1e293b); border-bottom-color: var(--cd-color-brand-primary, #1e293b); }
+
+/* Toggle bar */
+.toggle-bar { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); }
+.toggle-group { display: flex; background: var(--cd-color-surface-alt, #f8fafc); border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 6px; overflow: hidden; }
+.toggle-btn { padding: 5px 12px; font-size: 12px; font-weight: 600; cursor: pointer; background: none; border: none; color: var(--cd-color-text-muted, #64748b); }
+.toggle-btn.active { background: var(--cd-color-brand-primary, #1e293b); color: #fff; }
+.sort-row { display: flex; align-items: center; gap: 12px; font-size: 11px; color: var(--cd-color-text-muted, #64748b); }
+.sort-item { display: flex; align-items: center; gap: 3px; cursor: pointer; font-weight: 600; }
+.sort-item.active { color: var(--cd-color-brand-primary, #1e293b); }
+
+/* Listing rows */
+.listing-row { padding: 12px 0; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); display: flex; flex-direction: column; gap: 5px; }
+.listing-row:last-child { border-bottom: none; }
+.listing-row.excluded { opacity: 0.5; }
+.listing-line { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.listing-name { font-size: 14px; font-weight: 700; color: var(--cd-color-text-primary, #1e293b); }
+.listing-type { font-size: 14px; font-weight: 400; color: var(--cd-color-text-primary, #1e293b); }
+.listing-vin { font-size: 13px; color: var(--cd-color-text-muted, #64748b); }
+.listing-price { font-size: 15px; font-weight: 800; color: var(--cd-color-text-primary, #1e293b); white-space: nowrap; flex-shrink: 0; }
+.listing-meta-row { display: flex; align-items: center; flex: 1; flex-wrap: wrap; gap: 10px; font-size: 12px; color: var(--cd-color-text-muted, #64748b); }
+.listing-meta-icon { display: inline-flex; align-items: center; gap: 4px; }
+.listing-link { font-size: 12px; color: var(--cd-color-link, #137feb); cursor: pointer; font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+.listing-grey { font-size: 12px; color: var(--cd-color-text-muted, #64748b); white-space: nowrap; flex-shrink: 0; }
+.listing-action-link { font-size: 11px; color: var(--cd-color-link, #137feb); cursor: pointer; font-weight: 500; }
+.days-badge { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; background: var(--cd-color-surface-alt, #f8fafc); border: 1px solid var(--cd-color-border-default, #e2e8f0); color: var(--cd-color-text-muted, #64748b); }
+.excluded-label { font-size: 11px; font-weight: 600; color: var(--cd-color-alert-orange, #f15a24); }
+.dealer-group { padding: 8px 16px; background: #fffbf0; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); font-size: 11px; }
+.dealer-group-name { font-weight: 700; color: var(--cd-color-text-primary, #1e293b); margin-bottom: 4px; }
+.dealer-list { display: flex; flex-direction: column; gap: 2px; color: var(--cd-color-text-muted, #64748b); }
+
+/* ── RIGHT COLUMN ── */
+.right-inner { padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; }
+
+/* Top bar */
+.right-top-bar { display: flex; align-items: center; gap: 8px; }
+.rt-btn { border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 7px; padding: 7px 28px 7px 12px; font-size: 12px; font-weight: 600; background: #fff; color: var(--cd-color-text-primary, #1e293b); cursor: pointer; white-space: nowrap; position: relative; }
+.rt-btn::after { content: ''; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; }
+.rt-btn-dark { border: none; border-radius: 7px; padding: 7px 14px; font-size: 12px; font-weight: 700; background: var(--cd-color-brand-primary, #1e293b); color: #fff; cursor: pointer; margin-left: auto; white-space: nowrap; }
+
+/* Calc / Status / Final Offer panel */
+.calc-panel { display: grid; grid-template-columns: 1fr 1fr 1fr; background: #f1f5f9; border-radius: 10px; overflow: hidden; }
+.calc-cell { padding: 12px 14px; }
+.calc-cell + .calc-cell { border-left: 1px solid var(--cd-color-border-default, #e2e8f0); }
+.calc-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: var(--cd-color-text-muted, #64748b); margin-bottom: 8px; }
+.calc-green-pill { display: flex; align-items: center; justify-content: center; background: #4ade80; color: #fff; font-size: 15px; font-weight: 800; border-radius: 8px; padding: 8px 10px; letter-spacing: -0.3px; }
+.calc-select { width: 100%; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 7px; padding: 8px 28px 8px 10px; font-size: 13px; font-weight: 600; background: #fff; font-family: 'Figtree', sans-serif; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; box-sizing: border-box; }
+.calc-input { width: 100%; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 7px; padding: 8px 10px; font-size: 13px; font-weight: 600; background: #fff; font-family: 'Figtree', sans-serif; box-sizing: border-box; }
+
+/* Days row */
+.days-row { display: flex; align-items: center; gap: 20px; background: #f1f5f9; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 8px; padding: 10px 14px; }
+.days-item { font-size: 13px; color: var(--cd-color-text-muted, #64748b); }
+.days-item strong { color: var(--cd-color-text-primary, #1e293b); font-weight: 700; }
+.days-sep { width: 1px; height: 16px; background: var(--cd-color-border-default, #e2e8f0); }
+
+/* YMMT card */
+.ymmt-card { background: #f1f5f9; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 10px; overflow: hidden; }
+.ymmt-top { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); }
+.ymmt-title { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--cd-color-text-primary, #1e293b); }
+.ymmt-grid { display: grid; grid-template-columns: 90px 1fr 1fr 1fr; }
+.ymmt-col-hdr { padding: 8px 6px; text-align: center; font-size: 11px; font-weight: 700; color: var(--cd-color-text-muted, #64748b); border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); }
+.ymmt-col-hdr.blue { background: var(--cd-color-brand-accent, #3b7de3); color: #fff; border-radius: 0; }
+.ymmt-row-lbl { padding: 8px 10px; font-size: 11px; font-weight: 600; color: var(--cd-color-text-muted, #64748b); display: flex; align-items: center; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); }
+.ymmt-row-lbl:last-child { border-bottom: none; }
+.ymmt-cell { padding: 5px 6px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); }
+.ymmt-pill { display: flex; align-items: center; width: 100%; border-radius: 12px; padding: 9px 10px; gap: 6px; }
+.ymmt-pill.dark { background: #4b5768; }
+.ymmt-pill.blue-bright { background: #3b7de3; }
+.ymmt-pill.blue-mid { background: #6b98e8; }
+.ymmt-pill.sold { background: #fff; border: 1px solid #e2e8f0; }
+.ymmt-pill.sold-blue { background: #c5d9f7; }
+.yp-badge { background: rgba(0,0,0,0.18); border-radius: 6px; padding: 3px 7px; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.88); white-space: nowrap; flex-shrink: 0; }
+.ymmt-pill.sold .yp-badge { background: #f1f5f9; color: #475569; }
+.ymmt-pill.sold-blue .yp-badge { background: rgba(255,255,255,0.55); color: #1d4ed8; }
+.yp-num { font-size: 20px; font-weight: 800; color: #fff; flex: 1; text-align: center; }
+.ymmt-pill.sold .yp-num { color: #1e293b; }
+.ymmt-pill.sold-blue .yp-num { color: #1d4ed8; }
+
+/* Bottom split */
+.bottom-split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* Appraisal card */
+.appraisal-card { background: #f1f5f9; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 10px; overflow: hidden; }
+.appraisal-header { padding: 10px 14px; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); }
+.appraisal-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 14px; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); }
+.appraisal-row:last-child { border-bottom: none; }
+.appraisal-row-label { font-size: 12px; color: var(--cd-color-text-muted, #64748b); }
+.appraisal-row-val { font-size: 13px; font-weight: 700; color: var(--cd-color-text-primary, #1e293b); }
+.appraisal-row-val.green { color: #16a34a; }
+.ap-input { border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 5px; padding: 4px 8px; font-size: 12px; font-family: 'Figtree', sans-serif; width: 80px; text-align: right; }
+.appraisal-total { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: #f0fdf4; }
+.appraisal-total-label { font-size: 11px; font-weight: 700; color: #166534; }
+.appraisal-total-pill { background: #4ade80; color: #fff; font-size: 13px; font-weight: 800; border-radius: 7px; padding: 5px 12px; }
+
+/* Pricing card */
+.pricing-card { background: #f1f5f9; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 10px; overflow: hidden; }
+.pricing-header { padding: 10px 14px; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); }
+.pricing-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.pricing-stat { display: flex; justify-content: space-between; align-items: center; }
+.pricing-stat-label { font-size: 11px; color: var(--cd-color-text-muted, #64748b); font-weight: 500; }
+.pricing-val-box { display: inline-flex; align-items: center; gap: 4px; }
+.pricing-val-num { font-size: 13px; font-weight: 800; color: var(--cd-color-text-primary, #1e293b); background: var(--cd-color-surface-alt, #f1f5f9); border-radius: 5px; padding: 2px 8px; }
+.pricing-val-unit { font-size: 11px; color: var(--cd-color-text-muted, #64748b); }
+.pricing-rank-badge { font-size: 13px; font-weight: 800; color: var(--cd-color-brand-accent, #3b7de3); background: #eff6ff; border-radius: 5px; padding: 2px 8px; }
+.pricing-rank-suffix { font-size: 11px; color: var(--cd-color-text-muted, #64748b); margin-left: 4px; }
+.pricing-link { font-size: 12px; font-weight: 600; color: var(--cd-color-brand-accent, #3b7de3); }
+
+/* Ruler chart */
+.ruler-wrap { }
+.ruler-track { position: relative; height: 4px; background: #e2e8f0; border-radius: 2px; margin: 6px 0 2px; }
+.ruler-marker { position: absolute; top: -8px; width: 2px; height: 20px; background: var(--cd-color-brand-accent, #3b7de3); border-radius: 1px; }
+.ruler-ticks { display: flex; justify-content: space-between; font-size: 10px; color: var(--cd-color-text-muted, #64748b); margin-top: 2px; }
+.ruler-range { display: flex; justify-content: space-between; font-size: 10px; color: var(--cd-color-text-muted, #64748b); margin-top: 4px; }
+</style>
+<style id="fusion-selection-styles">
+  .fusion-element-highlight {
+    outline: 2px solid rgb(26, 115, 235) !important;
+    outline-style: solid !important;
+  }
+
+  .fusion-element-selected {
+    outline: 4px solid rgb(26, 115, 235) !important;
+    outline-style: solid !important;
+    outline-offset: 0px !important;
+  }
+  
+  .fusion-selection-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+    z-index: 2147483647 !important;
+    cursor: crosshair !important;
+    pointer-events: none !important;
+  }
+  
+  .fusion-selection-tooltip {
+    position: fixed !important;
+    background: #1f2937 !important;
+    color: white !important;
+    padding: 8px 12px !important;
+    border-radius: 6px !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    z-index: 2147483648 !important;
+    pointer-events: none !important;
+    transform: translate(-50%, -100%) translateY(-10px) !important;
+    white-space: nowrap !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  .fusion-selection-tooltip::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    border: 5px solid transparent !important;
+    border-top-color: #1f2937 !important;
+  }
+  
+  
+  @keyframes fusion-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fusion-label-bounce {
+    0% { 
+      opacity: 0;
+      transform: translateY(-10px) scale(0.9);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0) scale(1.05);
+    }
+    100% { 
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+</style><style id="__cmcp_cursor__">* { cursor: default !important; }</style><script src="chrome-extension://cfldfgibklhmjhnkfighkbafbkbfcmij/src/bridge/fusion-bridge.js?extensionId=cfldfgibklhmjhnkfighkbafbkbfcmij"></script></head>
+<body style="overflow: visible; height: auto;">
+
+<!-- TOPBAR -->
+<div class="c-topbar">
+  <a class="c-brand" href="#">
+    <div class="c-brand-logo">ZA</div>
+    <span class="c-brand-name">ZEN AI</span>
+  </a>
+  <nav class="c-nav">
+    <a class="c-nav-link active" href="#">Appraisal</a>
+    <a class="c-nav-link" href="#">Saved Appraisals</a>
+    <a class="c-nav-link" href="#">Ask Me Anything</a>
+    <a class="c-nav-link" href="#">Competitive Intelligence</a>
+    <a class="c-nav-link" href="#">Continuous Appraisal</a>
+    <a class="c-nav-link" href="#">Dealer Intel</a>
+  </nav>
+  <button class="c-user-btn">John Smith</button>
+</div>
+
+<!-- TWO COLUMN LAYOUT -->
+<div class="page-wrap">
+
+  <!-- LEFT COLUMN -->
+  <div class="col-left">
+    <div class="left-inner">
+
+      <!-- Back link -->
+      <a class="back-link">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"></path></svg>
+        All appraisals
+      </a>
+
+      <!-- VIN bar -->
+      <div class="vin-bar">
+        <div class="vin-field">
+          <span class="field-label">VIN</span>
+          <input class="vin-input" type="text" value="W1K15KB0NF174378">
+        </div>
+        <div class="vin-field-sm">
+          <span class="field-label">KMs</span>
+          <input class="vin-input" type="text" value="92,324">
+        </div>
+        <div class="vin-field-sm">
+          <span class="field-label">Colour</span>
+          <select class="vin-select"><option>Black</option><option>White</option><option>Silver</option><option>Grey</option></select>
+        </div>
+        <div class="vin-field-xs">
+          <span class="field-label">Location</span>
+          <select class="vin-select"><option>BC</option><option>ON</option><option>AB</option><option>QC</option></select>
+        </div>
+        <button class="decode-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"></path><path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"></path></svg>
+          Decode
+        </button>
+      </div>
+
+      <!-- AI Banner -->
+      <div class="ai-banner">
+        <div class="ai-banner-left">
+          <span class="ai-caret">›</span>
+          <span class="ai-banner-title">AI Appraisal Assistant</span>
+        </div>
+        <div class="ai-banner-actions">
+          <button class="ai-btn-outline"><span class="ai-btn-icon">✦</span> Build Comparables Group</button>
+          <button class="ai-btn-outline"><span class="ai-btn-icon">✦</span> Full Auto Appraisal</button>
+        </div>
+      </div>
+
+      <!-- Vehicle title -->
+      <div>
+        <div class="vehicle-title-row">
+          <h1>2022 Mercedes-Benz E-Class E 450</h1>
+          <span class="verified-badge" style="margin-left:auto;">✓ Verified</span>
+        </div>
+      </div>
+
+      <!-- Specs bar -->
+      <div class="specs-bar">
+        <div class="spec-item">
+          <div class="spec-label">Engine</div>
+          <div class="spec-value">3L V6</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Transmission</div>
+          <div class="spec-value">9-Speed Automatic</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Drivetrain</div>
+          <div class="spec-value">All-Wheel Drive</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">MSRP</div>
+          <div class="spec-value">$69,450 USD</div>
+        </div>
+        <div class="spec-link">Full Spec Sheet</div>
+      </div>
+
+      <!-- Options & Equipment -->
+      <div class="section-block">
+        <div class="section-hdr">
+          <span class="section-title">Options and Equipment</span>
+          <span class="section-meta" style="color: var(--cd-color-alert-green, #648231);">Total Value of Options = +$3,200</span>
+        </div>
+        <div class="options-grid">
+          <div class="opt-row"><div class="opt-check"></div><span class="opt-name">AMG wheel upgrade</span><span class="opt-val">+$3,200</span></div>
+          <div class="opt-row"><div class="opt-check"></div><span class="opt-name">AMG wheel upgrade</span><span class="opt-val">+$3,200</span></div>
+          <div class="opt-row"><div class="opt-check"></div><span class="opt-name">Burmester 3D premium sound</span><span class="opt-val">+$1,750</span></div>
+          <div class="opt-row"><div class="opt-check"></div><span class="opt-name">AMG wheel upgrade</span><span class="opt-val">+$3,200</span></div>
+          <div class="opt-row"><div class="opt-check"></div><span class="opt-name">AMG wheel upgrade</span><span class="opt-val">+$3,200</span></div>
+          <div class="opt-row"><div class="opt-check"></div><span class="opt-name">AMG wheel upgrade</span><span class="opt-val">+$3,200</span></div>
+        </div>
+      </div>
+
+      <!-- Damage Assessment -->
+      <hr class="section-divider">
+      <div class="section-block">
+        <div class="section-hdr">
+          <span style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; color:var(--cd-color-text-primary,#1e293b);">Damage Assessment</span>
+          <span style="font-size:13px; color:var(--cd-color-text-muted,#64748b);">Total Value of damage = <strong style="color:var(--cd-color-text-primary,#1e293b);">$0</strong></span>
+        </div>
+        <div class="damage-body">
+          <span class="dmg-tag"><div class="dmg-check"></div>Minor</span>
+          <span class="dmg-tag"><div class="dmg-check"></div>Rollback</span>
+          <span class="dmg-tag"><div class="dmg-check"></div>Salvage</span>
+          <span class="dmg-tag"><div class="dmg-check"></div>Airbags</span>
+          <span class="dmg-tag"><div class="dmg-check"></div>Lemon</span>
+          <span class="dmg-tag"><div class="dmg-check"></div>Theft</span>
+          <span class="dmg-tag"><div class="dmg-check"></div>Brand</span>
+          <span class="dmg-tag"><div class="dmg-check"></div>Frame</span>
+          <span class="dmg-tag"><div class="dmg-check"></div>Rental</span>
+        </div>
+      </div>
+
+      <!-- Comparable Listings -->
+      <hr class="section-divider">
+      <div class="section-block">
+        <div class="section-hdr">
+          <span style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; color:var(--cd-color-text-primary,#1e293b);">Comparable Listings</span>
+          <span style="font-size:12px; color: var(--cd-color-link, #137feb); font-weight:600; cursor:pointer;">Edit group</span>
+        </div>
+
+        <!-- Distance sub-label -->
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--cd-color-text-primary,#1e293b);">Distance</div>
+
+        <!-- Distance controls -->
+        <div class="distance-row">
+          <div class="dist-pill dist-pill-wide">
+            <select class="cd-select-sm" style="flex:1;width:100%;"><option>All Canada</option><option>All US</option></select>
+          </div>
+          <span class="or-text">OR</span>
+          <div class="dist-pill" style="flex:2; gap:6px;">
+            <span style="font-size:13px; color:var(--cd-color-text-muted,#64748b);">Within</span>
+            <select class="cd-select-sm"><option>-</option><option>100</option><option>250</option><option>500</option></select>
+            <div class="dist-divider"></div>
+            <span style="font-size:13px; color:var(--cd-color-text-muted,#64748b);" class="">KM from</span>
+            <input type="radio" name="loc2" checked="" style="accent-color:var(--cd-color-brand-primary,#1e293b); width:16px; height:16px;">
+            <input class="cd-input-sm" type="text" placeholder="City">
+          </div>
+          <span class="or-text">OR</span>
+          <div class="dist-pill">
+            <input type="radio" name="loc2" style="accent-color:var(--cd-color-brand-primary,#1e293b); width:16px; height:16px;">
+            <span style="font-size:13px; color:var(--cd-color-text-muted,#64748b);">My Location</span>
+          </div>
+        </div>
+
+        <!-- Bar chart: Time Range -->
+        <hr class="section-divider" style="margin:4px 0;">
+        <div class="chart-wrap">
+          <div class="chart-header">
+            <span class="chart-header-label">Time Range</span>
+            <span class="chart-sold-label">25 Sold</span>
+          </div>
+          <div class="chart-area" style="column-gap: 12px;">
+            <div class="bar-group">
+              <div class="bar-count">7</div><div class="bar-count-sub">sold</div>
+              <div class="bar bar-grey" style="height:52px;width:100%;"></div>
+              <div class="bar-tick">7m</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-count">7</div><div class="bar-count-sub">sold</div>
+              <div class="bar bar-grey" style="height:52px;width:100%;"></div>
+              <div class="bar-tick">6m</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-count">5</div><div class="bar-count-sub">sold</div>
+              <div class="bar bar-grey" style="height:37px;width:100%;"></div>
+              <div class="bar-tick">5m</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-count">5</div><div class="bar-count-sub">sold</div>
+              <div class="bar bar-grey" style="height:37px;width:100%;"></div>
+              <div class="bar-tick">4m</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-count">5</div><div class="bar-count-sub">sold</div>
+              <div class="bar bar-blue-light" style="height:37px;width:100%;"></div>
+              <div class="bar-tick">3m</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-count">6</div><div class="bar-count-sub">sold</div>
+              <div class="bar bar-blue" style="height:45px;width:100%;"></div>
+              <div class="bar-tick">2m</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-count">2</div><div class="bar-count-sub">sold</div>
+              <div class="bar bar-blue-light" style="height:15px;width:100%;"></div>
+              <div class="bar-tick">1m</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-count" style="font-weight:800;">2</div><div class="bar-count-sub">active</div>
+              <div class="bar bar-blue-dark" style="height:15px;width:100%;"></div>
+              <div class="bar-tick-bold">Active</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trim Matrix collapsed -->
+        <div class="collapsed-row">
+          <span class="collapsed-row-chevron">›</span>
+          <span class="collapsed-row-title">Trim Matrix</span>
+        </div>
+
+        <!-- Filters expanded -->
+        <div class="collapsed-row">
+          <span class="collapsed-row-chevron">∨</span>
+          <span class="collapsed-row-title">Filters</span>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:14px; padding: 4px 0 8px;">
+          <div class="filter-group-label">Vehicle Type</div>
+          <div class="pill-row">
+            <span class="pill active"><div class="pill-check"></div>All Types <span class="pill-count">27</span></span>
+            <span class="pill"><div class="pill-check"></div>Convertible</span>
+            <span class="pill"><div class="pill-check"></div>Coupe</span>
+            <span class="pill"><div class="pill-check"></div>Sedan</span>
+          </div>
+          <div class="filter-group-label">Body Style</div>
+          <div class="pill-row">
+            <span class="pill active"><div class="pill-check"></div>All Body Styles <span class="pill-count">27</span></span>
+            <span class="pill"><div class="pill-check"></div>Cabriolet All-Wheel Drive <span class="pill-count">8</span><span class="pill-stats">79d · $30k</span></span>
+            <span class="pill"><div class="pill-check"></div>Coupe <span class="pill-count">4</span><span class="pill-stats">79d · $30k</span></span>
+            <span class="pill"><div class="pill-check"></div>Sedan <span class="pill-count">4</span><span class="pill-stats">79d · $30k</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Listings -->
+      <hr class="section-divider">
+      <div class="section-block">
+        <div class="tabs-bar" style="padding:0; margin-bottom:4px;">
+          <button class="tab-btn active">Live Listings</button>
+          <button class="tab-btn">Market Lineup</button>
+          <button class="tab-btn">Market Trends</button>
+        </div>
+        <div class="toggle-bar" style="padding:0;">
+          <div class="toggle-group">
+            <button class="toggle-btn active">Both (58)</button>
+            <button class="toggle-btn">Active (11)</button>
+            <button class="toggle-btn">Sold (47)</button>
+          </div>
+          <div class="sort-row">
+            Sort:
+            <span class="sort-item active">Year ↑</span>
+            <span class="sort-item">Price</span>
+            <span class="sort-item">Days</span>
+            <span class="sort-item">Mileage</span>
+          </div>
+        </div>
+
+        <!-- Listing rows -->
+        <div class="listing-row">
+          <div class="listing-line">
+            <div><span class="listing-name">2022 Mercedes-Benz E-Class E450</span><span class="listing-type"> (Sedan)</span><span class="listing-vin">  #  W1K15KB0NF174378</span></div>
+            <span class="listing-price">$74,900</span>
+          </div>
+          <div class="listing-line">
+            <div class="listing-meta-row">
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l2 2"></path></svg> 36,707 km</span>
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="10" width="20" height="8" rx="2"></rect><path d="M6 10V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg> Cabriolet All-Wheel Drive</span>
+              <span>Type: Convertible</span>
+              <span>Colour: Grey</span>
+            </div>
+            <span class="listing-link">show details</span>
+          </div>
+          <div class="listing-line">
+            <div class="listing-meta-row">
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 146 days total</span>
+              <span>Listed: 10/19/2025 – 3/14/2026</span>
+              <span class="listing-meta-icon"><svg width="12" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path><circle cx="12" cy="9" r="2.5"></circle></svg> 3,678 km away</span>
+              <span class="listing-link">show 12 dealers</span>
+            </div>
+            <span class="listing-grey">price history</span>
+          </div>
+        </div>
+
+        <div class="listing-row">
+          <div class="listing-line">
+            <div><span class="listing-name">2022 Mercedes-Benz E-Class E450</span><span class="listing-type"> (Sedan)</span><span class="listing-vin">  #  W1K5J5KB7NF231045</span></div>
+            <span class="listing-price">$71,500</span>
+          </div>
+          <div class="listing-line">
+            <div class="listing-meta-row">
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l2 2"></path></svg> 41,200 km</span>
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="10" width="20" height="8" rx="2"></rect><path d="M6 10V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg> Sedan All-Wheel Drive</span>
+              <span>Type: Sedan</span>
+              <span>Colour: Silver</span>
+            </div>
+            <span class="listing-link">show details</span>
+          </div>
+          <div class="listing-line">
+            <div class="listing-meta-row">
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 82 days total</span>
+              <span>Listed: 12/02/2025 – 2/21/2026</span>
+              <span class="listing-meta-icon"><svg width="12" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path><circle cx="12" cy="9" r="2.5"></circle></svg> 1,204 km away</span>
+              <span class="listing-link">show 3 dealers</span>
+            </div>
+            <span class="listing-grey">price history</span>
+          </div>
+        </div>
+
+        <!-- Dealer group -->
+        
+
+        <div class="listing-row excluded">
+          <div class="listing-line">
+            <div><span class="listing-name">2022 Mercedes-Benz E-Class E450</span><span class="listing-type"> (Coupe)</span><span class="listing-vin">  #  W1K5J5KB4NF198312</span></div>
+            <span class="listing-price">$68,900</span>
+          </div>
+          <div class="listing-line">
+            <div class="listing-meta-row">
+              <span>Auto-excluded</span>
+              <span class="excluded-label">532 days in market (+300)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="listing-row">
+          <div class="listing-line">
+            <div><span class="listing-name">2022 Mercedes-Benz E-Class E450</span><span class="listing-type"> (Sedan)</span><span class="listing-vin">  #  W1K5J5KB9NF155678</span></div>
+            <span class="listing-price">$76,450</span>
+          </div>
+          <div class="listing-line">
+            <div class="listing-meta-row">
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l2 2"></path></svg> 28,900 km</span>
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="10" width="20" height="8" rx="2"></rect><path d="M6 10V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg> Sedan All-Wheel Drive</span>
+              <span>Type: Sedan</span>
+              <span>Colour: Black</span>
+            </div>
+            <span class="listing-link">show details</span>
+          </div>
+          <div class="listing-line">
+            <div class="listing-meta-row">
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 55 days total</span>
+              <span>Listed: 1/15/2026 – 3/10/2026</span>
+              <span class="listing-meta-icon"><svg width="12" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path><circle cx="12" cy="9" r="2.5"></circle></svg> 520 km away</span>
+            </div>
+            <span class="listing-grey">price history</span>
+          </div>
+        </div>
+
+        <div class="listing-row">
+          <div class="listing-line">
+            <div><span class="listing-name">2022 Mercedes-Benz E-Class E450</span><span class="listing-type"> (Sedan)</span><span class="listing-vin">  #  W1K5J5KB2NF204891</span></div>
+            <span class="listing-price">$73,200</span>
+          </div>
+          <div class="listing-line">
+            <div class="listing-meta-row">
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l2 2"></path></svg> 44,580 km</span>
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="10" width="20" height="8" rx="2"></rect><path d="M6 10V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg> Cabriolet All-Wheel Drive</span>
+              <span>Type: Convertible</span>
+              <span>Colour: White</span>
+            </div>
+            <span class="listing-link">show details</span>
+          </div>
+          <div class="listing-line">
+            <div class="listing-meta-row">
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 118 days total</span>
+              <span>Listed: 11/08/2025 – 3/05/2026</span>
+              <span class="listing-meta-icon"><svg width="12" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path><circle cx="12" cy="9" r="2.5"></circle></svg> 2,110 km away</span>
+            </div>
+            <span class="listing-grey">price history</span>
+          </div>
+        </div>
+
+      </div><!-- /live listings section-block -->
+
+    </div><!-- /left-inner -->
+  </div><!-- /col-left -->
+
+  <!-- RIGHT COLUMN -->
+  <div class="col-right">
+    <div class="right-inner">
+
+      <!-- Top bar: versions / user / save -->
+      <div class="right-top-bar">
+        <button class="rt-btn">2 Previous Versions</button>
+        <button class="rt-btn">John Smith • john@johnsmith.com</button>
+        <button class="rt-btn-dark">Save Version</button>
+      </div>
+
+      <!-- Calculated / Status / Final Offer -->
+      <div class="calc-panel">
+        <div class="calc-cell">
+          <div class="calc-lbl">Calculated</div>
+          <div class="calc-green-pill" style="color: rgb(0, 0, 0);">$51,948</div>
+        </div>
+        <div class="calc-cell">
+          <div class="calc-lbl">Status</div>
+          <select class="calc-select"><option>On Hold</option><option>Active</option><option>Purchased</option><option>Declined</option></select>
+        </div>
+        <div class="calc-cell">
+          <div class="calc-lbl">Final Offer</div>
+          <input class="calc-input" type="text" placeholder="">
+        </div>
+      </div>
+
+
+      <!-- YMMT -->
+      <div class="ymmt-card">
+        <div class="ymmt-top">
+          <span class="days-item">Days to sell last 3 months: <strong>72 days</strong></span>
+          <div class="days-sep"></div>
+          <span class="days-item">MDS: <strong>37 days</strong></span>
+        </div>
+        <div class="ymmt-grid">
+          <!-- Header row -->
+          <div class="ymmt-col-hdr" style="text-align: left; padding-left: 14px; color: var(--cd-color-text-primary, #1e293b); font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;">YMMT</div>
+          <div class="ymmt-col-hdr">2023 ⊗</div>
+          <div class="ymmt-col-hdr blue" style="background-color: transparent; color: rgb(59, 125, 227);">2024</div>
+          <div class="ymmt-col-hdr">2025 ⊗</div>
+          <!-- Total 3mths -->
+          <div class="ymmt-row-lbl" style="padding-left: 14px;">Total <br>3mths</div>
+          <div class="ymmt-cell"><div class="ymmt-pill dark"><span class="yp-badge">$57K</span><span class="yp-num">165</span><span class="yp-badge">106d</span></div></div>
+          <div class="ymmt-cell"><div class="ymmt-pill blue-bright"><span class="yp-badge">$57K</span><span class="yp-num">330</span><span class="yp-badge">73d</span></div></div>
+          <div class="ymmt-cell"><div class="ymmt-pill dark"><span class="yp-badge">$57K</span><span class="yp-num">165</span><span class="yp-badge">57d</span></div></div>
+          <!-- Active 1,500km -->
+          <div class="ymmt-row-lbl" style="padding-left: 14px;">Active 1,500km</div>
+          <div class="ymmt-cell"><div class="ymmt-pill dark"><span class="yp-badge">$57K</span><span class="yp-num">27</span><span class="yp-badge">106d</span></div></div>
+          <div class="ymmt-cell"><div class="ymmt-pill blue-mid"><span class="yp-badge">$57K</span><span class="yp-num">73</span><span class="yp-badge">89d</span></div></div>
+          <div class="ymmt-cell"><div class="ymmt-pill dark"><span class="yp-badge">$57K</span><span class="yp-num">27</span><span class="yp-badge">64d</span></div></div>
+          <!-- Sold 3km -->
+          <div class="ymmt-row-lbl" style="border-bottom:none; padding-left: 14px;">Sold<br>3km</div>
+          <div class="ymmt-cell" style="border-bottom:none;"><div class="ymmt-pill sold"><span class="yp-badge">$57K</span><span class="yp-num">111</span><span class="yp-badge">106d</span></div></div>
+          <div class="ymmt-cell" style="border-bottom:none;"><div class="ymmt-pill sold-blue"><span class="yp-badge">$57K</span><span class="yp-num">257</span><span class="yp-badge">73d</span></div></div>
+          <div class="ymmt-cell" style="border-bottom:none;"><div class="ymmt-pill sold"><span class="yp-badge">$57K</span><span class="yp-num">111</span><span class="yp-badge">57d</span></div></div>
+        </div>
+      </div>
+
+      <!-- Appraisal + Pricing side by side -->
+      <div class="bottom-split">
+
+        <!-- Appraisal -->
+        <div class="appraisal-card">
+          <div class="appraisal-header">
+            <span class="section-title">Appraisal</span>
+          </div>
+          <div class="appraisal-row">
+            <span class="appraisal-row-label">Retail</span>
+            <span class="appraisal-row-val green" style="color: rgb(30, 41, 59);">+$51,948</span>
+          </div>
+          <div class="appraisal-row">
+            <span class="appraisal-row-label">Reconditioning</span>
+            <input class="ap-input" placeholder="$">
+          </div>
+          <div class="appraisal-row">
+            <span class="appraisal-row-label">Shipping</span>
+            <input class="ap-input" placeholder="$">
+          </div>
+          <div class="appraisal-row">
+            <span class="appraisal-row-label">Certification</span>
+            <input class="ap-input" placeholder="$">
+          </div>
+          <div class="appraisal-row">
+            <span class="appraisal-row-label">Overhead</span>
+            <input class="ap-input" placeholder="$">
+          </div>
+          <div class="appraisal-row">
+            <span class="appraisal-row-label">Profit</span>
+            <input class="ap-input" placeholder="$">
+          </div>
+          <div class="appraisal-total" style="background-color: rgb(241, 245, 249);">
+            <span class="appraisal-total-label">✦ Suggested AI Appraisal</span>
+            <span class="appraisal-total-pill" style="color: rgb(0, 0, 0);">$51,948</span>
+          </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <span class="section-title">Pricing</span>
+          </div>
+          <div class="pricing-body">
+            <div class="pricing-stat">
+              <span class="pricing-stat-label">% to Market avg</span>
+              <div class="pricing-val-box">
+                <span class="pricing-val-num">88.1</span>
+                <span class="pricing-val-unit">%</span>
+              </div>
+            </div>
+            <div class="pricing-stat">
+              <span class="pricing-stat-label">Price rank</span>
+              <div>
+                <span class="pricing-rank-badge">2</span>
+                <span class="pricing-rank-suffix">/ 11 active</span>
+              </div>
+            </div>
+            <div>
+              <span class="pricing-link">$66,474 (2)</span>
+              <div class="ruler-wrap">
+                <div class="ruler-track">
+                  <!-- marker at ~9% from left = position 2 of 11 -->
+                  <div class="ruler-marker" style="left:9%;"></div>
+                </div>
+                <div class="ruler-ticks">
+                  <span>1</span><span>4</span><span>9</span><span>11</span>
+                </div>
+                <div class="ruler-range">
+                  <span>$65,500</span><span>$75,500</span>
+                </div>
+              </div>
+            </div>
+            <div class="pricing-stat">
+              <span class="pricing-stat-label">Zrank</span>
+              <div>
+                <span class="pricing-rank-badge">2</span>
+                <span class="pricing-rank-suffix">/ 11 active</span>
+              </div>
+            </div>
+            <div>
+              <span class="pricing-link" style="font-size:13px;font-weight:800;">2</span>
+              <div class="ruler-wrap">
+                <div class="ruler-track">
+                  <div class="ruler-marker" style="left:9%;"></div>
+                </div>
+                <div class="ruler-ticks">
+                  <span>1</span><span>4</span><span>9</span><span>11</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /bottom-split -->
+
+    </div><!-- /right-inner -->
+  </div><!-- /col-right -->
+
+</div><!-- /page-wrap -->
+
+
+
+</body></html>
