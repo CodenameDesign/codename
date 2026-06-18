@@ -3,7 +3,7 @@
 <!--cmcp-fonts-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!--/cmcp-fonts-->
 
 <style>
@@ -45,8 +45,20 @@
   --cd-status-success-text: #166534;
   --cd-status-success-bg: #f0fdf4;
 
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+  --cd-color-alert-green: #648231;
+  --cd-color-accent-green: #4ade80;
+  --cd-color-success-surface: #f0fdf4;
+  --cd-color-success-text: #166534;
+  --cd-color-success-border: #86efac;
+  --cd-color-accent-blue-mid: #6b98e8;
+  --cd-color-accent-blue-dark: #1d4ed8;
+  --cd-color-surface-blue-tint: #c5d9f7;
+
   /* ── TYPOGRAPHY: Family ── */
-  --cd-font-family: 'Figtree', 'Manrope', sans-serif;
+  --cd-font-family: 'Figtree', sans-serif;
 
   /* ── TYPOGRAPHY: Size ── */
   --cd-text-xs: 10px;
@@ -94,6 +106,506 @@
 }
 </style>
 
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+  --cd-color-alert-green: #648231;
+  --cd-color-accent-green: #4ade80;
+  --cd-color-success-surface: #f0fdf4;
+  --cd-color-success-text: #166534;
+  --cd-color-success-border: #86efac;
+  --cd-color-accent-blue-mid: #6b98e8;
+  --cd-color-accent-blue-dark: #1d4ed8;
+  --cd-color-surface-blue-tint: #c5d9f7;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+  --cd-color-alert-green: #648231;
+  --cd-color-accent-green: #4ade80;
+  --cd-color-success-surface: #f0fdf4;
+  --cd-color-success-text: #166534;
+  --cd-color-success-border: #86efac;
+  --cd-color-accent-blue-mid: #6b98e8;
+  --cd-color-accent-blue-dark: #1d4ed8;
+  --cd-color-surface-blue-tint: #c5d9f7;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+  --cd-color-alert-green: #648231;
+  --cd-color-accent-green: #4ade80;
+  --cd-color-success-surface: #f0fdf4;
+  --cd-color-success-text: #166534;
+  --cd-color-success-border: #86efac;
+  --cd-color-accent-blue-mid: #6b98e8;
+  --cd-color-accent-blue-dark: #1d4ed8;
+  --cd-color-surface-blue-tint: #c5d9f7;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+  --cd-color-alert-green: #648231;
+  --cd-color-accent-green: #4ade80;
+  --cd-color-success-surface: #f0fdf4;
+  --cd-color-success-text: #166534;
+  --cd-color-success-border: #86efac;
+  --cd-color-accent-blue-mid: #6b98e8;
+  --cd-color-accent-blue-dark: #1d4ed8;
+  --cd-color-surface-blue-tint: #c5d9f7;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+  --cd-color-alert-green: #648231;
+  --cd-color-accent-green: #4ade80;
+  --cd-color-success-surface: #f0fdf4;
+  --cd-color-success-text: #166534;
+  --cd-color-success-border: #86efac;
+  --cd-color-accent-blue-mid: #6b98e8;
+  --cd-color-accent-blue-dark: #1d4ed8;
+  --cd-color-surface-blue-tint: #c5d9f7;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
 
 <style>
 /* injected by canvas-mcp design system */
@@ -1658,6 +2170,9 @@ body {
 .comp-label { font-size: var(--cd-font-size-xs); font-weight: var(--cd-font-weight-bold); text-transform: uppercase; letter-spacing: 0.08em; color: var(--cd-color-text-placeholder); }
 .comp-item { display: flex; flex-direction: column; gap: var(--cd-spacing-3); align-items: flex-start; }
 .comp-item-name { font-size: var(--cd-font-size-xs); color: var(--cd-color-text-placeholder); font-family: 'Courier New', monospace; }
+.comp-items { display: flex; flex-direction: column; gap: 0; }
+.comp-items .comp-item { padding: 28px 0; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); width: 100%; }
+.comp-items .comp-item:last-child { border-bottom: none; }
 .comp-bg { background: var(--cd-color-surface-subtle); border-radius: var(--cd-radius-md); padding: 16px 20px; display: flex; align-items: center; }
 
 /* — Topbar — */
@@ -1835,6 +2350,173 @@ body {
   .c-input-area { width: 100%; }
   .c-sess { width: 100%; max-width: 100%; }
 }
+
+/* ══════════════════════════════════════════════════
+   APPRAISAL PAGE COMPONENTS
+   ══════════════════════════════════════════════════ */
+
+/* VIN Bar */
+.ap-vin-bar { display: flex; align-items: flex-end; gap: 8px; padding: 12px 14px; background: var(--cd-color-surface-subtle, #f8fafc); border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 10px; flex-wrap: wrap; }
+.ap-vin-field { display: flex; flex-direction: column; gap: 4px; flex: 2; min-width: 120px; }
+.ap-vin-field-sm { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 80px; }
+.ap-field-label { font-size: 11px; font-weight: 600; color: var(--cd-color-text-muted, #64748b); text-transform: uppercase; letter-spacing: 0.4px; }
+.ap-vin-input { border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 6px; padding: 8px 10px; font-size: 13px; font-weight: 500; color: var(--cd-color-text-primary, #1e293b); font-family: var(--cd-font-family, 'Figtree', sans-serif); background: #fff; }
+.ap-decode-btn { display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: var(--cd-color-brand-primary, #1e293b); color: #fff; border: none; border-radius: 7px; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; font-family: var(--cd-font-family, 'Figtree', sans-serif); }
+
+/* AI Banner */
+.ap-ai-banner { background: var(--cd-color-alert-orange-surface, #feeee9); border: 1px solid var(--cd-color-alert-orange, #f15a24); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.ap-ai-banner-left { display: flex; align-items: center; gap: 8px; }
+.ap-ai-banner-title { font-size: 13px; font-weight: 800; color: var(--cd-color-text-primary, #1e293b); text-transform: uppercase; letter-spacing: 0.3px; }
+.ap-ai-banner-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.ap-ai-btn { display: flex; align-items: center; gap: 6px; padding: 8px 14px; background: #fff; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 7px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--cd-color-text-primary, #1e293b); font-family: var(--cd-font-family, 'Figtree', sans-serif); }
+
+/* Verified Badge */
+.ap-verified-badge { display: inline-flex; align-items: center; gap: 4px; background: var(--cd-color-success-surface, #f0fdf4); color: var(--cd-color-success-text, #166534); border: 1px solid var(--cd-color-success-border, #86efac); border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 600; }
+
+/* Specs bar */
+.ap-specs-bar { display: flex; align-items: center; gap: 0; flex-wrap: wrap; }
+.ap-spec-item { display: flex; flex-direction: column; gap: 2px; padding-right: 20px; margin-right: 20px; border-right: 1px solid var(--cd-color-border-default, #e2e8f0); }
+.ap-spec-item:last-of-type { border-right: none; }
+.ap-spec-label { font-size: 11px; color: var(--cd-color-text-muted, #64748b); }
+.ap-spec-value { font-size: 13px; font-weight: 600; color: var(--cd-color-text-primary, #1e293b); }
+
+/* Options grid */
+.ap-options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; }
+.ap-opt-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); }
+.ap-opt-check { width: 14px; height: 14px; border: 1.5px solid var(--cd-color-border-default, #e2e8f0); border-radius: 3px; flex-shrink: 0; }
+.ap-opt-name { flex: 1; font-size: 12px; color: var(--cd-color-text-secondary, #334155); }
+.ap-opt-val { font-size: 12px; font-weight: 600; color: var(--cd-color-text-primary, #1e293b); }
+
+/* Damage tags */
+.ap-damage-body { display: flex; flex-wrap: wrap; gap: 8px; }
+.ap-dmg-tag { display: flex; align-items: center; gap: 7px; padding: 7px 12px; background: var(--cd-color-surface-subtle, #f8fafc); border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 20px; font-size: 12px; font-weight: 500; color: var(--cd-color-text-secondary, #334155); cursor: pointer; }
+.ap-dmg-tag.active { background: var(--cd-color-alert-orange-surface, #feeee9); border-color: var(--cd-color-alert-orange, #f15a24); color: var(--cd-color-alert-orange, #f15a24); }
+.ap-dmg-check { width: 12px; height: 12px; border: 1.5px solid var(--cd-color-border-default, #e2e8f0); border-radius: 3px; flex-shrink: 0; }
+
+/* Distance row */
+.ap-distance-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.ap-dist-pill { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 8px; background: #fff; }
+.ap-or-text { font-size: 11px; font-weight: 700; color: var(--cd-color-text-muted, #64748b); text-transform: uppercase; flex-shrink: 0; }
+
+/* Time range chart */
+.ap-chart-wrap { display: flex; flex-direction: column; gap: 8px; }
+.ap-chart-header { display: flex; align-items: center; gap: 10px; }
+.ap-chart-header-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--cd-color-text-primary, #1e293b); }
+.ap-chart-sold-label { font-size: 11px; color: var(--cd-color-text-muted, #64748b); }
+.ap-chart-area { display: flex; align-items: flex-end; gap: 8px; height: 80px; }
+.ap-bar-group { display: flex; flex-direction: column; align-items: center; gap: 2px; flex: 1; }
+.ap-bar-count { font-size: 10px; font-weight: 700; color: var(--cd-color-text-primary, #1e293b); }
+.ap-bar-count-sub { font-size: 9px; color: var(--cd-color-text-muted, #64748b); }
+.ap-bar { border-radius: 3px 3px 0 0; width: 100%; }
+.ap-bar.grey { background: var(--cd-color-surface-grey, #d9dde5); }
+.ap-bar.blue-light { background: var(--cd-color-surface-light-blue, #71b2f3); }
+.ap-bar.blue { background: var(--cd-color-brand-accent, #3b7de3); }
+.ap-bar.blue-dark { background: var(--cd-color-accent-blue-dark, #1d4ed8); }
+.ap-bar-tick { font-size: 10px; color: var(--cd-color-text-muted, #64748b); margin-top: 4px; }
+.ap-bar-tick-bold { font-size: 10px; font-weight: 700; color: var(--cd-color-text-primary, #1e293b); margin-top: 4px; }
+
+/* Accordion row */
+.ap-accordion-row { display: flex; align-items: center; gap: 8px; padding: 12px 0; border-top: 1px solid var(--cd-color-border-default, #e2e8f0); cursor: pointer; }
+.ap-accordion-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--cd-color-text-primary, #1e293b); }
+.ap-accordion-chevron { display: inline-flex; align-items: center; justify-content: center; width: 12px; height: 12px; }
+.ap-accordion-chevron.closed { transform: rotate(-90deg); }
+
+/* Filter pills */
+.ap-pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.ap-pill { display: flex; align-items: center; gap: 6px; padding: 6px 12px; background: #fff; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 20px; font-size: 12px; font-weight: 500; color: var(--cd-color-text-secondary, #334155); cursor: pointer; }
+.ap-pill.active { background: var(--cd-color-brand-primary, #1e293b); color: #fff; border-color: var(--cd-color-brand-primary, #1e293b); }
+.ap-pill-count { font-size: 11px; font-weight: 700; }
+.ap-pill-stats { font-size: 10px; opacity: 0.65; margin-left: 2px; }
+
+/* Listing tabs + toggle bar */
+.ap-tabs-bar { display: flex; gap: 0; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); margin-bottom: 8px; }
+.ap-tab-btn { padding: 8px 16px; font-size: 13px; font-weight: 600; background: none; border: none; cursor: pointer; color: var(--cd-color-text-muted, #64748b); border-bottom: 2px solid transparent; margin-bottom: -1px; font-family: var(--cd-font-family, 'Figtree', sans-serif); }
+.ap-tab-btn.active { color: var(--cd-color-text-primary, #1e293b); border-bottom-color: var(--cd-color-text-primary, #1e293b); }
+.ap-toggle-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.ap-toggle-group { display: flex; background: var(--cd-color-surface-subtle, #f8fafc); border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 6px; overflow: hidden; }
+.ap-toggle-btn { padding: 5px 12px; font-size: 12px; font-weight: 600; cursor: pointer; background: none; border: none; color: var(--cd-color-text-muted, #64748b); font-family: var(--cd-font-family, 'Figtree', sans-serif); }
+.ap-toggle-btn.active { background: var(--cd-color-brand-primary, #1e293b); color: #fff; }
+.ap-sort-row { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--cd-color-text-muted, #64748b); }
+.ap-sort-item { font-weight: 600; cursor: pointer; }
+.ap-sort-item.active { color: var(--cd-color-text-primary, #1e293b); }
+
+/* Listing rows */
+.ap-listing-row { padding: 12px 0; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); display: flex; flex-direction: column; gap: 5px; }
+.ap-listing-line { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.ap-listing-name { font-size: 13px; font-weight: 700; color: var(--cd-color-text-primary, #1e293b); }
+.ap-listing-type { font-size: 12px; color: var(--cd-color-text-muted, #64748b); }
+.ap-listing-vin { font-size: 11px; color: var(--cd-color-text-muted, #64748b); }
+.ap-listing-price { font-size: 15px; font-weight: 800; color: var(--cd-color-text-primary, #1e293b); white-space: nowrap; }
+.ap-listing-meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; flex: 1; }
+.ap-listing-meta-icon { display: flex; align-items: center; gap: 3px; font-size: 12px; color: var(--cd-color-text-secondary, #334155); }
+.ap-listing-link { font-size: 12px; color: var(--cd-color-link, #137feb); font-weight: 600; white-space: nowrap; cursor: pointer; }
+.ap-listing-grey { font-size: 12px; color: var(--cd-color-text-muted, #64748b); }
+.ap-listing-row.excluded .ap-listing-name,
+.ap-listing-row.excluded .ap-listing-type { text-decoration: line-through; color: var(--cd-color-text-muted, #64748b); }
+.ap-listing-row.excluded .ap-listing-price { text-decoration: line-through; color: var(--cd-color-text-muted, #64748b); }
+.ap-excluded-reason { font-size: 12px; font-weight: 600; color: var(--cd-color-alert-red, #c1272d); white-space: nowrap; }
+
+/* Calc panel */
+.ap-calc-panel { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--cd-color-border-default, #e2e8f0); border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 10px; overflow: hidden; }
+.ap-calc-cell { display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; background: #fff; }
+.ap-calc-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--cd-color-text-muted, #64748b); }
+.ap-calc-green-pill { display: flex; align-items: center; justify-content: center; background: var(--cd-color-accent-green, #4ade80); color: #1e293b; font-size: 15px; font-weight: 800; border-radius: 8px; padding: 8px 10px; letter-spacing: -0.3px; }
+.ap-calc-input { border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 6px; padding: 8px 10px; font-size: 13px; font-weight: 600; background: #fff; font-family: var(--cd-font-family, 'Figtree', sans-serif); width: 100%; box-sizing: border-box; }
+.ap-calc-select { width: 100%; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 7px; padding: 8px 28px 8px 10px; font-size: 13px; font-weight: 600; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center; font-family: var(--cd-font-family, 'Figtree', sans-serif); appearance: none; box-sizing: border-box; }
+
+/* YMMT grid */
+.ap-ymmt-card { border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 10px; overflow: hidden; }
+.ap-ymmt-top { display: flex; align-items: center; gap: 16px; padding: 10px 14px; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); font-size: 12px; color: var(--cd-color-text-secondary, #334155); }
+.ap-ymmt-grid { display: grid; grid-template-columns: 90px 1fr 1fr 1fr; }
+.ap-ymmt-col-hdr { padding: 8px 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; text-align: center; color: var(--cd-color-text-muted, #64748b); border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); border-right: 1px solid var(--cd-color-border-default, #e2e8f0); background: var(--cd-color-surface-subtle, #f8fafc); }
+.ap-ymmt-col-hdr.blue { color: var(--cd-color-brand-accent, #3b7de3); }
+.ap-ymmt-col-hdr:last-child { border-right: none; }
+.ap-ymmt-row-lbl { padding: 8px 6px 8px 14px; font-size: 11px; font-weight: 600; color: var(--cd-color-text-secondary, #334155); border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); border-right: 1px solid var(--cd-color-border-default, #e2e8f0); display: flex; align-items: center; background: var(--cd-color-surface-subtle, #f8fafc); }
+.ap-ymmt-cell { padding: 8px 6px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); border-right: 1px solid var(--cd-color-border-default, #e2e8f0); }
+.ap-ymmt-cell:last-child, .ap-ymmt-col-hdr:last-child { border-right: none; }
+.ap-ymmt-pill { display: flex; align-items: center; gap: 4px; padding: 5px 8px; border-radius: 8px; font-size: 11px; }
+.ap-ymmt-pill.dark { background: var(--cd-color-brand-primary, #1e293b); color: #fff; }
+.ap-ymmt-pill.blue-bright { background: var(--cd-color-brand-accent, #3b7de3); color: #fff; }
+.ap-ymmt-pill.blue-mid { background: var(--cd-color-accent-blue-mid, #6b98e8); color: #fff; }
+.ap-ymmt-pill.sold { background: var(--cd-color-surface-blue-tint, #c5d9f7); color: var(--cd-color-accent-blue-dark, #1d4ed8); }
+.ap-yp-badge { font-size: 9px; font-weight: 600; opacity: 0.75; }
+.ap-yp-num { font-size: 14px; font-weight: 800; line-height: 1; }
+
+/* Appraisal card */
+.ap-appraisal-card { border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 10px; overflow: hidden; flex: 1; }
+.ap-appraisal-header { padding: 10px 14px; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--cd-color-text-primary, #1e293b); }
+.ap-appraisal-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 14px; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); gap: 8px; }
+.ap-appraisal-row-label { font-size: 12px; color: var(--cd-color-text-secondary, #334155); }
+.ap-appraisal-row-val { font-size: 13px; font-weight: 600; color: var(--cd-color-text-primary, #1e293b); }
+.ap-appraisal-row-val.green { color: var(--cd-color-success-text, #166534); }
+.ap-ap-input { border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 6px; padding: 5px 8px; font-size: 12px; background: #fff; font-family: var(--cd-font-family, 'Figtree', sans-serif); width: 80px; text-align: right; }
+.ap-appraisal-total { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--cd-color-success-surface, #f0fdf4); }
+.ap-appraisal-total-label { font-size: 11px; font-weight: 700; color: var(--cd-color-success-text, #166534); }
+.ap-appraisal-total-pill { background: var(--cd-color-accent-green, #4ade80); color: #1e293b; font-size: 13px; font-weight: 800; border-radius: 7px; padding: 5px 12px; }
+
+/* Pricing card */
+.ap-pricing-card { border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 10px; overflow: hidden; flex: 1; }
+.ap-pricing-header { padding: 10px 14px; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--cd-color-text-primary, #1e293b); }
+.ap-pricing-body { display: flex; flex-direction: column; gap: 10px; padding: 12px 14px; }
+.ap-pricing-stat { display: flex; align-items: center; justify-content: space-between; }
+.ap-pricing-stat-label { font-size: 12px; color: var(--cd-color-text-secondary, #334155); }
+.ap-pricing-val-box { display: flex; align-items: baseline; gap: 2px; }
+.ap-pricing-val-num { font-size: 18px; font-weight: 800; color: var(--cd-color-text-primary, #1e293b); }
+.ap-pricing-val-unit { font-size: 12px; color: var(--cd-color-text-muted, #64748b); }
+.ap-pricing-rank-badge { font-size: 16px; font-weight: 800; color: var(--cd-color-text-primary, #1e293b); }
+.ap-pricing-rank-suffix { font-size: 11px; color: var(--cd-color-text-muted, #64748b); margin-left: 4px; }
+.ap-ruler-wrap { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+.ap-ruler-track { position: relative; height: 4px; background: var(--cd-color-surface-soft, #f1f5f9); border-radius: 4px; }
+.ap-ruler-marker { position: absolute; top: -3px; width: 10px; height: 10px; background: var(--cd-color-brand-accent, #3b7de3); border-radius: 50%; transform: translateX(-50%); }
+.ap-ruler-ticks { display: flex; justify-content: space-between; font-size: 10px; color: var(--cd-color-text-muted, #64748b); }
+.ap-ruler-range { display: flex; justify-content: space-between; font-size: 10px; color: var(--cd-color-text-muted, #64748b); }
+.ap-pricing-link { font-size: 12px; color: var(--cd-color-link, #137feb); font-weight: 600; cursor: pointer; }
+
+/* Right-panel top bar */
+.ap-right-top-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.ap-rt-btn { padding: 6px 12px; background: var(--cd-color-surface-subtle, #f8fafc); border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer; color: var(--cd-color-text-secondary, #334155); font-family: var(--cd-font-family, 'Figtree', sans-serif); }
+.ap-rt-btn-dark { padding: 6px 12px; background: var(--cd-color-brand-primary, #1e293b); border: none; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; color: #fff; font-family: var(--cd-font-family, 'Figtree', sans-serif); }
+
 </style>
 <style id="fusion-selection-styles">
   .fusion-element-highlight {
@@ -1957,15 +2639,17 @@ body {
       <div class="color-group">
         <div class="color-group-label">Borders</div>
         <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-border-default)"></div><div><span class="swatch-name">border-default</span><span class="swatch-hex">#e2e8f0</span></div></div>
-        <div class="color-group-label" style="margin-top:12px;font-style:italic;opacity:0.6">Status (avatar-inline only)</div>
-        <div class="color-swatch"><div class="swatch-box" style="background:#f0fdf4;border-color:#e2e8f0"></div><div><span class="swatch-name" style="opacity:0.5">success-surface</span><span class="swatch-hex" style="opacity:0.5">#f0fdf4 — not a token</span></div></div>
+        <div class="color-group-label" style="margin-top:12px">Success</div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-success-surface);border-color:#e2e8f0"></div><div><span class="swatch-name">success-surface</span><span class="swatch-hex">#f0fdf4</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-success-text)"></div><div><span class="swatch-name">success-text</span><span class="swatch-hex">#166534</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-success-border);border-color:#e2e8f0"></div><div><span class="swatch-name">success-border</span><span class="swatch-hex">#86efac</span></div></div>
       </div>
       <div class="color-group">
         <div class="color-group-label">Alert / Status</div>
         <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-link)"></div><div><span class="swatch-name">link</span><span class="swatch-hex">#137feb</span></div></div>
         <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-alert-red)"></div><div><span class="swatch-name">alert-red</span><span class="swatch-hex">#c1272d</span></div></div>
         <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-alert-orange)"></div><div><span class="swatch-name">alert-orange</span><span class="swatch-hex">#f15a24</span></div></div>
-        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-alert-green)"></div><div><span class="swatch-name">alert-green</span><span class="swatch-hex">#648231</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-accent-green)"></div><div><span class="swatch-name">accent-green</span><span class="swatch-hex">#4ade80</span></div></div>
       </div>
       <div class="color-group">
         <div class="color-group-label">Accent / Tints</div>
@@ -1973,6 +2657,9 @@ body {
         <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-chart-highlight)"></div><div><span class="swatch-name">highlight-amber</span><span class="swatch-hex">#ffda7f</span></div></div>
         <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-accent-lime)"></div><div><span class="swatch-name">accent-lime</span><span class="swatch-hex">#9bff76</span></div></div>
         <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-surface-light-blue)"></div><div><span class="swatch-name">surface-light-blue</span><span class="swatch-hex">#71b2f3</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-accent-blue-mid)"></div><div><span class="swatch-name">accent-blue-mid</span><span class="swatch-hex">#6b98e8</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-accent-blue-dark)"></div><div><span class="swatch-name">accent-blue-dark</span><span class="swatch-hex">#1d4ed8</span></div></div>
+        <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-surface-blue-tint);border-color:#e2e8f0"></div><div><span class="swatch-name">surface-blue-tint</span><span class="swatch-hex">#c5d9f7</span></div></div>
         <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-surface-pink)"></div><div><span class="swatch-name">surface-pink</span><span class="swatch-hex">#fccace</span></div></div>
         <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-surface-peach)"></div><div><span class="swatch-name">surface-peach</span><span class="swatch-hex">#ffe0d7</span></div></div>
         <div class="color-swatch"><div class="swatch-box" style="background:var(--cd-color-surface-lime)"></div><div><span class="swatch-name">surface-lime</span><span class="swatch-hex">#deff9f</span></div></div>
@@ -2225,7 +2912,297 @@ body {
       </div>
 
     </div>
+
+    <div style="height:1px;background:var(--cd-color-border-default,#e2e8f0);margin:32px 0;"></div>
+
+    <!-- Text inputs -->
+    <div class="comp-row" style="margin-bottom:32px;">
+      <div class="comp-label">Text Inputs</div>
+      <div class="comp-row-items">
+        <div class="comp-item">
+          <div class="comp-bg" style="flex-direction:column;gap:4px;align-items:flex-start;">
+            <span style="font-size:11px;font-weight:600;color:var(--cd-color-text-muted,#64748b);text-transform:uppercase;letter-spacing:0.4px;">Field Label</span>
+            <input class="ap-vin-input" type="text" value="W1K15KB0NF174378" style="width:200px;">
+          </div>
+          <span class="comp-item-name">field-label + vin-input (default)</span>
+        </div>
+        <div class="comp-item">
+          <div class="comp-bg" style="flex-direction:column;gap:4px;align-items:flex-start;">
+            <span style="font-size:11px;font-weight:600;color:var(--cd-color-text-muted,#64748b);text-transform:uppercase;letter-spacing:0.4px;">Field Label</span>
+            <input class="ap-vin-input" type="text" placeholder="Placeholder…" style="width:160px;border-color:#94a3b8;">
+          </div>
+          <span class="comp-item-name">field-label + vin-input (empty / placeholder)</span>
+        </div>
+        <div class="comp-item">
+          <div class="comp-bg">
+            <input class="ap-ap-input" type="text" placeholder="$" style="width:90px;">
+          </div>
+          <span class="comp-item-name">ap-input (inline $ field)</span>
+        </div>
+        <div class="comp-item">
+          <div class="comp-bg">
+            <input class="ap-calc-input" type="text" placeholder="$" style="width:120px;">
+          </div>
+          <span class="comp-item-name">calc-input (bold panel field)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dropdowns / Selects -->
+    <div class="comp-row" style="margin-bottom:32px;">
+      <div class="comp-label">Dropdowns</div>
+      <div class="comp-row-items">
+        <div class="comp-item">
+          <div class="comp-bg">
+            <select class="ap-vin-input" style="appearance:none;background-image:url(\" data:image="" svg+xml,%3csvg="" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="%2364748b" stroke-width="2" %3e%3cpath="" d="M6 9l6 6 6-6" %3e%3c="" svg%3e\");background-repeat:no-repeat;background-position:right="" 10px="" center;padding-right:28px;width:140px;cursor:pointer;"="">
+              <option>Black</option><option>White</option><option>Silver</option>
+            </select>
+          </div>
+          <span class="comp-item-name">vin-select (bordered)</span>
+        </div>
+        <div class="comp-item">
+          <div class="comp-bg" style="background:var(--cd-color-surface-subtle,#f8fafc);padding:8px 12px;border-radius:8px;border:1px solid var(--cd-color-border-default,#e2e8f0);">
+            <select style="border:none;background:transparent;font-size:13px;font-weight:500;color:var(--cd-color-text-primary,#1e293b);font-family:'Figtree',sans-serif;cursor:pointer;appearance:none;background-image:url(\" data:image="" svg+xml,%3csvg="" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="%2364748b" stroke-width="2" %3e%3cpath="" d="M6 9l6 6 6-6" %3e%3c="" svg%3e\");background-repeat:no-repeat;background-position:right="" 4px="" center;padding-right:18px;"="">
+              <option>All Canada</option><option>All US</option>
+            </select>
+          </div>
+          <span class="comp-item-name">cd-select-sm (inline / transparent)</span>
+        </div>
+        <div class="comp-item">
+          <div class="comp-bg">
+            <select class="ap-calc-select" style="width:160px;">
+              <option>On Hold</option><option>Active</option><option>Purchased</option><option>Declined</option>
+            </select>
+          </div>
+          <span class="comp-item-name">calc-select (full-width panel)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Badges & Labels -->
+    <div class="comp-row" style="margin-bottom:32px;">
+      <div class="comp-label">Badges &amp; Labels</div>
+      <div class="comp-row-items">
+        <div class="comp-item">
+          <div class="comp-bg"><span class="ap-verified-badge">✓ Verified</span></div>
+          <span class="comp-item-name">verified-badge (success green)</span>
+        </div>
+        <div class="comp-item">
+          <div class="comp-bg"><span style="font-size:12px;font-weight:600;color:var(--cd-color-alert-red,#c1272d);">Auto-excluded — 532d in market (&gt;300)</span></div>
+          <span class="comp-item-name">excluded-reason (alert red)</span>
+        </div>
+        <div class="comp-item">
+          <div class="comp-bg"><span style="display:inline-flex;align-items:center;gap:5px;background:var(--cd-color-brand-primary,#1e293b);color:#fff;font-size:11px;font-weight:700;border-radius:20px;padding:3px 10px;"><span style="color:var(--cd-color-brand-accent,#3b7de3);">✦</span> AI action</span></div>
+          <span class="comp-item-name">ai-spark-badge (dark + accent star)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="comp-row" style="margin-bottom:32px;">
+      <div class="comp-label">Buttons</div>
+      <div class="comp-row-items">
+        <div class="comp-item">
+          <div class="comp-bg"><button class="ap-decode-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"></path></svg>Decode</button></div>
+          <span class="comp-item-name">decode-btn (primary dark)</span>
+        </div>
+        <div class="comp-item">
+          <div class="comp-bg" style="gap:8px;">
+            <button class="ap-ai-btn"><span style="color:var(--cd-color-brand-accent,#3b7de3)">✦</span> Build Comparables</button>
+            <button class="ap-ai-btn" style="opacity:0.5;cursor:default;">✦ Disabled</button>
+          </div>
+          <span class="comp-item-name">ai-btn-outline (active / disabled)</span>
+        </div>
+        <div class="comp-item">
+          <div class="comp-bg" style="gap:8px;">
+            <button class="ap-rt-btn">2 Previous Versions</button>
+            <button class="ap-rt-btn-dark">Save Version</button>
+          </div>
+          <span class="comp-item-name">rt-btn (ghost) / rt-btn-dark (solid)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkboxes -->
+    <div class="comp-row" style="margin-bottom:32px;">
+      <div class="comp-label">Checkboxes</div>
+      <div class="comp-row-items">
+        <div class="comp-item">
+          <div class="comp-bg" style="gap:14px;">
+            <div style="display:flex;align-items:center;gap:7px;">
+              <div style="width:14px;height:14px;border:1.5px solid var(--cd-color-border-default,#e2e8f0);border-radius:3px;flex-shrink:0;"></div>
+              <span style="font-size:12px;color:var(--cd-color-text-secondary,#334155);">Unchecked</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:7px;">
+              <div style="width:14px;height:14px;background:var(--cd-color-brand-primary,#1e293b);border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                <svg width="9" height="9" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" stroke-linecap="round"></polyline></svg>
+              </div>
+              <span style="font-size:12px;font-weight:600;color:var(--cd-color-text-primary,#1e293b);">Checked</span>
+            </div>
+          </div>
+          <span class="comp-item-name">opt-check — unchecked / checked</span>
+        </div>
+        <div class="comp-item">
+          <div class="comp-bg" style="gap:14px;">
+            <div style="display:flex;align-items:center;gap:7px;">
+              <div style="width:12px;height:12px;border:1.5px solid var(--cd-color-border-default,#e2e8f0);border-radius:3px;flex-shrink:0;"></div>
+              <span style="font-size:12px;color:var(--cd-color-text-secondary,#334155);">Unselected</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:7px;">
+              <div style="width:12px;height:12px;background:var(--cd-color-alert-orange,#f15a24);border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                <svg width="8" height="8" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="#fff" stroke-width="2" stroke-linecap="round"></polyline></svg>
+              </div>
+              <span style="font-size:12px;font-weight:600;color:var(--cd-color-alert-orange,#f15a24);">Damage selected</span>
+            </div>
+          </div>
+          <span class="comp-item-name">dmg-check — default / active (orange)</span>
+        </div>
+        <div class="comp-item">
+          <div class="comp-bg" style="gap:14px;">
+            <label style="display:flex;align-items:center;gap:7px;cursor:pointer;">
+              <input type="checkbox" style="width:15px;height:15px;accent-color:var(--cd-color-brand-primary,#1e293b);cursor:pointer;">
+              <span style="font-size:12px;color:var(--cd-color-text-secondary,#334155);">Native checkbox</span>
+            </label>
+            <label style="display:flex;align-items:center;gap:7px;cursor:pointer;">
+              <input type="radio" style="width:15px;height:15px;accent-color:var(--cd-color-brand-primary,#1e293b);cursor:pointer;">
+              <span style="font-size:12px;color:var(--cd-color-text-secondary,#334155);">Radio button</span>
+            </label>
+          </div>
+          <span class="comp-item-name">native checkbox / radio (accent: brand-primary)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pills -->
+    <div class="comp-row" style="margin-bottom:32px;">
+      <div class="comp-label">Pills &amp; Tags</div>
+      <div class="comp-row-items">
+        <div class="comp-item">
+          <div class="comp-bg" style="gap:8px;flex-wrap:wrap;">
+            <span class="ap-pill active"><div style="width:12px;height:12px;border:1.5px solid rgba(255,255,255,0.5);border-radius:3px;flex-shrink:0;"></div>All Types <span class="ap-pill-count">27</span></span>
+            <span class="ap-pill"><div style="width:12px;height:12px;border:1.5px solid var(--cd-color-border-default,#e2e8f0);border-radius:3px;flex-shrink:0;"></div>Convertible</span>
+            <span class="ap-pill"><div style="width:12px;height:12px;border:1.5px solid var(--cd-color-border-default,#e2e8f0);border-radius:3px;flex-shrink:0;"></div>Sedan <span class="ap-pill-count">4</span><span class="ap-pill-stats">79d · $30k</span></span>
+          </div>
+          <span class="comp-item-name">filter-pill — active (dark) / default · +count · +stats</span>
+        </div>
+        <div class="comp-item">
+          <div class="comp-bg" style="gap:8px;flex-wrap:wrap;">
+            <span class="ap-dmg-tag"><div class="ap-dmg-check"></div>Minor</span>
+            <span class="ap-dmg-tag active"><div class="ap-dmg-check"></div>Rollback</span>
+            <span class="ap-dmg-tag"><div class="ap-dmg-check"></div>Salvage</span>
+          </div>
+          <span class="comp-item-name">dmg-tag — default / active (orange)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toggle group + Sort -->
+    <div class="comp-row" style="margin-bottom:32px;">
+      <div class="comp-label">Toggles &amp; Tabs</div>
+      <div class="comp-row-items">
+        <div class="comp-item">
+          <div class="comp-bg">
+            <div class="ap-toggle-group">
+              <button class="ap-toggle-btn active">Both (58)</button>
+              <button class="ap-toggle-btn">Active (11)</button>
+              <button class="ap-toggle-btn">Sold (47)</button>
+            </div>
+          </div>
+          <span class="comp-item-name">toggle-group — active / inactive</span>
+        </div>
+        <div class="comp-item">
+          <div class="comp-bg">
+            <div class="ap-sort-row">
+              Sort: <span class="ap-sort-item active">Year ↑</span>
+              <span class="ap-sort-item">Price</span>
+              <span class="ap-sort-item">Days</span>
+              <span class="ap-sort-item">Mileage</span>
+            </div>
+          </div>
+          <span class="comp-item-name">sort-row — active / default</span>
+        </div>
+        <div class="comp-item">
+          <div class="comp-bg" style="flex-direction:column;gap:0;padding:0;background:none;border:1px solid var(--cd-color-border-default,#e2e8f0);border-radius:8px;overflow:hidden;">
+            <div class="ap-tabs-bar" style="padding:0 4px;margin:0;border-radius:0;">
+              <button class="ap-tab-btn active">Live Listings</button>
+              <button class="ap-tab-btn">Market Lineup</button>
+              <button class="ap-tab-btn">Market Trends</button>
+            </div>
+          </div>
+          <span class="comp-item-name">tab-btn — active / inactive</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chevron / Accordion -->
+    <div class="comp-row">
+      <div class="comp-label">Chevron &amp; Accordion</div>
+      <div class="comp-row-items">
+        <div class="comp-item">
+          <div class="comp-bg" style="gap:16px;">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:12px;height:12px;"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg></span>
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 12px; height: 12px;"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg></span>
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 12px; height: 12px;"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg></span>
+          </div>
+          <span class="comp-item-name">chevron — down (open) / right (closed) / left</span>
+        </div>
+        <div class="comp-item">
+          <div style="display:flex;flex-direction:column;width:280px;">
+            <div class="ap-accordion-row">
+              <span class="ap-accordion-chevron closed"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg></span>
+              <span class="ap-accordion-title">Trim Matrix</span>
+              <span style="margin-left:auto;font-size:10px;color:var(--cd-color-text-muted,#64748b);">collapsed</span>
+            </div>
+            <div class="ap-accordion-row">
+              <span class="ap-accordion-chevron"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg></span>
+              <span class="ap-accordion-title">Filters</span>
+              <span style="margin-left:auto;font-size:10px;color:var(--cd-color-text-muted,#64748b);">expanded</span>
+            </div>
+          </div>
+          <span class="comp-item-name">accordion-row — closed / open</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:1px;background:var(--cd-color-border-default,#e2e8f0);margin:32px 0;"></div>
+
+    <!-- Time Range Chart -->
+    <div class="comp-row">
+      <div class="comp-label">Time Range Chart</div>
+      <div class="comp-row-items">
+        <div class="comp-item">
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--cd-color-text-primary,#1e293b);">Time Range</span>
+              <span style="font-size:11px;color:var(--cd-color-text-muted,#64748b);">25 Sold</span>
+            </div>
+            <div style="display:flex;align-items:flex-end;gap:8px;height:90px;">
+              <div class="ap-bar-group"><div class="ap-bar-count">7</div><div class="ap-bar-count-sub">sold</div><div class="ap-bar grey" style="height:52px;"></div><div class="ap-bar-tick">7m</div></div>
+              <div class="ap-bar-group"><div class="ap-bar-count">7</div><div class="ap-bar-count-sub">sold</div><div class="ap-bar grey" style="height:52px;"></div><div class="ap-bar-tick">6m</div></div>
+              <div class="ap-bar-group"><div class="ap-bar-count">5</div><div class="ap-bar-count-sub">sold</div><div class="ap-bar grey" style="height:37px;"></div><div class="ap-bar-tick">5m</div></div>
+              <div class="ap-bar-group"><div class="ap-bar-count">5</div><div class="ap-bar-count-sub">sold</div><div class="ap-bar grey" style="height:37px;"></div><div class="ap-bar-tick">4m</div></div>
+              <div class="ap-bar-group"><div class="ap-bar-count">5</div><div class="ap-bar-count-sub">sold</div><div class="ap-bar blue-light" style="height:37px;"></div><div class="ap-bar-tick">3m</div></div>
+              <div class="ap-bar-group"><div class="ap-bar-count">6</div><div class="ap-bar-count-sub">sold</div><div class="ap-bar blue" style="height:45px;"></div><div class="ap-bar-tick">2m</div></div>
+              <div class="ap-bar-group"><div class="ap-bar-count">2</div><div class="ap-bar-count-sub">sold</div><div class="ap-bar blue-light" style="height:15px;"></div><div class="ap-bar-tick">1m</div></div>
+              <div class="ap-bar-group"><div class="ap-bar-count" style="font-weight:800;">2</div><div class="ap-bar-count-sub">active</div><div class="ap-bar blue-dark" style="height:15px;"></div><div class="ap-bar-tick-bold">Active</div></div>
+            </div>
+          </div>
+          <span class="comp-item-name">time-range-chart — bar-group · grey (historical) / blue-light (recent) / blue (selected) / blue-dark (active)</span>
+        </div>
+        <div class="comp-item">
+          <div style="display:flex;align-items:flex-end;gap:6px;height:60px;">
+            <div class="ap-bar-group"><div class="ap-bar grey" style="height:40px;"></div><div class="ap-bar-tick" style="color:var(--cd-color-text-muted,#64748b);">grey</div></div>
+            <div class="ap-bar-group"><div class="ap-bar blue-light" style="height:40px;"></div><div class="ap-bar-tick" style="color:var(--cd-color-surface-light-blue,#71b2f3);">light</div></div>
+            <div class="ap-bar-group"><div class="ap-bar blue" style="height:40px;"></div><div class="ap-bar-tick" style="color:var(--cd-color-brand-accent,#3b7de3);">blue</div></div>
+            <div class="ap-bar-group"><div class="ap-bar blue-dark" style="height:40px;"></div><div class="ap-bar-tick" style="color:var(--cd-color-accent-blue-dark,#1d4ed8);">dark</div></div>
+          </div>
+          <span class="comp-item-name">bar colour variants</span>
+        </div>
+      </div>
+    </div>
+
   </div>
+
 
 </div>
 
