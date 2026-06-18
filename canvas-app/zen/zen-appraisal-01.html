@@ -48,6 +48,976 @@
   /* ── COLORS: Color Tokens ── */
   --cd-color-alert-orange: #f15a24;
   --cd-color-alert-orange-surface: #feeee9;
+  --cd-color-alert-green: #648231;
+  --cd-color-accent-green: #4ade80;
+  --cd-color-success-surface: #f0fdf4;
+  --cd-color-success-text: #166534;
+  --cd-color-success-border: #86efac;
+  --cd-color-accent-blue-mid: #6b98e8;
+  --cd-color-accent-blue-dark: #1d4ed8;
+  --cd-color-surface-blue-tint: #c5d9f7;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+  --cd-color-alert-green: #648231;
+  --cd-color-accent-green: #4ade80;
+  --cd-color-success-surface: #f0fdf4;
+  --cd-color-success-text: #166534;
+  --cd-color-success-border: #86efac;
+  --cd-color-accent-blue-mid: #6b98e8;
+  --cd-color-accent-blue-dark: #1d4ed8;
+  --cd-color-surface-blue-tint: #c5d9f7;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+  --cd-color-alert-green: #648231;
+  --cd-color-accent-green: #4ade80;
+  --cd-color-success-surface: #f0fdf4;
+  --cd-color-success-text: #166534;
+  --cd-color-success-border: #86efac;
+  --cd-color-accent-blue-mid: #6b98e8;
+  --cd-color-accent-blue-dark: #1d4ed8;
+  --cd-color-surface-blue-tint: #c5d9f7;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+  --cd-color-alert-green: #648231;
+  --cd-color-accent-green: #4ade80;
+  --cd-color-success-surface: #f0fdf4;
+  --cd-color-success-text: #166534;
+  --cd-color-success-border: #86efac;
+  --cd-color-accent-blue-mid: #6b98e8;
+  --cd-color-accent-blue-dark: #1d4ed8;
+  --cd-color-surface-blue-tint: #c5d9f7;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+  --cd-color-alert-green: #648231;
+  --cd-color-accent-green: #4ade80;
+  --cd-color-success-surface: #f0fdf4;
+  --cd-color-success-text: #166534;
+  --cd-color-success-border: #86efac;
+  --cd-color-accent-blue-mid: #6b98e8;
+  --cd-color-accent-blue-dark: #1d4ed8;
+  --cd-color-surface-blue-tint: #c5d9f7;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+  --cd-color-alert-green: #648231;
+  --cd-color-accent-green: #4ade80;
+  --cd-color-success-surface: #f0fdf4;
+  --cd-color-success-text: #166534;
+  --cd-color-success-border: #86efac;
+  --cd-color-accent-blue-mid: #6b98e8;
+  --cd-color-accent-blue-dark: #1d4ed8;
+  --cd-color-surface-blue-tint: #c5d9f7;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
+
+  /* ── TYPOGRAPHY: Family ── */
+  --cd-font-family: 'Figtree', sans-serif;
+
+  /* ── TYPOGRAPHY: Size ── */
+  --cd-text-xs: 10px;
+  --cd-text-sm: 11px;
+  --cd-text-base: 12px;
+  --cd-text-md: 13px;
+  --cd-text-lg: 14px;
+  --cd-text-xl: 15px;
+  --cd-text-2xl: 22px;
+
+  /* ── TYPOGRAPHY: Weight ── */
+  --cd-font-regular: 400;
+  --cd-font-medium: 500;
+  --cd-font-semibold: 600;
+  --cd-font-bold: 700;
+  --cd-font-extrabold: 800;
+
+  /* ── SPACING ── */
+  --cd-space-1: 2px;
+  --cd-space-2: 4px;
+  --cd-space-3: 6px;
+  --cd-space-4: 8px;
+  --cd-space-5: 10px;
+  --cd-space-6: 12px;
+  --cd-space-7: 14px;
+  --cd-space-8: 16px;
+  --cd-space-9: 20px;
+  --cd-space-10: 24px;
+  --cd-space-12: 36px;
+  --cd-space-14: 48px;
+  --cd-space-16: 64px;
+
+  /* ── BORDER RADIUS ── */
+  --cd-radius-sm: 6px;
+  --cd-radius-md: 8px;
+  --cd-radius-lg: 10px;
+  --cd-radius-xl: 12px;
+  --cd-radius-pill: 20px;
+  --cd-radius-full: 50%;
+
+  /* ── SHADOWS ── */
+  --cd-shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --cd-shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --cd-shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+</style>
+
+<style>
+/* injected by canvas-mcp design system */
+:root {
+  /* ── COLORS: Brand ── */
+  --cd-brand-primary: #1e293b;
+  --cd-brand-accent: #3b7de3;
+  --cd-brand-name: #282133;
+  --cd-brand-indigo: #3730a3;
+  --cd-brand-amber: #f59e0b;
+
+  /* ── COLORS: Text ── */
+  --cd-text-primary: #1e293b;
+  --cd-text-secondary: #334155;
+  --cd-text-tertiary: #475569;
+  --cd-text-muted: #64748b;
+  --cd-text-placeholder: #94a3b8;
+  --cd-text-inactive: #9fa1a3;
+  --cd-text-inverse: #ffffff;
+
+  /* ── COLORS: Surfaces ── */
+  --cd-surface-page: #f8fafc;
+  --cd-surface-card: #ffffff;
+  --cd-surface-subtle: #f8fafc;
+  --cd-surface-soft: #f1f5f9;
+  --cd-surface-table: #f1f3f6;
+  --cd-surface-indigo: #e0e7ff;
+  --cd-surface-total: #c7cfe0;
+  --cd-surface-bar: #cbd5e1;
+  --cd-surface-success: #f0fdf4;
+
+  /* ── COLORS: Borders ── */
+  --cd-border-default: #e2e8f0;
+  --cd-border-nav: #ecece8;
+  --cd-border-table: #dde1e7;
+
+  /* ── COLORS: Status ── */
+  --cd-status-success-text: #166534;
+  --cd-status-success-bg: #f0fdf4;
+
+  /* ── COLORS: Color Tokens ── */
+  --cd-color-alert-orange: #f15a24;
+  --cd-color-alert-orange-surface: #feeee9;
 
   /* ── TYPOGRAPHY: Family ── */
   --cd-font-family: 'Figtree', sans-serif;
@@ -2634,7 +3604,7 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
 /* AI banner */
 .ai-banner { background: var(--cd-color-alert-orange-surface, #feeee9); border: 1px solid var(--cd-color-alert-orange, #f15a24); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .ai-banner-left { display: flex; align-items: center; gap: 10px; }
-.ai-caret { font-size: 13px; font-weight: 700; color: var(--cd-color-text-primary, #1e293b); }
+.ai-caret { display: inline-flex; align-items: center; justify-content: center; width: 12px; height: 12px; }
 .ai-banner-title { font-size: 13px; font-weight: 800; color: var(--cd-color-text-primary, #1e293b); text-transform: uppercase; letter-spacing: 0.3px; }
 .ai-banner-actions { display: flex; gap: 8px; flex-shrink: 0; }
 .ai-btn-outline { border: 1.5px solid var(--cd-color-alert-orange, #f15a24); background: transparent; color: var(--cd-color-alert-orange, #f15a24); border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; font-family: 'Figtree', sans-serif; }
@@ -2643,7 +3613,7 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
 /* Vehicle title */
 .vehicle-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .vehicle-title-row h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; color: var(--cd-color-text-primary, #1e293b); }
-.verified-badge { display: inline-flex; align-items: center; gap: 4px; background: #ecfdf5; color: #15803d; border: 1px solid #86efac; border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 600; }
+.verified-badge { display: inline-flex; align-items: center; gap: 4px; background: var(--cd-color-success-surface, #f0fdf4); color: var(--cd-color-success-text, #166534); border: 1px solid var(--cd-color-success-border, #86efac); border-radius: 20px; padding: 3px 10px; font-size: 11px; font-weight: 600; }
 
 /* Specs */
 .specs-bar { display: flex; align-items: flex-start; gap: 0; padding: 4px 0 16px; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); }
@@ -2695,13 +3665,17 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
 .bar-count-sub { font-size: 10px; color: var(--cd-color-text-muted, #64748b); margin-bottom: 4px; }
 .bar { border-radius: 3px 3px 0 0; width: 100%; min-height: 4px; }
 .bar-grey { background: #d1d9e2; }
-.bar-blue-light { background: #93b8e8; }
+.bar-blue-light { background: var(--cd-color-surface-light-blue, #71b2f3); }
 .bar-blue { background: var(--cd-color-brand-accent, #3b7de3); }
 .bar-blue-dark { background: #2563d4; }
 .bar-tick { font-size: 11px; color: var(--cd-color-text-muted, #64748b); margin-top: 6px; }
 .bar-tick-bold { font-size: 11px; font-weight: 700; color: var(--cd-color-text-primary, #1e293b); margin-top: 6px; }
 .collapsed-row { display: flex; align-items: center; gap: 8px; padding: 14px 0; border-top: 1px solid var(--cd-color-border-default, #e2e8f0); cursor: pointer; }
 .collapsed-row-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--cd-color-text-primary, #1e293b); }
+.collapsed-row-chevron { display: inline-flex; align-items: center; justify-content: center; width: 12px; height: 12px; }
+.collapsed-row-chevron svg { display: block; transition: transform 0.15s; }
+.collapsed-row-chevron.open svg { transform: rotate(0deg); }
+.collapsed-row-chevron.closed svg { transform: rotate(-90deg); }
 
 .chevron { font-size: 11px; color: var(--cd-color-text-muted, #64748b); }
 
@@ -2733,7 +3707,10 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
 /* Listing rows */
 .listing-row { padding: 12px 0; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); display: flex; flex-direction: column; gap: 5px; }
 .listing-row:last-child { border-bottom: none; }
-.listing-row.excluded { opacity: 0.5; }
+.listing-row.excluded .listing-name,
+.listing-row.excluded .listing-type { text-decoration: line-through; color: var(--cd-color-text-muted, #64748b); }
+.listing-row.excluded .listing-price { text-decoration: line-through; color: var(--cd-color-text-muted, #64748b); }
+.excluded-reason { font-size: 12px; font-weight: 600; color: #e03f1a; white-space: nowrap; flex-shrink: 0; }
 .listing-line { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 .listing-name { font-size: 14px; font-weight: 700; color: var(--cd-color-text-primary, #1e293b); }
 .listing-type { font-size: 14px; font-weight: 400; color: var(--cd-color-text-primary, #1e293b); }
@@ -2764,7 +3741,7 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
 .calc-cell { padding: 12px 14px; }
 .calc-cell + .calc-cell { border-left: 1px solid var(--cd-color-border-default, #e2e8f0); }
 .calc-lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: var(--cd-color-text-muted, #64748b); margin-bottom: 8px; }
-.calc-green-pill { display: flex; align-items: center; justify-content: center; background: #4ade80; color: #fff; font-size: 15px; font-weight: 800; border-radius: 8px; padding: 8px 10px; letter-spacing: -0.3px; }
+.calc-green-pill { display: flex; align-items: center; justify-content: center; background: var(--cd-color-accent-green, #4ade80); color: #fff; font-size: 15px; font-weight: 800; border-radius: 8px; padding: 8px 10px; letter-spacing: -0.3px; }
 .calc-select { width: 100%; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 7px; padding: 8px 28px 8px 10px; font-size: 13px; font-weight: 600; background: #fff; font-family: 'Figtree', sans-serif; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; box-sizing: border-box; }
 .calc-input { width: 100%; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 7px; padding: 8px 10px; font-size: 13px; font-weight: 600; background: #fff; font-family: 'Figtree', sans-serif; box-sizing: border-box; }
 
@@ -2786,16 +3763,16 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
 .ymmt-cell { padding: 5px 6px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); }
 .ymmt-pill { display: flex; align-items: center; width: 100%; border-radius: 12px; padding: 9px 10px; gap: 6px; }
 .ymmt-pill.dark { background: #4b5768; }
-.ymmt-pill.blue-bright { background: #3b7de3; }
-.ymmt-pill.blue-mid { background: #6b98e8; }
-.ymmt-pill.sold { background: #fff; border: 1px solid #e2e8f0; }
-.ymmt-pill.sold-blue { background: #c5d9f7; }
+.ymmt-pill.blue-bright { background: var(--cd-color-brand-accent, #3b7de3); }
+.ymmt-pill.blue-mid { background: var(--cd-color-accent-blue-mid, #6b98e8); }
+.ymmt-pill.sold { background: #fff; border: 1px solid var(--cd-color-border-default, #e2e8f0); }
+.ymmt-pill.sold-blue { background: var(--cd-color-surface-blue-tint, #c5d9f7); }
 .yp-badge { background: rgba(0,0,0,0.18); border-radius: 6px; padding: 3px 7px; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.88); white-space: nowrap; flex-shrink: 0; }
 .ymmt-pill.sold .yp-badge { background: #f1f5f9; color: #475569; }
-.ymmt-pill.sold-blue .yp-badge { background: rgba(255,255,255,0.55); color: #1d4ed8; }
+.ymmt-pill.sold-blue .yp-badge { background: rgba(255,255,255,0.55); color: var(--cd-color-accent-blue-dark, #1d4ed8); }
 .yp-num { font-size: 20px; font-weight: 800; color: #fff; flex: 1; text-align: center; }
 .ymmt-pill.sold .yp-num { color: #1e293b; }
-.ymmt-pill.sold-blue .yp-num { color: #1d4ed8; }
+.ymmt-pill.sold-blue .yp-num { color: var(--cd-color-accent-blue-dark, #1d4ed8); }
 
 /* Bottom split */
 .bottom-split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -2807,11 +3784,11 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
 .appraisal-row:last-child { border-bottom: none; }
 .appraisal-row-label { font-size: 12px; color: var(--cd-color-text-muted, #64748b); }
 .appraisal-row-val { font-size: 13px; font-weight: 700; color: var(--cd-color-text-primary, #1e293b); }
-.appraisal-row-val.green { color: #16a34a; }
+.appraisal-row-val.green { color: var(--cd-color-success-text, #166534); }
 .ap-input { border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 5px; padding: 4px 8px; font-size: 12px; font-family: 'Figtree', sans-serif; width: 80px; text-align: right; }
-.appraisal-total { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: #f0fdf4; }
-.appraisal-total-label { font-size: 11px; font-weight: 700; color: #166534; }
-.appraisal-total-pill { background: #4ade80; color: #fff; font-size: 13px; font-weight: 800; border-radius: 7px; padding: 5px 12px; }
+.appraisal-total { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--cd-color-success-surface, #f0fdf4); }
+.appraisal-total-label { font-size: 11px; font-weight: 700; color: var(--cd-color-success-text, #166634); }
+.appraisal-total-pill { background: var(--cd-color-accent-green, #4ade80); color: #fff; font-size: 13px; font-weight: 800; border-radius: 7px; padding: 5px 12px; }
 
 /* Pricing card */
 .pricing-card { background: #f1f5f9; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 10px; overflow: hidden; }
@@ -2832,6 +3809,179 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
 .ruler-marker { position: absolute; top: -8px; width: 2px; height: 20px; background: var(--cd-color-brand-accent, #3b7de3); border-radius: 1px; }
 .ruler-ticks { display: flex; justify-content: space-between; font-size: 10px; color: var(--cd-color-text-muted, #64748b); margin-top: 2px; }
 .ruler-range { display: flex; justify-content: space-between; font-size: 10px; color: var(--cd-color-text-muted, #64748b); margin-top: 4px; }
+
+/* ── HAMBURGER (mobile only, hidden by default) ── */
+.c-hamburger-input { display: none; }
+.c-hamburger-label { display: none; cursor: pointer; }
+.c-hamburger-icon { display: flex; flex-direction: column; gap: 4px; width: 18px; }
+.c-hamburger-icon span { display: block; height: 2px; background: var(--cd-color-text-primary, #1e293b); border-radius: 1px; }
+
+/* ════════════════════════════════════════════════
+   LAPTOP  ≤ 1439px
+════════════════════════════════════════════════ */
+@media (max-width: 1439px) {
+  .col-left { flex: 0 0 700px; }
+  .c-nav-link { margin: 0 10px; font-size: 13px; }
+  .left-inner { padding: 18px 22px; }
+}
+
+/* ════════════════════════════════════════════════
+   TABLET  ≤ 1023px
+════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+
+  /* Nav */
+  .c-topbar { gap: 12px; padding: 8px 18px; flex-wrap: wrap; }
+  .c-nav { flex-wrap: wrap; gap: 0; }
+  .c-nav-link { font-size: 12px; margin: 0 8px; padding: 10px 2px 8px; }
+  .c-brand-name { font-size: 16px; }
+  .c-brand-logo { width: 30px; height: 30px; font-size: 12px; }
+
+  /* Stack columns */
+  .page-wrap { flex-direction: column; }
+  .col-left  { flex: none; width: 100%; border-right: none; border-bottom: 1px solid var(--cd-color-border-default, #e2e8f0); }
+  .col-right { flex: none; width: 100%; }
+
+  /* Left inner */
+  .left-inner { padding: 16px 20px; gap: 14px; }
+
+  /* VIN bar */
+  .vin-bar { flex-wrap: wrap; }
+
+  /* Vehicle title */
+  .vehicle-title-row h1 { font-size: 19px; }
+
+  /* Specs */
+  .specs-bar { flex-wrap: wrap; gap: 10px; padding: 8px 0 14px; }
+  .spec-item { flex: 0 0 calc(33% - 6px); padding-right: 0; }
+  .spec-link { margin-left: 0; padding-left: 0; flex: 0 0 100%; padding-top: 4px; }
+
+  /* Options grid: stays 2 col */
+  .options-grid { grid-template-columns: 1fr 1fr; }
+
+  /* AI banner */
+  .ai-banner { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+  /* YMMT */
+  .ymmt-grid { grid-template-columns: 80px 1fr 1fr 1fr; }
+  .yp-num { font-size: 16px; }
+
+  /* Calc panel: 2 col */
+  .calc-panel { grid-template-columns: 1fr 1fr; }
+  .calc-cell:nth-child(3) { border-left: none; border-top: 1px solid var(--cd-color-border-default, #e2e8f0); grid-column: 1 / -1; }
+
+  /* Bottom split: single col */
+  .bottom-split { grid-template-columns: 1fr; }
+
+  /* Right inner */
+  .right-inner { padding: 14px 16px; }
+
+  /* Listing rows */
+  .listing-name, .listing-type { font-size: 13px; }
+  .listing-price { font-size: 14px; }
+
+  /* Distance row */
+  .distance-row { flex-wrap: wrap; }
+
+  /* Toggle bar */
+  .toggle-bar { flex-wrap: wrap; gap: 8px; }
+
+  /* Chart */
+  .chart-area { height: 80px; }
+}
+
+/* ════════════════════════════════════════════════
+   MOBILE  ≤ 767px
+════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* Nav: hamburger */
+  .c-topbar { padding: 10px 14px; gap: 8px; flex-wrap: wrap; }
+  .c-hamburger-label { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--cd-color-border-default, #e2e8f0); border-radius: 7px; margin-left: auto; }
+  .c-nav { display: none; width: 100%; flex-direction: column; border-top: 1px solid var(--cd-color-border-default, #e2e8f0); padding: 4px 0; }
+  .c-hamburger-input:checked ~ .c-nav { display: flex; }
+  .c-nav-link { margin: 0; padding: 10px 16px; border-bottom: none; font-size: 13px; border-left: 3px solid transparent; width: 100%; }
+  .c-nav-link.active { border-bottom-color: transparent; border-left-color: var(--cd-color-brand-name, #282133); }
+  .c-user-btn { display: none; }
+
+  /* Left inner */
+  .left-inner { padding: 12px 14px; gap: 12px; }
+
+  /* VIN bar: stack */
+  .vin-bar { flex-direction: column; gap: 10px; }
+  .vin-field, .vin-field-sm, .vin-field-xs { flex: none; width: 100%; }
+  .decode-btn { width: 100%; justify-content: center; }
+
+  /* Vehicle title */
+  .vehicle-title-row h1 { font-size: 17px; }
+  .vehicle-title-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+
+  /* Specs: 2-across card grid */
+  .specs-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px 0; }
+  .spec-item { flex: none; padding: 0; }
+  .spec-link { grid-column: 1 / -1; margin-left: 0; padding: 0; }
+
+  /* AI banner */
+  .ai-banner { flex-direction: column; align-items: flex-start; }
+  .ai-banner-actions { flex-direction: column; width: 100%; }
+  .ai-btn-outline { width: 100%; justify-content: center; }
+
+  /* Section headers */
+  .section-hdr { flex-wrap: wrap; gap: 6px; }
+
+  /* Options grid: single col */
+  .options-grid { grid-template-columns: 1fr; padding: 10px 12px; }
+
+  /* Damage tags */
+  .damage-body { gap: 6px; }
+
+  /* Distance row */
+  .distance-row { flex-direction: column; gap: 8px; }
+  .dist-pill { width: 100%; }
+  .dist-pill-wide { width: 100%; min-width: 0; }
+
+  /* Bar chart */
+  .chart-area { height: 70px; }
+  .bar-tick, .bar-tick-bold { font-size: 9px; }
+
+  /* Filter pills */
+  .pill-row { gap: 6px; }
+  .pill { font-size: 12px; padding: 6px 10px; }
+
+  /* Toggle bar */
+  .toggle-bar { flex-direction: column; align-items: flex-start; gap: 8px; padding: 8px 14px; }
+
+  /* Listing rows */
+  .listing-line { flex-wrap: wrap; gap: 6px; }
+  .listing-name, .listing-type { font-size: 12px; }
+  .listing-price { font-size: 13px; }
+  .listing-vin { font-size: 11px; }
+  .listing-meta-row { gap: 7px; }
+  .excluded-reason { font-size: 11px; }
+  .tabs-bar { padding: 0 10px; }
+
+  /* YMMT: allow scroll */
+  .ymmt-card { overflow-x: auto; }
+  .ymmt-grid { min-width: 480px; }
+  .yp-num { font-size: 15px; }
+  .yp-badge { font-size: 10px; padding: 2px 5px; }
+
+  /* Calc panel: single col */
+  .calc-panel { grid-template-columns: 1fr; }
+  .calc-cell + .calc-cell { border-left: none; border-top: 1px solid var(--cd-color-border-default, #e2e8f0); }
+  .calc-cell:nth-child(3) { grid-column: auto; }
+
+  /* Days row */
+  .days-row { flex-wrap: wrap; gap: 8px; }
+
+  /* Bottom split */
+  .bottom-split { grid-template-columns: 1fr; }
+
+  /* Right inner */
+  .right-inner { padding: 12px 14px; gap: 10px; }
+  .right-top-bar { flex-wrap: wrap; gap: 6px; }
+  .rt-btn-dark { margin-left: 0; }
+}
 </style>
 <style id="fusion-selection-styles">
   .fusion-element-highlight {
@@ -2903,7 +4053,7 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
       transform: translateY(0) scale(1);
     }
   }
-</style><style id="__cmcp_cursor__">* { cursor: default !important; }</style><script src="chrome-extension://cfldfgibklhmjhnkfighkbafbkbfcmij/src/bridge/fusion-bridge.js?extensionId=cfldfgibklhmjhnkfighkbafbkbfcmij"></script></head>
+</style><script src="chrome-extension://cfldfgibklhmjhnkfighkbafbkbfcmij/src/bridge/fusion-bridge.js?extensionId=cfldfgibklhmjhnkfighkbafbkbfcmij"></script></head>
 <body style="overflow: visible; height: auto;">
 
 <!-- TOPBAR -->
@@ -2912,6 +4062,7 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
     <div class="c-brand-logo">ZA</div>
     <span class="c-brand-name">ZEN AI</span>
   </a>
+  <input type="checkbox" id="c-hamburger" class="c-hamburger-input">
   <nav class="c-nav">
     <a class="c-nav-link active" href="#">Appraisal</a>
     <a class="c-nav-link" href="#">Saved Appraisals</a>
@@ -2921,6 +4072,9 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
     <a class="c-nav-link" href="#">Dealer Intel</a>
   </nav>
   <button class="c-user-btn">John Smith</button>
+  <label for="c-hamburger" class="c-hamburger-label" aria-label="Toggle menu">
+    <div class="c-hamburger-icon"><span></span><span></span><span></span></div>
+  </label>
 </div>
 
 <!-- TWO COLUMN LAYOUT -->
@@ -2963,7 +4117,7 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
       <!-- AI Banner -->
       <div class="ai-banner">
         <div class="ai-banner-left">
-          <span class="ai-caret">›</span>
+          <span class="ai-caret"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg></span>
           <span class="ai-banner-title">AI Appraisal Assistant</span>
         </div>
         <div class="ai-banner-actions">
@@ -3005,7 +4159,7 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
       <div class="section-block">
         <div class="section-hdr">
           <span class="section-title">Options and Equipment</span>
-          <span class="section-meta" style="color: var(--cd-color-alert-green, #648231);">Total Value of Options = +$3,200</span>
+          <span class="section-meta" style="color: rgb(30, 41, 59);">Total Value of Options = +$3,200</span>
         </div>
         <div class="options-grid">
           <div class="opt-row"><div class="opt-check"></div><span class="opt-name">AMG wheel upgrade</span><span class="opt-val">+$3,200</span></div>
@@ -3021,7 +4175,7 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
       <hr class="section-divider">
       <div class="section-block">
         <div class="section-hdr">
-          <span style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; color:var(--cd-color-text-primary,#1e293b);">Damage Assessment</span>
+          <span style="font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; color:var(--cd-color-text-primary,#1e293b);" class="">Damage Assessment</span>
           <span style="font-size:13px; color:var(--cd-color-text-muted,#64748b);">Total Value of damage = <strong style="color:var(--cd-color-text-primary,#1e293b);">$0</strong></span>
         </div>
         <div class="damage-body">
@@ -3122,13 +4276,13 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
 
         <!-- Trim Matrix collapsed -->
         <div class="collapsed-row">
-          <span class="collapsed-row-chevron">›</span>
+          <span class="collapsed-row-chevron closed"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg></span>
           <span class="collapsed-row-title">Trim Matrix</span>
         </div>
 
         <!-- Filters expanded -->
         <div class="collapsed-row">
-          <span class="collapsed-row-chevron">∨</span>
+          <span class="collapsed-row-chevron open"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg></span>
           <span class="collapsed-row-title">Filters</span>
         </div>
 
@@ -3229,14 +4383,29 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
 
         <div class="listing-row excluded">
           <div class="listing-line">
-            <div><span class="listing-name">2022 Mercedes-Benz E-Class E450</span><span class="listing-type"> (Coupe)</span><span class="listing-vin">  #  W1K5J5KB4NF198312</span></div>
-            <span class="listing-price">$68,900</span>
+            <div><span class="listing-name">2022 Mercedes-Benz E-Class E450</span><span class="listing-type"> (Sedan)</span><span class="listing-vin">  #  W1K15KB0NF174378</span></div>
+            <div style="display:flex;align-items:baseline;gap:14px;flex-shrink:0;">
+              <span class="excluded-reason" style="color: rgb(193, 39, 45);">Auto-excluded — 532d in market (&gt;300)</span>
+              <span class="listing-price">$74,900</span>
+            </div>
           </div>
           <div class="listing-line">
             <div class="listing-meta-row">
-              <span>Auto-excluded</span>
-              <span class="excluded-label">532 days in market (+300)</span>
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l2 2"></path></svg> 36,707 km</span>
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="10" width="20" height="8" rx="2"></rect><path d="M6 10V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg> Cabriolet All-Wheel Drive</span>
+              <span>Type: Convertible</span>
+              <span>Colour: Gray</span>
             </div>
+            <span class="listing-link">show details</span>
+          </div>
+          <div class="listing-line">
+            <div class="listing-meta-row">
+              <span class="listing-meta-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 146 days total</span>
+              <span>Listed: 10/9/2025 – 3/4/2026</span>
+              <span class="listing-meta-icon"><svg width="12" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path><circle cx="12" cy="9" r="2.5"></circle></svg> 3,678 km away</span>
+              <span class="listing-link">show 12 dealers</span>
+            </div>
+            <span class="listing-grey">price history</span>
           </div>
         </div>
 
@@ -3308,7 +4477,7 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
       <div class="calc-panel">
         <div class="calc-cell">
           <div class="calc-lbl">Calculated</div>
-          <div class="calc-green-pill" style="color: rgb(0, 0, 0);">$51,948</div>
+          <div class="calc-green-pill" style="color: rgb(30, 41, 59);">$51,948</div>
         </div>
         <div class="calc-cell">
           <div class="calc-lbl">Status</div>
@@ -3386,7 +4555,7 @@ button, input, select, textarea { font-family: 'Figtree', sans-serif; }
           </div>
           <div class="appraisal-total" style="background-color: rgb(241, 245, 249);">
             <span class="appraisal-total-label">✦ Suggested AI Appraisal</span>
-            <span class="appraisal-total-pill" style="color: rgb(0, 0, 0);">$51,948</span>
+            <span class="appraisal-total-pill" style="color: rgb(30, 41, 59);">$51,948</span>
           </div>
         </div>
 
