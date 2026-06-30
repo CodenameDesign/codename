@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alberta Wind Turbine Evolution</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;color:#222;padding:1rem;}
+  h2{font-size:18px;font-weight:500;margin:0 0 8px;}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#666;padding:4px 0 10px;}
+  .legend span{display:flex;align-items:center;gap:5px;}
+  .source{font-size:11px;color:#999;margin:8px 0 0;}
+  #chart{width:100%;overflow-x:auto;}
+  .tooltip{position:fixed;background:rgba(0,0,0,0.78);color:#fff;font-size:11px;padding:6px 10px;border-radius:4px;pointer-events:none;display:none;line-height:1.6;}
+</style>
+</head>
+<body>
+
+<h2 style="font-size:18px;font-weight:600;color:#222;margin:0 0 8px;">Bigger blades, taller towers and more power: 30 years of wind turbines</h2>
+<p style="font-size:13px;color:#666;margin:0 0 8px;line-height:1.5;">Wind turbines have grown in height and blade length, and power output over the last three decades. Here's how they evolved in Alberta.</p>
+
+<div class="legend" style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:#666;padding:4px 0 10px;">
+  <span style="font-size:11px;color:#888;"><strong style="font-weight:500;">Overall avg:</strong> 3.2 MW &nbsp;·&nbsp; 112.5m rotor &nbsp;·&nbsp; 85.6m hub height</span>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
+    <span style="display:flex;align-items:center;gap:5px;">
+      <svg width="28" height="8" viewBox="0 0 28 8"><line x1="0" y1="4" x2="28" y2="4" stroke="#c71e1d" stroke-width="2"/><circle cx="14" cy="4" r="3" fill="#c71e1d"/></svg>
+      Power capacity (MW)
+    </span>
+    <span style="display:flex;align-items:center;gap:5px;">
+      <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="#3e7bff" opacity="0.35" stroke="#3e7bff" stroke-width="1"/></svg>
+      Rotor diameter (m)
+    </span>
+    <span style="display:flex;align-items:center;gap:5px;">
+      <svg width="4" height="14"><line x1="2" y1="0" x2="2" y2="14" stroke="#aaa" stroke-width="1.5"/></svg>
+      Hub height (m)
+    </span>
+  </div>
+</div>
+
+<div id="chart"></div>
+<div class="tooltip" id="tooltip"></div>
+<p style="font-size:11px;color:#666;margin:10px 0 4px;line-height:1.6;"><strong style="font-weight:500;">Notes:</strong> Hub height, the distance from the ground to the rotor centre, rose nearly 3.5 times to 102.5 m by 2025, roughly a 30-storey building. Rotor diameter jumped from 24 m to 150.6 m, with bigger blades sweeping more area and capturing more wind. Power capacity rose from an average 2.3 MW in 2010 to 5.5 MW last year.</p>
+<p style="font-size:11px;color:#999;margin:4px 0 2px;"><strong style="font-weight:500;color:#888;">Source:</strong> Green Hydrogen from Wind Energy for Long-Duration Energy Storage in Alberta, Will Noel, Senior Electricity Analyst, Pembina Institute</p>
+<p style="font-size:11px;color:#999;margin:2px 0 0;"><strong style="font-weight:500;color:#888;">Link to data:</strong> <a href="https://open.canada.ca/data/en/dataset/79fdad93-9025-49ad-ba16-c26d718cc070" style="color:#378ADD;" target="_blank">open.canada.ca</a></p>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script>
+const data=[
+  {yr:1993,mw:0.2,rotor:23.8,hub:30},
+  {yr:1997,mw:0.6,rotor:44,hub:45},
+  {yr:1998,mw:0.6,rotor:44,hub:50},
+  {yr:2000,mw:0.7,rotor:47,hub:50},
+  {yr:2001,mw:1.2,rotor:57.8,hub:47.8},
+  {yr:2002,mw:1.2,rotor:63.5,hub:57.5},
+  {yr:2003,mw:0.7,rotor:47,hub:50},
+  {yr:2004,mw:1.7,rotor:78.7,hub:65.2},
+  {yr:2006,mw:1.6,rotor:78,hub:65.7},
+  {yr:2007,mw:2.2,rotor:71.5,hub:83.7},
+  {yr:2009,mw:2.9,rotor:88.2,hub:78.7},
+  {yr:2010,mw:2.3,rotor:86,hub:80},
+  {yr:2011,mw:1.6,rotor:82.5,hub:80},
+  {yr:2012,mw:1.9,rotor:84.6,hub:75.4},
+  {yr:2014,mw:1.9,rotor:99.9,hub:80},
+  {yr:2015,mw:1.7,rotor:103,hub:80},
+  {yr:2019,mw:3.6,rotor:136,hub:105},
+  {yr:2020,mw:4.2,rotor:136,hub:82},
+  {yr:2021,mw:4.8,rotor:145,hub:90},
+  {yr:2022,mw:5.1,rotor:145,hub:99.3},
+  {yr:2023,mw:4.9,rotor:149.6,hub:104.5},
+  {yr:2024,mw:5.2,rotor:153.3,hub:103},
+  {yr:2025,mw:5.5,rotor:150.6,hub:102.5},
+];
+
+const turbinePaths=[
+  "M47.467,42.943c.413.281.204,4.257.225,5.255.752-.22,1.546-.341,2.369-.341.729,0,1.436.093,2.111.268V.891c0-.493-.376-.891-.87-.891h-2.658c-.447,0-.8.328-.847.75l-4.987,35.766c-.024.141.024.328.118.469l4.54,5.957Z",
+  "M41.88,58.192L.421,82.062c-.353.258-.565.68-.306,1.173l1.341,2.345c.212.375.682.516,1.106.352l33.521-13.579s.259-.164.306-.281h0c.188-.235,3.058-7.787,3.434-7.506l4.25-2.438c-1.059-1.072-1.831-2.426-2.193-3.937Z",
+  "M99.642,82.109l-28.558-22.163s-.282-.141-.423-.117c-.329-.047-8.257,1.243-8.233.774l-4.181-2.432c-.355,1.501-1.116,2.848-2.161,3.918l41.274,23.772c.4.235.988.07,1.2-.328,0-.023,1.341-2.298,1.317-2.322.235-.375.118-.821-.235-1.102Z",
+  "M50.061,50.351c3.265,0,5.911,2.639,5.911,5.894s-2.647,5.894-5.911,5.894-5.911-2.639-5.911-5.894,2.647-5.894,5.911-5.894"
+];
+
+const tooltip=document.getElementById('tooltip');
+const minRotor=d3.min(data,d=>d.rotor);
+const maxRotor=d3.max(data,d=>d.rotor);
+
+function drawChart(){
+  d3.select('#chart').select('svg').remove();
+
+  const containerW=document.getElementById('chart').clientWidth||700;
+  const margin={top:30,right:55,bottom:50,left:45};
+  const width=containerW-margin.left-margin.right;
+  const height=Math.max(300, Math.min(420, containerW*0.55))-margin.top-margin.bottom;
+
+  const svg=d3.select('#chart').append('svg')
+    .attr('width',containerW)
+    .attr('height',height+margin.top+margin.bottom)
+    .append('g')
+    .attr('transform',`translate(${margin.left},${margin.top})`);
+
+  const x=d3.scaleLinear().domain([1991,2027]).range([0,width]);
+  const yHub=d3.scaleLinear().domain([0,160]).range([height,0]);
+  const yMW=d3.scaleLinear().domain([0,7]).range([height,0]);
+
+  // Scale turbine size using the same pixel-per-metre ratio as the Y axis (yHub)
+  // so rotor diameter is shown at true scale relative to hub height
+  const pxPerMetre = yHub(0) - yHub(1); // pixels per metre on hub height axis
+  function turbineScale(rotorDiameter){
+    const radiusPx = (rotorDiameter/2) * pxPerMetre;
+    return (radiusPx / 48) * 100; // scale factor for the 100x100 viewBox (circle r=48)
+  }
+
+  // Grid
+  svg.append('g').attr('class','grid')
+    .call(d3.axisLeft(yHub).tickSize(-width).tickFormat(''))
+    .selectAll('line').style('stroke','rgba(128,128,128,0.12)').style('stroke-dasharray','3,3');
+  svg.select('.grid .domain').remove();
+
+  // Axes drawn at end — see below
+  const xTicks=width<500?5:10;
+
+
+
+  // Store svg reference for hover handlers
+  document.getElementById('chart')._svg = svg;
+
+
+
+
+  // Tower lines
+  const towerGroup = svg.append('g').attr('class','tower-group');
+  towerGroup.selectAll('.tower').data(data).enter().append('line')
+    .attr('class','tower')
+    .attr('data-yr',d=>d.yr)
+    .attr('x1',d=>x(d.yr)).attr('x2',d=>x(d.yr))
+    .attr('y1',d=>yHub(d.hub)).attr('y2',height)
+    .attr('stroke','#aaa').attr('stroke-width',2).attr('opacity',0.4)
+    .style('pointer-events','none');
+
+  // Turbine group
+  const turbineGroup = svg.append('g').attr('class','turbine-group');
+  // Hover layer sits above turbine group, below MW line
+  const hoverLayer = svg.append('g').attr('class','hover-layer');
+
+  // Turbines (no individual hover — handled by overlay below)
+  const turbines=turbineGroup.selectAll('.turbine').data(data).enter().append('g')
+    .attr('class','turbine')
+    .attr('transform',d=>{
+      const s=turbineScale(d.rotor)/100;
+      const cx=x(d.yr);
+      const cy=yHub(d.hub);
+      return `translate(${cx-50*s},${cy-56*s}) scale(${s})`;
+    })
+    .style('pointer-events','none');
+
+  turbines.append('circle').attr('cx',50).attr('cy',56).attr('r',48)
+    .attr('fill',(d,i)=>{
+      // Progressively lighter tint of #3e7bff from dark (1993) to light (2025)
+      const t = i/(data.length-1);
+      const r = Math.round(62 + t*120);
+      const g = Math.round(123 + t*80);
+      const b = Math.round(255);
+      return `rgb(${r},${g},${b})`;
+    })
+    .attr('stroke','#3e7bff')
+    .attr('stroke-width',d=>{
+      const s=turbineScale(d.rotor)/100;
+      return 1/s;
+    })
+    .attr("opacity",0.35);
+
+  const blades = turbines.append('g')
+    .attr('transform','translate(50,56) scale(0.82) translate(-50,-56)')
+    .style('pointer-events','none');
+
+  // MW line and dots on top
+  const line=d3.line().x(d=>x(d.yr)).y(d=>yMW(d.mw)).curve(d3.curveMonotoneX);
+  svg.append('path').datum(data)
+    .attr('fill','none').attr('stroke','#c71e1d').attr('stroke-width',2).attr('d',line);
+  svg.selectAll('.mwdot').data(data).enter().append('circle')
+    .attr('class','mwdot')
+    .attr('cx',d=>x(d.yr)).attr('cy',d=>yMW(d.mw)).attr('r',3).attr('fill','#c71e1d')
+    .style('pointer-events','none');
+
+  turbinePaths.forEach(p=>{
+    blades.append('path').attr('d',p).attr('fill','#999').attr('opacity',0);
+  });
+
+  // Single transparent overlay handles all turbine hover via nearest-year detection
+  // Reference to the tower group's parent for restoring tower lines
+  let activeYr = null;
+  function highlight(yr){
+    if(yr===activeYr) return;
+    // Reset previous
+    turbines.each(function(td){
+      d3.select(this).selectAll('path').attr('fill','#999').attr('opacity',0);
+      d3.select(this).select('circle').attr('opacity',0.35);
+    });
+    // Move any tower lines in hoverLayer back to towerGroup
+    Array.from(hoverLayer.node().querySelectorAll('.tower')).forEach(t=>{
+      towerGroup.node().appendChild(t);
+    });
+    svg.selectAll('.tower').attr('stroke','#aaa').attr('opacity',0.4);
+    svg.selectAll('.mwdot').attr('r',3);
+    // Restore original turbine order
+    const sorted = Array.from(turbineGroup.node().children)
+      .concat(Array.from(hoverLayer.node().querySelectorAll('.turbine')))
+      .sort((a,b)=>{
+        const da=d3.select(a).datum(), db=d3.select(b).datum();
+        return (da?da.yr:0)-(db?db.yr:0);
+      });
+    sorted.forEach(n=>turbineGroup.node().appendChild(n));
+    activeYr = yr;
+    if(yr===null) return;
+    // Turbine (circle + blades) into hoverLayer first
+    turbines.filter(td=>td.yr===yr).each(function(td){
+      hoverLayer.node().appendChild(this);
+      d3.select(this).selectAll('path').attr('fill','#222').attr('opacity',1);
+      d3.select(this).select('circle').attr('opacity',0.65);
+    });
+    // Tower line LAST so it draws on top of the circle
+    const towerNode = towerGroup.select(`line[data-yr="${yr}"]`).node();
+    if(towerNode) hoverLayer.node().appendChild(towerNode);
+    d3.select(`line[data-yr="${yr}"]`).attr('stroke','#222').attr('opacity',1);
+    // Enlarge the matching MW dot
+    svg.selectAll('.mwdot').attr('r',3);
+    svg.selectAll('.mwdot').filter(dd=>dd.yr===yr).attr('r',6);
+  }
+
+  svg.append('rect')
+    .attr('x',0).attr('y',0).attr('width',width).attr('height',height)
+    .attr('fill','transparent')
+    .style('cursor','pointer')
+    .on('mousemove',function(event){
+      const mx = d3.pointer(event)[0];
+      const yr = Math.round(x.invert(mx));
+      // Find nearest actual data year
+      let nearest = data[0], minDist = Infinity;
+      data.forEach(d=>{
+        const dist = Math.abs(x(d.yr)-mx);
+        if(dist<minDist){minDist=dist; nearest=d;}
+      });
+      // Only highlight if within reasonable px distance of a turbine
+      if(minDist < 40){
+        highlight(nearest.yr);
+        tooltip.style.display='block';
+        const tt=document.getElementById('tooltip');
+        const ttW=tt.offsetWidth||120, ttH=tt.offsetHeight||70;
+        tooltip.style.left=(event.clientX-ttW/2)+'px';
+        tooltip.style.top=(event.clientY-ttH-32)+'px';
+        tooltip.innerHTML=`<strong>${nearest.yr}</strong><br>Hub height: ${nearest.hub}m<br>Rotor Ø: ${nearest.rotor}m<br>Capacity: ${nearest.mw} MW`;
+      } else {
+        highlight(null);
+        tooltip.style.display='none';
+      }
+    })
+    .on('mouseleave',function(){
+      highlight(null);
+      tooltip.style.display='none';
+    });
+
+  // Axes drawn last — always on top of everything
+  // Grand total reference lines (above turbines, below axes)
+  svg.append('line')
+    .attr('x1',0).attr('x2',width)
+    .attr('y1',yHub(85.6)).attr('y2',yHub(85.6))
+    .attr('stroke','#777').attr('stroke-width',1)
+    .attr('stroke-dasharray','4,3').attr('opacity',0.8)
+    .style('pointer-events','none');
+  svg.append('text')
+    .attr('x',4).attr('y',yHub(85.6)-4)
+    .attr('font-size','10px').attr('fill','#777')
+    .style('pointer-events','none')
+    .text('Avg. hub height 85.6m');
+
+  svg.append('line')
+    .attr('x1',0).attr('x2',width)
+    .attr('y1',yMW(3.2)).attr('y2',yMW(3.2))
+    .attr('stroke','#c71e1d').attr('stroke-width',1)
+    .attr('stroke-dasharray','4,3').attr('opacity',0.6)
+    .style('pointer-events','none');
+  svg.append('text')
+    .attr('x',width-4).attr('y',yMW(3.2)-4)
+    .attr('text-anchor','end').attr('font-size','10px').attr('fill','#c71e1d').attr('opacity',0.8)
+    .style('pointer-events','none')
+    .text('Avg. capacity 3.2 MW');
+
+  svg.append('g').attr('transform',`translate(0,${height})`)
+    .call(d3.axisBottom(x).tickFormat(d=>String(d)).ticks(xTicks))
+    .selectAll('text').style('font-size','11px');
+  svg.append('g')
+    .call(d3.axisLeft(yHub).tickFormat(d=>d+'m'))
+    .selectAll('text').style('font-size','11px');
+  svg.append('g').attr('transform',`translate(${width},0)`)
+    .call(d3.axisRight(yMW).tickFormat(d=>d+' MW'))
+    .selectAll('text').style('font-size','11px').style('fill','#c71e1d');
+
+  // Axis labels on top
+  svg.append('text').attr('x',0).attr('y',-12)
+    .attr('text-anchor','start').attr('font-size','11px').attr('fill','#888')
+    .text('Hub height (m) ↑');
+  svg.append('text').attr('x',width).attr('y',-12)
+    .attr('text-anchor','end').attr('font-size','11px').attr('fill','#c71e1d')
+    .text('↑ Rated capacity (MW)');
+  svg.append('text').attr('x',width/2).attr('y',height+42)
+    .attr('text-anchor','middle').attr('font-size','11px').attr('fill','#888')
+    .text('Commissioning year');
+}
+
+drawChart();
+
+let resizeTimer;
+window.addEventListener('resize',()=>{
+  clearTimeout(resizeTimer);
+  resizeTimer=setTimeout(drawChart,150);
+});
+</script>
