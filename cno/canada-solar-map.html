@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solar Rebates & Incentives in Canada</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background: #ffffff;
+    color: #1a1a2e;
+    min-height: 100vh;
+  }
+
+  .header {
+    padding: 16px;
+    border-bottom: none;
+  }
+
+  .header h1 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+
+  .header p {
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size: 0.82rem;
+    color: #555;
+    margin-top: 6px;
+    line-height: 1.5;
+    max-width: none;
+  }
+
+  .map-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    width: 100%;
+  }
+
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px;
+    flex-shrink: 0;
+    background: none;
+    border-bottom: none;
+  }
+
+  .filter-btn {
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    text-align: left;
+    min-width: 140px;
+  }
+
+  .filter-btn[data-cat="solar"]    { color: #666; background: rgba(224,123,57,0.15); }
+  .filter-btn[data-cat="battery"]  { color: #666; background: rgba(58,122,191,0.15); }
+  .filter-btn[data-cat="finance"]  { color: #666; background: rgba(42,157,111,0.15); }
+  .filter-btn[data-cat="tax"]      { color: #666; background: rgba(139,92,246,0.15); }
+  .filter-btn[data-cat="net"]      { color: #666; background: rgba(192,57,43,0.15); }
+
+  .filter-btn.active[data-cat="solar"]    { background: #e07b39; color: #fff; font-weight: 700; }
+  .filter-btn.active[data-cat="battery"]  { background: #3a7abf; color: #fff; font-weight: 700; }
+  .filter-btn.active[data-cat="finance"]  { background: #2a9d6f; color: #fff; font-weight: 700; }
+  .filter-btn.active[data-cat="tax"]      { background: #8b5cf6; color: #fff; font-weight: 700; }
+  .filter-btn.active[data-cat="net"]      { background: #c0392b; color: #fff; font-weight: 700; }
+
+  .filter-btn:hover { opacity: 0.8; }
+  .filter-btn.active:hover { opacity: 1; }
+
+  @media (max-width: 600px) {
+    .map-wrapper {
+      flex-direction: column;
+    }
+
+    .filters {
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 12px 16px;
+      gap: 6px;
+    }
+
+    .filter-btn {
+      min-width: unset;
+    }
+
+    .map-container {
+      width: 100%;
+    }
+  }
+
+  .map-container {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+  }
+
+  svg#map {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .province {
+    stroke: #ffffff;
+    stroke-width: 1px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .tooltip {
+    position: fixed;
+    background: #1a1a2e;
+    color: #f7f5f0;
+    padding: 14px 18px;
+    border-radius: 3px;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    max-width: 300px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .tooltip.visible { opacity: 1; }
+
+  .tooltip-name {
+    font-weight: 700;
+    font-size: 0.88rem;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .tooltip-label {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    margin-top: 8px;
+    margin-bottom: 2px;
+    opacity: 0.7;
+  }
+
+  .tooltip-value { color: #f7f5f0; }
+  .tooltip-na { color: rgba(247,245,240,0.4); font-style: italic; }
+  .tooltip-status { font-size: 0.65rem; font-weight: 600; text-transform: none; letter-spacing: 0; }
+
+  .legend {
+    display: flex;
+    gap: 20px;
+    padding: 12px 16px 8px;
+    flex-wrap: wrap;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size: 0.72rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .legend-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .footer {
+    padding: 16px;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size: 0.7rem;
+    color: #888;
+    border-top: none;
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+
+  .footer a { color: #888; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Solar Rebates &amp; Incentives in Canada</h1>
+  <p>Federal, provincial and local programs offer rebates and incentives for home solar systems. Select a program type to see what's available across Canada in 2026.</p>
+</div>
+
+<div class="map-wrapper">
+  <div class="filters">
+    <button class="filter-btn active" data-cat="solar">Solar rebates</button>
+    <button class="filter-btn" data-cat="battery">Battery storage</button>
+    <button class="filter-btn" data-cat="finance">Financing</button>
+    <button class="filter-btn" data-cat="tax">Tax breaks</button>
+    <button class="filter-btn" data-cat="net">Net metering</button>
+  </div>
+  <div class="map-container">
+    <svg id="map"></svg>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item" id="legend-active"><div class="legend-swatch" id="legend-color" style="background:#e07b39"></div> <span id="legend-label">Solar rebate available</span></div>
+  <div class="legend-item" id="legend-limited"><div class="legend-swatch" id="legend-color-limited" style="background:#f0b078"></div> <span id="legend-label-limited">Solar rebate (select municipalities only)</span></div>
+  <div class="legend-item" id="legend-paused"><div class="legend-swatch" style="background:#f0c090; border: 1px solid #ccc"></div> Program paused</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:#d8d5cf"></div> No program identified</div>
+</div>
+
+<div class="footer">
+  <strong>Notes</strong><br>
+  kW — a kilowatt is a measure of power, equivalent to 1,000 watts<br>
+  kWh — a kilowatt hour measures the power a device uses in one hour<br>
+  PST — provincial sales tax<br><br>
+  <strong>Source:</strong> <a href="http://solarguide.ca" target="_blank">SolarGuide.ca</a> / <a href="https://renewablesassociation.ca/" target="_blank">Canadian Renewable Energy Association</a><br>
+  <strong>Links:</strong> SolarGuide on <a href="https://solarguide.ca/solar-rebates/" target="_blank">rebates/incentives</a> in Canada (2026) / CanREA <a href="https://renewablesassociation.ca/go-solar-guide/" target="_blank">Go Solar Guide</a> 2026
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+const COLORS = {
+  solar:   '#e07b39',
+  battery: '#3a7abf',
+  finance: '#2a9d6f',
+  tax:     '#8b5cf6',
+  net:     '#c0392b'
+};
+
+const LABELS = {
+  solar:   'Solar rebate available',
+  battery: 'Battery storage program',
+  finance: 'Financing available',
+  tax:     'Tax break available',
+  net:     'Net metering / billing'
+};
+
+const LABELS_LIMITED = {
+  solar:   'Solar rebate (select municipalities only)',
+  battery: 'Battery program (select municipalities only)',
+  finance: 'Financing (select municipalities only)',
+  tax:     'Tax break (select municipalities only)',
+  net:     'Net metering (select municipalities only)'
+};
+
+const CAT_NAMES = {
+  solar: 'Solar Rebate',
+  battery: 'Battery Storage',
+  finance: 'Financing',
+  tax: 'Tax Break',
+  net: 'Net Metering'
+};
+
+// Province data keyed by GeoJSON name
+const DATA = {
+  'British Columbia': {
+    solar:   { value: 'Up to $5,000 (BC Hydro) for rooftop solar', status: 'active' },
+    battery: { value: 'Up to $5,000 (BC Hydro) for storage paired with solar', status: 'active' },
+    finance: { value: null },
+    tax:     { value: 'No PST on renewable energy gear, incl. solar', status: 'active' },
+    net:     { value: 'Excess power credited at ~10¢/kWh', status: 'active' }
+  },
+  'Alberta': {
+    solar:   { value: '$750/kW installed, up to $15,000 (Banff only)', status: 'limited' },
+    battery: { value: null },
+    finance: { value: 'Up to $50,000 in property tax financing over 20 yrs (participating municipalities)', status: 'limited' },
+    tax:     { value: 'No PST, saving $1,000–$2,000 vs other provinces', status: 'active' },
+    net:     { value: 'Excess power credited at ~9¢/kWh', status: 'active' }
+  },
+  'Saskatchewan': {
+    solar:   { value: null },
+    battery: { value: null },
+    finance: { value: 'Low-interest loans repaid via property taxes (Saskatoon only)', status: 'limited' },
+    tax:     { value: null },
+    net:     { value: null }
+  },
+  'Manitoba': {
+    solar:   { value: 'Up to $5,000 per home (50¢/watt); 75¢/watt for businesses', status: 'active' },
+    battery: { value: null },
+    finance: { value: 'Up to $20,000 at 6.20% interest, repaid over 15 yrs via hydro bill', status: 'active' },
+    tax:     { value: null },
+    net:     { value: 'Net billing: surplus sold at ~4.4¢/kWh — size your system to match usage', status: 'active' }
+  },
+  'Ontario': {
+    solar:   { value: 'Up to $5,000 ($1,000/kW, max 5 kW)', status: 'active' },
+    battery: { value: 'Up to $5,000 (up to $12,000 for combined solar/battery with upgrades)', status: 'active' },
+    finance: { value: 'Up to $125,000 in low-interest loans, repaid via property taxes (Toronto, Ottawa only)', status: 'limited' },
+    tax:     { value: null },
+    net:     { value: 'Excess power credit at full retail rate for homes not claiming rebates', status: 'active' }
+  },
+  'Quebec': {
+    solar:   { value: null },
+    battery: { value: null },
+    finance: { value: null },
+    tax:     { value: null },
+    net:     { value: 'Hydro-Québec credits surplus power on your bill', status: 'active' }
+  },
+  'New Brunswick': {
+    solar:   { value: 'Up to $200/kW, max $3,000', status: 'active' },
+    battery: { value: null },
+    finance: { value: null },
+    tax:     { value: null },
+    net:     { value: 'Must comply with NB Power regulations', status: 'active' }
+  },
+  'Prince Edward Island': {
+    solar:   { value: 'Programme paused as of Sept. 2025', status: 'paused' },
+    battery: { value: null },
+    finance: { value: null },
+    tax:     { value: null },
+    net:     { value: '1:1 kWh credit for power sent to grid, valued at full retail rate', status: 'active' }
+  },
+  'Nova Scotia': {
+    solar:   { value: 'No residential applications as of April 2025; non-profits still eligible', status: 'paused' },
+    battery: { value: null },
+    finance: { value: 'Loans at 4.75% over 10 yrs, tied to property (Halifax only)', status: 'limited' },
+    tax:     { value: null },
+    net:     { value: 'Full retail-rate credit (~18.5¢/kWh) with 12-month rollover', status: 'active' }
+  },
+  'Newfoundland and Labrador': {
+    solar:   { value: null },
+    battery: { value: null },
+    finance: { value: null },
+    tax:     { value: null },
+    net:     { value: '1:1 monthly credits; annual surplus sold at wholesale rate (~15.2¢/kWh)', status: 'active' }
+  },
+  'Nunavut': {
+    solar:   { value: '50% rebate up to $30,000 for homes; up to $5,000 for cabins', status: 'active' },
+    battery: { value: null },
+    finance: { value: null },
+    tax:     { value: null },
+    net:     { value: null }
+  },
+  'Northwest Territories': {
+    solar:   { value: '$400/kW or up to 50% of project costs (whichever lower), max $20,000 residential / $50,000 business', status: 'active' },
+    battery: { value: null },
+    finance: { value: null },
+    tax:     { value: null },
+    net:     { value: null }
+  },
+  'Yukon Territory': {
+    solar:   { value: null },
+    battery: { value: null },
+    finance: { value: 'Up to 25% of assessed property value, max $50,000', status: 'active' },
+    tax:     { value: null },
+    net:     { value: null }
+  }
+};
+
+let currentCat = 'solar';
+
+const tooltip = document.getElementById('tooltip');
+
+function getProvinceColor(name, cat) {
+  const d = DATA[name];
+  if (!d) return '#d8d5cf';
+  const prog = d[cat];
+  if (!prog || !prog.value) return '#d8d5cf';
+  if (prog.status === 'paused') return '#f0c090';
+  if (prog.status === 'limited') return d3.color(COLORS[cat]).brighter(0.5).formatHex();
+  return COLORS[cat];
+}
+
+function showTooltip(event, name) {
+  const d = DATA[name];
+  if (!d) return;
+
+  const prog = d[currentCat];
+  if (!prog || !prog.value) { hideTooltip(); return; }
+
+  let html = `<div class="tooltip-name">${name}</div>`;
+
+  let statusTag = '';
+  if (prog && prog.status === 'limited') statusTag = ' <span class="tooltip-status" style="color:#e0a050">— select municipalities only</span>';
+  if (prog && prog.status === 'paused') statusTag = ' <span class="tooltip-status" style="color:#e8b878">— Program paused</span>';
+  html += `<div class="tooltip-label">${CAT_NAMES[currentCat]}${statusTag}</div>`;
+  html += `<div class="tooltip-value">${prog.value}</div>`;
+
+  tooltip.innerHTML = html;
+  tooltip.classList.add('visible');
+  moveTooltip(event);
+}
+
+function moveTooltip(event) {
+  const x = event.clientX;
+  const y = event.clientY;
+  const tw = Math.min(300, window.innerWidth - 24);
+  tooltip.style.maxWidth = tw + 'px';
+  
+  // Horizontal: prefer right of cursor, flip left if too close to edge
+  let left = x + 16;
+  if (left + tw > window.innerWidth - 8) {
+    left = x - tw - 8;
+  }
+  // Clamp to screen
+  left = Math.max(8, Math.min(left, window.innerWidth - tw - 8));
+
+  // Vertical: prefer below cursor, flip above if too close to bottom
+  let top = y + 16;
+  const th = tooltip.offsetHeight || 120;
+  if (top + th > window.innerHeight - 8) {
+    top = y - th - 8;
+  }
+  top = Math.max(8, top);
+
+  tooltip.style.left = left + 'px';
+  tooltip.style.top = top + 'px';
+}
+
+function hideTooltip() {
+  tooltip.classList.remove('visible');
+}
+
+function updateMap(cat) {
+  currentCat = cat;
+  d3.selectAll('.province')
+    .attr('fill', d => getProvinceColor(d.properties.name, cat))
+    .style('cursor', d => {
+      const prog = DATA[d.properties.name] && DATA[d.properties.name][cat];
+      return (prog && prog.value) ? 'pointer' : 'default';
+    });
+  
+  document.getElementById('legend-color').style.background = COLORS[cat];
+  document.getElementById('legend-label').textContent = LABELS[cat];
+  document.getElementById('legend-color-limited').style.background = d3.color(COLORS[cat]).brighter(0.5).formatHex();
+  document.getElementById('legend-label-limited').textContent = LABELS_LIMITED[cat];
+
+  // Show/hide limited and paused legend items based on data
+  const provinces = Object.values(DATA);
+  const hasLimited = provinces.some(d => d[cat] && d[cat].status === 'limited');
+  const hasPaused = provinces.some(d => d[cat] && d[cat].status === 'paused');
+  document.getElementById('legend-limited').style.display = hasLimited ? 'flex' : 'none';
+  document.getElementById('legend-paused').style.display = hasPaused ? 'flex' : 'none';
+}
+
+// Load and render map - fixed 960px coordinate space, CSS scales to fill
+const svg = d3.select('#map');
+
+const W = 960, H = 580;
+
+function getViewBox() {
+  return window.innerWidth <= 600 ? `80 0 800 580` : `120 0 720 580`;
+}
+
+svg.attr('viewBox', getViewBox())
+   .attr('preserveAspectRatio', 'xMidYMid meet');
+
+window.addEventListener('resize', () => {
+  svg.attr('viewBox', getViewBox());
+});
+
+const projection = d3.geoAlbers()
+  .rotate([96, 0])
+  .parallels([50, 70]);
+
+const pathGen = d3.geoPath().projection(projection);
+
+d3.json('https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/canada.geojson')
+  .then(data => {
+    // Fit the projection exactly to the data, filling the full viewBox with small padding
+    projection.fitExtent([[10, 10], [W - 10, H - 10]], data);
+
+    svg.selectAll('.province')
+      .data(data.features)
+      .enter()
+      .append('path')
+      .attr('class', 'province')
+      .attr('d', pathGen)
+      .attr('fill', d => getProvinceColor(d.properties.name, 'solar'))
+      .style('cursor', d => {
+        const prog = DATA[d.properties.name] && DATA[d.properties.name]['solar'];
+        return (prog && prog.value) ? 'pointer' : 'default';
+      })
+      .on('mousemove', function(event, d) {
+        const prog = DATA[d.properties.name] && DATA[d.properties.name][currentCat];
+        if (prog && prog.value) {
+          d3.select(this).attr('opacity', 0.75);
+        }
+        showTooltip(event, d.properties.name);
+        moveTooltip(event);
+      })
+      .on('touchstart', function(event, d) {
+        event.preventDefault();
+        const touch = event.touches[0];
+        const prog = DATA[d.properties.name] && DATA[d.properties.name][currentCat];
+        if (prog && prog.value) {
+          showTooltip(touch, d.properties.name);
+          moveTooltip(touch);
+        }
+      })
+      .on('mouseleave', function() {
+        d3.select(this).attr('opacity', 1);
+        hideTooltip();
+      })
+      .on('touchend', function() {
+        d3.select(this).attr('opacity', 1);
+        setTimeout(hideTooltip, 2000);
+      });
+  });
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    updateMap(this.dataset.cat);
+  });
+});
+</script>
+</body>
+</html>
