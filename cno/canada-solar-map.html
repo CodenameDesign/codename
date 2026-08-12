@@ -704,6 +704,15 @@ document.getElementById('seeAllBtn').addEventListener('click', openPanel);
 document.getElementById('panelClose').addEventListener('click', closePanel);
 panelOverlay.addEventListener('click', closePanel);
 
+// Report height to parent iframe
+function reportHeight() {
+  const h = document.body.scrollHeight;
+  window.parent.postMessage({ iframeHeight: h }, '*');
+}
+window.addEventListener('resize', reportHeight);
+// Report after map loads
+setTimeout(reportHeight, 1000);
+
 // Filter buttons
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', function() {
