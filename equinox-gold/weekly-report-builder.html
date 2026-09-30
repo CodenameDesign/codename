@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Weekly Report Builder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1c3a4b;
+    --ink:#3c3c3c;
+    --band:#ececec;
+    --tile:#eeeeee;
+    --icon:#8fc2e6;
+    --rule:#1c3a4b;
+    --paper:#ffffff;
+    --editor-bg:#f4f5f6;
+    --editor-panel:#ffffff;
+    --editor-border:#dfe3e6;
+    --editor-accent:#2a5f7a;
+  }
+  *{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;}
+  html,body{margin:0;padding:0;background:var(--editor-bg);color:var(--ink);font-family:'Spline Sans',system-ui,-apple-system,sans-serif;}
+  h1,h2,h3{font-family:'Spline Sans',system-ui,sans-serif;margin:0;}
+
+  /* ---------- App shell ---------- */
+  .app{display:flex;min-height:100vh;}
+  .editor{
+    width:420px;flex:0 0 420px;background:var(--editor-panel);
+    border-right:1px solid var(--editor-border);
+    padding:20px;overflow-y:auto;height:100vh;position:sticky;top:0;
+  }
+  .preview-wrap{flex:1;padding:32px;overflow-y:auto;height:100vh;}
+  .editor h2.editor-title{font-size:16px;color:var(--navy);margin-bottom:4px;}
+  .editor .sub{font-size:12px;color:#777;margin-bottom:18px;line-height:1.5;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:#666;margin-bottom:5px;}
+  .field input[type=text],.field input[type=date],.field textarea{
+    width:100%;border:1px solid var(--editor-border);border-radius:6px;
+    padding:8px 10px;font-family:inherit;font-size:13px;color:var(--ink);background:#fff;
+  }
+  .field textarea{min-height:260px;resize:vertical;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;line-height:1.5;}
+  .row2{display:flex;gap:10px;}
+  .row2 .field{flex:1;}
+  button{
+    font-family:'Spline Sans',sans-serif;font-size:12.5px;font-weight:600;border-radius:6px;
+    border:1px solid var(--editor-border);background:#fff;color:var(--navy);
+    padding:8px 12px;cursor:pointer;
+  }
+  button.primary{background:var(--editor-accent);border-color:var(--editor-accent);color:#fff;}
+  button.primary:hover{background:#224a60;}
+  button:hover{background:#f0f2f3;}
+  button.primary:hover{background:#224a60;color:#fff;}
+  .btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+  .section-divider{border:none;border-top:1px solid var(--editor-border);margin:18px 0;}
+  .imgslot{
+    display:flex;align-items:center;gap:8px;border:1px solid var(--editor-border);
+    border-radius:6px;padding:7px 8px;margin-bottom:6px;background:#fafbfc;
+  }
+  .imgslot .thumb{
+    width:36px;height:28px;border-radius:4px;background:var(--tile);flex:0 0 36px;
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+    font-size:8px;color:#999;text-align:center;
+  }
+  .imgslot .thumb img{width:100%;height:100%;object-fit:cover;}
+  .imgslot .meta{flex:1;min-width:0;}
+  .imgslot .meta .name{font-size:12px;font-weight:600;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .imgslot .meta .hint{font-size:10.5px;color:#888;}
+  .imgslot input[type=file]{display:none;}
+  .imgslot .upload{font-size:11px;padding:5px 8px;}
+  .imgslot .clear{font-size:11px;padding:5px 8px;color:#a33;}
+  .fittoggle{display:flex;border:1px solid var(--editor-border);border-radius:6px;overflow:hidden;flex:0 0 auto;}
+  .fittoggle button{border:none;border-radius:0;font-size:11px;padding:5px 8px;background:#fff;color:var(--navy);}
+  .fittoggle button+button{border-left:1px solid var(--editor-border);}
+  .fittoggle button.active{background:var(--editor-accent);color:#fff;}
+  .fittoggle button:hover{background:#f0f2f3;}
+  .fittoggle button.active:hover{background:#224a60;}
+  .note{
+    font-size:11.5px;background:#f0f6f9;border:1px solid #d5e6ee;color:#2a5468;
+    padding:10px 12px;border-radius:6px;line-height:1.5;margin-bottom:14px;
+  }
+
+  /* ---------- Print target ---------- */
+  #pages{display:flex;flex-direction:column;align-items:center;gap:16px;}
+  .page{
+    width:210mm;height:297mm;background:var(--paper);position:relative;
+    box-shadow:0 1px 4px rgba(0,0,0,.12),0 0 0 1px rgba(0,0,0,.04);
+    overflow:hidden;flex:0 0 auto;
+  }
+  .content{position:absolute;left:15mm;right:15mm;top:60mm;}
+
+  /* header: cover (page 1) */
+  .hdr-cover{background:var(--band);padding:10mm 15mm 10mm;}
+  .hdr-cover .logorow{display:flex;align-items:center;gap:3mm;margin-bottom:5mm;}
+  .logomark{width:9mm;height:9mm;flex:0 0 auto;}
+  .logo-img{height:9mm;width:auto;max-width:90mm;object-fit:contain;}
+  .logo-img-sm{height:5mm;width:auto;max-width:55mm;object-fit:contain;}
+  .brandtext .l1{font-size:11pt;font-weight:700;letter-spacing:.03em;color:var(--navy);line-height:1.15;}
+  .brandtext .l2{font-size:9pt;font-weight:600;color:var(--navy);line-height:1.15;}
+  .rule{border:none;border-top:1.1pt solid var(--navy);margin:0;}
+  .hdr-cover .titlerow{display:flex;justify-content:space-between;align-items:flex-start;margin:3mm 0 4mm;}
+  .hdr-cover h1{font-size:21pt;font-weight:600;color:var(--navy);line-height:1.25;margin:0;}
+  .hdr-cover .weekrow{font-size:9.5pt;color:var(--navy);white-space:nowrap;}
+  .hdr-cover .weekrow b{font-weight:700;margin-left:4px;}
+
+  /* header: bar (page 2+) */
+  .hdr-bar{background:var(--band);padding:6mm 15mm;display:flex;align-items:center;gap:6mm;}
+  .hdr-bar .logorow{display:flex;align-items:center;gap:2.5mm;flex:0 0 auto;}
+  .hdr-bar .logomark{width:6mm;height:6mm;}
+  .hdr-bar .brandtext .l1{font-size:8pt;}
+  .hdr-bar .brandtext .l2{font-size:7pt;}
+  .hdr-bar .titlebar{flex:1;border-top:1.1pt solid var(--navy);border-bottom:1.1pt solid var(--navy);
+    padding:2.2mm 4mm;display:flex;justify-content:space-between;align-items:center;}
+  .hdr-bar .titlebar .doctitle{font-size:10pt;font-weight:700;color:var(--navy);}
+  .hdr-bar .titlebar .weeklabel{font-size:8.5pt;color:var(--navy);}
+  .hdr-bar .titlebar .weeklabel b{font-weight:700;margin-left:3px;}
+
+  /* section heading */
+  .sechead{display:flex;justify-content:space-between;align-items:center;margin:7mm 0 2mm;}
+  .sechead h2{font-size:14pt;font-weight:600;color:var(--navy);}
+  .sechead h2 .cont{font-weight:400;color:#9a9a9a;font-size:0.72em;margin-left:9px;}
+  .sechead h2 .cont .contbar{display:inline-block;margin-right:9px;color:#d5d5d5;font-weight:300;}
+  .sechead .iconwrap{width:7mm;height:7mm;color:var(--icon);
+    display:flex;align-items:center;justify-content:center;flex:0 0 auto;}
+  .sechead .iconwrap svg{width:100%;height:100%;}
+  .sechead-rule{border:none;border-top:.9pt solid #ccc;margin:0 0 5mm;}
+
+  /* highlight rows */
+  .highlight{display:grid;grid-template-columns:2fr 3fr;gap:6mm;margin-bottom:6mm;align-items:start;}
+  .highlight.noside{grid-template-columns:1fr;}
+  .highlight .tile{width:100%;aspect-ratio:47/31;overflow:hidden;
+    background-size:cover;background-position:center center;background-repeat:no-repeat;}
+  .highlight .txt{font-size:9.6pt;font-weight:600;color:var(--navy);line-height:1.5;}
+
+  /* activities / risks / next-steps with-sidebar layout */
+  .withside{display:grid;grid-template-columns:1fr 47mm;gap:6mm;margin-bottom:6mm;align-items:start;}
+  .withside.noside{grid-template-columns:1fr;}
+  .withside .sidetile{width:47mm;height:31mm;overflow:hidden;
+    background-size:cover;background-position:center center;background-repeat:no-repeat;align-self:start;}
+  .actheading{font-size:11pt;font-weight:600;color:var(--navy);margin-bottom:2mm;}
+  ul.bullets{margin:0;padding:0;list-style:none;}
+  ul.bullets li{position:relative;padding-left:3.6mm;margin-bottom:2.8mm;font-size:9.3pt;color:var(--ink);line-height:1.5;}
+  ul.bullets li::before{content:"•";position:absolute;left:0;top:0;color:var(--ink);}
+  ul.bullets li b{color:var(--ink);font-weight:700;}
+
+  /* footer */
+  .foot{position:absolute;left:15mm;right:15mm;bottom:10mm;}
+  .foot .fline{border:none;border-top:.9pt solid #ccc;margin:0 0 2mm;}
+  .foot .pn{text-align:right;font-size:8.5pt;color:#555;}
+
+  /* measuring sandbox: laid out but invisible & not painted */
+  #measure{position:absolute;top:-10000px;left:-10000px;visibility:hidden;width:180mm;}
+
+  @media print{
+    .editor,.preview-wrap-toolbar{display:none!important;}
+    body{background:#fff;}
+    .preview-wrap{padding:0;overflow:visible;height:auto;}
+    #pages{gap:0;}
+    .page{box-shadow:none;margin:0;}
+    @page{size:A4;margin:0;}
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ EDITOR ============ -->
+  <div class="editor no-print">
+    <h2 class="editor-title">Weekly Report Builder</h2>
+    <div class="sub">Paste a report's markdown, fill in the header, and drop in real images if you have them. Layout, pagination and page numbers are computed from the actual content — add or remove sections freely.</div>
+
+    <div class="note">To get a PDF: click <b>Print / Save as PDF</b> below, then in the print dialog choose <b>Save as PDF</b> with margins set to <b>None</b>.</div>
+
+    <div class="btnrow">
+      <button class="primary" id="btnPrint">🖨 Print / Save as PDF</button>
+    </div>
+    <div class="btnrow">
+      <button id="btnLoadEQX">Reset to example content</button>
+      <button id="btnClear">Clear content</button>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="field">
+      <label>Report content (Markdown)</label>
+      <textarea id="mdInput" spellcheck="false"></textarea>
+    </div>
+
+    <hr class="section-divider">
+    <div class="field">
+      <label>Images for this report</label>
+      <div class="sub" style="margin-bottom:8px;">Detected from the content above. Upload a real photo or vendor logo for any slot — otherwise it prints as a plain labeled placeholder.</div>
+      <div id="imageSlots"></div>
+    </div>
+  </div>
+
+  <!-- ============ PREVIEW / PRINT TARGET ============ -->
+  <div class="preview-wrap">
+    <div id="pages"></div>
+  </div>
+
+</div>
+
+<div id="measure"></div>
+
+<script>
+/* ============================================================
+   DATA: two example source reports
+   ============================================================ */
+const EQX_MD = `**Week ending:** September 25, 2026
+**Unit / Office:** Technology Group
+
+## Highlights
+
+- Advanced One Equinox integration with the first validated M365 mailbox migration for Orla, Musselwhite and Camino Rojo, establishing the approach for larger migration waves. The Orla Corporate SAP integration also progressed toward its January 1, 2027 go-live.
+- Strengthened enterprise governance and control readiness: GGM SuccessFactors–ADP launched successfully into Hypercare, the IAN MVP received approval and funding to begin execution, and ITGC audit preparation advanced across Camino Rojo and Musselwhite.
+- Continued to strengthen enterprise platforms and information capabilities through Coupa integration testing, progress toward Landfolio's VGM go-live, and expansion of the Databricks platform to support Exploration and Minestar analytics.
+
+## Key Activities
+
+### One Equinox Integration
+- Validated the first BitTitan mailbox migration and increased SharePoint, OneDrive and workstation migration capacity, providing a stronger foundation for the next Orla and Musselwhite migration waves.
+- Progressed the post-migration operating model for corporate users, including controls for legacy mailboxes and OneDrive, while advancing Nicaragua backup and recovery readiness to support a stable transition.
+- Held the initial Steering Committee meeting for the Orla Corporate SAP integration and advanced the 2027 Technology budget, maintaining progress toward the January 1, 2027 go-live.
+
+### Cybersecurity, Controls & IT/OT
+- Advanced the IT/OT security MVP by refining the BeyondTrust PRA architecture and Greenstone/Valentine cost model, while moving the approved IAN MVP into execution planning to strengthen secure access and operational resilience.
+- Continued the ServiceNow monitoring integration and IAN change-management planning, and submitted the Nicaragua travel request for CFO and COO consideration.
+- Scheduled ITGC gap-assessment sessions with the Camino Rojo and Musselwhite IT teams to identify and address control gaps ahead of the 2027 audit.
+
+### Enterprise Platforms, Data & Process Improvement
+- Launched the GGM SuccessFactors–ADP integration into Hypercare and began SuccessFactors Optimization Program planning with HR leadership, while continuing SAP roadmap and 2027 budget discovery to improve planning and investment visibility.
+- Advanced Coupa integration testing and began US SCM current-state mapping to support procurement and process improvement. Compliance Applications also progressed the Benchmark Gensuite reassessment and Borealis Orla onboarding, while moving Landfolio's VGM toward its October 5 go-live.
+- Progressed the GGM Minestar CAT upgrade through UAT, expanded the Databricks platform with new Exploration catalogs, and continued Performance Management Dashboard and ESG reporting work to improve access to trusted information and support decision-making.
+
+## Risks / Issues
+
+- The Orla/Musselwhite M365 migration remains time-sensitive. BitTitan and ShareGate procurement must keep pace with upcoming waves, SharePoint and OneDrive execution needs to accelerate relative to mailbox migration, and identity-naming conflicts need to be resolved before larger waves begin.
+- SAP delivery capacity remains constrained across several concurrent priorities. Orla integration, Coupa implementation and SCM improvement depend on the same SAP resources. Separately, Borealis and Benchmark Gensuite work is constrained by a vendor export issue and a paused roadmap, while Contax is proposing a 22% rate increase for 2027.
+- Several decisions and time-bound dependencies remain open, including approval of the Benchmark Gensuite reassessment charter, confirmation of the BeyondTrust PRA architecture, and approval of the October 19–24 Nicaragua site visit. Musselwhite and South Railroad must also complete their Landfolio migration before the PX4 subscription expires on December 31, 2026.
+
+## Next Steps
+
+- Complete BitTitan and ShareGate procurement to support the next migration waves, finalize the identity-naming standard, and continue Orla Corporate SAP integration activities toward the January 1, 2027 go-live.
+- Continue GGM SuccessFactors–ADP Hypercare monitoring, launch SuccessFactors Optimization planning, conduct the Camino Rojo and Musselwhite ITGC gap assessments, and advance Coupa integration testing and Landfolio VGM UAT and training for its October 5 go-live.
+- Finalize the BeyondTrust PRA architecture and Greenstone/Valentine cost model, progress IAN procurement and change management, complete the Databricks migration for Camino Rojo and Musselwhite, and continue BPMO governance-model development to strengthen delivery coordination and visibility.
+`;
+
+const PA_MD = `**Week ending:** September 11, 2026
+**Unit / Office:** Process Automation
+
+## Highlights
+
+- **AFE Approval Workflow:** Go-live is progressing well. The new DocuSign approval process is now in production, and the team is working closely with Finance to provide post-go-live support. Over the coming weeks, we plan to collaborate with the FP&A team to expand the solution to the Orla sites.
+- **Coupa–SAP Integrations:** Integration development is progressing at full pace, with regular coordination and touchpoints between the EQX and ProcurementGarage teams.
+- **SuccessFactors–ADP Integration (Corporate):** Updates were successfully deployed to production to enhance the logic for handling out-of-province employees who report to Corporate.
+- **GGM VisionLink / Komatsu / Epiroc–SAP Integration:** Several updates were successfully deployed to improve the handling of equipment resets and replacements.
+- **GGM Ideagen → ADP Time Clock:** The ADP SOW has been finalized and signed, with an estimated delivery timeline of 6–8 weeks.
+
+## Key Activities
+
+- **Go-Live Planning:** Several integration/automation projects across Corporate, GGM, and VGM are scheduled to go live over the next few weeks. All pre-cutover activities, dependencies, and readiness requirements are being actively managed.
+- **ITGC Automation:** The review of all ITGC controls, including associated process and solution designs, is now complete. The program is being divided into multiple workstreams, or mini-projects, that can be implemented in parallel. The project charter for the first batch of automation initiatives is ready for submission to the PMO for review and prioritization.
+- **GGM Ideagen / Camp Reservation / ADP Integrations:** Development continues across the various systems. The team remains on track to support the GGM Site Access Team's target go-live dates.
+- **GGM Maintenance Process Automation Program:** We have aligned with Tim Carr on the revised priority list for the maintenance automation program. The first batch, consisting of three projects, has already been mobilized.
+- **GGM SuccessFactors / ADP Integrations:** Pre-cutover activities have been completed in support of the September 24 go-live date.
+
+## Risks / Issues
+
+- **Corporate SF–AD Disabling (SuccessFactors-triggered):** Progress remains dependent on EPI-USE completing the required SuccessFactors configuration. The current EPI-USE SOW has exhausted its available hours, and we are currently negotiating a change request to complete the remaining work.
+- **ITGC Automation Program:** Dependencies on SAP and OneStream support vendors, along with competing priorities related to the Orla Integration program, are creating uncertainty around the implementation timeline.
+- **Resource Capacity:** The team is currently operating at full capacity, with multiple initiatives underway simultaneously. We are negotiating a short-term SOW with our support vendors to provide additional resources over the next four months and help mitigate delivery and capacity risks.
+
+## Next Steps
+
+_Not reported in the source update._
+`;
+
+/* ============================================================
+   MARKDOWN PARSING  (deterministic — no invented content)
+   ============================================================ */
+function inlineMd(s){
+  // escape then restore **bold**
+  s = s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  s = s.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+  return s;
+}
+
+function parseReport(md){
+  const lines = md.replace(/\r\n/g,'\n').split('\n');
+  const meta = {weekEnding:'', unit:'', labels:{highlights:'Highlights', activities:'Key Activities', risks:'Risks / Issues', nextSteps:'Next Steps'}};
+  const sections = {highlights:[], activities:[], risks:[], nextSteps:[]};
+  let cur = null;          // 'highlights' | 'activities' | 'risks' | 'nextSteps'
+  let curSub = null;       // current activity subsection {heading,bullets}
+  let flatMode = false;    // Key Activities with no ### subheadings -> each bullet is its own subsection
+
+  const bulletRe = /^\s*[-*]\s+(.*)$/;
+  const h2Re = /^##\s+(.*)$/;
+  const h3Re = /^###\s+(.*)$/;
+
+  // pending buffer for activities to decide flat vs sub-headed after seeing whole block
+  let activityBulletsRaw = [];
+  let sawH3InActivities = false;
+
+  function finalizeActivities(){
+    if (sawH3InActivities){
+      // already built via curSub pushes
+    } else {
+      // flat bullets: each becomes its own subsection using bold label prefix if present
+      activityBulletsRaw.forEach(text=>{
+        const m = text.match(/^<b>(.+?)<\/b>:?\s*(.*)$/) || text.match(/^\*\*(.+?)\*\*:?\s*(.*)$/);
+        if(m){
+          sections.activities.push({heading:m[1].replace(/:$/,''), bullets:[inlineMd(m[2])]});
+        } else {
+          sections.activities.push({heading:'', bullets:[inlineMd(text)]});
+        }
+      });
+    }
+  }
+
+  for (let raw of lines){
+    const line = raw.trimEnd();
+    const mWeek = line.match(/^\*\*Week ending:?\*\*\s*(.*)$/i);
+    const mUnit = line.match(/^\*\*Unit\s*\/\s*Office:?\*\*\s*(.*)$/i);
+    if (mWeek){ meta.weekEnding = mWeek[1].trim(); continue; }
+    if (mUnit){ meta.unit = mUnit[1].trim(); continue; }
+
+    const h2 = line.match(h2Re);
+    if (h2){
+      if (cur==='activities') finalizeActivities();
+      const rawLabel = h2[1].trim();
+      const label = rawLabel.toLowerCase();
+      if (/highlight/.test(label)) { cur='highlights'; meta.labels.highlights = rawLabel; }
+      else if (/key activit/.test(label)) { cur='activities'; sawH3InActivities=false; activityBulletsRaw=[]; meta.labels.activities = rawLabel; }
+      else if (/risk/.test(label)) { cur='risks'; meta.labels.risks = rawLabel; }
+      else if (/next step/.test(label)) { cur='nextSteps'; meta.labels.nextSteps = rawLabel; }
+      else cur=null;
+      curSub=null;
+      continue;
+    }
+    const h3 = line.match(h3Re);
+    if (h3 && cur==='activities'){
+      sawH3InActivities = true;
+      curSub = {heading:h3[1].trim(), bullets:[]};
+      sections.activities.push(curSub);
+      continue;
+    }
+    const b = line.match(bulletRe);
+    if (b){
+      const text = inlineMd(b[1].trim());
+      if (cur==='highlights') sections.highlights.push(text);
+      else if (cur==='risks') sections.risks.push(text);
+      else if (cur==='nextSteps') sections.nextSteps.push(text);
+      else if (cur==='activities'){
+        if (curSub) curSub.bullets.push(text);
+        else activityBulletsRaw.push(b[1].trim());
+      }
+      continue;
+    }
+    // italic "not reported" placeholder line -> ignore (renders as empty section)
+  }
+  if (cur==='activities') finalizeActivities();
+
+  return {meta, sections};
+}
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let PARSED = null;
+let IMAGES = {}; // slotId -> dataURL
+let FITS = {}; // slotId -> 'cover' (fill) | 'contain' (fit); default 'cover'
+const DEFAULT_LOGO = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI3IiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMjAwIDI3Ij4KICA8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMzAuOC4yLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogMi4xLjQgQnVpbGQgNykgIC0tPgogIDxkZWZzPgogICAgPGNsaXBQYXRoIGlkPSJjbGlwcGF0aCI+CiAgICAgIDxwYXRoIGQ9Ik05My42OTQsMS41OTZjLTMuMzQ4LDAtNS43NDIsMi4yNy01Ljc0Miw1Ljc2MS0uMDUyLDEuNjIyLjYwNywzLjE4NiwxLjgwNCw0LjI4MmwxLjM0Ny0xLjQyNmMtLjc1OS0uODEtMS4xNjctMS44ODctMS4xMzUtMi45OTYsMC0yLjE2NCwxLjQ5LTMuODg1LDMuNzMzLTMuODg1LDEuMDY3LS4wMjYsMi4wOTEuNDIsMi43OTksMS4yMThsMS4zNjktMS40MzRjLTEuMDk0LTEuMDI4LTIuNTUxLTEuNTgtNC4wNTEtMS41MzZoLS4xMzZsLjAxMS4wMTVaIiBmaWxsPSJub25lIi8+CiAgICA8L2NsaXBQYXRoPgogICAgPGNsaXBQYXRoIGlkPSJjbGlwcGF0aC0xIj4KICAgICAgPHBhdGggZD0iTTEuODE2LDExLjgxM2MtLjA2NC4yOTktLjExMy41OTgtLjE0OC44ODl2Mi4yOTJjLjE3NSwxLjM3OS42OTYsMi42OTIsMS41MTMsMy44MTctLjcwMS0zLjcxMSwxLjczOS03LjI4OSw1LjQ1LTcuOTksMi43OTMtLjUyOCw1LjYyMS43MjcsNy4xMDQsMy4xNTIuNzc3LS42MjksMS4yNDgtMS41NjIsMS4yOTQtMi41NjEtMy4zMjgtNC4xMTEtOS4zNTktNC43NDUtMTMuNDctMS40MTctLjY1Mi41MjgtMS4yMzIsMS4xMzktMS43MjQsMS44MThoLS4wMTlaIiBmaWxsPSJub25lIi8+CiAgICA8L2NsaXBQYXRoPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIHgxPSItNDUyLjUxNyIgeTE9Ii0xMzcuNDU1IiB4Mj0iLTQ1MS45NSIgeTI9Ii0xMzcuNDU1IiBncmFkaWVudFRyYW5zZm9ybT0idHJhbnNsYXRlKDE0MTM3Ljg3NCA0MzA3LjQxNTUpIHNjYWxlKDMxLjI0KSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM1ZjQwMTciLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIuMTEiIHN0b3AtY29sb3I9IiM4MjU1MjIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIuNDciIHN0b3AtY29sb3I9IiNjYjk3MzEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZGZiZjgzIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGNsaXBQYXRoIGlkPSJjbGlwcGF0aC0yIj4KICAgICAgPHBhdGggZD0iTTAsMTcuNGMwLDUuMjg3LDQuMjg4LDkuNTczLDkuNTc1LDkuNTcyLDEuMjcsMCwyLjUyNy0uMjUzLDMuNjk4LS43NDQtMS4wNTItLjQ0Ni0yLjAxNy0xLjA3Ny0yLjg0OC0xLjg2MS0uMTc0LDAtLjM0OC4wMjYtLjUyNi4wMjYtMy4yOTksMC02LjEyOS0yLjM1NC02LjcyOS01LjU5OC0xLjQzMy0yLjAzMS0xLjkyNi00LjU3OS0xLjM1NC02Ljk5OEMuNjM2LDEzLjQyOCwwLDE1LjM4OCwwLDE3LjRaIiBmaWxsPSJub25lIi8+CiAgICA8L2NsaXBQYXRoPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQxIiB4MT0iLTUxMS45MjQiIHkxPSItMTYzLjczMSIgeDI9Ii01MTEuMzU3IiB5Mj0iLTE2My43MzEiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU1MDcuMzg5NSAtMTc0My4wMjQyKSByb3RhdGUoLTE4MCkgc2NhbGUoMTAuNzcpIiB4bGluazpocmVmPSIjbGluZWFyLWdyYWRpZW50Ii8+CiAgICA8Y2xpcFBhdGggaWQ9ImNsaXBwYXRoLTMiPgogICAgICA8cGF0aCBkPSJNOS42NDksMTMuOTk2Yy0uNDAzLDEuMDM3LS42MjEsMi4xMzctLjY0MywzLjI0OXYuMzUyYy4wODcsNC44NDEsMy43NzEsOC44NTYsOC41ODYsOS4zNTgsMi4zODQtLjcwOCw0LjM0Ni0yLjQxMSw1LjM4My00LjY3MS0yLjg3MSwyLjQ1NS03LjE4OCwyLjExOC05LjY0Mi0uNzUzLTEuODM3LTIuMTQ4LTIuMTYzLTUuMjA2LS44Mi03LjY5NC0uNDA3LS4xNTItLjgzNy0uMjMtMS4yNzEtLjIzMS0uNTU0LS4wMDctMS4xMDEuMTIzLTEuNTkyLjM3OHYuMDExWiIgZmlsbD0ibm9uZSIvPgogICAgPC9jbGlwUGF0aD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0ibGluZWFyLWdyYWRpZW50MiIgeDE9Ii00ODAuODQ1IiB5MT0iLTEzNy4zNTYiIHgyPSItNDgwLjI3OCIgeTI9Ii0xMzcuMzU2IiBncmFkaWVudFRyYW5zZm9ybT0idHJhbnNsYXRlKDQzMDYuOTk4OCAtMTQ5OTQuMjE0OCkgcm90YXRlKC05MCkgc2NhbGUoMzEuMjQpIiB4bGluazpocmVmPSIjbGluZWFyLWdyYWRpZW50Ii8+CiAgICA8Y2xpcFBhdGggaWQ9ImNsaXBwYXRoLTQiPgogICAgICA8cGF0aCBkPSJNMjQuMTc0LDEzLjIwNWMuMDk4LjE0NC4xOTcuMjkxLjI4Ny40NDYsMS42NDksMi44NTcsMS4wMjQsNi40ODQtMS40ODcsOC42MjQtMS4wNDIsMi4yNTctMy4wMDIsMy45NTgtNS4zODMsNC42NzEuMzI4LjAzNS42NTcuMDUyLjk4Ny4wNTMsNS4yODUtLjAwNCw5LjU2Ny00LjI5Miw5LjU2My05LjU3Ny0uMDAyLTIuOTktMS40MDItNS44MDctMy43ODMtNy42MTUuMTQ0LDEuMTM3LjA4MiwyLjI5LS4xODUsMy40MDR2LS4wMDhaIiBmaWxsPSJub25lIi8+CiAgICA8L2NsaXBQYXRoPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQzIiB4MT0iLTQzMC43NDYiIHkxPSItMTc2LjQxMSIgeDI9Ii00MzAuMTc5IiB5Mj0iLTE3Ni40MTEiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE4NzYuMjQ1OCA0NjU3LjMyMTkpIHJvdGF0ZSg5MCkgc2NhbGUoMTAuNzcpIiB4bGluazpocmVmPSIjbGluZWFyLWdyYWRpZW50Ii8+CiAgICA8Y2xpcFBhdGggaWQ9ImNsaXBwYXRoLTUiPgogICAgICA8cGF0aCBkPSJNMTUuOTkzLDMuMzU1Yy4zOTQuMTM4Ljc3NC4zMTIsMS4xMzUuNTIyLDMuMjczLDEuODg5LDQuMzk1LDYuMDc0LDIuNTA2LDkuMzQ3LTEuMTg2LDIuMDU0LTMuMzUxLDMuMzQ4LTUuNzIyLDMuNDE5LjE1Ny45ODcuNzI4LDEuODYsMS41NywyLjM5OCw1LjIyNi0uODMsOC43OS01LjczOSw3Ljk2MS0xMC45NjUtLjEzMi0uODI5LS4zNzEtMS42MzctLjcxMy0yLjQwMy0xLjU5Ni0xLjQ5OC0zLjY5Ni0yLjM0My01Ljg4Ni0yLjM2OC0uMjg0LDAtLjU2OC4wMTUtLjg1MS4wNDV2LjAwNFoiIGZpbGw9Im5vbmUiLz4KICAgIDwvY2xpcFBhdGg+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImxpbmVhci1ncmFkaWVudDQiIHgxPSItNDY2Ljc3NCIgeTE9Ii0xNjEuNzQyIiB4Mj0iLTQ2Ni4yMDciIHkyPSItMTYxLjc0MiIgZ3JhZGllbnRUcmFuc2Zvcm09InRyYW5zbGF0ZSgtNTAzMy4xNzc0IDE0NTg1LjEyOCkgcm90YXRlKDkwKSBzY2FsZSgzMS4yNCkiIHhsaW5rOmhyZWY9IiNsaW5lYXItZ3JhZGllbnQiLz4KICAgIDxjbGlwUGF0aCBpZD0iY2xpcHBhdGgtNiI+CiAgICAgIDxwYXRoIGQ9Ik0xMy45NjUsMEM5LjE2LjAyNCw1LjExNiwzLjYwNCw0LjUwOSw4LjM3MWMuOTEtLjY4MiwxLjkzNS0xLjE5NCwzLjAyNi0xLjUxMy4wNzYtLjE1OS4xNTEtLjMxOC4yNDItLjQ3MywxLjY1Mi0yLjg1Nyw1LjEwNi00LjEyOSw4LjIxNi0zLjAyNiwyLjQ3My0uMjI5LDQuOTI2LjYxNCw2LjczNywyLjMxNUMyMS4xOTgsMi4yNTUsMTcuODE3LjA0LDE0LjA3MSwwaC0uMTA2WiIgZmlsbD0ibm9uZSIvPgogICAgPC9jbGlwUGF0aD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0ibGluZWFyLWdyYWRpZW50NSIgeDE9Ii00NjAuMzA3IiB5MT0iLTk5LjY0NSIgeDI9Ii00NTkuNzQiIHkyPSItOTkuNjQ1IiBncmFkaWVudFRyYW5zZm9ybT0idHJhbnNsYXRlKDQ5NzAuMzQ3MyAxMDc3LjM3NzUpIHNjYWxlKDEwLjc3KSIgeGxpbms6aHJlZj0iI2xpbmVhci1ncmFkaWVudCIvPgogIDwvZGVmcz4KICA8Zz4KICAgIDxwYXRoIGQ9Ik0xMzguMTk1LDMuNTc5Yy0uMDcxLjA5Ny0uMTA3LjI0Mi0uMTA3LjQzN3Y2LjQ5NWgxLjY3VjMuMzkxaDIuMTU3di0xLjUyMWgtNS45OTZ2MS41MjFoMi42MDNjLS4xNDcuMDI4LS4yNTYuMDktLjMyNy4xODhaIiBmaWxsPSIjMjA0MjVmIi8+CiAgICA8cGF0aCBkPSJNMTQzLjU0Nyw1LjcxOGMuMjI4LS4zMzEuNTgxLS40OTcsMS4wNjEtLjQ5Ny40MzYsMCwuNzUzLjExNS45NTQuMzQ0LjIuMjMuMzA4LjU2Ny4zMjUsMS4wMWgtMS45OTdjLS4yMTQsMC0uMzc4LjAzOC0uNDkzLjExMy0uMTE1LjA3NS0uMTg4LjIxNy0uMjE5LjQyMS4wMTktLjU5OC4xNDMtMS4wNjIuMzcyLTEuMzk0bC0uMDAyLjAwMmgtLjAwMVpNMTQ2Ljk0Niw5LjYyN2MuMjMxLS4zMTUuMzY2LS42ODguNDAxLTEuMTE5aC0xLjU3NGMtLjA0Ny4yMjItLjE2NS40MDktLjM1LjU2NC0uMTg3LjE1NS0uNDU4LjIzMy0uODE0LjIzMy0uNDA0LDAtLjczMS0uMTM5LS45ODMtLjQxNy0uMjUyLS4yNzctLjM5Ny0uNzEzLS40MzctMS4zMDdoNC4yNjdjLjAwOC0uMTMxLjAxNi0uMjQzLjAyMS0uMzM5LjAwNi0uMDk0LjAxLS4xOTYuMDEtLjMwMywwLS42NTgtLjEwOS0xLjIxNC0uMzI3LTEuNjY2LS4yMTgtLjQ1My0uNTM1LS43OTYtLjk1My0xLjAyOC0uNDE4LS4yMzEtLjkyOS0uMzQ4LTEuNTMtLjM0OC0uNjE4LDAtMS4xNi4xMzEtMS42MjUuMzkyLS40NjUuMjYyLS44MjguNjQyLTEuMDg4LDEuMTQxLS4yNTkuNDk5LS4zODksMS4xMDktLjM4OSwxLjgzLDAsLjcxMy4xMjQsMS4zMTkuMzY4LDEuODE1LjI0Ni40OTcuNTk4Ljg3NiwxLjA1OCwxLjEzNS40NTkuMjU5LDEuMDEuMzg5LDEuNjUyLjM4OS41MTgsMCwuOTc0LS4wODIsMS4zNjQtLjI0OS4zOS0uMTY2LjcwMS0uNDA3LjkzMy0uNzIyaC0uMDA0WiIgZmlsbD0iIzIwNDI1ZiIvPgogICAgPHBhdGggZD0iTTE1MS40NzYsMTAuNjIyYy41MiwwLC45NzctLjA5NiwxLjM3Ni0uMjg2LjM5Ny0uMTkuNzA3LS40NTkuOTMtLjgwOC4yMjItLjM0OS4zMjctLjc1Ny4zMTUtMS4yMjRoLTEuNTY4Yy4wMDkuMjIzLS4wNC40MDctLjE0My41NTNzLS4yMzMuMjU0LS4zODkuMzIzYy0uMTU2LjA3LS4zMS4xMDItLjQ2MS4wOTgtLjQ5NS0uMDEyLS44NjgtLjE4Mi0xLjEyLS41MDktLjI1MS0uMzI3LS4zNzctLjg0Ny0uMzc3LTEuNTYsMC0uNjM4LjEwOC0xLjEyOC4zMjMtMS40Ny4yMTctLjM0My41NjMtLjUxMiwxLjA0My0uNTA5LjE3OCwwLC4zMzQuMDI0LjQ3LjA3MS4xMzQuMDQ3LjI0OC4xMTcuMzM5LjIxMS4wOTEuMDkzLjE2LjIxLjIwOC4zNDguMDQ3LjEzOS4wNzUuMjk4LjA4Mi40NzZoMS41NzRjLjAyMy0uNDU5LS4wNjMtLjg3My0uMjU4LTEuMjQxLS4xOTYtLjM2OS0uNDk3LS42Ni0uOS0uODc0LS40MDMtLjIxMy0uOTA5LS4zMjEtMS41MTUtLjMyMS0uNjE0LDAtMS4xNDcuMTMzLTEuNTk5LjM5Ny0uNDUyLjI2NS0uNzk5LjY0OC0xLjA0MywxLjE0Ny0uMjQzLjQ5OS0uMzY2LDEuMDk3LS4zNjYsMS43OTQsMCwuNjcuMTE3LDEuMjYuMzU0LDEuNzY4LjIzNS41MDkuNTgzLjkwNSwxLjA0MywxLjE4OC40NTkuMjgzLDEuMDIuNDI1LDEuNjgxLjQyNXYuMDAyaDBaIiBmaWxsPSIjMjA0MjVmIi8+CiAgICA8cGF0aCBkPSJNMTU2Ljg4OSw2LjE2MWMuMTE5LS4yMzkuMjgzLS40NDMuNDk3LS42MTUuMjEyLS4xNzIuNDQ3LS4yNTkuNzA0LS4yNTkuMzY1LDAsLjYyMS4xMTguNzcuMzUxLjE0OS4yMzQuMjIzLjYyNC4yMjMsMS4xNzF2My43MDJoMS42NDZ2LTQuMjk2YzAtLjc4NS0uMTczLTEuMzY5LS41MjEtMS43NS0uMzQ2LS4zODMtLjgyMS0uNTc0LTEuNDIzLS41NzQtLjQ2NCwwLS44MzYuMDk5LTEuMTE3LjI5Ny0uMjgxLjE5OS0uNDkzLjQ1Ny0uNjM2Ljc3Ni0uMTMyLjI5Ny0uMjE5LjYxLS4yNy45MzlsLS4wMDQtLjAyNy4xMDEtMS44NDhWMS4yNDZoLTEuNjF2OS4yNjRoMS42NHYtNC4zNDloMFoiIGZpbGw9IiMyMDQyNWYiLz4KICAgIDxwYXRoIGQ9Ik0xNjMuOTksNi4xMTJjLjEwMy0uMjE4LjI2Mi0uNDExLjQ3OC0uNTc2LjIxNi0uMTY2LjQ1OC0uMjUuNzI4LS4yNS4yMjIsMCwuNDA0LjA0Ni41NS4xMzcuMTQ1LjA5MS4yNTQuMjQ3LjMyNy40NjZzLjExLjUyNi4xMS45MTh2My43MDJoMS42NHYtNC4yOTZjMC0uNzg1LS4xNzQtMS4zNjktLjUyMy0xLjc1LS4zNDktLjM4My0uODI0LS41NzQtMS40MjUtLjU3NC0uNDYsMC0uODMuMDk5LTEuMTA4LjI5Ny0uMjguMTk5LS40ODguNDU3LS42MjcuNzc2LS4xMTcuMjcxLS4xODUuNTYyLS4yMzcuODZsLS4xMTQtMS43OTZoLTEuNDQ1djYuNDgzaDEuNjQ2di00LjM5N2guMDAxLDBaIiBmaWxsPSIjMjA0MjVmIi8+CiAgICA8cGF0aCBkPSJNMTczLjA5Nyw4Ljc3NGMtLjI2NC4zMDItLjU5Ny40NTItMS4wMDIuNDUycy0uNzQxLS4xNTktMS4wMS0uNDc2Yy0uMjctLjMxNy0uNDA0LS44MjMtLjQwNC0xLjUyMSwwLS42ODEuMTMxLTEuMTc4LjM5Mi0xLjQ5Mi4yNjItLjMxNC41OTUtLjQ3Ljk5OS0uNDcuNDE1LDAsLjc1Ny4xNTcsMS4wMjIuNDcycy4zOTcuODExLjM5NywxLjQ4OGMwLC43MjktLjEzMiwxLjI0NC0uMzk1LDEuNTQ1aDB2LjAwMlpNMTczLjcyNyw0LjI5OGMtLjQ1NC0uMjY4LS45OTgtLjQwMS0xLjYzMS0uNDAxLS41ODYsMC0xLjExMS4xMzMtMS41NzQuNDAxLS40NjQuMjY4LS44MjcuNjUtMS4wOSwxLjE0OS0uMjY0LjQ5OS0uMzk1LDEuMDk0LS4zOTUsMS43ODMsMCwuNzI5LjEyNSwxLjM0NC4zNzQsMS44NDQuMjQ5LjUwMS42MDIuODgsMS4wNTcsMS4xMzguNDU1LjI1OC45OTEuMzg2LDEuNjA1LjM4Ni41NzksMCwxLjA5OC0uMTI4LDEuNTYtLjM4Ni40NjEtLjI1OC44MjctLjYzNywxLjA5Ni0xLjEzOC4yNy0uNTAxLjQwMy0xLjExNy40MDMtMS44NDQsMC0uNjg5LS4xMjEtMS4yODQtLjM2Mi0xLjc4My0uMjQyLS40OTktLjU5LS44ODMtMS4wNDMtMS4xNDloMFoiIGZpbGw9IiMyMDQyNWYiLz4KICAgIDxyZWN0IHg9IjE3Ni4zOTgiIHk9IjEuMjQ2IiB3aWR0aD0iMS42NDYiIGhlaWdodD0iOS4yNjQiIGZpbGw9IiMyMDQyNWYiLz4KICAgIDxwYXRoIGQ9Ik0xODMuMzUzLDguNzc0Yy0uMjY0LjMwMi0uNTk3LjQ1Mi0xLjAwMi40NTJzLS43NDEtLjE1OS0xLjAxLS40NzZjLS4yNy0uMzE3LS40MDUtLjgyMy0uNDA1LTEuNTIxLDAtLjY4MS4xMzEtMS4xNzguMzkyLTEuNDkyLjI2Mi0uMzEyLjU5NS0uNDcuOTk5LS40Ny40MTUsMCwuNzU3LjE1NywxLjAyMi40NzJzLjM5Ny44MTEuMzk3LDEuNDg4YzAsLjcyOS0uMTMyLDEuMjQ0LS4zOTUsMS41NDVoMGwuMDAyLjAwMlpNMTgzLjk4Myw0LjI5OGMtLjQ1NC0uMjY4LS45OTgtLjQwMS0xLjYzMS0uNDAxLS41ODYsMC0xLjExMS4xMzMtMS41NzQuNDAxLS40NjQuMjY4LS44MjcuNjUtMS4wOSwxLjE0OS0uMjY0LjQ5OS0uMzk1LDEuMDk0LS4zOTUsMS43ODMsMCwuNzI5LjEyNSwxLjM0NC4zNzQsMS44NDQuMjQ5LjUwMS42MDIuODgsMS4wNTcsMS4xMzguNDU1LjI1OC45OTEuMzg2LDEuNjA1LjM4Ni41NzksMCwxLjA5OC0uMTI4LDEuNTYtLjM4Ni40NjEtLjI1OC44MjctLjYzNywxLjA5Ni0xLjEzOC4yNy0uNTAxLjQwMy0xLjExNy40MDMtMS44NDQsMC0uNjg5LS4xMjEtMS4yODQtLjM2Mi0xLjc4My0uMjQyLS40OTktLjU5LS44ODMtMS4wNDMtMS4xNDloMFoiIGZpbGw9IiMyMDQyNWYiLz4KICAgIDxwYXRoIGQ9Ik0xOTAuNTIyLDguMzQ3Yy0uMDM1LjA4Ny0uMTAyLjE3OC0uMTk5LjI3LS4wOTcuMDkzLS4yMjkuMTcxLS4zOTUuMjMxLS4xNjYuMDYyLS4zNzIuMDkyLS42MTguMDkyLS40MTUsMC0uNzQyLS4xNTctLjk4LS40NzItLjIzNy0uMzE1LS4zNTYtLjc1OC0uMzU2LTEuMzI5LDAtLjY0Mi4xMjUtMS4xMTUuMzc0LTEuNDIxLjI0OS0uMzA1LjU4My0uNDU4Ljk5OC0uNDU4LjIyMywwLC40MTMuMDI5LjU3NC4wOS4xNi4wNTkuMjkxLjEzNC4zOTIuMjI1cy4xNzEuMTkzLjIxMS4zMDN2Mi40NjZsLS4wMDIuMDAyaC4wMDFaTTE5MC41MzksNC44ODljLS4wNjctLjE2Mi0uMTcyLS4zMTktLjMxMi0uNDctLjE0LS4xNS0uMzI2LS4yNzQtLjU1Ni0uMzcyLS4yMy0uMDk3LS41MTUtLjE0NS0uODU1LS4xNDUtLjQ2LDAtLjg3OC4xMjYtMS4yNTcuMzc3LS4zNzguMjUyLS42ODEuNjItLjkxLDEuMTA2cy0uMzQyLDEuMDg1LS4zNDIsMS43OTdjMCwuNDA4LjA1NC43OTguMTY0LDEuMTcuMTA5LjM3Mi4yNjguNzAyLjQ3OC45ODkuMjEuMjg3LjQ2Ni41MTQuNzY5LjY4MS4zMDMuMTY2LjY0OS4yNSwxLjAzNy4yNS4zNzcsMCwuNjg1LS4wNjIuOTI2LS4xODQuMjQyLS4xMjQuNDMtLjI5My41NjQtLjUwOXMuMjI1LS40NTguMjc0LS43Mjh2MS43OTVjMCwuMjc0LS4wMzIuNDk5LS4wOTYuNjc3LS4wNjMuMTc4LS4xNzcuMzEtLjM0Mi4zOTVzLS40MDEuMTI3LS43MS4xMjdjLS4zNCwwLS42MDEtLjA0Ni0uNzc5LS4xMzktLjE3OC0uMDkzLS4yOTctLjIxOS0uMzU2LS4zNzhzLS4wOS0uMzM5LS4wOS0uNTRoLTEuNTg3Yy0uMDUyLjQ5OS4wMzUuOTI4LjI1OCwxLjI4Ni4yMjMuMzU5LjU1NS42MzIuOTkyLjgyLjQzNy4xODguOTQ5LjI3OSwxLjUzNi4yNy41ODMtLjAwNywxLjA4MS0uMTA4LDEuNDk4LS4yOTkuNDE1LS4xOTMuNzM1LS40ODIuOTU5LS44NjhzLjMzNS0uODcxLjMzNS0xLjQ1M3YtNi41MTZoLTEuNTY4bC0uMDM1Ljg2MmguMDA1WiIgZmlsbD0iIzIwNDI1ZiIvPgogICAgPHBhdGggZD0iTTE5Ny4zMzcsNC4wMjdsLS43ODUsMy4yMzItLjQwMywxLjY3aC0uMDUzbC0uNDM0LTEuNjc2LS44MDgtMy4yMjZoLTEuNzk1bDIuMTQsNi40ODNoLjU5OWMtLjA3NS4wMzEtLjEzNy4wODQtLjE4OC4xNTctLjA1LjA3My0uMDk4LjE4NC0uMTQ1LjMzNS0uMDQuMTMxLS4wOTcuMjQyLS4xNzIuMzM1LS4wNzUuMDkyLS4xOS4xNjQtLjM0NC4yMTEtLjE1NS4wNDctLjM3NC4wNzEtLjY2LjA3MWgtLjYxMnYxLjQ1MWguNjEyYy40MDUsMCwuNzUzLS4wNTgsMS4wNDYtLjE3Ni4yOTMtLjExNy41NDQtLjI4Ny43NTItLjUwOXMuMzg4LS40OS41NC0uODA4Yy4xNTMtLjMxNy4yOTItLjY3My40MTktMS4wNjlsMi4wNzUtNi40ODNoLTEuNzg1di4wMDJaIiBmaWxsPSIjMjA0MjVmIi8+CiAgICA8cGF0aCBkPSJNMTQwLjE4LDIwLjg1NWgxLjYzNHYxLjMxOWMtLjEyNy4xMDctLjI4Mi4xOTUtLjQ2Ni4yNjRzLS4zODEuMTIxLS41OTEuMTU3Yy0uMjEuMDM1LS40MTguMDU1LS42MjQuMDU1LS41MTUsMC0uOTQ4LS4xMTQtMS4zMDEtLjM0Mi0uMzUyLS4yMjgtLjYxOC0uNTU3LS43OTYtLjk4OS0uMTc4LS40MzItLjI2OC0uOTU0LS4yNjgtMS41NjgsMC0uNDY0LjA1Mi0uODc0LjE1Ny0xLjIzM3MuMjU2LS42NjEuNDUyLS45MWMuMTk2LS4yNDcuNDMyLS40MzUuNzEtLjU2Mi4yNzctLjEyNy41ODktLjE5LjkzMy0uMTkuMjU4LDAsLjQ4Mi4wMzguNjc1LjExMy4xOTMuMDc1LjM1NS4xNzYuNDg3LjMuMTMzLjEyNS4yMzkuMjYyLjMxOS40MTEuMDc5LjE0OS4xMzMuMjk3LjE2LjQ0M2gxLjYzNWMtLjA0Ny0uNjMtLjIyNS0xLjE1NC0uNTM1LTEuNTcyLS4zMDktLjQxOC0uNzAyLS43MzEtMS4xOC0uOTQyLS40NzctLjIxLS45OTMtLjMxNS0xLjU0OC0uMzE1LS43OCwwLTEuNDY5LjE3Ny0yLjA2NS41MjktLjU5Ni4zNTItMS4wNjIuODYtMS4zOTYsMS41MjEtLjMzNi42NjEtLjUwMywxLjQ1Ni0uNTAzLDIuMzgyLDAsLjkzOS4xNzEsMS43NDMuNTE0LDIuNDEyLjM0My42Ny44MTgsMS4xODIsMS40MjMsMS41MzkuNjA2LjM1NiwxLjMwNy41MzUsMi4xMDQuNTM1LjY1NCwwLDEuMjQ3LS4xMDcsMS43ODMtLjMxOS41MzQtLjIxMiwxLjAzMi0uNDkxLDEuNDkyLS44MzRsLjAwNi0zLjYyNWgtMy4yMDl2MS40MjFoLS4wMDJaIiBmaWxsPSIjMjA0MjVmIi8+CiAgICA8cGF0aCBkPSJNMTQ4LjE3MywxNy40NzRjLS4yOTcsMC0uNTU2LjA2Mi0uNzc2LjE4NC0uMjE5LjEyNC0uNDAzLjI5Mi0uNTUyLjUwNS0uMTQ5LjIxNC0uMjY1LjQ1OC0uMzUuNzMxLS4wNTEuMTYxLS4wNzQuMzQtLjEwNy41MTJsLS4xMS0xLjc5NmgtMS40NDV2Ni40ODNoMS42NDZ2LTQuMjY3Yy4wNzktLjE1LjE4OC0uMjc2LjMyNy0uMzc4LjEzOS0uMTAxLjI5Ny0uMTc2LjQ3Ni0uMjI2LjE3OC0uMDUuMzYtLjA3NC41NDYtLjA3NC4xMjcsMCwuMjU4LjAwNy4zOTUuMDIxLjEzNy4wMTUuMjcyLjA0MS40MDcuMDh2LTEuNzIzYy0uMDYzLS4wMTktLjEzNi0uMDM0LS4yMTctLjA0MS0uMDgxLS4wMDktLjE2Mi0uMDEyLS4yNDEtLjAxMmguMDAxWiIgZmlsbD0iIzIwNDI1ZiIvPgogICAgPHBhdGggZD0iTTE1My4yOCwyMi4zNTljLS4yNjQuMzAyLS41OTcuNDUyLTEuMDAyLjQ1MnMtLjc0MS0uMTU5LTEuMDEtLjQ3NmMtLjI3LS4zMTctLjQwNC0uODIzLS40MDQtMS41MjEsMC0uNjgxLjEzMS0xLjE3OC4zOTItMS40OTIuMjYyLS4zMTIuNTk1LS40Ny45OTktLjQ3LjQxNSwwLC43NTcuMTU3LDEuMDIyLjQ3MnMuMzk3LjgxLjM5NywxLjQ4OGMwLC43MjktLjEzMiwxLjI0NC0uMzk1LDEuNTQ1aDB2LjAwMlpNMTUzLjkxLDE3Ljg4MmMtLjQ1NC0uMjY4LS45OTgtLjQwMS0xLjYzMS0uNDAxLS41ODYsMC0xLjExMS4xMzMtMS41NzQuNDAxLS40NjQuMjY4LS44MjcuNjUtMS4wOSwxLjE0OS0uMjY0LjQ5OS0uMzk1LDEuMDk0LS4zOTUsMS43ODMsMCwuNzI5LjEyNSwxLjM0NC4zNzQsMS44NDQuMjQ5LjUwMS42MDIuODgsMS4wNTcsMS4xMzguNDU1LjI1OC45OTEuMzg2LDEuNjA1LjM4Ni41NzksMCwxLjA5OC0uMTI4LDEuNTYtLjM4Ni40NjEtLjI1OC44MjctLjYzNywxLjA5Ni0xLjEzOC4yNy0uNTAxLjQwMy0xLjExNy40MDMtMS44NDQsMC0uNjg5LS4xMjEtMS4yODQtLjM2Mi0xLjc4M3MtLjU5LS44ODMtMS4wNDMtMS4xNDloMFoiIGZpbGw9IiMyMDQyNWYiLz4KICAgIDxwYXRoIGQ9Ik0xNjAuMzAxLDIyLjAwMmMtLjA5OS4yMTgtLjI1OC40MTEtLjQ3OC41NzYtLjIxOS4xNjYtLjQ2NC4yNS0uNzM0LjI1LS4yMDIsMC0uMzcyLS4wNDQtLjUwOS0uMTMxLS4xMzctLjA4Ny0uMjM5LS4yMzUtLjMwNi0uNDQyLS4wNjctLjIwOC0uMTAxLS40OTMtLjEwMS0uODUzdi0zLjc5OGgtMS42NDZ2NC4zMDJjMCwuNzY0LjE2NiwxLjM0Mi40OTksMS43MzIuMzMzLjM5MS43ODYuNTg2LDEuMzYxLjU4Ni40NzEsMCwuODQ4LS4xMDEsMS4xMjktLjMuMjgxLS4yLjQ5Mi0uNDU4LjYzMy0uNzc1LjExNS0uMjU5LjE5LS41MzUuMjQzLS44MjFsLjExNSwxLjc2NmgxLjQzM3YtNi40ODloLTEuNjR2NC4zOTdoLjAwMVoiIGZpbGw9IiMyMDQyNWYiLz4KICAgIDxwYXRoIGQ9Ik0xNjcuMzc3LDIyLjM4NmMtLjI0OS4zMjMtLjU4NS40ODQtMS4wMDUuNDg0LS4yMjksMC0uNDI2LS4wMjktLjU4OS0uMDg2LS4xNjItLjA1Ny0uMjkxLS4xMzctLjM4Ni0uMjM3LS4wOTYtLjEwMS0uMTU5LS4yMTQtLjE5LS4zNDJ2LTIuNzMzYy4wMjQtLjA4Ny4wODUtLjE3Ny4xODQtLjI3cy4yMzUtLjE3My40MDctLjI0MWMuMTcyLS4wNjguMzc5LS4xMDIuNjIxLS4xMDIuNDEyLDAsLjczNi4xNjYuOTc1LjQ5OS4yMzcuMzMzLjM1Ni44MjIuMzU2LDEuNDY4LDAsLjcxNy0uMTI1LDEuMjM4LS4zNzQsMS41NmguMDAxLDBaTTE2OC4zMDUsMTcuOTAyYy0uMzU2LS4yNzctLjc5MS0uNDE1LTEuMzAxLS40MTUtLjI5NywwLS41NTMuMDQ0LS43NjcuMTMxcy0uMzkxLjIwMy0uNTMyLjM1Yy0uMTQxLjE0Ny0uMjUxLjMxLS4zMjkuNDktLjA3OS4xOC0uMTM0LjM2My0uMTY2LjU1di0uNDM0bC0uMDI5LS45NjNoLTEuNjA1djguODc3aDEuNjM0di0yLjM4OGwtLjA3Ny0xLjE1M2MuMDQuMTg2LjEyNi4zNzMuMjU4LjU2MS4xMzMuMTg4LjMyMy4zNDYuNTcuNDcyLjI0Ny4xMjcuNTU2LjE5LjkyNC4xOS4zNDksMCwuNjc2LS4wNzMuOTgtLjIxOS4zMDUtLjE0Ny41NzMtLjM2My44MDItLjY1LjIzLS4yODcuNDExLS42NDIuNTQxLTEuMDYzLjEzMS0uNDIzLjE5Ni0uOTEuMTk2LTEuNDY1LDAtLjY0OS0uMDk0LTEuMjIxLS4yODItMS43MTUtLjE4OC0uNDkzLS40Ni0uODc4LS44MTgtMS4xNTVoMFoiIGZpbGw9IiMyMDQyNWYiLz4KICAgIDxsaW5lIHgxPSIxMjIuOTI0IiB5MT0iLjg3OCIgeDI9IjEyMi45MjQiIHkyPSIyNi4xMjEiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzIwNDI1ZiIgc3Ryb2tlLXdpZHRoPSIxLjQ3MyIvPgogIDwvZz4KICA8Zz4KICAgIDxwYXRoIGQ9Ik03Ni42MDgsMjYuNDc4aDYuNDExdi0xLjcxNGgtNC41MnYtOC45MzFoLTEuODkxdjEwLjY0NFpNODUuMzA4LDI2LjQ3OGgzLjk2OGMyLjU1MywwLDUuNjMyLTEuNjgzLDUuNjMyLTUuMzE4cy0yLjYxNC01LjMxOC01LjQwOS01LjMxOGgtNC4xNjVsLS4wMjYsMTAuNjM3Wk04Ny4yLDI0Ljc2NHYtNy4yMTdoMS43MjVjMi4zMTUsMCwzLjk5OCwxLjAyMSwzLjk5OCwzLjYwNXMtMS45NCwzLjYwNS00LjMxMiwzLjYwNWwtMS40MTEuMDA4WiIgZmlsbD0iI2I1ODEyZSIvPgogICAgPHBhdGggZD0iTTYyLjY2NiwyMS4yODFjMCwzLjMxNywyLjM0MSw1LjU0MSw1LjYxNyw1LjU0MSwzLjMxNy0uMDYxLDUuNjc0LTIuMjcsNS42NzQtNS42MDIsMC0zLjQwNC0yLjM0NS01LjYzMi01LjY3NC01LjU3Mi0zLjI3NiwwLTUuNjE3LDIuMjItNS42MTcsNS42MzJNNjQuNjQ4LDIxLjE2YzAtMi4xMTgsMS40NTYtMy43ODMsMy42NS0zLjc4M3MzLjY2NSwxLjY4MywzLjY2NSwzLjc4M2MwLDIuMjctMS40NiwzLjk0OS0zLjY2NSwzLjk0OXMtMy42NS0xLjY4My0zLjY1LTMuOTQ5IiBmaWxsPSIjYjU4MTJlIi8+CiAgICA8cGF0aCBkPSJNNjAuMDE0LDIwLjI1MmgtNC4wN3YxLjcxaDIuMTc1djIuNTEyYy0uNzcxLjM5Mi0xLjYyOC41ODItMi40OTMuNTUyLTIuMTksMC0zLjY1LTEuNjc5LTMuNjUtMy45NDksMC0yLjExOCwxLjQ2LTMuNzgzLDMuNjUtMy43ODMsMS4wMjUtLjAyMiwyLjAyLjM0OSwyLjc4LDEuMDM2bDEuMzk2LTEuNDE1Yy0xLjExMi0uOTkxLTIuNTY4LTEuMzM1LTQuMTkxLTEuMzM1LTMuMjcyLDAtNS42MTcsMi4yMjQtNS42MTcsNS42MzIsMCwzLjMxNywyLjM0NSw1LjU0MSw1LjYxNyw1LjU0MSwxLjUzMi4wMjIsMy4wNDYtLjM0LDQuNDAzLTEuMDUydi01LjQ1MVoiIGZpbGw9IiNiNTgxMmUiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iMTA3Ljc5MiAyLjA4OCAxMDUuMzExIDYuMDI2IDEwMi44MDMgMi4wODggMTAwLjQxNiAyLjA4OCAxMDMuOTYgNy4xNjggMTAwLjE3NCAxMi43MjUgMTAyLjQ1OSAxMi43MjUgMTA1LjI1NCA4LjIzMSAxMDguMDYxIDEyLjcyNSAxMTAuNDYyIDEyLjcyNSAxMDYuNjA0IDcuMTY4IDExMC4wODggMi4wODggMTA3Ljc5MiAyLjA4OCIgZmlsbD0iIzIxNDE1ZSIvPgogICAgPHBhdGggZD0iTTM0LjkzNiwxMi43MjVoNy4zMTJ2LTEuNzE0aC01LjQydi0yLjg4Mmg0Ljg4M3YtMS42OThoLTQuODgzdi0yLjYyOWg1LjE1MnYtMS43MTRoLTcuMDQzdjEwLjYzN1pNNTYuNDUxLDExLjIxMmgtMy4wNDl2LS4wM2MxLjQ0My0uNzk5LDIuMzEtMi4zNDYsMi4yMzYtMy45OTQsMC0zLjEyNC0yLjU1My01LjM2NC01LjU4Ny01LjM2NHMtNS41NjgsMi4yMzYtNS41NjgsNS4zNjRjMCwzLjQ1MywyLjQ5Myw1LjU0MSw1Ljc5OSw1LjU0MWg2LjE4OGwtLjAxOS0xLjUxN1pNNTAuMDIxLDMuNTUyYzEuOTU3LS4wNiwzLjU5MSwxLjQ3NywzLjY1MiwzLjQzNC4wMDMuMDg2LjAwMi4xNzItLjAwMS4yNTgsMCwyLjE3OS0xLjUxMywzLjc4My0zLjYyLDMuNzgzcy0zLjU5LTEuNjA4LTMuNTktMy43ODNjMC0yLjExNCwxLjUxMy0zLjY5MiwzLjU1OS0zLjY5Mk02Ny4yODQsMi4xMDdoLTEuODkxdjYuNjVjMCwxLjA1Mi0uNTcxLDIuNDM2LTIuMzkxLDIuNDM2cy0yLjM4Ny0xLjM4NC0yLjM4Ny0yLjQzNlYyLjA4OGgtMS44OTF2Ni43MjljMCwyLjU2OCwxLjg0Niw0LjE2MSw0LjI3OCw0LjE2MXM0LjI4Mi0xLjYwOCw0LjI4Mi00LjE2MVYyLjEwN1pNNzAuNDkyLDEyLjc0M2gxLjg5MVYyLjA4OGgtMS44OTF2MTAuNjU2Wk03NS42MzMsMTIuNzQzaDEuODkxVjQuNTY5aC4wMjZsNS4yNTgsOC4xNTVoMi40MDZWMi4wODhoLTEuODkxdjcuOTAyaC0uMDNsLTUuMTY3LTcuOTAyaC0yLjUwOGwuMDE1LDEwLjY1NloiIGZpbGw9IiMyMTQxNWUiLz4KICAgIDxwYXRoIGQ9Ik04Ny45NTIsNy4zNTdjMCwzLjQwNCwyLjM5NCw1LjY3NCw1Ljc0Niw1LjY3NCwzLjQwNC0uMDYxLDUuNzkxLTIuMzM0LDUuNzkxLTUuNzI3LDAtMy40ODgtMi4zOTgtNS43NjEtNS43OTEtNS43LTMuMzUxLDAtNS43NDYsMi4yNy01Ljc0Niw1Ljc2MU04OS45OCw3LjI0YzAtMi4xNjQsMS40OS0zLjg4NSwzLjczMy0zLjg4NXMzLjc0OSwxLjcyMSwzLjc0OSwzLjg4NWMwLDIuMzIyLTEuNDksNC4wNC0zLjc0OSw0LjA0cy0zLjczMy0xLjcxNy0zLjczMy00LjA0IiBmaWxsPSIjMjE0MTVlIi8+CiAgICA8ZyBjbGlwLXBhdGg9InVybCgjY2xpcHBhdGgpIj4KICAgICAgPHBhdGggZD0iTTg3Ljk1Miw3LjM0NmMwLDMuNDA0LDIuMzk4LDUuNjc0LDUuNzQ2LDUuNjc0LDMuNDA0LS4wNjEsNS43OTEtMi4zMzQsNS43OTEtNS43MjcsMC0zLjQ4OC0yLjM5NC01Ljc2MS01Ljc5MS01LjctMy4zNDgsMC01Ljc0NiwyLjI3LTUuNzQ2LDUuNzYxTTg5Ljk4NCw3LjIyOGMwLTIuMTY0LDEuNDg3LTMuODg1LDMuNzMtMy44ODVzMy43NDksMS43MjEsMy43NDksMy44ODVjMCwyLjMxOS0xLjQ5LDQuMDQtMy43NDksNC4wNHMtMy43My0xLjcyMS0zLjczLTQuMDQiIGZpbGw9IiNiNTgxMmUiLz4KICAgIDwvZz4KICAgIDxnIGNsaXAtcGF0aD0idXJsKCNjbGlwcGF0aC0xKSI+CiAgICAgIDxyZWN0IHg9Ii0uMDg0IiB5PSI0LjQ5NCIgd2lkdGg9IjE4Ljg0NSIgaGVpZ2h0PSIxNy42OCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUuODggNy41NTUpIHJvdGF0ZSgtMzQuMikiIGZpbGw9InVybCgjbGluZWFyLWdyYWRpZW50KSIvPgogICAgPC9nPgogICAgPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBwYXRoLTIpIj4KICAgICAgPHJlY3QgeD0iLTMuMDMxIiB5PSI5Ljc5MSIgd2lkdGg9IjE5LjMzMyIgaGVpZ2h0PSIyMS4xMjkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC04LjExNyA0LjgzOSkgcm90YXRlKC0yNS41KSIgZmlsbD0idXJsKCNsaW5lYXItZ3JhZGllbnQxKSIvPgogICAgPC9nPgogICAgPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBwYXRoLTMpIj4KICAgICAgPHJlY3QgeD0iNi45NDIiIHk9IjExLjA3NyIgd2lkdGg9IjE4LjEiIGhlaWdodD0iMTguMzg3IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtOS4yMTkgMjUuODQ2KSByb3RhdGUoLTY0LjIpIiBmaWxsPSJ1cmwoI2xpbmVhci1ncmFkaWVudDIpIi8+CiAgICA8L2c+CiAgICA8ZyBjbGlwLXBhdGg9InVybCgjY2xpcHBhdGgtNCkiPgogICAgICA8cmVjdCB4PSIxMy4xNTciIHk9IjguNTA3IiB3aWR0aD0iMjEuMDgiIGhlaWdodD0iMTkuNzk0IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNC44OTMgMjcuNTA5KSByb3RhdGUoLTU1LjUpIiBmaWxsPSJ1cmwoI2xpbmVhci1ncmFkaWVudDMpIi8+CiAgICA8L2c+CiAgICA8ZyBjbGlwLXBhdGg9InVybCgjY2xpcHBhdGgtNSkiPgogICAgICA8cmVjdCB4PSIxMy4zNTEiIHk9IjIuOTEzIiB3aWR0aD0iMTIuNTU0IiBoZWlnaHQ9IjE2LjUyNiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLS43NjYgMS40NjgpIHJvdGF0ZSgtNC4yKSIgZmlsbD0idXJsKCNsaW5lYXItZ3JhZGllbnQ0KSIvPgogICAgPC9nPgogICAgPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXBwYXRoLTYpIj4KICAgICAgPHJlY3QgeD0iOC43MjgiIHk9Ii01LjIxMiIgd2lkdGg9IjkuNzc4IiBoZWlnaHQ9IjE4LjgyNiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOC4zNjEgMTcuNDQ2KSByb3RhdGUoLTg1LjUpIiBmaWxsPSJ1cmwoI2xpbmVhci1ncmFkaWVudDUpIi8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K";
+let LOGO = DEFAULT_LOGO; // dataURL
+
+function slotId(kind, idx){ return kind+'-'+idx; }
+
+/* build/refresh the image-slot list in the editor from PARSED */
+function rebuildImageSlots(){
+  const wrap = document.getElementById('imageSlots');
+  wrap.innerHTML = '';
+  const slots = [];
+  PARSED.sections.highlights.forEach((_,i)=> slots.push({id:slotId('hl',i), name:'Highlight '+(i+1)+' photo'}));
+  PARSED.sections.activities.forEach((a,i)=> slots.push({id:slotId('act',i), name:(a.heading||'Activity '+(i+1))+' — sidebar image'}));
+  if (PARSED.sections.risks.length) slots.push({id:'risks', name:PARSED.meta.labels.risks+' — sidebar image'});
+  if (PARSED.sections.nextSteps.length) slots.push({id:'nextsteps', name:PARSED.meta.labels.nextSteps+' — sidebar image'});
+
+  slots.forEach(s=>{
+    const row = document.createElement('div');
+    row.className='imgslot';
+    const hasImg = IMAGES[s.id];
+    const fit = FITS[s.id] || 'cover';
+    row.innerHTML = `
+      <div class="thumb" id="thumb-${s.id}">${hasImg?`<img src="${hasImg}">`:'none'}</div>
+      <div class="meta"><div class="name">${s.name}</div></div>
+      ${hasImg?`<div class="fittoggle">
+        <button type="button" data-fit="${s.id}" data-mode="cover" class="${fit==='cover'?'active':''}">Fill</button>
+        <button type="button" data-fit="${s.id}" data-mode="contain" class="${fit==='contain'?'active':''}">Fit</button>
+      </div>`:''}
+      <label class="upload button">Upload<input type="file" accept="image/*" data-slot="${s.id}"></label>
+      ${hasImg?`<button class="clear" data-clear="${s.id}">Clear</button>`:''}
+    `;
+    wrap.appendChild(row);
+  });
+
+  wrap.querySelectorAll('input[type=file]').forEach(inp=>{
+    inp.addEventListener('change', e=>{
+      const f = e.target.files[0]; if(!f) return;
+      const reader = new FileReader();
+      reader.onload = ev=>{ IMAGES[e.target.dataset.slot]=ev.target.result; rebuildImageSlots(); renderAll(); };
+      reader.readAsDataURL(f);
+    });
+  });
+  wrap.querySelectorAll('button[data-clear]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ delete IMAGES[btn.dataset.clear]; delete FITS[btn.dataset.clear]; rebuildImageSlots(); renderAll(); });
+  });
+  wrap.querySelectorAll('button[data-fit]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{ FITS[btn.dataset.fit]=btn.dataset.mode; rebuildImageSlots(); renderAll(); });
+  });
+}
+
+/* ============================================================
+   ICONS
+   ============================================================ */
+const ICONS = {
+  star:`<svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M320.1 32C329.1 32 337.4 37.1 341.5 45.1L415 189.3L574.9 214.7C583.8 216.1 591.2 222.4 594 231C596.8 239.6 594.5 249 588.2 255.4L473.7 369.9L499 529.8C500.4 538.7 496.7 547.7 489.4 553C482.1 558.3 472.5 559.1 464.4 555L320.1 481.6L175.8 555C167.8 559.1 158.1 558.3 150.8 553C143.5 547.7 139.8 538.8 141.2 529.8L166.4 369.9L52 255.4C45.6 249 43.4 239.6 46.2 231C49 222.4 56.4 216.1 65.3 214.7L225.2 189.3L298.8 45.1C302.9 37.1 311.2 32 320.2 32zM253.6 203.8C248.9 212.9 240.2 219.3 230.1 220.9L85.7 243.8L189.1 347.3C196.3 354.5 199.7 364.8 198.1 374.9L175.3 519.3L305.6 453C314.7 448.4 325.5 448.4 334.6 453L464.9 519.3L442.1 374.9C440.5 364.8 443.8 354.5 451.1 347.3L554.4 243.8L410 220.9C399.9 219.3 391.2 212.9 386.5 203.8L320.1 73.6L253.6 203.8zM320.1 416C306.8 416 296.1 405.3 296.1 392C296.1 378.7 306.8 368 320.1 368C333.4 368 344.1 378.7 344.1 392C344.1 405.3 333.4 416 320.1 416zM320.1 192C333.7 192 344.4 203.6 343.5 217.1L336.1 321.1C335.5 329.5 328.5 336 320.1 336C311.7 336 304.7 329.5 304.1 321.1L296.7 217.1C295.7 203.5 306.5 192 320.1 192z"/></svg>`,
+  key:`<svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M256 240C256 160.5 320.5 96 400 96C479.5 96 544 160.5 544 240C544 319.5 479.5 384 400 384C388.9 384 378 382.7 367.6 380.4C362.2 379.2 356.6 380.8 352.7 384.7L321.4 416L272 416C263.2 416 256 423.2 256 432L256 480L208 480C199.2 480 192 487.2 192 496L192 544L96 544L96 462.6L258.8 299.8C263 295.6 264.5 289.3 262.7 283.6C258.3 269.8 256 255.2 256 239.9zM400 64C302.8 64 224 142.8 224 240C224 255.1 225.9 269.8 229.5 283.9L68.7 444.7C65.7 447.7 64 451.8 64 456L64 560C64 568.8 71.2 576 80 576L208 576C216.8 576 224 568.8 224 560L224 512L272 512C280.8 512 288 504.8 288 496L288 448L328 448C332.2 448 336.3 446.3 339.3 443.3L369.3 413.3C379.3 415.1 389.5 416 400 416C497.2 416 576 337.2 576 240C576 142.8 497.2 64 400 64zM432 232C445.3 232 456 221.3 456 208C456 194.7 445.3 184 432 184C418.7 184 408 194.7 408 208C408 221.3 418.7 232 432 232z"/></svg>`,
+  warning:`<svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M320.5 64C335.2 64 348.7 72.1 355.7 85L571.7 485C578.4 497.4 578.1 512.4 570.9 524.5C563.7 536.6 550.6 544 536.5 544L104.5 544C90.4 544 77.4 536.6 70.2 524.5C63 512.4 62.7 497.4 69.4 485L285.4 85C292.4 72.1 305.9 64 320.6 64zM320.5 96C317.6 96 314.9 97.6 313.5 100.2L97.5 500.2C96.2 502.7 96.2 505.7 97.7 508.1C99.2 510.5 101.8 512 104.6 512L536.6 512C539.4 512 542 510.5 543.5 508.1C545 505.7 545 502.7 543.7 500.2L327.7 100.2C326.3 97.6 323.6 96 320.7 96zM320.5 464C307.2 464 296.5 453.3 296.5 440C296.5 426.7 307.2 416 320.5 416C333.8 416 344.5 426.7 344.5 440C344.5 453.3 333.8 464 320.5 464zM320.5 240C334.1 240 344.8 251.6 343.9 265.1L336.5 369.1C335.9 377.5 328.9 384 320.5 384C312.1 384 305.1 377.5 304.5 369.1L297.1 265.1C296.1 251.5 306.9 240 320.5 240z"/></svg>`,
+  arrow:`<svg viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M160 128C142.3 128 128 142.3 128 160L128 480C128 497.7 142.3 512 160 512L480 512C497.7 512 512 497.7 512 480L512 160C512 142.3 497.7 128 480 128L160 128zM96 160C96 124.7 124.7 96 160 96L480 96C515.3 96 544 124.7 544 160L544 480C544 515.3 515.3 544 480 544L160 544C124.7 544 96 515.3 96 480L96 160zM339.3 403.3C333.1 409.5 322.9 409.5 316.7 403.3C310.5 397.1 310.5 386.9 316.7 380.7L361.4 336L240 336C231.2 336 224 328.8 224 320C224 311.2 231.2 304 240 304L361.4 304L316.7 259.3C310.5 253.1 310.5 242.9 316.7 236.7C322.9 230.5 333.1 230.5 339.3 236.7L411.3 308.7C417.5 314.9 417.5 325.1 411.3 331.3L339.3 403.3z"/></svg>`
+};
+
+const LOGOMARK_SVG = `<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="16" cy="20" r="10" fill="none" stroke="#c8952e" stroke-width="3"/>
+  <circle cx="26" cy="20" r="10" fill="none" stroke="#1c3a4b" stroke-width="3"/>
+</svg>`;
+
+/* ============================================================
+   RENDER HELPERS (used for BOTH measuring and final paint)
+   ============================================================ */
+function tileHTML(dataUrl, label, cls, fit){
+  if (dataUrl) return `<div class="${cls}" style="background-image:url('${dataUrl}');background-size:${fit==='contain'?'contain':'cover'};"></div>`;
+  return '';
+}
+
+function highlightHTML(text, imgSlot){
+  const hasImg = !!IMAGES[imgSlot];
+  return `<div class="highlight${hasImg?'':' noside'}">
+    ${tileHTML(IMAGES[imgSlot], 'image', 'tile', FITS[imgSlot])}
+    <div class="txt">${text}</div>
+  </div>`;
+}
+
+function activityHTML(a, imgSlot){
+  const hasImg = !!IMAGES[imgSlot];
+  const side = tileHTML(IMAGES[imgSlot], a.heading || 'reference', 'sidetile', FITS[imgSlot]);
+  return `<div class="withside${hasImg?'':' noside'}">
+    <div>
+      ${a.heading?`<div class="actheading">${a.heading}</div>`:''}
+      <ul class="bullets">${a.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+    </div>
+    ${side}
+  </div>`;
+}
+
+function riskOrStepsHTML(bullets, imgSlot, label){
+  const hasImg = !!IMAGES[imgSlot];
+  const side = tileHTML(IMAGES[imgSlot], label, 'sidetile', FITS[imgSlot]);
+  return `<div class="withside${hasImg?'':' noside'}">
+    <div><ul class="bullets">${bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div>
+    ${side}
+  </div>`;
+}
+
+function headingHTML(label, icon, continued){
+  const contHTML = continued ? `<span class="cont"><span class="contbar">|</span>Continued</span>` : '';
+  return `<div class="sechead"><h2>${label}${contHTML}</h2><div class="iconwrap">${ICONS[icon]}</div></div><hr class="sechead-rule">`;
+}
+
+/* ============================================================
+   MEASUREMENT
+   ============================================================ */
+let PXPERMM = null;
+function computePxPerMm(){
+  const d = document.createElement('div');
+  d.style.height='200mm'; d.style.position='absolute'; d.style.visibility='hidden';
+  document.body.appendChild(d);
+  PXPERMM = d.getBoundingClientRect().height/200;
+  d.remove();
+}
+
+function measureHTML(html){
+  const box = document.getElementById('measure');
+  box.innerHTML = html;
+  const h = box.getBoundingClientRect().height;
+  box.innerHTML = '';
+  return h;
+}
+
+/* ============================================================
+   PAGINATION + FULL BUILD
+   ============================================================ */
+function buildDocument(){
+  // Fixed identity for this report — it's always the same company, group and title.
+  const companyName = 'Equinox Gold';
+  const groupName = 'Technology Group';
+  const reportTitle = 'Technology Group Weekly Report';
+  const weekEnding = PARSED.meta.weekEnding || '';
+
+  const brandHTML = LOGO
+    ? `<img class="logo-img" src="${LOGO}">`
+    : `<div class="logomark">${LOGOMARK_SVG}</div><div class="brandtext"><div class="l1">${companyName.toUpperCase()}</div><div class="l2">${groupName}</div></div>`;
+
+  const coverHeaderHTML = `<div class="hdr-cover">
+      <div class="logorow">${brandHTML}</div>
+      <hr class="rule">
+      <div class="titlerow">
+        <h1>Technology Group<br>Weekly Report</h1>
+        <div class="weekrow">Week Ending <b>${weekEnding}</b></div>
+      </div>
+      <hr class="rule">
+    </div>`;
+
+  const barHeaderHTML = `<div class="hdr-bar">
+      <div class="logorow">${LOGO?`<img class="logo-img-sm" src="${LOGO}">`:`<div class="logomark">${LOGOMARK_SVG}</div><div class="brandtext"><div class="l1">${companyName.toUpperCase()}</div><div class="l2">${groupName}</div></div>`}</div>
+      <div class="titlebar"><div class="doctitle">${reportTitle}</div><div class="weeklabel">Week Ending <b>${weekEnding}</b></div></div>
+    </div>`;
+
+  const footerHTML = (n,total)=>`<div class="foot"><hr class="fline"><div class="pn">${n}/${total}</div></div>`;
+
+  // ---- measurement setup ----
+  computePxPerMm();
+  const PAGE_H_MM = 297;
+  const coverHeaderH = measureHTML(coverHeaderHTML) / PXPERMM;
+  const barHeaderH = measureHTML(barHeaderHTML) / PXPERMM;
+  const footerH = 10; // reserved mm incl. divider + number, matches CSS bottom offset
+  const firstAvail = PAGE_H_MM - coverHeaderH - footerH - 2;
+  const otherAvail = PAGE_H_MM - barHeaderH - footerH - 2;
+
+  // ---- build section block lists ----
+  const secList = [];
+
+  secList.push({
+    label:PARSED.meta.labels.highlights, icon:'star',
+    blocks: PARSED.sections.highlights.map((text,i)=>({
+      html: highlightHTML(text, slotId('hl',i)), splitKind:'highlight', raw:text, slot:slotId('hl',i)
+    }))
+  });
+
+  if (PARSED.sections.activities.length){
+    secList.push({
+      label:PARSED.meta.labels.activities, icon:'key',
+      blocks: PARSED.sections.activities.map((a,i)=>({
+        html: activityHTML(a, slotId('act',i)), splitKind:'activity', raw:a, slot:slotId('act',i)
+      }))
+    });
+  }
+
+  if (PARSED.sections.risks.length){
+    secList.push({
+      label:PARSED.meta.labels.risks, icon:'warning',
+      blocks: [{ html: riskOrStepsHTML(PARSED.sections.risks, 'risks', 'reference'), splitKind:'bulletgroup', raw:PARSED.sections.risks, slot:'risks' }]
+    });
+  }
+
+  if (PARSED.sections.nextSteps.length){
+    secList.push({
+      label:PARSED.meta.labels.nextSteps, icon:'arrow',
+      blocks: [{ html: riskOrStepsHTML(PARSED.sections.nextSteps, 'nextsteps', 'reference'), splitKind:'bulletgroup', raw:PARSED.sections.nextSteps, slot:'nextsteps' }]
+    });
+  }
+
+  // ---- helper: split an oversize block's bullets into page-sized chunks ----
+  function splitBulletBlock(block, maxHeightMm, rebuildFn){
+    const bullets = block.raw;
+    const chunks = [];
+    let chunk = [];
+    for (const b of bullets){
+      const testHtml = rebuildFn(chunk.concat([b]), block.slot);
+      const h = measureHTML(testHtml)/PXPERMM;
+      if (h > maxHeightMm && chunk.length){
+        chunks.push(chunk); chunk=[b];
+      } else {
+        chunk.push(b);
+      }
+    }
+    if (chunk.length) chunks.push(chunk);
+    return chunks.map((c,i)=>({ html: rebuildFn(c, i===0?block.slot:null), splitKind:'bulletgroup', raw:c, slot:i===0?block.slot:null }));
+  }
+
+  // ---- pagination ----
+  const pages = [];
+  let cur = [];
+  let curH = 0;
+  let avail = firstAvail;
+  const started = new Set();
+
+  function flush(){
+    pages.push(cur);
+    cur = []; curH = 0; avail = otherAvail;
+  }
+
+  secList.forEach((sec, si)=>{
+    let blocks = sec.blocks.slice();
+    for (let bi=0; bi<blocks.length; bi++){
+      let block = blocks[bi];
+      let blockH = measureHTML(block.html)/PXPERMM;
+
+      // oversize fallback: split bullet-group blocks that alone exceed a full page
+      if (block.splitKind==='bulletgroup' && blockH > otherAvail - measureHTML(headingHTML(sec.label, sec.icon))/PXPERMM){
+        const rebuildFn = (arr, slot)=> riskOrStepsHTML(arr, slot, 'reference');
+        const pieces = splitBulletBlock(block, otherAvail - measureHTML(headingHTML(sec.label, sec.icon))/PXPERMM - 5, rebuildFn);
+        blocks.splice(bi,1,...pieces);
+        bi--; continue;
+      }
+
+      const needsHeading = !started.has(si) || (cur.length===0);
+      const headingHtml = headingHTML(sec.label, sec.icon, started.has(si));
+      const headingH = needsHeading ? measureHTML(headingHtml)/PXPERMM : 0;
+
+      if (curH + headingH + blockH > avail && cur.length>0){
+        flush();
+      }
+      // recompute heading requirement/label fresh for the (possibly new) page
+      const needsHeadingNow = !started.has(si) || cur.length===0;
+      const headingHtmlNow = headingHTML(sec.label, sec.icon, started.has(si));
+      const headingHNow = needsHeadingNow ? measureHTML(headingHtmlNow)/PXPERMM : 0;
+
+      if (needsHeadingNow){
+        cur.push(headingHtmlNow);
+        curH += headingHNow;
+        started.add(si);
+      }
+      cur.push(block.html);
+      curH += blockH;
+    }
+  });
+  if (cur.length) pages.push(cur);
+  if (!pages.length) pages.push([]);
+
+  // ---- paint ----
+  const container = document.getElementById('pages');
+  container.innerHTML = '';
+  pages.forEach((blocks, idx)=>{
+    const isFirst = idx===0;
+    const pageEl = document.createElement('div');
+    pageEl.className = 'page';
+    pageEl.innerHTML = `
+      ${isFirst ? coverHeaderHTML : barHeaderHTML}
+      <div class="content" style="top:${(isFirst?coverHeaderH:barHeaderH)}mm;">
+        ${blocks.join('\n')}
+      </div>
+      ${footerHTML(idx+1, pages.length)}
+    `;
+    container.appendChild(pageEl);
+  });
+}
+
+function renderAll(){
+  try{
+    PARSED = parseReport(document.getElementById('mdInput').value);
+    rebuildImageSlots();
+    buildDocument();
+  }catch(err){
+    console.error(err);
+  }
+}
+
+/* ============================================================
+   WIRE UP UI
+   ============================================================ */
+document.getElementById('mdInput').value = EQX_MD;
+
+let mdTimer=null;
+document.getElementById('mdInput').addEventListener('input', ()=>{
+  clearTimeout(mdTimer);
+  mdTimer = setTimeout(renderAll, 350);
+});
+
+const BASE_TITLE = document.title;
+document.getElementById('btnPrint').addEventListener('click', ()=>{
+  const week = (PARSED && PARSED.meta.weekEnding) ? PARSED.meta.weekEnding : '';
+  document.title = week ? `${BASE_TITLE} - ${week}` : BASE_TITLE;
+  window.print();
+});
+window.addEventListener('afterprint', ()=>{ document.title = BASE_TITLE; });
+
+document.getElementById('btnLoadEQX').addEventListener('click', ()=>{
+  document.getElementById('mdInput').value = EQX_MD;
+  IMAGES = {}; renderAll();
+});
+document.getElementById('btnClear').addEventListener('click', ()=>{
+  document.getElementById('mdInput').value = '## Highlights\n\n- \n';
+  IMAGES = {}; renderAll();
+});
+
+/* initial render */
+renderAll();
+</script>
+</body>
+</html>
