@@ -1,4 +1,4 @@
-import os
+import os,re
 OUT='/Users/grahamdobson/Documents/GitHub/versance-edgar/browser-extension/style-v2/screens/'
 def ic(paths,cls='ico'): return f'<svg class="{cls}" viewBox="0 0 24 24" aria-hidden="true">{paths}</svg>'
 I=dict(
@@ -185,6 +185,35 @@ def label(k):
     num=k.split('-')[1]; rest=k.split('-',2)[2].replace('-',' ')
     return f"{num} {rest}"
 CHATJS="<script>(function(){document.querySelectorAll('.inrow').forEach(function(r){var i=r.querySelector('.chat-in'),b=r.querySelector('.send-btn');if(!i||!b)return;function u(){b.disabled=!i.value.trim()}i.addEventListener('input',u);i.addEventListener('keydown',function(e){if(e.key==='Enter'&&!b.disabled)b.click()});b.addEventListener('click',function(){if(!b.disabled){i.value='';u()}});u()})})()</script>"
+
+def add_vnav(html, g):
+    """Neutral, style-independent navigation: screen list (top-left) + style switcher (bottom-left)."""
+    html = re.sub(r'<nav class="nav-all"[^>]*>.*?</nav>', '<nav class="nav-all" style="display:none" aria-hidden="true"></nav>', html, flags=re.S)
+    items = ''.join(f'<a href="{gg}.html#{k}" data-f="{gg}.html" data-s="{k}"><b>{label(k).split(" ",1)[0]}</b> {label(k).split(" ",1)[1]}</a>' for gg,(t,sts) in G.items() for k in sts)
+    css = """<style id="vnav-css">
+.vnav, .vnav * { box-sizing: border-box; }
+html body .vnav { position: fixed; z-index: 2147483000; font: 12.5px/1.35 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; color: #111; background: #fff; border: 1px solid #D4D4D4; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,.12); text-transform: none; letter-spacing: 0; }
+html body .vnav-list { top: 12px; left: 12px; width: 236px; max-height: calc(100vh - 76px); overflow: auto; padding: 8px 6px; }
+html body .vnav-list h2 { margin: 2px 8px 6px; font: 600 11px/1.2 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; text-transform: uppercase; letter-spacing: .06em; color: #777; }
+html body .vnav-list a { display: block; padding: 4px 8px; border-radius: 6px; color: #111; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: transparent; font-weight: 400; }
+html body .vnav-list a b { display: inline-block; min-width: 34px; font-weight: 600; color: #777; font-variant-numeric: tabular-nums; }
+html body .vnav-list a:hover { background: #F0F0F0; }
+html body .vnav-list a.cur { background: #111; color: #fff; }
+html body .vnav-list a.cur b { color: #BBB; }
+html body .vnav-styles { left: 12px; bottom: 12px; display: flex; align-items: center; gap: 2px; padding: 4px; font-size: 14px; font-weight: 600; }
+html body .vnav-styles a, html body .vnav-styles span { display: inline-flex; align-items: center; justify-content: center; min-width: 28px; height: 28px; border-radius: 7px; color: #111; text-decoration: none; background: transparent; }
+html body .vnav-styles a:hover { background: #F0F0F0; }
+html body .vnav-styles .off { color: #C4C4C4; cursor: default; }
+html body .vnav-styles .num { min-width: 30px; font-variant-numeric: tabular-nums; }
+</style>"""
+    box = f'<nav class="vnav vnav-list" aria-label="All screens"><h2>All screens ({len(S)})</h2>{items}</nav><div class="vnav vnav-styles" role="navigation" aria-label="Switch style"><a data-dir="-1" href="#" aria-label="Previous style">&lsaquo;</a><span class="num" title="Current style">1</span><a data-dir="1" href="#" aria-label="Next style">&rsaquo;</a></div>'
+    js = """<script id="vnav-js">(function(){var N=12,m=location.pathname.match(/style-v(\\d+)/),cur=m?+m[1]:1,file=location.pathname.split('/').pop();
+if(/[?&]export/.test(location.search)){[].forEach.call(document.querySelectorAll('.vnav'),function(e){e.style.display='none'});}
+document.querySelector('.vnav-styles .num').textContent=cur;
+function st(){var hash=location.hash||'';[].forEach.call(document.querySelectorAll('.vnav-styles a'),function(a){var n=cur+ +a.dataset.dir;if(n<1||n>N){a.className='off';a.removeAttribute('href');a.setAttribute('aria-disabled','true')}else{a.className='';a.href='../../style-v'+n+'/screens/'+file+hash;a.removeAttribute('aria-disabled')}});
+var c=document.querySelector('.stage.on'),s=c&&c.dataset.state;[].forEach.call(document.querySelectorAll('.vnav-list a'),function(a){a.classList.toggle('cur',a.dataset.f===file&&a.dataset.s===s)})}
+addEventListener('hashchange',function(){setTimeout(st,0)});st();setTimeout(st,0)})()</script>"""
+    return html.replace('</body>', css + box + js + '</body>')
 ALLNAV=''.join(f'<a href="{g}.html#{k}" data-f="{g}.html" data-s="{k}">{label(k)}</a>' for g,(t,sts) in G.items() for k in sts)
 for g,(title,states) in G.items():
     stages=''.join(S[k].replace('@@STATE@@',k) for k in states)
@@ -202,5 +231,6 @@ function sh(){{var h=location.hash.slice(1),c=s[0];s.forEach(function(e){{if(e.d
 [].forEach.call(document.querySelectorAll('.nav-all a'),function(a){{a.classList.toggle('cur',a.dataset.f===f&&a.dataset.s===c.dataset.state)}})}}
 addEventListener('hashchange',sh);sh();if(/export/.test(location.search)){{document.querySelector('.nav-all').style.display='none';document.documentElement.classList.add('export')}}}})()</script></body></html>'''
     html=html.replace('</body>',CHATJS+'</body>')
+    html=add_vnav(html,g)
     open(OUT+g+'.html','w').write(html)
 print(len(S),'states in',len(G),'files')
