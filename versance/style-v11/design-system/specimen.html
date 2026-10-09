@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Versance Coworker — Specimen</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  body { margin: 0; background: #fff; }
+  .page { max-width: 1040px; margin: 0 auto; padding: 32px; }
+  h1.sp { font-size: 20px; margin: 0 0 4px; } .sub { color: var(--muted); margin: 0 0 24px; }
+  section { margin: 0 0 28px; } section > h2 { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); margin: 0 0 10px; border-top: 1px dashed var(--line); padding-top: 12px; }
+  .row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .sw { width: 128px; } .sw i { display: block; height: 52px; border-radius: 10px; border: 1px solid rgba(0,0,0,.06); }
+  .sw b { display: block; font-size: 12px; margin-top: 6px; } .sw span { font-size: 11px; color: var(--muted); font-family: ui-monospace, Menlo, monospace; }
+  .col { display: flex; flex-direction: column; gap: 6px; }
+  .lab { font-size: 11px; color: var(--faint); }
+  .box { background: var(--pane); border-radius: 16px; padding: 20px; }
+  .rail-demo { background: var(--pane); padding: 16px 12px; border-radius: 16px; }
+</style></head>
+<body><div class="vc-ext"><div class="page">
+<h1 class="sp">Versance Coworker — specimen</h1>
+<p class="sub">Single accent <b>#324EFE</b>. Light only. Structure (radii, spacing, type family) from the HTML.</p>
+
+<section><h2>Accent &amp; derived values</h2>
+<div class="row">
+  <div class="sw"><i style="background:var(--accent)"></i><b>Accent</b><span>#324EFE</span></div>
+  <div class="sw"><i style="background:var(--accent-hover)"></i><b>Hover</b><span>#2C45E0</span></div>
+  <div class="sw"><i style="background:var(--accent-pressed)"></i><b>Pressed</b><span>#263BC1</span></div>
+  <div class="sw"><i style="background:var(--accent-tint-25)"></i><b>Tint 25 (disabled)</b><span>#CCD3FF</span></div>
+  <div class="sw"><i style="background:var(--accent-tint-15)"></i><b>Tint 15 (selected)</b><span>#E0E4FF</span></div>
+  <div class="sw"><i style="background:var(--accent-tint-8)"></i><b>Tint 8 (hover)</b><span>#EFF1FF</span></div>
+</div></section>
+
+<section><h2>Neutrals &amp; severity</h2>
+<div class="row">
+  <div class="sw"><i style="background:var(--pane)"></i><b>Pane</b><span>#F9F9F9</span></div>
+  <div class="sw"><i style="background:var(--hover)"></i><b>Hover / tile</b><span>#F3F5F9</span></div>
+  <div class="sw"><i style="background:var(--line)"></i><b>Line</b><span>#D9DDE5</span></div>
+  <div class="sw"><i style="background:var(--muted)"></i><b>Muted</b><span>#65728E</span></div>
+  <div class="sw"><i style="background:var(--faint)"></i><b>Faint</b><span>#8D96AA</span></div>
+  <div class="sw"><i style="background:var(--ink)"></i><b>Ink</b><span>#000000</span></div>
+  <div class="sw"><i style="background:var(--risk-high)"></i><b>High risk</b><span>#DC2927</span></div>
+  <div class="sw"><i style="background:var(--risk-medium)"></i><b>Medium risk</b><span>#F59D0A</span></div>
+</div></section>
+
+<section><h2>Type — Figtree</h2>
+<div class="box col">
+  <div class="info-title">How the Versance Coworker Works <span class="lab">18px Bold</span></div>
+  <div class="info-sub">1. Choose a primary company <span class="lab" style="font-weight:400">14px Bold</span></div>
+  <div class="info" style="max-width:420px">Select a company at the top. All of its filings and news are added to context, so you can ask me anything about it. <span class="lab">14px Regular</span></div>
+  <div style="color:var(--ink)">Body / chat / list text — 14px Regular ink</div>
+  <div style="color:var(--muted)">Secondary text — 14px muted</div>
+  <div class="pane-sub">Coworker answers using everything listed here — 14px italic</div>
+</div></section>
+
+<section><h2>Toggle</h2>
+<div class="row"><div class="row" style="gap:8px"><span class="tog on"></span> On</div><div class="row" style="gap:8px"><span class="tog"></span> Off</div></div></section>
+
+<section><h2>Buttons</h2>
+<div class="row">
+  <div class="col"><button class="btn p">Export Report</button><span class="lab">primary</span></div>
+  <div class="col"><button class="btn p" disabled>Run Report</button><span class="lab">primary disabled</span></div>
+  <div class="col"><button class="btn p" disabled style="padding:7px 20px">ADD</button><span class="lab">ADD disabled</span></div>
+  <div class="col"><button class="btn o">Export Conversation ↗</button><span class="lab">outline</span></div>
+  <div class="col"><button class="btn o" disabled>Export Conversation ↗</button><span class="lab">outline disabled</span></div>
+  <div class="col"><button class="btn dark"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Web Search On</button><span class="lab">pill, on</span></div>
+  <div class="col"><button class="btn" style="border-radius:999px;color:var(--muted)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Web Search Off</button><span class="lab">pill, off</span></div>
+  <div class="col"><button class="btn tile-btn" style="width:220px">Upload a document</button><span class="lab">tile button</span></div>
+  <div class="col"><button class="send-btn" aria-label="Send"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4Z"/></svg></button><span class="lab">send, content</span></div>
+  <div class="col"><button class="send-btn" disabled aria-label="Send"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4Z"/></svg></button><span class="lab">send, empty</span></div>
+  <div class="col"><span class="link">Add a URL</span><span class="lab">link</span></div>
+</div></section>
+
+<section><h2>Selected state · focus ring</h2>
+<div class="row">
+  <span class="cpill is-selected">Selected pill</span><button class="btn" id="fb">Focus this button (Tab)</button><span class="cpill">Unselected pill</span>
+  <input class="field" style="width:220px" placeholder="Paste a link" >
+  <input class="field" id="ffield" style="width:220px" placeholder="Company search">
+</div></section>
+
+<section><h2>Icon rail · count badge · active state</h2>
+<div class="row" style="align-items:flex-start;gap:24px">
+  <div class="rail-demo"><div class="rail">
+    <button class="rail-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9a7 7 0 0 1 14 0v11H5Z"/><path d="M9 14h6"/></svg><span class="badge">3</span></button>
+    <button class="rail-btn active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.7-.9L9.6 3.9A2 2 0 0 0 7.9 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg></button>
+    <button class="rail-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10 12 4l9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 20h18"/></svg></button>
+    <button class="rail-btn active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9a7 7 0 0 1 14 0v11H5Z"/><path d="M9 14h6"/></svg><span class="badge">3</span></button>
+  </div></div>
+  <div class="col lab" style="max-width:360px">Top→bottom: default (with count badge) · active · default · active with badge. Badge, active fill and hover wash are all the single accent.</div>
+</div></section>
+
+<section><h2>Badges</h2>
+<div class="row">
+  <span class="risk high">High risk</span><span class="risk medium">Medium risk</span>
+  <span class="tg filing">FILING</span><span class="tg news">NEWS</span><span class="tg transcript">TRANSCRIPT</span><span class="tg web">WEB</span>
+  <span class="cite">1</span><span class="cite">2</span>
+</div></section>
+
+<section><h2>Tile with close ✕</h2>
+<div class="row" style="align-items:flex-start;gap:24px">
+  <div class="tile" style="width:380px">
+    <button class="close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="info-sub" style="font-size:14px">Welcome to Compliance review</div>
+    <div class="info" style="margin-top:6px">I can review a document against Canadian or US securities regulations, identify potential issues and recommend changes.</div>
+  </div>
+  <div class="box" style="width:380px">
+    <div class="tile info-tile">
+      <button class="close" aria-label="Close"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div class="info">Access, manage, and export all documents generated from your research and filing analysis.</div>
+    </div>
+  </div>
+</div></section>
+</div></div></body></html>
