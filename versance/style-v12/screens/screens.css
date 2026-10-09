@@ -1085,3 +1085,10 @@ html .nav-all h2 { font-family: Inter, sans-serif; } html[data-theme="dark"] .na
 /* v12 fix: no leftover ring on the avatar; consistent shadows */
 html .userav { box-shadow: none; }
 html .vc-ext .rail-btn, html .sq, html .themebtn { box-shadow: none; }
+
+/* v12: mining photo as the page the extension sits on (assets/mining.jpg). Glass blurs it. */
+html .stage { background-image: linear-gradient(rgba(10,20,30,.10), rgba(10,20,30,.10)), url("assets/mining.jpg"); background-size: cover; background-position: 38% center; background-color: #0f1a22; }
+html[data-theme="dark"] .stage { background-image: linear-gradient(rgba(0,0,0,.58), rgba(0,0,0,.58)), url("assets/mining.jpg"); }
+html, body { background: #0f1a22; }
+html[data-theme="dark"], html[data-theme="dark"] body { background: #000; }
+html .vc-ext { --panel: rgba(255,255,255,.70); }

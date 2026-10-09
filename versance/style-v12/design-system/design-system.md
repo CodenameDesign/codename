@@ -213,3 +213,6 @@ Built on v9's structure (dark / light toggle carries over) and re-skinned:
 - **Help panel:** black screen with green sub-heads (like "Distribute paycheck"); intro tiles are soft grey fills.
 - **Toggle (theme):** sun / moon glass button above the avatar, remembered between pages, `?theme=dark` to force. Exports: `screens/png/` (light), `screens/png-dark/` (dark).
 - Typeable input, 24px rail gap, title spacing rule and underlined links inherited. Success state and low-risk badge still undefined.
+
+### v12 revision: mining photo background
+The page the extension sits on is now a mining photo (`screens/assets/mining.jpg`, referenced relatively from `screens.css`, so it travels with the folder). Light mode: the photo with a 10% dark tint, the glass panel raised to 70% white for legibility; dark mode: the same photo under a 58% black overlay. The frosted glass (panel, rail, tabs, toggles) blurs the photo. Both `png/` and `png-dark/` exports were re-rendered with it.
