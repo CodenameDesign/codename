@@ -694,3 +694,14 @@ svg.logo-dark { background: #C9D45E; padding: 5px; box-sizing: content-box; widt
 .find h4, .cbar > span:first-child { font-family: var(--serif); font-weight: 500; font-size: 15.5px; }
 .cbar > span:first-child { font-size: 15px; letter-spacing: .01em; }
 .nav-all a.cur { color: #3E4A12; background: #E4EBBE; }
+
+/* cleanup: colours inherited from earlier styles replaced with this style's own */
+.vc-ext .rail-btn { color: #3A3D2B; }
+.sq { color: var(--ink); }
+.cbar.search .caret { background: var(--ink); }
+svg.logo-dark path { fill: #1F2A12; }
+.srcchip .g { color: var(--faint); }
+.doc-card .ac { background: var(--hover); }
+
+/* Font Awesome style icons (compliance gavel, output file-export): filled 640x640 glyphs, coloured by currentColor */
+.ico.fa { fill: currentColor; stroke: none; }

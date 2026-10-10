@@ -6,8 +6,9 @@ Context: black and white with orange, mono labels, dark / light. Based on the Sa
 
 - `tokens.css` — the design variables this style uses (colour, type, radius, spacing, elevation, motion).
 - `components.css` — the base component rules, driven by the tokens.
-- `specimen.html` / `specimen.png` / `specimen-dark.png` — the style rendered from its real components.
-- `../screens/screens.css` — this style's overrides on top of the tokens and components; `../screens/*.html` and `png/` / `png-dark/` are the 19 screens.
+- `specimen.html` — the style rendered live from its real components (with the dark / light button).
+- `view-design-system.html`, `view-tokens.html`, `view-components.html` — readable pages for this document and the two CSS files, each with a Back arrow (generated from them by `../tools/viewers.py`).
+- `../screens/screens.css` — this style's overrides on top of the tokens and components; `../screens/*.html` are the 8 pages that hold the 19 screens (use the "All screens" list in the top-left).
 
 **Lineage:** v6's sharp structure, re-coloured from the Sanity references, with a dark / light toggle.
 
@@ -18,80 +19,98 @@ Context: black and white with orange, mono labels, dark / light. Based on the Sa
 - **Orange header bar** (like "CURRENT CONTEXT: LEARN, DOCS"): company name in mono on orange with a black `EDIT` tag.
 - **Controls:** primary button orange with black text (inverts to ink on hover); send is a round ink button (white arrow), orange on hover; toggle is a square switch (orange when on); active tab is inverted (ink on paper); help panel is a black screen with orange mono sub-heads.
 - **Highlights:** quoted phrases use a yellow `#FFD84A` marker; risk badges: High = orange, Medium = yellow, both with black text and a black border.
-- **Dark / light toggle:** square sun / moon button in the panel (above the user avatar). Sets `data-theme="dark"` on `<html>`, is remembered in `localStorage` (so it carries between pages), and can be forced with `?theme=dark`. Exports: `screens/png/` (light) and `screens/png-dark/` (dark).
+- **Dark / light toggle:** square sun / moon button in the panel (above the user avatar). Sets `data-theme="dark"` on `<html>`, is remembered in `localStorage` (so it carries between pages), and can be forced with `?theme=dark`.
   - Dark values: page `#0A0A0A`, panel `#101010`, cards `#161616`, fills `#1E1E1E`, ink `#F4F4F1`, muted `#A3A39E`; orange unchanged; send turns light.
 
-## 2. Colour tokens
+## 2. Colours
 
-Values are what the screens render with (`tokens.css`). Dark-theme values are shown where they differ.
+Measured from the 19 rendered screens: every fill, text, icon, line and gradient stop that appears. The token column names the variable that holds that value, or says the style sets it directly. Colours used on only 1–2 elements are left out as minor tints.
 
-**Accent and status colours**
+### Light theme
 
-| Token | Light | Dark |
+**Surfaces and fills**
+
+| Colour | Token | Used on |
 |---|---|---|
-| `--accent` | `#FF4A00` | — |
-| `--accent-grad` | `linear-gradient(180deg, #3C3B37 0%, #23221F 100%)` | — |
-| `--accent-grad-diag` | `linear-gradient(145deg, #4A4944 0%, #23221F 100%)` | — |
-| `--accent-hover` | `#E04200` | — |
-| `--accent-on` | `#111111` | — |
-| `--accent-pressed` | `#C93508` | — |
-| `--accent-tint-15` | `#FFE1D1` | — |
-| `--accent-tint-25` | `#FFC9AD` | — |
-| `--accent-tint-8` | `#FFF1E8` | — |
-| `--accent-wash` | `linear-gradient(180deg, #F6F6F3 0%, #EFEFEB 100%)` | — |
-| `--amber-grad` | `linear-gradient(135deg, #F8CF68 0%, #E2A52B 100%)` | — |
-| `--amber-ink` | `#0A1922` | — |
-| `--amber-tint` | `#F4E4B8` | — |
-| `--coral-grad` | `linear-gradient(135deg, #FF8294 0%, #F0445E 100%)` | — |
-| `--green-grad` | `linear-gradient(180deg, #3A9187 0%, #2D6B6A 100%)` | — |
-| `--green-tint` | `#CFE0DE` | — |
-| `--mark` | `#FFF04D` | — |
-| `--mk` | `#FFD84A` | — |
-| `--orange` | `#FF4A00` | — |
-| `--orange-tint` | `#FFE4D8` | `#3A1A0E` |
-| `--risk-high` | `#DC2927` | — |
-| `--risk-medium` | `#F59D0A` | — |
-| `--risk-on` | `#FFFFFF` | — |
-| `--soft-wash` | `linear-gradient(180deg, #F6F6F3 0%, #EFEFEB 100%)` | — |
-| `--tag-filing` | `#324EFE` | — |
-| `--tag-news` | `#E2B43D` | — |
-| `--tag-transcript` | `#FF5D73` | — |
-| `--tag-web` | `#1FB5A8` | — |
-| `--teal-grad` | `linear-gradient(145deg, #EAF3F2, #D3E5E2)` | — |
-| `--teal-ink` | `#0E8F84` | — |
-| `--teal-tint` | `#E4EFEE` | — |
-| `--violet-grad` | `linear-gradient(135deg,#ECE4FF,#DACCFF)` | — |
-| `--violet-ink` | `#6D3FD6` | — |
-| `--violet-tint` | `#EFE9FF` | — |
-| `--exception-dark` | `#0A1922` | — |
+| `#FFFFFF` | `--bg`, `--card`, `--inv-ink` | 475 elements |
+| `#FF4A00` | `--accent`, `--orange` | 88 elements |
+| `#D9DDE5` | set directly in this style | 67 elements |
+| `#F2F2EF` | `--fill` | 55 elements |
+| `#FFD84A` | `--mk` | 4 elements |
 
-**Surfaces and lines**
+**Text and icons**
 
-| Token | Light | Dark |
+| Colour | Token | Used on |
 |---|---|---|
-| `--bg` | `#FFFFFF` | `#0A0A0A` |
-| `--card` | `#FFFFFF` | `#161616` |
-| `--dotline` | `#8E8E89` | `#4C4C48` |
-| `--dots` | `#C4C4BE` | `#2E2E2E` |
-| `--fill` | `#F2F2EF` | `#1E1E1E` |
-| `--hover` | `#F1EFE9` | — |
-| `--inv-bg` | `#0B0B0B` | `#F4F4F1` |
-| `--inv-ink` | `#FFFFFF` | `#0A0A0A` |
-| `--line` | `#D9D9D4` | `#2C2C2C` |
-| `--line-soft` | `#E4E1DA` | — |
-| `--pane` | `#F6F4EF` | — |
-| `--panel` | `#FFFFFF` | `#101010` |
-| `--strong` | `#0B0B0B` | `#F4F4F1` |
+| `#0B0B0B` | `--ink`, `--inv-bg`, `--strong` | 1640 elements |
+| `#5C5C58` | `--muted` | 165 elements |
+| `#8E8E89` | `--dotline`, `--faint` | 98 elements |
+| `#000000` | set directly in this style | 20 elements |
 
-**Text colours**
+**Lines and outlines**
 
-| Token | Light | Dark |
+| Colour | Token | Used on |
 |---|---|---|
-| `--faint` | `#8E8E89` | `#75756F` |
-| `--ink` | `#0B0B0B` | `#F4F4F1` |
-| `--muted` | `#5C5C58` | `#A3A39E` |
-| `--text-info` | `#0B0B0B` | — |
-| `--text-selected` | `#0B0B0B` | — |
+| `#D9D9D4` | `--line` | 285 elements |
+
+**Gradient stops**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#C4C4BE` | `--dots` | 19 elements |
+
+### Dark theme
+
+**Surfaces and fills**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#161616` | `--card` | 302 elements |
+| `#FF4A00` | `--accent`, `--orange` | 88 elements |
+| `#D9DDE5` | set directly in this style | 67 elements |
+| `#1E1E1E` | `--fill` | 55 elements |
+| `#101010` | `--panel` | 19 elements |
+| `#FFD84A` | `--mk` | 4 elements |
+
+**Text and icons**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#F4F4F1` | `--ink`, `--inv-bg`, `--strong` | 1419 elements |
+| `#0B0B0B` | `--text-info`, `--text-selected` | 200 elements |
+| `#A3A39E` | `--muted` | 165 elements |
+| `#0A0A0A` | `--bg`, `--inv-ink` | 123 elements |
+| `#75756F` | `--faint` | 80 elements |
+| `#FFFFFF` | `--risk-on` | 31 elements |
+| `#000000` | set directly in this style | 21 elements |
+
+**Lines and outlines**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#2C2C2C` | `--line` | 286 elements |
+| `#4C4C48` | `--dotline` | 18 elements |
+
+**Gradient stops**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#2E2E2E` | `--dots` | 19 elements |
+
+**Interaction-state colours** (hover, pressed, focus, disabled; not visible in the static screens)
+
+| Token | Value |
+|---|---|
+| `--accent-hover` | `#E04200` |
+| `--accent-on` | `#111111` |
+| `--accent-pressed` | `#C93508` |
+| `--accent-tint-15` | `#FFE1D1` |
+| `--accent-tint-25` | `#FFC9AD` |
+| `--accent-tint-8` | `#FFF1E8` |
+| `--amber-tint` | `#F4E4B8` |
+| `--green-tint` | `#CFE0DE` |
+
+**Not rendered:** 25 further colour variables in `tokens.css` (`--accent-grad`, `--accent-grad-diag`, `--accent-wash`, `--amber-grad`, `--amber-ink`, `--coral-grad`, `--exception-dark`, `--green-grad`, `--hover`, `--line-soft`, `--mark`, `--pane`, `--risk-high`, `--risk-medium`, `--soft-wash`, `--tag-filing`, `--tag-news`, `--tag-transcript`, `--tag-web`, `--teal-grad`, `--teal-ink`, `--teal-tint`, `--violet-grad`, `--violet-ink`, `--violet-tint`) are carried over from earlier styles. They are still referenced by base rules that this style overrides, so they are kept in the file under "Carried over", but none appears on a screen.
 
 ## 3. Type
 
@@ -152,7 +171,7 @@ Families: **IBM Plex Mono**, **Inter**. Sizes below are the rendered values on t
 - **Message box:** a real text input. The send button is disabled until there is text; Enter or the button sends and clears the field; whitespace alone does not enable it.
 - **Focus:** buttons and other clickable controls take `2px solid #FF4A00` with a 2px offset and keep their own radius; text fields show no ring, only their 1px border changes colour; the composer container adds nothing.
 - **Motion:** hover and press transitions only; nothing animates on page load.
-- **Navigation in the HTML pages:** the "All screens" list (top-left) and, in every style except v1, the `‹ n ›` style switcher (bottom-left). Both are neutral, identical in every style and hidden in the PNG exports.
+- **Navigation in the HTML pages:** the "All screens" list (top-left) and, in every style except v1, the `‹ n ›` style switcher (bottom-left). Both are neutral and identical in every style.
 - **Dark / light:** the sun / moon button above the avatar sets `data-theme` on `<html>`, is remembered in `localStorage` and can be forced with `?theme=dark`.
 
 ## 7. Screens
@@ -179,11 +198,11 @@ Families: **IBM Plex Mono**, **Inter**. Sizes below are the rendered values on t
 | 701a | Conversation History, empty | Info card, "You haven't had any conversations yet." |
 | 701b | Conversation History | Search conversations, chat open on the left. |
 
-Exports are 3260 × 1920 PNGs (`../screens/png/`, and `../screens/png-dark/` for dark); the red annotation labels and leader lines in the reference PNGs were specs and never appear in the screens.
+The red annotation labels and leader lines in the reference designs were specs and never appear in the screens.
 
 ## 8. Content notes
 
-- Company names in the mock data (Integra Resources, Australis Capital, Equinox Gold, South Railroad, Company A–C, Aardvark …) are placeholders; the switcher uses "Company Two" (the reference PNG had a typo).
-- The 501ab reference annotation "new copy once you've selected a" is cut off in the PNG; only the visible copy is used.
+- Company names in the mock data (Integra Resources, Australis Capital, Equinox Gold, South Railroad, Company A–C, Aardvark …) are placeholders; the switcher uses "Company Two" (the reference design had a typo).
+- The 501ab reference annotation "new copy once you've selected a" is cut off in the reference design; only the visible copy is used.
 - The empty History screen reads "You haven't had any conversations yet."
 - No success state and no low-risk badge are defined: no reference shows one.

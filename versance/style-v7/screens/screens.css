@@ -831,3 +831,14 @@ svg.logo-dark { background: #3ECF8E; padding: 4px; box-sizing: content-box; widt
 .strip .t, .strip .newc { white-space: nowrap; }
 .strip .t { padding: 0 9px; margin-right: 4px; }
 .strip .newc { padding: 0 8px; font-size: 10.5px; letter-spacing: .03em; }
+
+/* cleanup: colours inherited from earlier styles replaced with this style's own */
+.vc-ext .rail-btn { color: #171717; }
+.sq { color: var(--ink); }
+.cbar.search .caret { background: var(--ink); }
+svg.logo28 path, svg.logo-dark path { fill: #171717; }
+.srcchip .g { color: var(--faint); }
+.doc-card .ac { background: var(--hover); }
+
+/* Font Awesome style icons (compliance gavel, output file-export): filled 640x640 glyphs, coloured by currentColor */
+.ico.fa { fill: currentColor; stroke: none; }

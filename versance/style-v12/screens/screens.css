@@ -1036,3 +1036,11 @@ html .stage { background-image: linear-gradient(rgba(10,20,30,.10), rgba(10,20,3
 html[data-theme="dark"] .stage { background-image: linear-gradient(rgba(0,0,0,.58), rgba(0,0,0,.58)), url("assets/mining.jpg"); }
 html, body { background: #0f1a22; }
 html[data-theme="dark"], html[data-theme="dark"] body { background: #000; }
+
+/* cleanup: colours inherited from earlier styles replaced with this style's own */
+html .vc-ext svg.logo28 path, html .vc-ext svg.logo-dark path { fill: #000000; }
+html .dd hr { border-top-color: var(--dotline); }
+html .srcchip .g { color: var(--faint); }
+
+/* Font Awesome style icons (compliance gavel, output file-export): filled 640x640 glyphs, coloured by currentColor */
+.ico.fa { fill: currentColor; stroke: none; }

@@ -6,8 +6,9 @@ Sidekick: violet gradient, glass window, labelled rail, Figtree. Light only. Bas
 
 - `tokens.css` — the design variables this style uses (colour, type, radius, spacing, elevation, motion).
 - `components.css` — the base component rules, driven by the tokens.
-- `specimen.html` / `specimen.png` — the style rendered from its real components.
-- `../screens/screens.css` — this style's overrides on top of the tokens and components; `../screens/*.html` and `png/` are the 19 screens.
+- `specimen.html` — the style rendered live from its real components.
+- `view-design-system.html`, `view-tokens.html`, `view-components.html` — readable pages for this document and the two CSS files, each with a Back arrow (generated from them by `../tools/viewers.py`).
+- `../screens/screens.css` — this style's overrides on top of the tokens and components; `../screens/*.html` are the 8 pages that hold the 19 screens (use the "All screens" list in the top-left).
 
 **Lineage:** Started from v1 again, re-skinned from the browser-sidebar references, in Figtree.
 
@@ -21,50 +22,76 @@ Sidekick: violet gradient, glass window, labelled rail, Figtree. Light only. Bas
 - **Tabs / chips:** soft lavender segmented track with a white active pill; grey pill chips with icon (like "Summarize").
 - **Cards:** frosted white cards, 14px radius, hairline `#EDEBF7`; intro / help cards are pale violet `#F6F4FF`.
 
-## 2. Colour tokens
+## 2. Colours
 
-Values are what the screens render with (`tokens.css`).
+Measured from the 19 rendered screens: every fill, text, icon, line and gradient stop that appears. The token column names the variable that holds that value, or says the style sets it directly. Colours used on only 1–2 elements are left out as minor tints.
 
-**Accent and status colours**
+**Surfaces and fills**
 
-| Token | Light |
+| Colour | Token | Used on |
+|---|---|---|
+| `#FFFFFF` | `--accent-on`, `--bg`, `--panel` | 132 elements |
+| `#D9DDE5` | set directly in this style | 67 elements |
+| `#FFFFFF @ 0.92` | set directly in this style | 38 elements |
+| `#FFFFFF @ 0.85` | set directly in this style | 38 elements |
+| `#E5372E` | set directly in this style | 32 elements |
+| `#FFFFFF @ 0.95` | set directly in this style | 24 elements |
+| `#EEEBFB` | set directly in this style | 21 elements |
+| `#8A8CF6` | set directly in this style | 19 elements |
+| `#FFFFFF @ 0.74` | set directly in this style | 19 elements |
+| `#F0EDFE` | set directly in this style | 17 elements |
+| `#FFFFFF @ 0.96` | set directly in this style | 16 elements |
+| `#F3F3F8` | `--hover` | 15 elements |
+| `#F6F4FF` | set directly in this style | 13 elements |
+| `#F1F1F6` | set directly in this style | 13 elements |
+| `#C9C7DA` | set directly in this style | 11 elements |
+
+**Text and icons**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#7C7C94` | set directly in this style | 627 elements |
+| `#16162A` | `--ink` | 516 elements |
+| `#6A6A82` | `--muted` | 203 elements |
+| `#5B3DF5` | `--accent`, `--tag-filing` | 144 elements |
+| `#B1B1C4` | set directly in this style | 70 elements |
+| `#4A2EDB` | `--accent-hover`, `--text-info`, `--text-selected` | 69 elements |
+| `#B6B6C8` | set directly in this style | 48 elements |
+| `#000000` | set directly in this style | 18 elements |
+| `#4D4D66` | set directly in this style | 16 elements |
+| `#CFC6FD` | `--accent-tint-25` | 12 elements |
+| `#A0A0B4` | `--faint` | 3 elements |
+
+**Lines and outlines**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#FFFFFF @ 0.9` | set directly in this style | 74 elements |
+| `#EDEBF7` | set directly in this style | 38 elements |
+| `#DCD8F2` | set directly in this style | 25 elements |
+| `#FFFFFF @ 0.8` | set directly in this style | 19 elements |
+| `#E7E2FE` | `--accent-tint-15` | 18 elements |
+| `#EFEFF6` | `--line-soft` | 18 elements |
+| `#E7E7F0` | `--line` | 3 elements |
+
+**Gradient stops**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#F0C8FA @ 0.85` | set directly in this style | 19 elements |
+| `#96AAFF @ 0.7` | set directly in this style | 19 elements |
+| `#8EA6FF` | set directly in this style | 19 elements |
+| `#7A78FF` | set directly in this style | 19 elements |
+| `#8B6CFA` | set directly in this style | 19 elements |
+| `#D6B4F6` | set directly in this style | 19 elements |
+
+**Interaction-state colours** (hover, pressed, focus, disabled; not visible in the static screens)
+
+| Token | Value |
 |---|---|
-| `--accent` | `#5B3DF5` |
-| `--accent-hover` | `#4A2EDB` |
-| `--accent-on` | `#FFFFFF` |
 | `--accent-pressed` | `#3B22B8` |
-| `--accent-tint-15` | `#E7E2FE` |
-| `--accent-tint-25` | `#CFC6FD` |
-| `--accent-tint-8` | `#F3F0FF` |
-| `--risk-high` | `#DC2927` |
-| `--risk-medium` | `#F59D0A` |
-| `--risk-on` | `#FFFFFF` |
-| `--tag-filing` | `#5B3DF5` |
-| `--tag-news` | `#E2B43D` |
-| `--tag-transcript` | `#EA5B5B` |
-| `--tag-web` | `#65728E` |
-| `--exception-dark` | `#0A1922` |
 
-**Surfaces and lines**
-
-| Token | Light |
-|---|---|
-| `--bg` | `#FFFFFF` |
-| `--hover` | `#F3F3F8` |
-| `--line` | `#E7E7F0` |
-| `--line-soft` | `#EFEFF6` |
-| `--pane` | `transparent` |
-| `--panel` | `#FFFFFF` |
-
-**Text colours**
-
-| Token | Light |
-|---|---|
-| `--faint` | `#A0A0B4` |
-| `--ink` | `#16162A` |
-| `--muted` | `#6A6A82` |
-| `--text-info` | `#4A2EDB` |
-| `--text-selected` | `#4A2EDB` |
+**Not rendered:** 7 further colour variables in `tokens.css` (`--exception-dark`, `--pane`, `--risk-high`, `--risk-medium`, `--tag-news`, `--tag-transcript`, `--tag-web`) are carried over from earlier styles. They are still referenced by base rules that this style overrides, so they are kept in the file under "Carried over", but none appears on a screen.
 
 ## 3. Type
 
@@ -125,7 +152,7 @@ Families: **Figtree**. Sizes below are the rendered values on the 19 screens.
 - **Message box:** a real text input. The send button is disabled until there is text; Enter or the button sends and clears the field; whitespace alone does not enable it.
 - **Focus:** buttons and other clickable controls take `2px solid #5B3DF5` with a 2px offset and keep their own radius; text fields show no ring, only their 1px border changes colour; the composer container adds nothing.
 - **Motion:** hover and press transitions only; nothing animates on page load.
-- **Navigation in the HTML pages:** the "All screens" list (top-left) and, in every style except v1, the `‹ n ›` style switcher (bottom-left). Both are neutral, identical in every style and hidden in the PNG exports.
+- **Navigation in the HTML pages:** the "All screens" list (top-left) and, in every style except v1, the `‹ n ›` style switcher (bottom-left). Both are neutral and identical in every style.
 
 ## 7. Screens
 
@@ -151,11 +178,11 @@ Families: **Figtree**. Sizes below are the rendered values on the 19 screens.
 | 701a | Conversation History, empty | Info card, "You haven't had any conversations yet." |
 | 701b | Conversation History | Search conversations, chat open on the left. |
 
-Exports are 3260 × 1920 PNGs (`../screens/png/`); the red annotation labels and leader lines in the reference PNGs were specs and never appear in the screens.
+The red annotation labels and leader lines in the reference designs were specs and never appear in the screens.
 
 ## 8. Content notes
 
-- Company names in the mock data (Integra Resources, Australis Capital, Equinox Gold, South Railroad, Company A–C, Aardvark …) are placeholders; the switcher uses "Company Two" (the reference PNG had a typo).
-- The 501ab reference annotation "new copy once you've selected a" is cut off in the PNG; only the visible copy is used.
+- Company names in the mock data (Integra Resources, Australis Capital, Equinox Gold, South Railroad, Company A–C, Aardvark …) are placeholders; the switcher uses "Company Two" (the reference design had a typo).
+- The 501ab reference annotation "new copy once you've selected a" is cut off in the reference design; only the visible copy is used.
 - The empty History screen reads "You haven't had any conversations yet."
 - No success state and no low-risk badge are defined: no reference shows one.

@@ -6,8 +6,9 @@ Warm teal: Inter, teal accent, warm blacks. Light only. Based on the "Computer" 
 
 - `tokens.css` — the design variables this style uses (colour, type, radius, spacing, elevation, motion).
 - `components.css` — the base component rules, driven by the tokens.
-- `specimen.html` / `specimen.png` — the style rendered from its real components.
-- `../screens/screens.css` — this style's overrides on top of the tokens and components; `../screens/*.html` and `png/` are the 19 screens.
+- `specimen.html` — the style rendered live from its real components.
+- `view-design-system.html`, `view-tokens.html`, `view-components.html` — readable pages for this document and the two CSS files, each with a Back arrow (generated from them by `../tools/viewers.py`).
+- `../screens/screens.css` — this style's overrides on top of the tokens and components; `../screens/*.html` are the 8 pages that hold the 19 screens (use the "All screens" list in the top-left).
 
 **Lineage:** v4's structure, re-coloured from the "Computer" references.
 
@@ -22,67 +23,73 @@ Warm teal: Inter, teal accent, warm blacks. Light only. Based on the "Computer" 
 - **Composer:** bordered card (`#A9C3C2`, teal-tinted glow) joined to a grey strip holding Web Search + Export, like the reference's "Work in a project" strip.
 - Inter, hover/press motion only, 24px rail gap, typeable input: inherited from v3/v4.
 
-## 2. Colour tokens
+## 2. Colours
 
-Values are what the screens render with (`tokens.css`).
+Measured from the 19 rendered screens: every fill, text, icon, line and gradient stop that appears. The token column names the variable that holds that value, or says the style sets it directly. Colours used on only 1–2 elements are left out as minor tints.
 
-**Accent and status colours**
+**Surfaces and fills**
 
-| Token | Light |
+| Colour | Token | Used on |
+|---|---|---|
+| `#FFFFFF` | `--accent-on`, `--bg`, `--panel` | 436 elements |
+| `#F3F3F0` | `--hover` | 92 elements |
+| `#D9DDE5` | set directly in this style | 67 elements |
+| `#E4EFEE` | `--teal-tint` | 21 elements |
+| `#A9ABA6` | set directly in this style | 16 elements |
+| `#F2F2EF` | set directly in this style | 15 elements |
+| `#E8F3F1` | set directly in this style | 5 elements |
+| `#D6D7D2` | set directly in this style | 3 elements |
+| `#F7EA6E` | set directly in this style | 3 elements |
+
+**Text and icons**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#2C3A3F` | set directly in this style | 497 elements |
+| `#5A6468` | `--muted` | 390 elements |
+| `#13262F` | `--ink` | 337 elements |
+| `#000000` | set directly in this style | 115 elements |
+| `#2D6B6A` | `--accent`, `--text-selected` | 87 elements |
+| `#A9ADAA` | set directly in this style | 65 elements |
+| `#8A8F90` | `--faint` | 63 elements |
+| `#3F5557` | `--text-info` | 20 elements |
+
+**Lines and outlines**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#E1E2DD` | `--line` | 37 elements |
+| `#13262F @ 0.07` | set directly in this style | 31 elements |
+| `#A9C3C2` | set directly in this style | 22 elements |
+| `#ECECE8` | `--line-soft` | 18 elements |
+| `#E2E2DD` | set directly in this style | 15 elements |
+| `#E4E5E0` | set directly in this style | 13 elements |
+| `#C5DAD8` | `--accent-tint-25` | 3 elements |
+
+**Gradient stops**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#23221F` | set directly in this style | 43 elements |
+| `#F6F6F3` | set directly in this style | 26 elements |
+| `#EFEFEB` | set directly in this style | 25 elements |
+| `#E4ECEC` | set directly in this style | 19 elements |
+| `#F8F8F6` | set directly in this style | 19 elements |
+| `#FDFDFC` | set directly in this style | 19 elements |
+| `#4A4944` | set directly in this style | 19 elements |
+| `#3A9187` | set directly in this style | 19 elements |
+
+**Interaction-state colours** (hover, pressed, focus, disabled; not visible in the static screens)
+
+| Token | Value |
 |---|---|
-| `--accent` | `#2D6B6A` |
-| `--accent-grad` | `linear-gradient(180deg, #3C3B37 0%, #23221F 100%)` |
-| `--accent-grad-diag` | `linear-gradient(145deg, #4A4944 0%, #23221F 100%)` |
 | `--accent-hover` | `#245A5B` |
-| `--accent-on` | `#FFFFFF` |
 | `--accent-pressed` | `#1D4A4B` |
-| `--accent-tint-15` | `#DDEAE8` |
-| `--accent-tint-25` | `#C5DAD8` |
 | `--accent-tint-8` | `#EDF3F2` |
-| `--accent-wash` | `linear-gradient(180deg, #F6F6F3 0%, #EFEFEB 100%)` |
-| `--amber-grad` | `linear-gradient(135deg, #F8CF68 0%, #E2A52B 100%)` |
-| `--amber-ink` | `#0A1922` |
 | `--amber-tint` | `#F4E4B8` |
-| `--coral-grad` | `linear-gradient(135deg, #FF8294 0%, #F0445E 100%)` |
-| `--green-grad` | `linear-gradient(180deg, #3A9187 0%, #2D6B6A 100%)` |
 | `--green-tint` | `#CFE0DE` |
-| `--mark` | `#FFF04D` |
-| `--risk-high` | `#DC2927` |
-| `--risk-medium` | `#F59D0A` |
-| `--risk-on` | `#FFFFFF` |
-| `--soft-wash` | `linear-gradient(180deg, #F6F6F3 0%, #EFEFEB 100%)` |
-| `--tag-filing` | `#324EFE` |
-| `--tag-news` | `#E2B43D` |
-| `--tag-transcript` | `#FF5D73` |
-| `--tag-web` | `#1FB5A8` |
-| `--teal-grad` | `linear-gradient(145deg, #EAF3F2, #D3E5E2)` |
-| `--teal-ink` | `#0E8F84` |
-| `--teal-tint` | `#E4EFEE` |
-| `--violet-grad` | `linear-gradient(135deg,#ECE4FF,#DACCFF)` |
-| `--violet-ink` | `#6D3FD6` |
-| `--violet-tint` | `#EFE9FF` |
-| `--exception-dark` | `#0A1922` |
 
-**Surfaces and lines**
-
-| Token | Light |
-|---|---|
-| `--bg` | `#FFFFFF` |
-| `--hover` | `#F3F3F0` |
-| `--line` | `#E1E2DD` |
-| `--line-soft` | `#ECECE8` |
-| `--pane` | `transparent` |
-| `--panel` | `#FFFFFF` |
-
-**Text colours**
-
-| Token | Light |
-|---|---|
-| `--faint` | `#8A8F90` |
-| `--ink` | `#13262F` |
-| `--muted` | `#5A6468` |
-| `--text-info` | `#3F5557` |
-| `--text-selected` | `#2D6B6A` |
+**Not rendered:** 14 further colour variables in `tokens.css` (`--amber-grad`, `--amber-ink`, `--coral-grad`, `--exception-dark`, `--mark`, `--pane`, `--tag-filing`, `--tag-news`, `--tag-transcript`, `--tag-web`, `--teal-ink`, `--violet-grad`, `--violet-ink`, `--violet-tint`) are carried over from earlier styles. They are still referenced by base rules that this style overrides, so they are kept in the file under "Carried over", but none appears on a screen.
 
 ## 3. Type
 
@@ -143,7 +150,7 @@ Families: **Inter**. Sizes below are the rendered values on the 19 screens.
 - **Message box:** a real text input. The send button is disabled until there is text; Enter or the button sends and clears the field; whitespace alone does not enable it.
 - **Focus:** buttons and other clickable controls take `2px solid #2D6B6A` with a 2px offset and keep their own radius; text fields show no ring, only their 1px border changes colour; the composer container adds nothing.
 - **Motion:** hover and press transitions only; nothing animates on page load.
-- **Navigation in the HTML pages:** the "All screens" list (top-left) and, in every style except v1, the `‹ n ›` style switcher (bottom-left). Both are neutral, identical in every style and hidden in the PNG exports.
+- **Navigation in the HTML pages:** the "All screens" list (top-left) and, in every style except v1, the `‹ n ›` style switcher (bottom-left). Both are neutral and identical in every style.
 
 ## 7. Screens
 
@@ -169,11 +176,11 @@ Families: **Inter**. Sizes below are the rendered values on the 19 screens.
 | 701a | Conversation History, empty | Info card, "You haven't had any conversations yet." |
 | 701b | Conversation History | Search conversations, chat open on the left. |
 
-Exports are 3260 × 1920 PNGs (`../screens/png/`); the red annotation labels and leader lines in the reference PNGs were specs and never appear in the screens.
+The red annotation labels and leader lines in the reference designs were specs and never appear in the screens.
 
 ## 8. Content notes
 
-- Company names in the mock data (Integra Resources, Australis Capital, Equinox Gold, South Railroad, Company A–C, Aardvark …) are placeholders; the switcher uses "Company Two" (the reference PNG had a typo).
-- The 501ab reference annotation "new copy once you've selected a" is cut off in the PNG; only the visible copy is used.
+- Company names in the mock data (Integra Resources, Australis Capital, Equinox Gold, South Railroad, Company A–C, Aardvark …) are placeholders; the switcher uses "Company Two" (the reference design had a typo).
+- The 501ab reference annotation "new copy once you've selected a" is cut off in the reference design; only the visible copy is used.
 - The empty History screen reads "You haven't had any conversations yet."
 - No success state and no low-risk badge are defined: no reference shows one.

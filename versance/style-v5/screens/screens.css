@@ -585,3 +585,12 @@ mark { background: #F7EA6E; }
 .ws, .exp { font-size: 13px; }
 .ws { padding: 0 10px 0 8px; }
 .exp { flex: 1 1 auto; min-width: 0; padding: 0 10px; }
+
+/* cleanup: colours inherited from earlier styles replaced with this style's own */
+.userav { background: #F3F3F0; }
+svg.logo-dark path { fill: #23221F; }
+.doc-card .ac { background: var(--hover); }
+.vc-ext .tog::after { background: #F6F6F3; }
+
+/* Font Awesome style icons (compliance gavel, output file-export): filled 640x640 glyphs, coloured by currentColor */
+.ico.fa { fill: currentColor; stroke: none; }

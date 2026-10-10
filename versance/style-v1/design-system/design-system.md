@@ -1,15 +1,16 @@
 # Versance Coworker — style v1: baseline
 
-Baseline: Figtree, light, one indigo accent. Light only. Based on the Versance web app and the 19 extension PNGs.
+Baseline: Figtree, light, one indigo accent. Light only. Based on the Versance web app and the 19 extension reference designs.
 
 **Files in this folder**
 
 - `tokens.css` — the design variables this style uses (colour, type, radius, spacing, elevation, motion).
 - `components.css` — the base component rules, driven by the tokens.
-- `specimen.html` / `specimen.png` — the style rendered from its real components.
-- `../screens/screens.css` — this style's overrides on top of the tokens and components; `../screens/*.html` and `png/` are the 19 screens.
+- `specimen.html` — the style rendered live from its real components.
+- `view-design-system.html`, `view-tokens.html`, `view-components.html` — readable pages for this document and the two CSS files, each with a Back arrow (generated from them by `../tools/viewers.py`).
+- `../screens/screens.css` — this style's overrides on top of the tokens and components; `../screens/*.html` are the 8 pages that hold the 19 screens (use the "All screens" list in the top-left).
 
-**Lineage:** Started from the Versance web app (`Versance — Talk to Edgar.html`) and the 19 extension PNGs.
+**Lineage:** Started from the Versance web app (`Versance — Talk to Edgar.html`) and the 19 extension reference designs.
 
 ## 1. Identity
 
@@ -18,53 +19,52 @@ Baseline: Figtree, light, one indigo accent. Light only. Based on the Versance w
 - **Structure from the web app:** Figtree, pill-shaped chips and tabs, 8px buttons, 10px inputs, 12px cards, light grey `#F3F5F9` fills and hairline `#D9DDE5` borders.
 - **Annotation values win inside the extension:** help / info text, links and selected states use the accent; the right tool pane is `#F9F9F9`; body text is 14px; the help title is 18px bold and sub-heads are 14px bold.
 - **Severity:** High `#DC2927` and Medium `#F59D0A` (the web app has no severity colours).
-- **Light only.** The reference PNGs show no dark mode.
+- **Light only.** The reference designs show no dark mode.
 - **Composer:** `+`, the text field and send sit in one row, with Web Search and Export Conversation in a row below.
 
-## 2. Colour tokens
+## 2. Colours
 
-Values are what the screens render with (`tokens.css`).
+Measured from the 19 rendered screens: every fill, text, icon, line and gradient stop that appears. The token column names the variable that holds that value, or says the style sets it directly. Colours used on only 1–2 elements are left out as minor tints.
 
-**Accent and status colours**
+**Surfaces and fills**
 
-| Token | Light |
+| Colour | Token | Used on |
+|---|---|---|
+| `#FFFFFF` | `--accent-on`, `--bg`, `--panel` | 447 elements |
+| `#F3F5F9` | `--hover`, `--line-soft` | 107 elements |
+| `#D9DDE5` | `--line` | 100 elements |
+| `#F9F9F9` | `--pane` | 47 elements |
+| `#E6E6E6` | set directly in this style | 15 elements |
+| `#F0F0F0` | set directly in this style | 15 elements |
+| `#F3F3F3` | set directly in this style | 15 elements |
+| `#EFF1FF` | `--accent-tint-8` | 4 elements |
+
+**Text and icons**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#000000` | `--ink` | 1024 elements |
+| `#65728E` | `--muted`, `--tag-web` | 154 elements |
+| `#324EFE` | `--accent`, `--tag-filing`, `--text-info` | 140 elements |
+| `#CCD3FF` | `--accent-tint-25` | 99 elements |
+| `#8D96AA` | `--faint` | 86 elements |
+| `#0A1922` | `--exception-dark` | 19 elements |
+
+**Lines and outlines**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#E0E4FF` | `--accent-tint-15` | 14 elements |
+| `#E4E8FF` | set directly in this style | 3 elements |
+
+**Interaction-state colours** (hover, pressed, focus, disabled; not visible in the static screens)
+
+| Token | Value |
 |---|---|
-| `--accent` | `#324EFE` |
 | `--accent-hover` | `#2C45E0` |
-| `--accent-on` | `#FFFFFF` |
 | `--accent-pressed` | `#263BC1` |
-| `--accent-tint-15` | `#E0E4FF` |
-| `--accent-tint-25` | `#CCD3FF` |
-| `--accent-tint-8` | `#EFF1FF` |
-| `--risk-high` | `#DC2927` |
-| `--risk-medium` | `#F59D0A` |
-| `--risk-on` | `#FFFFFF` |
-| `--tag-filing` | `#324EFE` |
-| `--tag-news` | `#E2B43D` |
-| `--tag-transcript` | `#EA5B5B` |
-| `--tag-web` | `#65728E` |
-| `--exception-dark` | `#0A1922` |
 
-**Surfaces and lines**
-
-| Token | Light |
-|---|---|
-| `--bg` | `#FFFFFF` |
-| `--hover` | `#F3F5F9` |
-| `--line` | `#D9DDE5` |
-| `--line-soft` | `#F3F5F9` |
-| `--pane` | `#F9F9F9` |
-| `--panel` | `#FFFFFF` |
-
-**Text colours**
-
-| Token | Light |
-|---|---|
-| `--faint` | `#8D96AA` |
-| `--ink` | `#000000` |
-| `--muted` | `#65728E` |
-| `--text-info` | `#324EFE` |
-| `--text-selected` | `#324EFE` |
+**Not rendered:** 2 further colour variables in `tokens.css` (`--tag-news`, `--tag-transcript`) are carried over from earlier styles. They are still referenced by base rules that this style overrides, so they are kept in the file under "Carried over", but none appears on a screen.
 
 ## 3. Type
 
@@ -125,7 +125,7 @@ Families: **Figtree**. Sizes below are the rendered values on the 19 screens.
 - **Message box:** a real text input. The send button is disabled until there is text; Enter or the button sends and clears the field; whitespace alone does not enable it.
 - **Focus:** buttons and other clickable controls take `2px solid #324EFE` with a 2px offset and keep their own radius; text fields show no ring, only their 1px border changes colour; the composer container adds nothing.
 - **Motion:** hover and press transitions only; nothing animates on page load.
-- **Navigation in the HTML pages:** the "All screens" list (top-left) and, in every style except v1, the `‹ n ›` style switcher (bottom-left). Both are neutral, identical in every style and hidden in the PNG exports.
+- **Navigation in the HTML pages:** the "All screens" list (top-left) and, in every style except v1, the `‹ n ›` style switcher (bottom-left). Both are neutral and identical in every style.
 
 ## 7. Screens
 
@@ -151,11 +151,11 @@ Families: **Figtree**. Sizes below are the rendered values on the 19 screens.
 | 701a | Conversation History, empty | Info card, "You haven't had any conversations yet." |
 | 701b | Conversation History | Search conversations, chat open on the left. |
 
-Exports are 3260 × 1920 PNGs (`../screens/png/`); the red annotation labels and leader lines in the reference PNGs were specs and never appear in the screens.
+The red annotation labels and leader lines in the reference designs were specs and never appear in the screens.
 
 ## 8. Content notes
 
-- Company names in the mock data (Integra Resources, Australis Capital, Equinox Gold, South Railroad, Company A–C, Aardvark …) are placeholders; the switcher uses "Company Two" (the reference PNG had a typo).
-- The 501ab reference annotation "new copy once you've selected a" is cut off in the PNG; only the visible copy is used.
+- Company names in the mock data (Integra Resources, Australis Capital, Equinox Gold, South Railroad, Company A–C, Aardvark …) are placeholders; the switcher uses "Company Two" (the reference design had a typo).
+- The 501ab reference annotation "new copy once you've selected a" is cut off in the reference design; only the visible copy is used.
 - The empty History screen reads "You haven't had any conversations yet."
 - No success state and no low-risk badge are defined: no reference shows one.

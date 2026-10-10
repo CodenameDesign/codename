@@ -482,3 +482,11 @@ mark { background: var(--mark); color: inherit; padding: 0 2px; border-radius: 2
 .chips { bottom: 158px; }
 .strip .t { padding: 0 10px; }
 .cbar .edit, .vc-ext .cbar .edit { background: #F1F1F4; color: #6E6E73; }
+
+/* cleanup: colours inherited from earlier styles replaced with this style's own */
+.userav { background: #F1F1F4; }
+svg.logo-dark path { fill: #1C1C1E; }
+.doc-card .ac { background: var(--hover); }
+
+/* Font Awesome style icons (compliance gavel, output file-export): filled 640x640 glyphs, coloured by currentColor */
+.ico.fa { fill: currentColor; stroke: none; }

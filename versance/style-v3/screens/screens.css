@@ -359,3 +359,6 @@ html, body { margin: 0; height: 100%; background: #fff; }
 .panel.compact { width: 440px; }
 .panel.compact .chatcol, .panel.compact .cbar, .panel.compact .dd { width: 361px; }
 .exp, .ws { white-space: nowrap; }
+
+/* Font Awesome style icons (compliance gavel, output file-export): filled 640x640 glyphs, coloured by currentColor */
+.ico.fa { fill: currentColor; stroke: none; }

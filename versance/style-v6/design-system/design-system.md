@@ -6,8 +6,9 @@ Grid / sovereign: sharp corners, hairline grid, orange. Light only. Based on the
 
 - `tokens.css` — the design variables this style uses (colour, type, radius, spacing, elevation, motion).
 - `components.css` — the base component rules, driven by the tokens.
-- `specimen.html` / `specimen.png` — the style rendered from its real components.
-- `../screens/screens.css` — this style's overrides on top of the tokens and components; `../screens/*.html` and `png/` are the 19 screens.
+- `specimen.html` — the style rendered live from its real components.
+- `view-design-system.html`, `view-tokens.html`, `view-components.html` — readable pages for this document and the two CSS files, each with a Back arrow (generated from them by `../tools/viewers.py`).
+- `../screens/screens.css` — this style's overrides on top of the tokens and components; `../screens/*.html` are the 8 pages that hold the 19 screens (use the "All screens" list in the top-left).
 
 **Lineage:** v5's structure, re-built with sharp corners and a grid.
 
@@ -20,67 +21,62 @@ Grid / sovereign: sharp corners, hairline grid, orange. Light only. Based on the
 - **Controls:** primary buttons ink with orange hover; tabs are boxed with an ink active tab; links are ink with a 2px orange underline; toggle is a square orange switch.
 - **Focus:** buttons 2px solid `#FA520F` ring, 2px offset; text fields change only their border to orange.
 
-## 2. Colour tokens
+## 2. Colours
 
-Values are what the screens render with (`tokens.css`).
+Measured from the 19 rendered screens: every fill, text, icon, line and gradient stop that appears. The token column names the variable that holds that value, or says the style sets it directly. Colours used on only 1–2 elements are left out as minor tints.
 
-**Accent and status colours**
+**Surfaces and fills**
 
-| Token | Light |
+| Colour | Token | Used on |
+|---|---|---|
+| `#FFFFFF` | `--bg`, `--panel`, `--risk-on` | 433 elements |
+| `#D9DDE5` | set directly in this style | 67 elements |
+| `#FA520F` | `--accent` | 49 elements |
+| `#FFB000` | set directly in this style | 20 elements |
+| `#F6F4EF` | `--pane` | 19 elements |
+| `#FAF8F4` | set directly in this style | 19 elements |
+| `#E6E3DB` | set directly in this style | 19 elements |
+| `#F1EFE9` | `--hover` | 17 elements |
+| `#14152B` | set directly in this style | 6 elements |
+| `#FFD23F` | set directly in this style | 6 elements |
+| `#C6F0CF` | set directly in this style | 3 elements |
+| `#FFF1E8` | `--accent-tint-8` | 3 elements |
+
+**Text and icons**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#111111` | `--accent-on`, `--ink`, `--text-info` | 1490 elements |
+| `#5F5E5A` | `--muted` | 152 elements |
+| `#A9A59B` | set directly in this style | 100 elements |
+| `#000000` | set directly in this style | 18 elements |
+| `#3A3935` | set directly in this style | 16 elements |
+| `#8F8C84` | `--faint` | 12 elements |
+
+**Lines and outlines**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#D5D1C8` | `--line` | 150 elements |
+| `#E4E1DA` | `--line-soft` | 18 elements |
+
+**Gradient stops**
+
+| Colour | Token | Used on |
+|---|---|---|
+| `#E2DFD8` | set directly in this style | 38 elements |
+
+**Interaction-state colours** (hover, pressed, focus, disabled; not visible in the static screens)
+
+| Token | Value |
 |---|---|
-| `--accent` | `#FA520F` |
-| `--accent-grad` | `linear-gradient(180deg, #3C3B37 0%, #23221F 100%)` |
-| `--accent-grad-diag` | `linear-gradient(145deg, #4A4944 0%, #23221F 100%)` |
 | `--accent-hover` | `#E8400C` |
-| `--accent-on` | `#111111` |
 | `--accent-pressed` | `#C93508` |
-| `--accent-tint-15` | `#FFE1D1` |
 | `--accent-tint-25` | `#FFC9AD` |
-| `--accent-tint-8` | `#FFF1E8` |
-| `--accent-wash` | `linear-gradient(180deg, #F6F6F3 0%, #EFEFEB 100%)` |
-| `--amber-grad` | `linear-gradient(135deg, #F8CF68 0%, #E2A52B 100%)` |
-| `--amber-ink` | `#0A1922` |
 | `--amber-tint` | `#F4E4B8` |
-| `--coral-grad` | `linear-gradient(135deg, #FF8294 0%, #F0445E 100%)` |
-| `--green-grad` | `linear-gradient(180deg, #3A9187 0%, #2D6B6A 100%)` |
 | `--green-tint` | `#CFE0DE` |
-| `--mark` | `#FFF04D` |
-| `--risk-high` | `#DC2927` |
-| `--risk-medium` | `#F59D0A` |
-| `--risk-on` | `#FFFFFF` |
-| `--soft-wash` | `linear-gradient(180deg, #F6F6F3 0%, #EFEFEB 100%)` |
-| `--tag-filing` | `#324EFE` |
-| `--tag-news` | `#E2B43D` |
-| `--tag-transcript` | `#FF5D73` |
-| `--tag-web` | `#1FB5A8` |
-| `--teal-grad` | `linear-gradient(145deg, #EAF3F2, #D3E5E2)` |
-| `--teal-ink` | `#0E8F84` |
-| `--teal-tint` | `#E4EFEE` |
-| `--violet-grad` | `linear-gradient(135deg,#ECE4FF,#DACCFF)` |
-| `--violet-ink` | `#6D3FD6` |
-| `--violet-tint` | `#EFE9FF` |
-| `--exception-dark` | `#0A1922` |
 
-**Surfaces and lines**
-
-| Token | Light |
-|---|---|
-| `--bg` | `#FFFFFF` |
-| `--hover` | `#F1EFE9` |
-| `--line` | `#D5D1C8` |
-| `--line-soft` | `#E4E1DA` |
-| `--pane` | `#F6F4EF` |
-| `--panel` | `#FFFFFF` |
-
-**Text colours**
-
-| Token | Light |
-|---|---|
-| `--faint` | `#8F8C84` |
-| `--ink` | `#111111` |
-| `--muted` | `#5F5E5A` |
-| `--text-info` | `#111111` |
-| `--text-selected` | `#111111` |
+**Not rendered:** 22 further colour variables in `tokens.css` (`--accent-grad`, `--accent-grad-diag`, `--accent-wash`, `--amber-grad`, `--amber-ink`, `--coral-grad`, `--exception-dark`, `--green-grad`, `--mark`, `--risk-high`, `--risk-medium`, `--soft-wash`, `--tag-filing`, `--tag-news`, `--tag-transcript`, `--tag-web`, `--teal-grad`, `--teal-ink`, `--teal-tint`, `--violet-grad`, `--violet-ink`, `--violet-tint`) are carried over from earlier styles. They are still referenced by base rules that this style overrides, so they are kept in the file under "Carried over", but none appears on a screen.
 
 ## 3. Type
 
@@ -141,7 +137,7 @@ Families: **Inter**, **JetBrains Mono**. Sizes below are the rendered values on 
 - **Message box:** a real text input. The send button is disabled until there is text; Enter or the button sends and clears the field; whitespace alone does not enable it.
 - **Focus:** buttons and other clickable controls take `2px solid #FA520F` with a 2px offset and keep their own radius; text fields show no ring, only their 1px border changes colour; the composer container adds nothing.
 - **Motion:** hover and press transitions only; nothing animates on page load.
-- **Navigation in the HTML pages:** the "All screens" list (top-left) and, in every style except v1, the `‹ n ›` style switcher (bottom-left). Both are neutral, identical in every style and hidden in the PNG exports.
+- **Navigation in the HTML pages:** the "All screens" list (top-left) and, in every style except v1, the `‹ n ›` style switcher (bottom-left). Both are neutral and identical in every style.
 
 ## 7. Screens
 
@@ -167,11 +163,11 @@ Families: **Inter**, **JetBrains Mono**. Sizes below are the rendered values on 
 | 701a | Conversation History, empty | Info card, "You haven't had any conversations yet." |
 | 701b | Conversation History | Search conversations, chat open on the left. |
 
-Exports are 3260 × 1920 PNGs (`../screens/png/`); the red annotation labels and leader lines in the reference PNGs were specs and never appear in the screens.
+The red annotation labels and leader lines in the reference designs were specs and never appear in the screens.
 
 ## 8. Content notes
 
-- Company names in the mock data (Integra Resources, Australis Capital, Equinox Gold, South Railroad, Company A–C, Aardvark …) are placeholders; the switcher uses "Company Two" (the reference PNG had a typo).
-- The 501ab reference annotation "new copy once you've selected a" is cut off in the PNG; only the visible copy is used.
+- Company names in the mock data (Integra Resources, Australis Capital, Equinox Gold, South Railroad, Company A–C, Aardvark …) are placeholders; the switcher uses "Company Two" (the reference design had a typo).
+- The 501ab reference annotation "new copy once you've selected a" is cut off in the reference design; only the visible copy is used.
 - The empty History screen reads "You haven't had any conversations yet."
 - No success state and no low-risk badge are defined: no reference shows one.

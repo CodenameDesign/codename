@@ -712,3 +712,15 @@ mark { background: #FFD23F; color: #111; padding: 0 2px; }
 /* v6 revision: no stepped colour blocks; no grid lines inside the widget (page backdrop grid stays) */
 .stage::before { content: none; background: none; }
 .panel { background-image: none; background-color: #FAF8F4; }
+
+/* cleanup: colours inherited from earlier styles replaced with this style's own */
+.vc-ext .rail-btn { color: #111111; }
+.sq { color: var(--ink); }
+.cbar.search .caret { background: var(--ink); }
+svg.logo28 path, svg.logo-dark path { fill: #111111; }
+.chip-ic, .chip-ic.teal, .chip-ic.violet { color: #111111; }
+.srcchip .g { color: var(--faint); }
+.doc-card .ac { background: var(--hover); }
+
+/* Font Awesome style icons (compliance gavel, output file-export): filled 640x640 glyphs, coloured by currentColor */
+.ico.fa { fill: currentColor; stroke: none; }

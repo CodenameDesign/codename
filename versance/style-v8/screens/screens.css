@@ -684,3 +684,13 @@ svg.logo-dark { background: #FFE8DF; padding: 4px; box-sizing: content-box; widt
 .vc-ext .caps { color: #9B9890; }
 .ptitle { font-weight: 600; letter-spacing: -.015em; }
 .nav-all a.cur { color: #0B4FA8; background: #E3EEFD; }
+
+/* cleanup: colours inherited from earlier styles replaced with this style's own */
+.vc-ext .rail-btn { color: #3A3935; }
+.sq { color: var(--ink); }
+.cbar.search .caret { background: var(--ink); }
+.srcchip .g { color: var(--faint); }
+.doc-card .ac { background: var(--hover); }
+
+/* Font Awesome style icons (compliance gavel, output file-export): filled 640x640 glyphs, coloured by currentColor */
+.ico.fa { fill: currentColor; stroke: none; }

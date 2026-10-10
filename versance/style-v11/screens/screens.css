@@ -970,3 +970,14 @@ html .panel::after { content: ""; position: absolute; inset: -1px; pointer-event
 
 /* v11 fix: logo tiles lime (an older v6 rule outranked the override) */
 html .vc-ext .tile .logo28, html .vc-ext svg.logo28, html .vc-ext svg.logo-dark { background: #B4F26B !important; }
+
+/* cleanup: colours inherited from earlier styles replaced with this style's own */
+html .vc-ext svg.logo28 path, html .vc-ext svg.logo-dark path { fill: #14210F; }
+html .vc-ext .risk.high, html .vc-ext .risk.medium { color: #14210F; }
+html .alpha b.a { color: #14210F; }
+html .cbar.search .caret { background: var(--ink); }
+html .dd hr { border-top-color: var(--dotline); }
+html .srcchip .g { color: var(--faint); }
+
+/* Font Awesome style icons (compliance gavel, output file-export): filled 640x640 glyphs, coloured by currentColor */
+.ico.fa { fill: currentColor; stroke: none; }
