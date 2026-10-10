@@ -1,248 +1,139 @@
 /* ==========================================================================
-   Versance Coworker (Chrome side panel) — design tokens
-
-   STRUCTURE comes from "Versance — Talk to Edgar.html": type families,
-   radii, spacing, shadows, component geometry, neutral greys.
-   ACCENT is one colour: #324EFE (from the PNG annotations). The HTML's
-   greens, #334EFE and #2B40C5 are NOT used. No green anywhere in .vc-ext.
-   LIGHT ONLY: the PNGs show no dark mode, so none is defined.
+   Versance Coworker — design tokens · style v9 — context
+   Variables only (colour, type, radius, spacing, elevation, motion).
+   Every variable below is referenced by this style's CSS or screens; variables only declared by other styles are not included.
+   Base component rules: components.css · this style's overrides: ../screens/screens.css
    ========================================================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-/* ── 1. Structure tokens (from the HTML) ──────────────────────────────── */
-:root {
-  --font:        "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono:   "Roboto Mono", monospace;    /* HTML composer only; unused in the extension */
-
-  /* radius */
-  --r-pill: 999px; --r-composer: 20px; --r-card: 16px; --r-panel: 12px;
-  --r-box: 10px;   --r-btn: 8px;       --r-tag: 6px;   --r-cite: 4px;
-
-  /* spacing */
-  --sp-1: 4px;  --sp-2: 6px;  --sp-3: 8px;  --sp-4: 10px; --sp-5: 12px;
-  --sp-6: 14px; --sp-7: 16px; --sp-8: 18px; --sp-9: 20px; --sp-10: 24px; --sp-11: 32px;
-  --pad-nav: 7.5px 10px; --pad-card: 18px 20px; --pad-btn: 7px 13px; --pad-pill: 6px 12px;
-
-  /* shadow (HTML values) */
-  --shadow-sm: 0 1px 2px rgba(0,0,0,.05), 0 3px 10px rgba(0,0,0,.06);
-  --shadow:    0 1px 3px rgba(0,0,0,.06), 0 6px 20px rgba(0,0,0,.08);
-
-  /* motion */
-  --dur: .15s; --dur-fast: .12s;
-
-  /* weights */
-  --fw-regular: 400; --fw-medium: 500; --fw-semibold: 600; --fw-bold: 700;
-}
-
-/* ── 2. Extension scope ───────────────────────────────────────────────── */
 .vc-ext {
-  color-scheme: light;
+  /* Accent and status colours */
+  --accent: #FF4A00;
+  --accent-grad: linear-gradient(180deg, #3C3B37 0%, #23221F 100%);
+  --accent-grad-diag: linear-gradient(145deg, #4A4944 0%, #23221F 100%);
+  --accent-hover: #E04200;
+  --accent-on: #111111;
+  --accent-pressed: #C93508;
+  --accent-tint-15: #FFE1D1;
+  --accent-tint-25: #FFC9AD;
+  --accent-tint-8: #FFF1E8;
+  --accent-wash: linear-gradient(180deg, #F6F6F3 0%, #EFEFEB 100%);
+  --amber-grad: linear-gradient(135deg, #F8CF68 0%, #E2A52B 100%);
+  --amber-ink: #0A1922;
+  --amber-tint: #F4E4B8;
+  --coral-grad: linear-gradient(135deg, #FF8294 0%, #F0445E 100%);
+  --green-grad: linear-gradient(180deg, #3A9187 0%, #2D6B6A 100%);
+  --green-tint: #CFE0DE;
+  --mark: #FFF04D;
+  --mk: #FFD84A;
+  --orange: #FF4A00;
+  --orange-tint: #FFE4D8;
+  --risk-high: #DC2927;
+  --risk-medium: #F59D0A;
+  --risk-on: #FFFFFF;
+  --soft-wash: linear-gradient(180deg, #F6F6F3 0%, #EFEFEB 100%);
+  --tag-filing: #324EFE;
+  --tag-news: #E2B43D;
+  --tag-transcript: #FF5D73;
+  --tag-web: #1FB5A8;
+  --teal-grad: linear-gradient(145deg, #EAF3F2, #D3E5E2);
+  --teal-ink: #0E8F84;
+  --teal-tint: #E4EFEE;
+  --violet-grad: linear-gradient(135deg,#ECE4FF,#DACCFF);
+  --violet-ink: #6D3FD6;
+  --violet-tint: #EFE9FF;
 
-  /* accent — THE only accent. Everything below is derived from it. */
-  --accent:          #324EFE;
-  --accent-hover:    #2C45E0;   /* accent mixed 12% black */
-  --accent-pressed:  #263BC1;   /* accent mixed 24% black */
-  --accent-tint-25:  #CCD3FF;   /* disabled / low-emphasis buttons (send, ADD, Run Report) */
-  --accent-tint-15:  #E0E4FF;   /* selected-state fill, citation chip */
-  --accent-tint-8:   #EFF1FF;   /* hover wash, soft cards */
-  --accent-on:       #FFFFFF;   /* text/icon on solid accent */
-  --focus-ring:      2px solid #324EFE;
-  --exception-dark:  #0A1922;   /* Web Search On pill only — see .btn.dark */
+  /* Surfaces and lines */
+  --bg: #FFFFFF;
+  --card: #FFFFFF;
+  --dotline: #8E8E89;
+  --dots: #C4C4BE;
+  --exception-dark: #0A1922;
+  --fill: #F2F2EF;
+  --hover: #F1EFE9;
+  --inv-bg: #0B0B0B;
+  --inv-ink: #FFFFFF;
+  --line: #D9D9D4;
+  --line-soft: #E4E1DA;
+  --pane: #F6F4EF;
+  --panel: #FFFFFF;
+  --strong: #0B0B0B;
 
-  /* neutrals (HTML greys; light only) */
-  --bg:       #FFFFFF;
-  --panel:    #FFFFFF;
-  --pane:     #F9F9F9;   /* right tool pane + help fill (annotation) */
-  --hover:    #F3F5F9;   /* HTML --sidebar-hover: pills, tiles, hover */
-  --chip:     #F3F5F9;
-  --ink:      #000000;
-  --muted:    #65728E;
-  --faint:    #8D96AA;
-  --line:     #D9DDE5;
-  --line-soft:#F3F5F9;
+  /* Text colours */
+  --faint: #8E8E89;
+  --ink: #0B0B0B;
+  --muted: #5C5C58;
+  --text-info: #0B0B0B;
+  --text-selected: #0B0B0B;
 
-  /* text roles */
-  --text-info:      var(--accent);   /* help / intro / empty-state / links */
-  --text-selected:  var(--accent);
+  /* Type */
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --fs-body: 14px;
+  --fs-caps: 11px;
+  --fs-help-h1: 18px;
+  --fs-help-h2: 14px;
+  --fs-small: 12px;
+  --fw-bold: 700;
+  --fw-regular: 400;
+  --fw-semibold: 600;
+  --lh-body: 1.5;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
 
-  /* severity (no equivalent in HTML; sampled from the PNG risk badges — NOT accent) */
-  --risk-high:      #DC2927;
-  --risk-medium:    #F59D0A;
-  --risk-on:        #FFFFFF;
+  /* Radius */
+  --r-box: 10px;
+  --r-btn: 8px;
+  --r-cite: 4px;
+  --r-panel: 12px;
+  --r-pill: 999px;
+  --r-tag: 6px;
 
-  /* source-type tags (HTML tag colours, with filing collapsed into the accent) */
-  --tag-filing:     var(--accent);
-  --tag-news:       #E2B43D;
-  --tag-transcript: #EA5B5B;
-  --tag-web:        #65728E;
+  /* Spacing */
+  --pad-btn: 7px 13px;
+  --pad-pill: 6px 12px;
 
-  /* type scale (extension) */
-  --fs-help-h1: 18px;  /* annotation: 18px Bold */
-  --fs-help-h2: 14px;  /* annotation: 14px Bold */
-  --fs-body:    14px;  /* annotation: 14px Regular — ALL body/chat/list text */
-  --fs-small:   12px;
-  --fs-caps:    11px;
-  --lh-body:    1.5;
+  /* Elevation */
+  --amber-glow: 0 4px 12px rgba(226,165,43,.45);
+  --bd: 1px solid rgba(19,38,47,.07);
+  --coral-glow: 0 2px 8px rgba(240,68,94,.45);
+  --glow: 0 6px 16px rgba(20,20,30,.28);
+  --green-glow: 0 3px 10px rgba(45,107,106,.35);
+  --sh-1: 0 1px 2px rgba(19,38,47,.05), 0 2px 8px rgba(19,38,47,.04);
+  --sh-2: 0 1px 2px rgba(19,38,47,.05), 0 8px 24px rgba(19,38,47,.08);
+  --sh-3: 0 2px 4px rgba(19,38,47,.06), 0 16px 40px rgba(19,38,47,.14);
 
-  /* geometry (PNG ÷2, structural only) */
-  --panel-h: 799px; --panel-w: 428px; --panel-w-wide: 799px; --rail-w: 40px; --chat-w: 371px;
+  /* Layout */
+  --rail-w: 40px;
 
-  font-family: var(--font);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  color: var(--ink);
-  background: var(--bg);
-  -webkit-font-smoothing: antialiased;
-}
-.vc-ext, .vc-ext * { box-sizing: border-box; }
-.vc-ext button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; }
-/* Focus — mirrors the HTML's rules:
-   1. buttons / clickable controls: :focus-visible = 2px solid accent, 2px offset.
-      Border and border-radius are left untouched (the HTML's radius:6px on focus is NOT copied).
-   2. text fields: no outline; only the existing 1px border turns accent.
-   3. the chat composer container gets nothing extra. */
-.vc-ext button:focus-visible, .vc-ext a:focus-visible, .vc-ext [role="button"]:focus-visible,
-.vc-ext [tabindex]:focus-visible { outline: var(--focus-ring); outline-offset: 2px; }
-.vc-ext input:focus, .vc-ext textarea:focus { outline: none; }
-.vc-ext select:focus { outline: var(--focus-ring); }   /* HTML: select:focus { outline: 2px solid accent } */
-
-/* ── 3. Text ──────────────────────────────────────────────────────────── */
-.vc-ext .info-title { color: var(--text-info); font-size: var(--fs-help-h1); font-weight: var(--fw-bold); line-height: 1.25; }
-.vc-ext .info-sub   { color: var(--text-info); font-size: var(--fs-help-h2); font-weight: var(--fw-bold); }
-.vc-ext .info, .vc-ext .info p { color: var(--text-info); font-size: var(--fs-body); font-weight: var(--fw-regular); }
-.vc-ext .pane-title { font-size: var(--fs-body); font-weight: var(--fw-semibold); }
-.vc-ext .pane-sub   { font-size: var(--fs-body); font-style: italic; }
-.vc-ext .caps       { font-size: var(--fs-caps); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
-.vc-ext .link       { color: var(--accent); text-decoration: underline; cursor: pointer; }
-.vc-ext .link:hover { color: var(--accent-hover); }
-
-/* ── 4. Surfaces ──────────────────────────────────────────────────────── */
-.vc-ext .pane { background: var(--pane); }
-.vc-ext .tile { position: relative; background: var(--hover); border-radius: var(--r-panel); padding: 16px 40px 16px 16px; }
-.vc-ext .tile.info-tile { background: var(--panel); border: 1px solid var(--line-soft); }
-.vc-ext .tile .close { position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; display: grid; place-items: center;
-  color: var(--accent); border-radius: 50%; }
-.vc-ext .tile .close:hover { background: var(--accent-tint-15); }
-.vc-ext .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r-panel); padding: 12px 14px; }
-
-/* ── 5. Controls ──────────────────────────────────────────────────────── */
-/* toggle (HTML .tog geometry) */
-.vc-ext .tog { display: inline-block; position: relative; width: 26px; height: 15px; border-radius: var(--r-pill);
-  background: var(--line); transition: background .2s; flex: none; }
-.vc-ext .tog::after { content: ''; position: absolute; top: 2px; left: 2px; width: 11px; height: 11px; border-radius: 50%;
-  background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); transition: left .18s; }
-.vc-ext .tog.on { background: var(--accent); }
-.vc-ext .tog.on::after { left: 13px; }
-
-/* buttons (HTML .btn geometry) */
-.vc-ext .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: var(--pad-btn);
-  border: 1px solid var(--line); border-radius: var(--r-btn); font-size: var(--fs-body); background: var(--panel); color: var(--ink);
-  transition: border-color var(--dur-fast), color var(--dur-fast), background var(--dur-fast); }
-.vc-ext .btn:hover { border-color: var(--accent); color: var(--accent); }
-.vc-ext .btn.p { background: var(--accent); border-color: var(--accent); color: var(--accent-on); }
-.vc-ext .btn.p:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: var(--accent-on); }
-.vc-ext .btn.p:active { background: var(--accent-pressed); border-color: var(--accent-pressed); }
-.vc-ext .btn.p:disabled, .vc-ext .btn.p[aria-disabled="true"] { background: var(--accent-tint-25); border-color: var(--accent-tint-25); color: #fff; cursor: not-allowed; }
-.vc-ext .btn.o { color: var(--accent); border-color: var(--accent-tint-25); }                /* Export Conversation */
-.vc-ext .btn.o:hover { border-color: var(--accent); }
-.vc-ext .btn.o:disabled { color: var(--accent-tint-25); border-color: var(--accent-tint-15); cursor: not-allowed; }
-.vc-ext .btn.tile-btn { background: var(--hover); border-color: transparent; width: 100%; }  /* "Upload a document" */
-/* DELIBERATE EXCEPTION to the single-accent rule: the "Web Search On" pill is near-black (#0A1922, Midnight Teal)
-   with white text, exactly as in the reference PNGs. It is the only non-accent filled control. */
-.vc-ext .btn.dark { background: var(--exception-dark); border-color: var(--exception-dark); color: #fff; border-radius: var(--r-pill); }
-
-/* send (HTML .send-btn geometry): disabled until there is content */
-.vc-ext .send-btn { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
-  background: var(--accent); color: #fff; transition: background var(--dur); }
-.vc-ext .send-btn:hover { background: var(--accent-hover); }
-.vc-ext .send-btn:disabled, .vc-ext .send-btn[aria-disabled="true"] { background: var(--accent-tint-25); cursor: default; }
-
-/* inputs / selects (HTML geometry) */
-.vc-ext .field { width: 100%; padding: 10px 14px; border: 1px solid var(--line); border-radius: var(--r-box); font: inherit;
-  background: var(--panel); color: var(--ink); transition: border-color var(--dur); }
-.vc-ext .field::placeholder { color: var(--faint); font-style: italic; }
-.vc-ext .field:focus { border-color: var(--accent); outline: none; }   /* 1px border only: no ring, no offset */
-.vc-ext select { font: inherit; width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--r-box); background: var(--panel); color: var(--ink); }
-
-/* pills / tabs */
-.vc-ext .cpill { display: inline-flex; align-items: center; gap: 7px; padding: var(--pad-pill); border-radius: var(--r-pill);
-  font-size: var(--fs-body); color: var(--muted); background: var(--hover); white-space: nowrap; }
-.vc-ext .cpill:hover { background: var(--line); color: var(--ink); }
-.vc-ext .cpill.is-selected, .vc-ext .is-selected { background: var(--accent-tint-15); color: var(--text-selected); font-weight: var(--fw-semibold); }
-.vc-ext .tab-strip { display: flex; gap: 4px; padding: 4px; background: #E6E6E6; border-radius: var(--r-box); }
-.vc-ext .tab { padding: 4px 12px; border-radius: var(--r-pill); color: var(--muted); }
-.vc-ext .tab.active { background: var(--panel); color: var(--ink); }
-
-/* ── 6. Icon rail ─────────────────────────────────────────────────────── */
-.vc-ext .rail { display: flex; flex-direction: column; gap: 10px; width: var(--rail-w); align-items: center; }
-.vc-ext .rail-btn { position: relative; width: 30px; height: 30px; border-radius: var(--r-box); display: grid; place-items: center;
-  background: var(--panel); color: var(--ink); }
-.vc-ext .rail-btn:hover { background: var(--accent-tint-8); }
-.vc-ext .rail-btn.active { background: var(--accent); color: var(--accent-on); }
-.vc-ext .badge { position: absolute; top: -5px; right: -5px; min-width: 14px; height: 14px; padding: 0 3px; border-radius: var(--r-pill);
-  background: var(--accent); color: var(--accent-on); font-size: 9px; font-weight: var(--fw-bold); line-height: 14px; text-align: center;
-  box-shadow: 0 0 0 1.5px var(--pane); }
-.vc-ext .rail-btn.active .badge { background: #fff; color: var(--accent); box-shadow: 0 0 0 1.5px var(--accent); }
-
-/* ── 7. Tags & severity ───────────────────────────────────────────────── */
-.vc-ext .tg { font-size: 10px; padding: 3px 8px; border-radius: var(--r-tag); font-weight: var(--fw-bold); letter-spacing: .4px; color: #fff; display: inline-block; white-space: nowrap; }
-.vc-ext .tg.filing { background: var(--tag-filing); } .vc-ext .tg.news { background: var(--tag-news); }
-.vc-ext .tg.transcript { background: var(--tag-transcript); } .vc-ext .tg.web { background: var(--tag-web); }
-.vc-ext .risk { font-size: var(--fs-small); font-weight: var(--fw-bold); letter-spacing: .02em; text-transform: uppercase;
-  color: var(--risk-on); padding: 4px 10px; border-radius: var(--r-pill); display: inline-block; white-space: nowrap; }
-.vc-ext .risk.high { background: var(--risk-high); } .vc-ext .risk.medium { background: var(--risk-medium); }
-/* NOTE: no low-risk / success styling is defined (no PNG shows one) — flag, don't add. */
-
-.vc-ext .cite { display: inline-flex; align-items: center; justify-content: center; min-width: 16px; height: 16px; padding: 0 4px;
-  background: var(--accent-tint-15); color: var(--accent); border-radius: var(--r-cite); font-size: 10px; font-weight: var(--fw-bold); vertical-align: top; }
-
-/* ── 8. Lists ─────────────────────────────────────────────────────────── */
-.vc-ext .doc-row { padding: 10px 4px; border-bottom: 1px solid var(--line-soft); }
-.vc-ext .doc-row:hover { background: var(--accent-tint-8); }
-.vc-ext .doc-row .dt { font-size: var(--fs-body); }
-.vc-ext .doc-row .dd { font-size: var(--fs-body); color: var(--muted); font-variant-numeric: tabular-nums; }
-
-/* ── STYLE V2 ("slick") tokens — all derived from the single accent #324EFE ─────────── */
-.vc-ext {
-  --accent-light:     #5169FE;   /* accent + 15% white: gradient top */
-  --accent-grad:      linear-gradient(180deg, #5169FE 0%, #324EFE 100%);
-  --accent-grad-diag: linear-gradient(135deg, #5E74FF 0%, #324EFE 55%, #2C45E0 100%);
-  --glow:             0 6px 16px rgba(50,78,254,.32);
-  --ink-shadow:       16,24,64;                       /* cool ink used for every shadow */
-  --sh-1: 0 1px 2px rgba(16,24,64,.05), 0 2px 6px rgba(16,24,64,.04);
-  --sh-2: 0 1px 2px rgba(16,24,64,.05), 0 6px 18px rgba(16,24,64,.07);
-  --sh-3: 0 2px 4px rgba(16,24,64,.06), 0 14px 32px rgba(16,24,64,.12);
-  --bd:   1px solid rgba(16,24,64,.06);
-  --soft-wash: linear-gradient(180deg, #F8F9FF 0%, #F1F3FA 100%);
-  --accent-wash: linear-gradient(180deg, #F4F6FF 0%, #EEF1FF 100%);
+  /* Motion */
+  --dur: .15s;
+  --dur-fast: .12s;
   --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+
+  /* Other */
+  --focus-ring: 2px solid #FF4A00;
 }
 
-/* ── STYLE V3 palette: indigo stays the primary accent; three supporting colours add life ───────────── */
-.vc-ext {
-  /* green — toggle ON (from the web app: #5AC47E) */
-  --green:        #5AC47E;
-  --green-light:  #6FD28F;
-  --green-dark:   #3DA865;
-  --green-grad:   linear-gradient(180deg, #6FD28F 0%, #3DA865 100%);
-  --green-glow:   0 4px 12px rgba(90,196,126,.40);
-  /* coral — alert / count badge */
-  --coral:        #FF5D73;
-  --coral-grad:   linear-gradient(135deg, #FF8294 0%, #F0445E 100%);
-  --coral-glow:   0 2px 8px rgba(240,68,94,.45);
-  /* amber — send button (from the web app: #E2B43D) */
-  --amber:        #E2B43D;
-  --amber-grad:   linear-gradient(135deg, #F8CF68 0%, #E2A52B 100%);
-  --amber-glow:   0 4px 12px rgba(226,165,43,.45);
-  --amber-tint:   #F4E4B8;
-  --amber-ink:    #0A1922;
-}
+/* Dark theme (html[data-theme="dark"]): only the values that differ from light */
+html[data-theme="dark"] .vc-ext {
+  /* Accent and status colours */
+  --orange-tint: #3A1A0E;
 
-/* v3 extra hues (chips, tags) */
-.vc-ext {
-  --teal:   #1FB5A8; --teal-ink:   #0E8F84; --teal-tint:   #DDF6F2; --teal-grad:   linear-gradient(135deg,#D8F5F1,#BDEDE6);
-  --violet: #8A5CF6; --violet-ink: #6D3FD6; --violet-tint: #EFE9FF; --violet-grad: linear-gradient(135deg,#ECE4FF,#DACCFF);
-  --tag-filing: #324EFE; --tag-news: #E2B43D; --tag-transcript: #FF5D73; --tag-web: #1FB5A8;
-  --green-tint: #CDEBD8;
+  /* Surfaces and lines */
+  --bg: #0A0A0A;
+  --card: #161616;
+  --dotline: #4C4C48;
+  --dots: #2E2E2E;
+  --fill: #1E1E1E;
+  --inv-bg: #F4F4F1;
+  --inv-ink: #0A0A0A;
+  --line: #2C2C2C;
+  --panel: #101010;
+  --strong: #F4F4F1;
+
+  /* Text colours */
+  --faint: #75756F;
+  --ink: #F4F4F1;
+  --muted: #A3A39E;
 }

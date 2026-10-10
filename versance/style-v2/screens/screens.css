@@ -1,5 +1,8 @@
-/* Shared layout for the Versance Coworker screens. Colours/type/controls come from ../design-system/tokens.css */
 @import url("../design-system/tokens.css");
+@import url("../design-system/components.css");
+
+/* Shared layout for the Versance Coworker screens. Colours/type/controls come from ../design-system/tokens.css */
+
 html, body { margin: 0; height: 100%; background: #fff; }
 .stage { position: relative; width: 100vw; height: 100vh; min-height: 752px; overflow: hidden; background: #fff; }
 

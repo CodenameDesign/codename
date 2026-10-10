@@ -1,7 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-/* Shared layout for the Versance Coworker screens. Colours/type/controls come from ../design-system/tokens.css */
 @import url("../design-system/tokens.css");
+@import url("../design-system/components.css");
+
+/* Shared layout for the Versance Coworker screens. Colours/type/controls come from ../design-system/tokens.css */
+
 html, body { margin: 0; height: 100%; background: #fff; }
 .stage { position: relative; width: 100vw; height: 100vh; min-height: 752px; overflow: hidden; background: #fff; }
 
@@ -365,26 +366,26 @@ html, body { margin: 0; height: 100%; background: #fff; }
    yellow highlighter, composer with + @ / tools and a round send button. Font: Inter.
    ══════════════════════════════════════════════════════════════════════════ */
 .vc-ext {
-  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  
   /* the old indigo accent slot becomes a near-black */
-  --accent: #1C1C1E; --accent-hover: #000000; --accent-pressed: #000000; --accent-on: #FFFFFF;
-  --accent-tint-25: #D3D3D8; --accent-tint-15: #E6E6EA; --accent-tint-8: #F2F2F5;
-  --accent-grad: linear-gradient(180deg, #3A3A3D 0%, #1C1C1E 100%);
-  --accent-grad-diag: linear-gradient(145deg, #48484B 0%, #1C1C1E 100%);
-  --glow: 0 6px 16px rgba(20,20,30,.28);
-  --accent-wash: linear-gradient(180deg, #F6F6F8 0%, #F0F0F3 100%);
-  --soft-wash: linear-gradient(180deg, #F6F6F8 0%, #F1F1F4 100%);
-  --text-info: #2C2C2E; --text-selected: #1C1C1E;
-  --ink: #1C1C1E; --muted: #6E6E73; --faint: #9A9AA0; --line: #E6E6EA; --line-soft: #EEEEF1;
-  --hover: #F1F1F4; --pane: transparent; --focus-ring: 2px solid #1C1C1E;
+     
+    
+  
+  
+  
+  
+  
+   
+      
+    
   /* the two reference accents */
-  --green: #0B9F6A; --green-grad: linear-gradient(180deg, #17B27C 0%, #08925F 100%);
-  --green-glow: 0 3px 10px rgba(11,159,106,.35); --green-tint: #CFE8DD;
-  --mark: #FFF04D;
-  --sh-1: 0 1px 2px rgba(20,20,30,.05), 0 2px 8px rgba(20,20,30,.04);
-  --sh-2: 0 1px 2px rgba(20,20,30,.05), 0 8px 24px rgba(20,20,30,.08);
-  --sh-3: 0 2px 4px rgba(20,20,30,.06), 0 16px 40px rgba(20,20,30,.14);
-  --bd: 1px solid rgba(20,20,30,.06);
+   
+   
+  
+  
+  
+  
+  
   font-family: var(--font);
 }
 html, body { font-family: "Inter", sans-serif; }
@@ -488,23 +489,23 @@ mark { background: var(--mark); color: inherit; padding: 0 2px; border-radius: 2
    composer joined to a grey strip underneath.
    ══════════════════════════════════════════════════════════════════════════ */
 .vc-ext {
-  --accent: #2D6B6A; --accent-hover: #245A5B; --accent-pressed: #1D4A4B; --accent-on: #FFFFFF;
-  --accent-tint-25: #C5DAD8; --accent-tint-15: #DDEAE8; --accent-tint-8: #EDF3F2;
-  --accent-grad: linear-gradient(180deg, #3C3B37 0%, #23221F 100%);          /* warm-black fills (primary, active rail) */
-  --accent-grad-diag: linear-gradient(145deg, #4A4944 0%, #23221F 100%);
-  --dark: #23221F;
-  --teal: #2D6B6A; --teal-tint: #E4EFEE; --teal-grad: linear-gradient(145deg, #EAF3F2, #D3E5E2);
-  --text-info: #3F5557; --text-selected: #2D6B6A;
-  --ink: #13262F; --muted: #5A6468; --faint: #8A8F90; --line: #E1E2DD; --line-soft: #ECECE8;
-  --hover: #F3F3F0; --focus-ring: 2px solid #2D6B6A;
-  --green-grad: linear-gradient(180deg, #3A9187 0%, #2D6B6A 100%);           /* toggle ON = teal */
-  --green-glow: 0 3px 10px rgba(45,107,106,.35); --green-tint: #CFE0DE;
-  --accent-wash: linear-gradient(180deg, #F6F6F3 0%, #EFEFEB 100%);
-  --soft-wash: linear-gradient(180deg, #F6F6F3 0%, #EFEFEB 100%);
-  --sh-1: 0 1px 2px rgba(19,38,47,.05), 0 2px 8px rgba(19,38,47,.04);
-  --sh-2: 0 1px 2px rgba(19,38,47,.05), 0 8px 24px rgba(19,38,47,.08);
-  --sh-3: 0 2px 4px rgba(19,38,47,.06), 0 16px 40px rgba(19,38,47,.14);
-  --bd: 1px solid rgba(19,38,47,.07);
+     
+    
+            /* warm-black fills (primary, active rail) */
+  
+  
+    
+   
+      
+   
+             /* toggle ON = teal */
+   
+  
+  
+  
+  
+  
+  
 }
 .stage { background: radial-gradient(900px 600px at 12% 0%, #E4ECEC, transparent 62%), linear-gradient(180deg, #F8F8F6 0%, #EFEFEB 100%); }
 .panel { background: linear-gradient(180deg, #FDFDFC 0%, #F6F6F3 100%);
@@ -585,23 +586,6 @@ mark { background: #F7EA6E; }
 .ws { padding: 0 10px 0 8px; }
 .exp { flex: 1 1 auto; min-width: 0; padding: 0 10px; }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   STYLE V6 — "grid / sovereign". Based on the Mistral reference: warm cream paper, ink black,
-   Mistral orange + amber + mint + sky, dark navy, SHARP corners, hairline grey horizontal and
-   vertical lines, mono labels, stepped pixel blocks behind the panel.
-   ══════════════════════════════════════════════════════════════════════════ */
-.vc-ext {
-  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
-  --ink: #111111; --muted: #5F5E5A; --faint: #8F8C84; --line: #D5D1C8; --line-soft: #E4E1DA;
-  --paper: #F6F4EF; --hover: #F1EFE9; --pane: #F6F4EF;
-  --orange: #FA520F; --orange-d: #E8400C; --amber: #FFB000; --yellow: #FFD23F;
-  --mint: #C6F0CF; --sky: #B9D4FA; --navy: #14152B;
-  --accent: #FA520F; --accent-hover: #E8400C; --accent-pressed: #C93508; --accent-on: #111111;
-  --accent-tint-25: #FFC9AD; --accent-tint-15: #FFE1D1; --accent-tint-8: #FFF1E8;
-  --text-info: #111111; --text-selected: #111111; --focus-ring: 2px solid #FA520F;
-  --grid: #E7E4DD;
-}
 .vc-ext, .vc-ext * { box-shadow: none !important; }
 html, body { font-family: "Inter", sans-serif; }
 
@@ -729,20 +713,6 @@ mark { background: #FFD23F; color: #111; padding: 0 2px; }
 .stage::before { content: none; background: none; }
 .panel { background-image: none; background-color: #FAF8F4; }
 
-/* ══════════════════════════════════════════════════════════════════════════
-   STYLE V7 — "dashboard". Based on the Supabase project dashboard reference: clean white surfaces,
-   hairline #E6E6E6 borders, small radii (6–8px), Supabase green #3ECF8E, mono UPPERCASE labels,
-   outlined status tags, bordered icon tiles, dotted backdrop, no shadows.
-   ══════════════════════════════════════════════════════════════════════════ */
-.vc-ext {
-  --ink: #171717; --muted: #6B6B6B; --faint: #9A9A9A; --line: #E6E6E6; --line-soft: #EFEFEF;
-  --paper: #FFFFFF; --hover: #F5F5F5; --pane: #FFFFFF;
-  --green: #3ECF8E; --green-d: #1FA971; --green-ink: #0B6B45; --green-tint: #E3F8EE; --green-line: #9BE3C3;
-  --amber-ink: #A15C00; --amber-tint: #FFF6E5; --amber-line: #F2C77A;
-  --accent: #3ECF8E; --accent-hover: #2FBF7F; --accent-pressed: #1FA971; --accent-on: #0B3D2A;
-  --accent-tint-25: #BFEEDA; --accent-tint-15: #D5F5E7; --accent-tint-8: #EEFBF5;
-  --text-info: #171717; --text-selected: #0B6B45; --focus-ring: 2px solid #3ECF8E;
-}
 /* backdrop: white page with a dotted pattern */
 .stage { background-color: #FCFCFC; background-image: radial-gradient(#D9D9D9 1px, transparent 1.2px); background-size: 20px 20px; }
 .stage::before { content: none; }

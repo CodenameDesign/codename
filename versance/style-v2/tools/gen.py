@@ -40,7 +40,7 @@ def chrome():
 <span class="tb-ic" style="right:222px">{i('puzzle')}</span><span class="tb-ic" style="right:96px">{i('dl')}</span><span class="avatar-chrome"></span><span class="tb-ic" style="right:14px">{i('dots')}</span></div>'''
 
 def rail(active,badge=3):
-    items=[('backpack','research',None),('folder','filings',None),('bank','cad','CAD'),('bank','us','US'),('gavel','compliance',None),('out','output',None),('hist','history',None)]
+    items=[('home','home',None),('backpack','research',None),('folder','filings',None),('bank','cad','CAD'),('bank','us','US'),('gavel','compliance',None),('out','output',None),('hist','history',None)]
     h=''
     for icn,key,cc in items:
         a=' active' if key==active else ''
@@ -51,7 +51,7 @@ def rail(active,badge=3):
     return f'<div class="rail">{h}</div>'
 
 def cbar(name='INTEGRA RESOURCES CORP'): return f'<div class="cbar"><span>{name}</span><span class="edit">edit</span></div>'
-def navs(): return f'<div class="navs"><span class="sq">{i("home")}</span><span class="sq">{i("arr")}</span></div>'
+def navs(): return ''   # Home now lives in the icon rail
 def collapse(): return f'<span class="sq collapse">{i("min")}</span>'
 def strip(second=None,btn='new chat'):
     if second: t=f'<span class="t">Coworker</span><span class="t on">{second}</span>'
@@ -103,7 +103,7 @@ WELCOME=f'''<div class="tile w">{closex("close")}{logo("logo28","#324EFE")}<p cl
 CHIPS=f'<div class="chips"><span class="chip">{i("info","ico sm")}How it works</span><span class="chip">{i("page","ico sm")}Summarise the current web page</span><span class="chip">{i("gavel","ico sm")}Run a compliance review</span></div>'
 def compact_chat(extra=''):
     return f'<div class="chatcol"><div class="chatbody full">{WELCOME}</div>{CHIPS}{composer(ws="on")}</div>{extra}'
-S['VBE-101a-Coworker-Small']=page('Coworker — Small',panel('compact',compact_chat(),None,badge=0))
+S['VBE-101a-Coworker-Small']=page('Coworker — Small',panel('compact',compact_chat(),'home',badge=0))
 dd1=f'<div class="dd"><div class="caps grp">Recent companies</div><div class="it">Company One</div><div class="it">Company Two</div><div class="it">Company Three</div></div>'
 def sw(value,dd,exit_=False):
     ex='<span class="exit">EXIT</span>' if exit_ else ''
@@ -111,7 +111,7 @@ def sw(value,dd,exit_=False):
     return inner
 def switcher_panel(value,dd,exit_):
     body=compact_chat(dd)
-    p=panel('compact',body,None,badge=0)
+    p=panel('compact',body,'home',badge=0)
     return p.replace(cbar(),sw(value,dd,exit_))
 S['VBE-101ab-Coworker-Switch']=page('Coworker — Switch',switcher_panel('',dd1,False))
 dd2=f'<div class="dd"><div class="caps grp">Recent companies</div><div class="it">Aardvark Mines</div><hr><div class="caps grp">All companies</div><div class="it">Aarial Company</div><div class="it">Aarke Capital</div>'+'<div class="it">Aarke Mines</div>'*5+'</div>'
@@ -121,7 +121,7 @@ HELP=f'''<div class="helpfill">{closex("close")}<div class="info-title">How the 
 <h3 class="info-sub">2. Add documents to research context</h3><p class="info">Open the CAD or US library, find any company, and add the filings or news releases you want to compare to your research context. You can also upload your own documents or add a web page.</p>
 <h3 class="info-sub">3. Ask and compare</h3><p class="info">Ask me questions across your primary company's record, the documents in your research context and the page you're working on. Every answer shows its sources.</p>
 <h3 class="info-sub">4. Run a compliance review</h3><p class="info">Open Compliance review to check the page you have open, whether it's your own draft or a document you're reviewing, against Canadian or US securities regulations.</p></div>'''
-S['VBE-101b-Coworker-About']=page('Coworker — About',panel('compact',f'<div class="chatcol">{HELP}{composer(ws="on")}</div>',None,badge=0))
+S['VBE-101b-Coworker-About']=page('Coworker — About',panel('compact',f'<div class="chatcol">{HELP}{composer(ws="on")}</div>','home',badge=0))
 
 # ── expanded screens ───────────────────────────────────────────────────
 def wide(chat,right,active,badge=3): return panel('wide',chat+right,active,badge)
@@ -193,8 +193,14 @@ def add_vnav(html, g):
     css = """<style id="vnav-css">
 .vnav, .vnav * { box-sizing: border-box; }
 html body .vnav { position: fixed; z-index: 2147483000; font: 12.5px/1.35 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; color: #111; background: #fff; border: 1px solid #D4D4D4; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,.12); text-transform: none; letter-spacing: 0; }
-html body .vnav-list { top: 12px; left: 12px; width: 236px; max-height: calc(100vh - 76px); overflow: auto; padding: 8px 6px; }
-html body .vnav-list h2 { margin: 2px 8px 6px; font: 600 11px/1.2 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; text-transform: uppercase; letter-spacing: .06em; color: #777; }
+html body .vnav-col { position: fixed; z-index: 2147483000; top: 12px; left: 12px; bottom: 64px; width: 236px; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+html body .vnav-col .vnav { position: static; pointer-events: auto; }
+html body .vnav-list { flex: 0 1 auto; min-height: 0; overflow: auto; padding: 8px 6px; }
+html body .vnav-ds { flex: none; padding: 8px 6px; }
+html body .vnav-ds a.ds { display: flex; justify-content: space-between; align-items: center; padding: 4px 8px; border-radius: 6px; color: #111; text-decoration: none; background: transparent; font-weight: 400; }
+html body .vnav-ds a.ds span { color: #999; font-size: 11px; }
+html body .vnav-ds a.ds:hover { background: #F0F0F0; }
+html body .vnav h2 { margin: 2px 8px 6px; font: 600 11px/1.2 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; text-transform: uppercase; letter-spacing: .06em; color: #777; }
 html body .vnav-list a { display: block; padding: 4px 8px; border-radius: 6px; color: #111; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: transparent; font-weight: 400; }
 html body .vnav-list a b { display: inline-block; min-width: 34px; font-weight: 600; color: #777; font-variant-numeric: tabular-nums; }
 html body .vnav-list a:hover { background: #F0F0F0; }
@@ -206,9 +212,9 @@ html body .vnav-styles a:hover { background: #F0F0F0; }
 html body .vnav-styles .off { color: #C4C4C4; cursor: default; }
 html body .vnav-styles .num { min-width: 30px; font-variant-numeric: tabular-nums; }
 </style>"""
-    box = f'<nav class="vnav vnav-list" aria-label="All screens"><h2>All screens ({len(S)})</h2>{items}</nav><div class="vnav vnav-styles" role="navigation" aria-label="Switch style"><a data-dir="-1" href="#" aria-label="Previous style">&lsaquo;</a><span class="num" title="Current style">1</span><a data-dir="1" href="#" aria-label="Next style">&rsaquo;</a></div>'
-    js = """<script id="vnav-js">(function(){var N=12,m=location.pathname.match(/style-v(\\d+)/),cur=m?+m[1]:1,file=location.pathname.split('/').pop();
-if(/[?&]export/.test(location.search)){[].forEach.call(document.querySelectorAll('.vnav'),function(e){e.style.display='none'});}
+    box = f'<div class="vnav-col"><nav class="vnav vnav-list" aria-label="All screens"><h2>All screens ({len(S)})</h2>{items}</nav><nav class="vnav vnav-ds" aria-label="Design system"><h2>Design system</h2><a class="ds" href="../design-system/specimen.html" target="_blank" rel="noopener">specimen.html<span>page</span></a><a class="ds" href="../design-system/design-system.md" target="_blank" rel="noopener">design-system.md<span>doc</span></a><a class="ds" href="../design-system/tokens.css" target="_blank" rel="noopener">tokens.css<span>css</span></a><a class="ds" href="../design-system/components.css" target="_blank" rel="noopener">components.css<span>css</span></a></nav></div><div class="vnav vnav-styles" role="navigation" aria-label="Switch style"><a data-dir="-1" href="#" aria-label="Previous style">&lsaquo;</a><span class="num" title="Current style">1</span><a data-dir="1" href="#" aria-label="Next style">&rsaquo;</a></div>'
+    js = """<script id="vnav-js">(function(){var N=13,m=location.pathname.match(/style-v(\\d+)/),cur=m?+m[1]:1,file=location.pathname.split('/').pop();
+if(/[?&]export/.test(location.search)){[].forEach.call(document.querySelectorAll('.vnav,.vnav-col'),function(e){e.style.display='none'});}
 document.querySelector('.vnav-styles .num').textContent=cur;
 function st(){var hash=location.hash||'';[].forEach.call(document.querySelectorAll('.vnav-styles a'),function(a){var n=cur+ +a.dataset.dir;if(n<1||n>N){a.className='off';a.removeAttribute('href');a.setAttribute('aria-disabled','true')}else{a.className='';a.href='../../style-v'+n+'/screens/'+file+hash;a.removeAttribute('aria-disabled')}});
 var c=document.querySelector('.stage.on'),s=c&&c.dataset.state;[].forEach.call(document.querySelectorAll('.vnav-list a'),function(a){a.classList.toggle('cur',a.dataset.f===file&&a.dataset.s===s)})}
