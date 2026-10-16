@@ -1,0 +1,85 @@
+<!--
+  Alerts page card: title row + New Search button, left alert list (Filter/Sort bar), right detail (Saved Search Terms header, frequency radios, Delete alert, mentions list). Lists are rendered by js/alerts.js; items here are static samples.
+  Source: generated from the static mockup. Classes are the app's existing Tailwind utilities + tokens.
+  Inline style="" values are layout overrides - see css/cno-civic-searchlight-overrides.css.
+-->
+<div class="bg-white md:rounded-xl p-md md:p-lg select-none" style="margin-top:1.5rem">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin:.25rem 0 1rem .5rem">
+    <h1 class="text-gray-900 font-bold" style="font-size:1.4rem;line-height:1.2;margin:0">Alerts</h1>
+    <a href="search-2.html" class="bg-red-500 hover:bg-red-600 text-white text-base font-semibold rounded-2xl py-sm px-xl transition-colors" style="display:inline-flex;align-items:center;gap:.5rem;text-decoration:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>New Search</a>
+  </div>
+  <div class="flex flex-col md:flex-row gap-md">
+    <div class="border border-gray-200 rounded-lg bg-white" style="width:24rem;flex:none;display:flex;flex-direction:column;overflow:visible;height:min(78vh,735px)">
+      <div id="alert-sort" style="display:flex;border-bottom:1px solid #e5e7eb;flex:none;margin:-1px -1px 0;border-top:1px solid #e5e7eb;border-radius:.5rem .5rem 0 0;overflow:hidden">
+        <button type="button" class="hover:bg-gray-50 transition-colors" style="flex:1;display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem;text-align:left;border-right:1px solid #e5e7eb;"><span class="text-left"><span class="text-gray-400" style="display:block;font-size:10px;letter-spacing:.05em;text-transform:uppercase;line-height:1">Filter</span><span class="text-sm font-medium text-gray-900" style="display:block;margin-top:.15rem">All Alerts</span></span><svg class="text-gray-400 shrink-0" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+        <button type="button" class="hover:bg-gray-50 transition-colors" style="flex:1;display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem;text-align:left;"><span class="text-left"><span class="text-gray-400" style="display:block;font-size:10px;letter-spacing:.05em;text-transform:uppercase;line-height:1">Sort</span><span class="text-sm font-medium text-gray-900" style="display:block;margin-top:.15rem">Most Recent</span></span><svg class="text-gray-400 shrink-0" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+      </div>
+      <ul id="alert-list" class="cs-scrollbar" style="list-style:none;margin:0 -1px -1px;padding:0;flex:1;overflow-y:scroll;border-radius:0 0 .5rem .5rem">
+        <li style="padding:.9rem 1rem;position:relative;border-bottom:1px solid #e5e7eb;cursor:pointer;">
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <span class="inline-flex items-center text-sm font-semibold rounded-lg py-xs px-md bg-gray-100 text-gray-800">City of Toronto</span><span class="inline-flex items-center text-sm font-semibold rounded-lg py-xs px-md bg-amber-100 text-amber-800">planning</span>
+        </div>
+        <div class="text-sm text-red-500" style="margin-top:.6rem">
+          Weekly
+        </div>
+        <div class="text-sm text-gray-500" style="margin-top:.2rem;white-space:nowrap">
+          <strong class="text-gray-900">12</strong> this week &nbsp; <strong class="text-gray-900">148</strong> this month &nbsp; <strong class="text-gray-900">2,546</strong> all time
+        </div>
+        </li><li style="padding:.9rem 1rem;border-bottom:1px solid #e5e7eb;cursor:pointer;">
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <span class="inline-flex items-center text-sm font-semibold rounded-lg py-xs px-md bg-gray-100 text-gray-800">City of Ottawa</span><span class="inline-flex items-center text-sm font-semibold rounded-lg py-xs px-md bg-amber-100 text-amber-800">housing</span>
+        </div>
+        <div class="text-sm text-red-500" style="margin-top:.6rem">
+          Weekly
+        </div>
+        <div class="text-sm text-gray-500" style="margin-top:.2rem;white-space:nowrap">
+          <strong class="text-gray-900">3</strong> this week &nbsp; <strong class="text-gray-900">31</strong> this month &nbsp; <strong class="text-gray-900">34</strong> all time
+        </div>
+        </li>
+      </ul>
+    </div>
+    <div class="border border-gray-200 rounded-lg bg-white" style="flex:1;min-width:0;display:flex;flex-direction:column;overflow:visible;height:min(78vh,735px)">
+      <div style="flex:none;position:relative;background:var(--color-gray-100);border:0;border-bottom:1px solid #e5e7eb;margin:0;border-radius:calc(.5rem - 1px) calc(.5rem - 1px) 0 0;padding:.9rem 1.25rem;display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:flex-start">
+        <span aria-hidden="true" style="position:absolute;left:.2rem;top:.2rem;bottom:.2rem;width:2px;background:#111;border-radius:1px"></span>
+        <div style="flex:1;min-width:16rem">
+          <div style="display:flex;align-items:baseline;gap:1rem">
+            <h2 class="text-base font-bold text-gray-900" style="margin:0">Saved Search Terms</h2>
+          </div>
+          <div id="saved-terms" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem">
+            <span class="inline-flex items-center text-sm font-semibold rounded-lg py-xs px-md bg-gray-100 text-gray-800" style="background:#fff">City of Toronto</span>
+            <span class="inline-flex items-center text-sm font-semibold rounded-lg py-xs px-md bg-amber-100 text-amber-800">planning</span>
+          </div>
+        </div>
+        <div>
+          <h2 class="text-base font-bold text-gray-900" style="margin:0 0 .75rem">Alert Frequency</h2>
+          <div id="freq" style="display:flex;gap:1.25rem;flex-wrap:wrap">
+            <label class="text-sm text-gray-800" style="display:inline-flex;align-items:center;gap:.4rem;cursor:pointer">
+            <input type="radio" name="freq"  style="accent-color:#111;width:1rem;height:1rem;margin:0">
+            Instantly</label>
+            <label class="text-sm text-gray-800" style="display:inline-flex;align-items:center;gap:.4rem;cursor:pointer">
+            <input type="radio" name="freq" checked style="accent-color:#111;width:1rem;height:1rem;margin:0">
+            Daily</label>
+            <label class="text-sm text-gray-800" style="display:inline-flex;align-items:center;gap:.4rem;cursor:pointer">
+            <input type="radio" name="freq"  style="accent-color:#111;width:1rem;height:1rem;margin:0">
+            Weekly</label>
+            <label class="text-sm text-gray-800" style="display:inline-flex;align-items:center;gap:.4rem;cursor:pointer">
+            <input type="radio" name="freq"  style="accent-color:#111;width:1rem;height:1rem;margin:0">
+            Pause</label>
+          </div>
+        </div>
+        <button type="button" id="delete-alert" class="text-sm font-medium text-red-500 hover:text-red-500-hover underline" style="background:none;border:0;padding:0;align-self:flex-start;cursor:pointer">Delete alert</button>
+      </div>
+      <ul id="mention-list" class="cs-scrollbar" style="list-style:none;margin:0 -1px -1px;padding:0;flex:1;overflow-y:scroll;border-radius:0 0 .5rem .5rem">
+        <li style="padding:1rem 1.25rem;border-bottom:1px solid #e5e7eb;display:flex;gap:1rem;align-items:flex-start">
+        <div style="flex:1;min-width:0">
+          <time class="text-sm text-gray-400" style="display:block">7/30/2026</time><button type="button" class="text-base font-semibold text-gray-800 hover:text-blue-500 transition-colors leading-snug" style="display:block;text-align:left;margin:.6rem 0 .35rem">City Council - July 30, 2026</button><p class="text-sm text-gray-700 leading-snug select-text" style="margin:0">...litter and etc correct yes so it would yes okay are they <mark class="bg-yellow-500">planning</mark> to have garbage containers litter boxes next to it that's something we'd...</p>
+        </div>
+        <button aria-label="Watch clip" class="shrink-0 text-blue-500 hover:text-blue-500-hover transition-colors" title="Watch clip"><svg data-prefix="fas" data-icon="circle-play" class="svg-inline--fa fa-circle-play text-2xl" role="img" viewBox="0 0 512 512" aria-hidden="true"><path fill="currentColor" d="M0 256a256 256 0 1 1 512 0 256 256 0 1 1 -512 0zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9l0 176c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z"></path></svg></button></li><li style="padding:1rem 1.25rem;border-bottom:1px solid #e5e7eb;display:flex;gap:1rem;align-items:flex-start">
+        <div style="flex:1;min-width:0">
+          <time class="text-sm text-gray-400" style="display:block">7/30/2026</time><button type="button" class="text-base font-semibold text-gray-800 hover:text-blue-500 transition-colors leading-snug" style="display:block;text-align:left;margin:.6rem 0 .35rem">City Council - July 30, 2026 - Evening Session</button><p class="text-sm text-gray-700 leading-snug select-text" style="margin:0">...The first is to request executive directors of development review and city <mark class="bg-yellow-500">planning</mark> in addition to the chief planner to ensure that all municipal approvals...</p>
+        </div>
+        <button aria-label="Watch clip" class="shrink-0 text-blue-500 hover:text-blue-500-hover transition-colors" title="Watch clip"><svg data-prefix="fas" data-icon="circle-play" class="svg-inline--fa fa-circle-play text-2xl" role="img" viewBox="0 0 512 512" aria-hidden="true"><path fill="currentColor" d="M0 256a256 256 0 1 1 512 0 256 256 0 1 1 -512 0zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9l0 176c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z"></path></svg></button></li>
+      </ul>
+    </div>
+  </div>
+</div>
