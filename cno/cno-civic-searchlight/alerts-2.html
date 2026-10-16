@@ -852,7 +852,7 @@
         var b=document.createElement('button');b.type='button';b.className='text-sm text-gray-800';
         var on=isActive(it);
         b.style.cssText='display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;padding:.4rem 1rem;cursor:pointer;'+(on?'font-weight:600;':'');
-        b.innerHTML='<span>'+it.label+'</span>'+(on?'<span aria-hidden="true">✓</span>':'');
+        b.innerHTML='<span>'+it.label+'</span>';
         b.addEventListener('mouseenter',function(){b.style.background='#f9fafb';});b.addEventListener('mouseleave',function(){b.style.background='';});
         b.addEventListener('click',function(e){e.stopPropagation();closePanel();onPick(it);});
         panel.appendChild(b);
